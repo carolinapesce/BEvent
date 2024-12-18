@@ -8,3 +8,96 @@
  *
  * Consider organizing styles into separate files for maintainability.
  */
+
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  .container {
+    background-color: #ffe1e1; /* Rosa chiaro */
+    border-radius: 20px; /* Angoli arrotondati */
+    text-align: center;
+    padding: 40px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Leggera ombreggiatura */
+    width: 80%;
+    max-width: 600px;
+  }
+  
+  .title {
+    font-family: 'Jomhuria', cursive; /* Font del titolo */
+    font-size: 8rem;
+    font-weight: bold;
+    color: #000; /* Nero */
+    margin-bottom: 30px;
+    letter-spacing: 5px; /* Spaziatura tra lettere */
+  }
+  
+  .user-info h2 {
+    font-size: 1.5rem;
+    color: #4CAF50;
+  }
+  
+  .actions {
+    margin-top: 20px;
+  }
+
+  .explore-text {
+    color: #04A777; /* Verde scuro */
+    font-family: 'Lexend Deca', sans-serif;
+    font-weight: 400;
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+
+  .btn {
+    display: inline-block;
+    padding: 12px 24px;
+    font-family: 'Lexend Deca', sans-serif;
+    font-weight: 400;
+    font-size: 1.5rem;
+    margin: 10px;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 10px;
+    background-color: #006699;
+    color: #fff;
+    transition: background-color 0.3s ease;
+  }
+
+  .btn:hover {
+    background-color: #0056b3;
+  }
+  
+  .btn-logout {
+    background-color: #ff4136;
+  }
+  
+  .btn-logout:hover {
+    background-color: #d73025;
+  }
+  
+  .btn-login {
+    background-color: #0075A2;
+  }
+  
+  .btn-login:hover {
+    background-color: #004466;
+  }
+  
+  .btn-register {
+    background-color: #0075A2;
+  }
+  
+  .btn-register:hover {
+    background-color: #004466;
+  }
+  
