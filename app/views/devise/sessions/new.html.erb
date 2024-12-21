@@ -23,9 +23,14 @@
 
   <% if devise_mapping.rememberable? %>
     <div class="field_remember-me-login">
-      <%= f.check_box :remember_me, class: "checkbox" %>
-      <%= f.label :remember_me, "Remember me", class: "remember-label" %>
-      <%= f.submit "Log in", class: "btn btn-login" %>
+      
+      <div class="remember-me-left">
+        <%= f.check_box :remember_me, class: "checkbox" %>
+        <%= f.label :remember_me, "Remember me", class: "remember-label" %>
+      </div>
+      <div class="login-buttons-right">
+        <%= f.submit "Log in", class: "btn btn-login" %>
+      </div>
     </div>
   <% else %>
     <%= f.submit "Log in", class: "btn btn-login" %>
