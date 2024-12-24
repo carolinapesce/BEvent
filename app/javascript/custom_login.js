@@ -11,12 +11,11 @@ document.addEventListener("turbo:load", function () {
   
     // Sposta il pulsante di "login con Google" nel punto giusto nella pagina di log in
     const omniauthButton = document.querySelector(".omniauth-login-button");
-    const loginButton = document.querySelector(".btn-login");
-    if (omniauthButton && loginButton) {
-      const googleButtonContainer = document.createElement("div");
-      googleButtonContainer.className = "google-button-container";
-      googleButtonContainer.style.display = "inline-block";
-      googleButtonContainer.appendChild(omniauthButton);
-      loginButton.parentNode.insertBefore(googleButtonContainer, loginButton);
+    const signupLink = document.querySelector(".signup-link");
+    
+    if (omniauthButton && signupLink) {
+      
+      signupLink.parentNode.insertBefore(omniauthButton, signupLink);
     }
   });
+

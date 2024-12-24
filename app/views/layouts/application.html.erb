@@ -23,16 +23,18 @@
     <%= stylesheet_link_tag 'application', media: 'all' %>
     <%= javascript_include_tag 'application', 'data-turbo-track': 'reload' %>
     <%= stylesheet_link_tag 'login', 'data-turbo-track': 'reload' if request.path == '/users/sign_in' %>
-    <%= javascript_include_tag "custom_login", "data-turbolinks-track": "reload" %>
+    <%= stylesheet_link_tag 'register', 'data-turbo-track': 'reload' if controller_name == 'registrations' && action_name == 'new' %>
+    <%= stylesheet_link_tag 'password_forgot', 'data-turbo-track': 'reload' if controller_name == 'passwords' && action_name == 'new' %>
+    <%= javascript_include_tag "custom_login", "data-turbolinks-track": "reload" if request.path == '/users/sign_in'%>
 
   <link href="https://fonts.googleapis.com/css2?family=Jomhuria&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@400;600&display=swap" rel="stylesheet">
 
   </head>
 
-  <body class="<%= body_class %>">
-      <p class="notice"><%= notice %></p>
-       <p class="alert"><%= alert %></p>
+  <body class="<%= "#{controller_name}-#{action_name}" %>">
+    <p class="notice"><%= notice %></p>
+    <p class="alert"><%= alert %></p>
     <%= yield %>
   </body>
 </html>

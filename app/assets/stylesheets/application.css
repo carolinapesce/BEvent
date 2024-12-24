@@ -10,11 +10,11 @@
  */
 
 
-body.default-page {
+ body.home-index {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f4f4f9;
+    background-color: #f1f1f1;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -22,7 +22,7 @@ body.default-page {
   }
   
   .container {
-    background-color: #ffe1e1; /* Rosa chiaro */
+    background-color: #fff; /* Rosa chiaro */
     border-radius: 20px; /* Angoli arrotondati */
     text-align: center;
     padding: 40px;
@@ -33,7 +33,7 @@ body.default-page {
   
   .title {
     font-family: 'Jomhuria', cursive; /* Font del titolo */
-    font-size: 8rem;
+    font-size: 10rem;
     font-weight: bold;
     color: #000; /* Nero */
     margin-bottom: 30px;
