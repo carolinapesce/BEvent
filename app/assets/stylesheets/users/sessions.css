@@ -1,0 +1,67 @@
+
+body{
+    font-family: 'Heebo', sans-serif;
+    margin: 0;
+    padding: 0;
+    height: 100%; /* Assicura che il body occupi tutta l'altezza della finestra */
+    width: 100%;  /* Assicura che il body occupi tutta la larghezza della finestra */
+    overflow-x: hidden;
+}
+
+
+.title{
+    width: 224px;
+    height: 135.302px;
+    flex-shrink: 0;
+    font-family: 'Jomhuria';
+    color: #000;
+    font-size: 150.336px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    margin: 0%;
+}
+
+#user_email{
+    background-color: #D9D9D9;
+    border: none;
+    width: 339px;
+    height: 59px;
+    font-family: Heebo, sans-serif;
+    border-radius: 5px;
+    padding: 10px;
+    margin-top: 14px;
+    margin-bottom: 14px;
+}
+
+#user_password{
+    background-color: #D9D9D9;
+    border: none;
+    width: 339px;
+    height: 59px;
+    font-family: Heebo, sans-serif;
+    border-radius: 5px;
+    padding: 10px;
+    margin-top: 14px;
+    margin-bottom: 14px;
+}
+
+#user_remember_me{
+    background-color: #D9D9D9;
+    border: none;
+    width: 20px;
+    height: 20px;
+    font-family: Heebo, sans-serif;
+    border-radius: 5px;
+    margin-left: 0px;
+}
+
+.btn-submit{
+    background-color: #04A777;
+    width: 359px;
+    height: 59px;
+    border: none;
+    margin-top: 14px;
+    margin-bottom: 14px;
+    border-radius: 45px;
+}

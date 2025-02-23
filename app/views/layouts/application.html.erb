@@ -19,6 +19,8 @@
 
     <%# Includes all stylesheet files in app/assets/stylesheets %>
     <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
+    <%= stylesheet_link_tag "users/#{controller_name}", "data-turbo-track": "reload", media: "all" if asset_path("users/#{controller_name}.css", skip_pipeline: true) rescue nil %>
+
     <%= javascript_importmap_tags %>
   </head>
 
