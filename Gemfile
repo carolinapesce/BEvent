@@ -72,3 +72,6 @@ gem "omniauth-google-oauth2"
 gem "omniauth-rails_csrf_protection"
 
 gem "http"
+
+# Faker Gem to seed the db
+gem 'faker'
