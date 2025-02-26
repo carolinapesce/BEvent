@@ -2,6 +2,20 @@ class User < ApplicationRecord
 
   has_many :events
 
+  # Definition of roles (User, EventPlanner, Admin)
+  def user?
+    self.role == 0
+  end
+
+  def eventplanner?
+    self.role == 1
+  end
+  def admin?
+    self.role == 2
+  end
+
+  validates :bio, absence: true, unless: :eventplanner?
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -19,4 +33,6 @@ class User < ApplicationRecord
       user.phone_number = auth.info.phone_number
     end
   end
+
+
 end

@@ -1,6 +1,6 @@
 class Donation < ApplicationRecord
     has_one :user
-    belongs_to :event
+    has_one :event
     validates :event_must_be_a_charity_event
 
     def event_must_be_a_charity_event
