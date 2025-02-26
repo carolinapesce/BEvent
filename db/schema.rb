@@ -10,10 +10,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_02_24_093453) do
+ActiveRecord::Schema[8.0].define(version: 2025_02_26_160710) do
   create_table "charity_events", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "donations", force: :cascade do |t|
+    t.string "donation_id", null: false
+    t.integer "event_id", null: false
+    t.integer "user_id", null: false
+    t.float "amount", default: 0.0, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.text "message"
+    t.boolean "anonymous"
+    t.index ["event_id"], name: "index_donations_on_event_id"
+    t.index ["user_id"], name: "index_donations_on_user_id"
   end
 
   create_table "events", force: :cascade do |t|
@@ -64,10 +77,13 @@ ActiveRecord::Schema[8.0].define(version: 2025_02_24_093453) do
     t.string "user_id"
     t.string "image_url"
     t.string "provider"
+    t.integer "role"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "donations", "events"
+  add_foreign_key "donations", "users"
   add_foreign_key "tickets", "events"
   add_foreign_key "tickets", "users"
 end
