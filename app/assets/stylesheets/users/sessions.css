@@ -10,7 +10,7 @@ body{
     display: flex;
     justify-content: center;
     align-items: center;
-    background: white;
+    background: lightgoldenrodyellow;
 }
 
 .container{
@@ -34,7 +34,7 @@ body{
 
 .login{
     grid-area: login;
-    background: lightgoldenrodyellow;
+    background: white;
     border-radius: 20px;
     display: flex;
     flex-direction: column;
@@ -88,6 +88,80 @@ body{
     height: 100%;
     margin-left: 10px;
 }
+
+.chckbox-field{
+    display: flex;
+    justify-content:left;
+    align-items: center;
+    width: 90%;
+    cursor: pointer;
+    gap: 4px;
+
+    
+}
+
+.chckbox-field input[type="checkbox"]{
+    cursor: pointer;
+    display: none;
+}
+
+.checkmark{
+    width: 15px;
+    height: 15px;
+    background-color: #e9e9e9;
+    border: 2px solid #ccc;
+    border-radius: 4px; /* Angoli arrotondati */
+    display: inline-block;
+    position: relative;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.chckbox-field:hover .checkmark {
+    background-color: #d1d1d1;
+}
+
+.chckbox-field input[type="checkbox"]:checked + .checkmark {
+    background-color: #04A777; /* Verde */
+    border-color: #04A777;
+}
+
+.chckbox-field input[type="checkbox"]:checked + .checkmark::after {
+    content: "✔"; /* Unicode checkmark */
+    font-size: 12px;
+    color: white;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.chckbox-field .remember-label{
+    font-size: 10px;
+    color: #333;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.btn-submit{
+    width: calc(80% + 30px);
+    padding: 0 0px;
+    margin: 15px 0px;
+    height: 40px;
+    border-radius: 45px;
+    background: #04A777;
+    color: #FFF;
+    text-align: center;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 800;
+    line-height: normal;
+}
+
+
+
+
+
 
 
 
