@@ -17,14 +17,18 @@
           <%= f.check_box :remember_me %>
           <label for="user_remember_me" class="checkmark"></label>
           <%= f.label :remember_me, class: "remember-label" %>
+          <%= render "devise/shared/forgot_password" %>
         </div>
       <% end %>
-  
       <div class="actions">
         <%= f.submit "Log in", class: "btn-submit" %>
       </div>
+
+      <div class="line"></div>
+      <%= render "devise/shared/omniauth_links" %>
+      <%= render "devise/shared/sign_up" %>
+
+
     <% end %>
-  
-    <%= render "devise/shared/links" %>
   </div>
 </div>
