@@ -91,10 +91,11 @@ body{
 }
 
 .chckbox-field{
+    grid-area: check;
     display: flex;
     justify-content:left;
     align-items: center;
-    width: 90%;
+    width: 100%;
     cursor: pointer;
     gap: 4px;
 
@@ -111,7 +112,7 @@ body{
     height: 15px;
     background-color: #e9e9e9;
     border: 2px solid #ccc;
-    border-radius: 4px; /* Angoli arrotondati */
+    border-radius: 4px;
     display: inline-block;
     position: relative;
     cursor: pointer;
@@ -139,9 +140,24 @@ body{
 
 .chckbox-field .remember-label{
     font-size: 10px;
-    color: #333;
-    font-weight: bold;
     cursor: pointer;
+    color: #000;
+    font-style: normal;
+    font-weight: 800;
+    line-height: normal;
+}
+
+.optional{
+    width: calc(30px + 80%);
+    display: grid;
+    grid-template-columns: 50% 50%;
+    grid-template-areas: "check pass";
+}
+.psswrd-link{
+    grid-area: pass;
+    display: flex;
+    justify-content:right;
+    align-items: center;
 }
 
 .btn-submit{
@@ -151,6 +167,7 @@ body{
     height: 40px;
     border-radius: 45px;
     background: #04A777;
+    cursor: pointer;
     color: #FFF;
     text-align: center;
     font-size: 12px;
@@ -165,9 +182,52 @@ body{
     background-color: #333;
 }
 
-.signup-link{
-    font-size: 10px;
+.forgot-password-link{
+    color: #0075A2;
+    text-align: right;
+    font-family: Heebo;
+    font-size: 8px;
+    font-style: normal;
+    font-weight: 800;
+    line-height: normal;
+    margin-left: 55%;
+
 }
+.google_oauth2-form{
+    width: 206.400px;
+}
+
+.omniauth-button{
+    margin: 15px 0px;
+    margin-left: 8px;
+    padding-right: 8px;
+    
+    
+}
+
+.sgnp{
+    width: 206.4px;
+    display: inline-flex;
+    justify-content: right;
+}
+
+.informative{
+    font-family: Heebo;
+    font-size: 12px;
+}
+
+.signup-link{
+    color: #0075A2;
+    text-align: right;
+    font-family: Heebo;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 800;
+    line-height: normal;
+    margin-right: 15px;
+    margin-left: 2px;
+}
+
 
 
 
