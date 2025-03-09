@@ -1,0 +1,240 @@
+
+
+*,html,body{
+    margin: 0;
+    border: 0;
+}
+body{
+    font-family: 'Heebo', sans-serif;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: lightgoldenrodyellow;
+}
+
+.container{
+    width: 70vw;
+    height: 80vh;
+    background: lightblue;
+    display: grid;
+    grid-template-columns: 100%;
+    grid-template-areas: "login";
+    box-shadow: 0 0 17px 10px rgb(0 0 0 / 30%);
+    border-radius: 20px;
+}
+
+.design{
+    grid-area: design;
+    display: none;
+    align-items: left;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+    overflow: hidden;
+}
+
+.background-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: -50px 0;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+}
+
+.login{
+    grid-area: login;
+    background: white;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+@media (min-width: 768px){
+    .container{
+        grid-template-columns: 50% 50%;
+        grid-template-areas: "design login";
+
+    }
+
+    .design{
+        display: block;
+    }
+
+    .login{
+        border-top-left-radius: 0px;
+        border-bottom-left-radius: 0px;
+    }
+
+}
+
+
+.title{
+    width: auto;
+    font-family: "Jomhuria", serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 150px;
+    height: 135px;
+}
+
+.txt-field{
+    background: #e9e9e9;
+    height: 40px;
+    display: flex;
+    width: 80%;
+    align-items: center;
+    border-radius: 5px;
+    padding: 0 15px;
+    margin: 15px 0;
+}
+
+.txt-field input{
+    background: none;
+    border: none;
+    outline: none;
+    width: 100%;
+    height: 100%;
+    margin-left: 10px;
+}
+
+.chckbox-field{
+    grid-area: check;
+    display: flex;
+    justify-content:left;
+    align-items: center;
+    width: 100%;
+    cursor: pointer;
+    gap: 4px;
+
+    
+}
+
+.chckbox-field input[type="checkbox"]{
+    cursor: pointer;
+    display: none;
+}
+
+.checkmark{
+    width: 15px;
+    height: 15px;
+    background-color: #e9e9e9;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    display: inline-block;
+    position: relative;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.chckbox-field:hover .checkmark {
+    background-color: #d1d1d1;
+}
+
+.chckbox-field input[type="checkbox"]:checked + .checkmark {
+    background-color: #04A777; /* Verde */
+    border-color: #04A777;
+}
+
+.chckbox-field input[type="checkbox"]:checked + .checkmark::after {
+    content: "✔"; /* Unicode checkmark */
+    font-size: 12px;
+    color: white;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.chckbox-field .remember-label{
+    font-size: 10px;
+    cursor: pointer;
+    color: #000;
+    font-style: normal;
+    font-weight: 800;
+    line-height: normal;
+}
+
+.optional{
+    width: calc(30px + 80%);
+    display: grid;
+    grid-template-columns: 50% 50%;
+    grid-template-areas: "check pass";
+}
+.psswrd-link{
+    grid-area: pass;
+    display: flex;
+    justify-content:right;
+    align-items: center;
+}
+
+.btn-submit{
+    width: calc(80% + 30px);
+    padding: 0 0px;
+    margin: 15px 0px;
+    height: 40px;
+    border-radius: 45px;
+    background: #04A777;
+    cursor: pointer;
+    color: #FFF;
+    text-align: center;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 800;
+    line-height: normal;
+}
+
+.line{
+    width: calc(80% + 30px);
+    height: 1px; 
+    background-color: #333;
+}
+
+.forgot-password-link{
+    color: #0075A2;
+    text-align: right;
+    font-family: Heebo;
+    font-size: 8px;
+    font-style: normal;
+    font-weight: 800;
+    line-height: normal;
+    margin-left: 55%;
+
+}
+
+.google_oauth2-form{
+    width: 206.400px;
+}
+
+.omniauth-button{
+    margin: 15px 0px;
+    margin-left: 8px;
+    padding-right: 8px;
+}
+
+.sgnp{
+    width: 206.4px;
+    display: inline-flex;
+    justify-content: right;
+    margin-bottom: 0px;
+}
+
+.informative{
+    font-family: Heebo;
+    font-size: 12px;
+}
+
+.signup-link{
+    color: #0075A2;
+    text-align: right;
+    font-family: Heebo;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 800;
+    line-height: normal;
+    margin-right: 15px;
+    margin-left: 2px;
+}
