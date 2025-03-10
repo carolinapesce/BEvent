@@ -73,4 +73,16 @@ gem "omniauth-rails_csrf_protection"
 
 gem "http"
 
-gem 'dotenv-rails'
+gem "dotenv-rails"
+
+# Faker Gem to seed the db
+gem 'faker'
+
+# Cucumber and RSpec
+group :test do
+  gem 'cucumber-rails', require: false
+  # database_cleaner is not mandatory, but highly recommended
+  gem 'database_cleaner'
+  gem 'rspec'
+  gem 'rspec-expectations'
+end

@@ -10,11 +10,29 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_02_20_124904) do
+ActiveRecord::Schema[8.0].define(version: 2025_03_06_102522) do
+  create_table "charity_events", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "donations", force: :cascade do |t|
+    t.string "donation_id", null: false
+    t.integer "event_id", null: false
+    t.integer "user_id", null: false
+    t.float "amount", default: 0.0, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.text "message"
+    t.boolean "anonymous"
+    t.index ["event_id"], name: "index_donations_on_event_id"
+    t.index ["user_id"], name: "index_donations_on_user_id"
+  end
+
   create_table "events", force: :cascade do |t|
     t.string "title"
     t.text "description"
-    t.integer "participants"
+    t.integer "current_participants"
     t.string "location"
     t.datetime "start_datetime"
     t.datetime "end_datetime"
@@ -22,6 +40,26 @@ ActiveRecord::Schema[8.0].define(version: 2025_02_20_124904) do
     t.string "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "type"
+    t.integer "max_participants"
+    t.string "charity_id"
+    t.string "beneficiary"
+    t.decimal "fundraiser_goal", precision: 10, scale: 2
+    t.decimal "current_funds", precision: 10, scale: 2, default: "0.0"
+  end
+
+  create_table "tickets", force: :cascade do |t|
+    t.string "ticket_id", null: false
+    t.float "price", null: false
+    t.string "seat_number"
+    t.integer "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.datetime "booked_datetime"
+    t.integer "event_id"
+    t.index ["event_id"], name: "index_tickets_on_event_id"
+    t.index ["user_id", "event_id"], name: "index_tickets_on_user_id_and_event_id", unique: true
+    t.index ["user_id"], name: "index_tickets_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -39,7 +77,14 @@ ActiveRecord::Schema[8.0].define(version: 2025_02_20_124904) do
     t.string "uid"
     t.string "image_url"
     t.string "provider"
+    t.integer "role"
+    t.text "bio"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
+
+  add_foreign_key "donations", "events"
+  add_foreign_key "donations", "users"
+  add_foreign_key "tickets", "events"
+  add_foreign_key "tickets", "users"
 end
