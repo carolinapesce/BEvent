@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  get "users/show"
+  get "users/edit"
+  get "users/update"
+  get "users/destroy"
   root to: "events#index"
 
   devise_for :users, controllers: {
@@ -6,6 +10,10 @@ Rails.application.routes.draw do
     sessions: "users/sessions",
     omniauth_callbacks: "users/omniauth_callbacks"
   }
+
+  Rails.application.routes.draw do 
+    resources :events
+  end
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

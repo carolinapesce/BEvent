@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_03_06_102522) do
+ActiveRecord::Schema[8.0].define(version: 2025_03_12_144520) do
   create_table "charity_events", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -33,7 +33,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_06_102522) do
     t.string "title"
     t.text "description"
     t.integer "current_participants"
-    t.string "location"
+    t.string "address"
     t.datetime "start_datetime"
     t.datetime "end_datetime"
     t.string "category"
@@ -46,6 +46,8 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_06_102522) do
     t.string "beneficiary"
     t.decimal "fundraiser_goal", precision: 10, scale: 2
     t.decimal "current_funds", precision: 10, scale: 2, default: "0.0"
+    t.string "city"
+    t.string "country"
   end
 
   create_table "tickets", force: :cascade do |t|
