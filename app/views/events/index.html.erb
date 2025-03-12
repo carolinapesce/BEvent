@@ -1,10 +1,53 @@
-<h1>BENVENUTO IN BEvent</h1>
 
-<% if current_user %>
-<h2><%= current_user.email %></h2>
-<%= link_to "Edit Account", edit_user_registration_path %>
-<%= button_to "Logout", destroy_user_session_path, data: {turbo: "false"}, method: :delete %>
-<% else %>
-<%= link_to "Login", new_user_session_path %>
-<%= link_to "Create Account", new_user_registration_path %>
-<% end %>
+<nav class="navbar">
+    <div class="logo">
+        <a href="#">BEvent</a>
+    </div>
+
+    <div class="search-bar">
+        <input type="text" placeholder="Cerca...">
+        <button><i class="fas fa-search"></i></button>
+    </div>
+
+    <div class="nav-links">
+        <a href="#events">Events</a>
+        <a href="#about">About</a>
+    </div>
+
+    
+
+    <div class="language-switch">
+        <label class="switch">
+            <input type="checkbox">
+            <span class="slider"></span>
+        </label>
+        <span>IT/EN</span>
+    </div>
+
+    <div class="notifications">
+        <i class="fas fa-bell"></i>
+    </div>
+
+    <div class="profile">
+    </div>
+</nav>
+
+<main class="content">
+    <h1>Benvenuto nella Home</h1>
+    <p>Scorri verso il basso per vedere la navbar fissa.</p>
+    <h1>BENVENUTO IN BEvent</h1>
+
+    <% if current_user %>
+    <h2><%= current_user.email %></h2>
+    <%= link_to "Edit Account", edit_user_registration_path %>
+    <%= button_to "Logout", destroy_user_session_path, data: {turbo: "false"}, method: :delete %>
+    <% else %>
+    <%= link_to "Login", new_user_session_path %>
+    <%= link_to "Create Account", new_user_registration_path %>
+    <% end %>
+
+    <footer id="about">
+        <h2>About</h2>
+        <p>Questa è la sezione About.</p>
+    </footer>
+</main>
