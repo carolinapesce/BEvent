@@ -86,5 +86,3 @@ group :test do
   gem 'rspec'
   gem 'rspec-expectations'
 end
-
-gem "letter_opener", "~> 1.10"
