@@ -17,9 +17,15 @@ class Users::PasswordsController < Devise::PasswordsController
   # end
 
   # PUT /resource/password
-  # def update
-  #   super
-  # end
+  def update
+    super do |user|
+      if user.errors.empty?
+        sign_out(user)
+        flash[:notice] = "La tua password è stata cambiata con successo. Effettua nuovamente il login."
+        return redirect_to new_user_session_path
+      end
+    end
+  end
 
   protected
 
