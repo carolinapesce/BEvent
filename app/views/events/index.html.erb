@@ -1,53 +1,128 @@
-
-<nav class="navbar">
-    <div class="logo">
-        <a href="#">BEvent</a>
+<div class="page">
+  <!------------------------------------ Navbar ---------------------------------------->
+  <nav class="navbar">
+    <div class="logo"><%= link_to "Logo", root_path %>
     </div>
-
+    <!-- Barra di ricerca -->
     <div class="search-bar">
-        <input type="text" placeholder="Cerca...">
-        <button><i class="fas fa-search"></i></button>
+      <input type="text" placeholder="Search...">
+      <button><i class="fas fa-search"></i></button>
     </div>
-
-    <div class="nav-links">
-        <a href="#events">Events</a>
-        <a href="#about">About</a>
-    </div>
-
     
+    <!-- Link alla pagina di ricerca eventi -->
+    <%= link_to "Events", events_search_path, class: "nav-link" %>
 
-    <div class="language-switch">
-        <label class="switch">
-            <input type="checkbox">
-            <span class="slider"></span>
-        </label>
-        <span>IT/EN</span>
-    </div>
-
+    <!-- Link al footer -->
+    <%= link_to "About Us", "#footer", class: "nav-link" %>
+    
+    <!-- Switch lingua -->
+    <button class="language-switch">IT/EN</button>
+    
+    <!-- Notifiche -->
     <div class="notifications">
-        <i class="fas fa-bell"></i>
+      <button class="notification-button">🔔</button>
+      <div class="notification-dropdown">
+        <p>Nessuna nuova notifica</p>
+      </div>
     </div>
-
+    
+    <!-- Profilo -->
     <div class="profile">
+      <% if user_signed_in? %>
+        <div class="profile-dropdown">
+          <%= image_tag "Profile.png", class: "profile-image", id: "profile-dropdown-button" %>
+          <div class="dropdown-content">
+            <%= link_to "Modifica Profilo", edit_user_path(current_user) %>
+            <%= link_to "Edit Account", edit_user_registration_path %>
+            <%= button_to "Logout", destroy_user_session_path, method: :delete, class: "logout-button" %>
+          </div>
+        </div>
+      <% else %>
+        <%= link_to "Login", new_user_session_path, class: "login-button" %>
+      <% end %>
     </div>
-</nav>
+  </nav>
 
-<main class="content">
-    <h1>Benvenuto nella Home</h1>
-    <p>Scorri verso il basso per vedere la navbar fissa.</p>
-    <h1>BENVENUTO IN BEvent</h1>
+  <!---------------------------------------------------- Contenuto ------------------------------------------------->
+  <div class="home-container">
+    <div class="hero">
+      <img src="/assets/images/Banner.png" alt="Hero Image" class="hero-image">
+      <h1 class="hero-text">Trova gli eventi perfetti per te!</h1>
+    </div>
 
-    <% if current_user %>
-    <h2><%= current_user.email %></h2>
-    <%= link_to "Edit Account", edit_user_registration_path %>
-    <%= button_to "Logout", destroy_user_session_path, data: {turbo: "false"}, method: :delete %>
-    <% else %>
-    <%= link_to "Login", new_user_session_path %>
-    <%= link_to "Create Account", new_user_registration_path %>
-    <% end %>
+    <!-- Event Containers -->
+    <div class="events-section">
+      <!-- Example Event Container -->
+      <div class="event-container">
+      
+        <h2 class="container-title">Eventi di Cibo a Roma</h2>
 
-    <footer id="about">
-        <h2>About</h2>
-        <p>Questa è la sezione About.</p>
-    </footer>
-</main>
+        <div class="events-grid">
+
+          <div class="event-card">
+              <img class="event-image">
+
+              <div class="event-frame">
+
+                <div class="event-date">
+                  <span class="month">APR</span>
+                  <span class="day">11</span>
+                </div>
+
+                <div class="event-details">
+                  <h3 class="event-title">Titolo</h3>
+                  <p class="event-location">Indirizzo</p>
+                  <p class="event-time">Ore</p>
+                  <p class="event-price">"Gratis"</p>
+                </div>
+                
+              </div>
+          </div>
+        </div>
+
+        <a href="#" class="see-more-btn">See More</a>
+
+      </div>
+    </div>
+  </div>
+
+  <footer id="footer" class="footer">
+    <div class="footer-container">
+      <div class="footer-column">
+        <h3>Company</h3>
+        <ul>
+          <li><a href="#">About Us</a></li>
+          <li><a href="#">FAQs</a></li>
+          <li><a href="#">Privacy Policies</a></li>
+          <li><a href="#">Contact Us</a></li>
+          <li><a href="#">Terms of Services</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-column">
+        <h3>Help</h3>
+        <ul>
+          <li><a href="#">Account Support</a></li>
+          <li><a href="#">Listing Events</a></li>
+          <li><a href="#">Event Ticketing</a></li>
+          <li><a href="#">Ticket Purchase Terms and Conditions</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-column">
+        <h3>Follow Us</h3>
+        <div class="social-icons">
+          <a href="#"><i class="fab fa-instagram"></i></a>
+          <a href="#"><i class="fab fa-facebook"></i></a>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <hr>
+      <p>&copy; 2025 nomesito. All rights reserved.</p>
+    </div>
+
+  </footer>
+
+</div>

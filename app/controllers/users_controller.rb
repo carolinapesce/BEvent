@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_Action :authenticate_user!
+  before_action :authenticate_user!
 
   
   def show
