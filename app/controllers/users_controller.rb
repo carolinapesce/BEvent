@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_Action :authenticate_user!
+  before_action :authenticate_user!
 
   
   def show
@@ -9,7 +9,7 @@ class UsersController < ApplicationController
 
   def edit
     @user = User.find(params[:id])
-    render 'users/edit'
+    # render 'users/edit'
   end
 
   def update

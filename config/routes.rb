@@ -1,8 +1,5 @@
 Rails.application.routes.draw do
-  get "users/show"
-  get "users/edit"
-  get "users/update"
-  get "users/destroy"
+  
   root to: "events#index"
 
   devise_for :users, controllers: {
@@ -13,6 +10,7 @@ Rails.application.routes.draw do
 
   Rails.application.routes.draw do 
     resources :events
+    resources :users, only: [:edit, :update]
   end
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
