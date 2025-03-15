@@ -65,12 +65,12 @@ class Users::RegistrationsController < Devise::RegistrationsController
     if resource.provider == "google_oauth2"
       root_path
     else
-      new_user_session_path
+      new_user_confirmation_path
     end
   end
 
   # The path used after sign up for inactive accounts.
-  # def after_inactive_sign_up_path_for(resource)
-  #   super(resource)
-  # end
+  def after_inactive_sign_up_path_for(resource)
+    new_user_confirmation_path
+  end
 end
