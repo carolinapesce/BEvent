@@ -78,6 +78,9 @@ gem "dotenv-rails"
 # Faker Gem to seed the db
 gem 'faker'
 
+# Whenever Gem for running jobs periodically
+gem 'whenever', require: false
+
 # Cucumber and RSpec
 group :test do
   gem 'cucumber-rails', require: false
