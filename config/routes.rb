@@ -4,15 +4,7 @@ Rails.application.routes.draw do
   get "users/update"
   get "users/destroy"
   root to: "events#index"
-  get "events/search", to: "events#search", as: "events_search"
-
-  resources :users, only: [:edit, :update] do
-    member do
-      get 'edit_profile', to: 'users#edit_profile', as: 'edit_profile'
-      patch 'update_profile', to: 'users#update_profile', as: 'update_profile'
-    end
-  end
-
+  
   devise_for :users, controllers: {
     registrations: "users/registrations",
     sessions: "users/sessions",
