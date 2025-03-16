@@ -1,10 +1,87 @@
-<h1>BENVENUTO IN BEvent</h1>
+<div class="page">
+  <!------------------------------------ Navbar ---------------------------------------->
+  <%= render "devise/shared/navbar" %>
 
-<% if current_user %>
-<h2><%= current_user.email %></h2>
-<%= link_to "Edit Account", edit_user_registration_path %>
-<%= button_to "Logout", destroy_user_session_path, data: {turbo: "false"}, method: :delete %>
-<% else %>
-<%= link_to "Login", new_user_session_path %>
-<%= link_to "Create Account", new_user_registration_path %>
-<% end %>
+  <!---------------------------------------------------- Contenuto ------------------------------------------------->
+  <div class="home-container">
+    <div class="hero">
+      <img src="/assets/images/Banner.png" alt="Hero Image" class="hero-image">
+      <h1 class="hero-text">Trova gli eventi perfetti per te!</h1>
+    </div>
+
+    <!-- Event Containers -->
+    <div class="events-section">
+      <!-- Example Event Container -->
+      <div class="event-container">
+      
+        <h2 class="container-title">Eventi di Cibo a Roma</h2>
+
+        <div class="events-grid">
+
+          <div class="event-card">
+              <img class="event-image">
+
+              <div class="event-frame">
+
+                <div class="event-date">
+                  <span class="month">APR</span>
+                  <span class="day">11</span>
+                </div>
+
+                <div class="event-details">
+                  <h3 class="event-title">Titolo</h3>
+                  <p class="event-location">Indirizzo</p>
+                  <p class="event-time">Ore</p>
+                  <p class="event-price">"Gratis"</p>
+                </div>
+                
+              </div>
+          </div>
+        </div>
+
+        <a href="#" class="see-more-btn">See More</a>
+
+      </div>
+    </div>
+  </div>
+
+  <footer id="footer" class="footer">
+    <div class="footer-container">
+      <div class="footer-column">
+        <h3>Company</h3>
+        <ul>
+          <li><a href="#">About Us</a></li>
+          <li><a href="#">FAQs</a></li>
+          <li><a href="#">Privacy Policies</a></li>
+          <li><a href="#">Contact Us</a></li>
+          <li><a href="#">Terms of Services</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-column">
+        <h3>Help</h3>
+        <ul>
+          <li><a href="#">Account Support</a></li>
+          <li><a href="#">Listing Events</a></li>
+          <li><a href="#">Event Ticketing</a></li>
+          <li><a href="#">Ticket Purchase Terms and Conditions</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-column">
+        <h3>Follow Us</h3>
+        <div class="social-icons">
+          <a href="#"><i class="fab fa-instagram"></i></a>
+          <a href="#"><i class="fab fa-facebook"></i></a>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <hr>
+      <p>&copy; 2025 nomesito. All rights reserved.</p>
+    </div>
+
+  </footer>
+
+</div>

@@ -1,0 +1,42 @@
+<nav class="navbar">
+    <div class="logo"><%= link_to "Logo", root_path %>
+    </div>
+    <!-- Barra di ricerca -->
+    <div class="search-bar">
+        <input type="text" placeholder="Search...">
+        <button><i class="fas fa-search"></i></button>
+    </div>
+    
+    <!-- Link alla pagina di ricerca eventi -->
+    <%#= link_to "Events", events_search_path, class: "nav-link" %> <%#!!!!!!!!!!!!!! Penso così vada bene, da fare la route%>
+
+    <!-- Link al footer -->
+    <%= link_to "About Us", "#footer", class: "nav-link" %>
+    
+    <!-- Switch lingua -->
+    <button class="language-switch">IT/EN</button>
+    
+    <!-- Notifiche -->
+    <div class="notifications">
+        <button class="notification-button">🔔</button>
+        <div class="notification-dropdown">
+            <p>Nessuna nuova notifica</p>
+        </div>
+    </div>
+    
+    <!-- Profilo -->
+    <div class="profile">
+        <% if user_signed_in? %>
+            <div class="profile-dropdown">
+                <%= image_tag "Profile.png", class: "profile-image", id: "profile-dropdown-button" %>
+                <div class="dropdown-content">
+                    <%#= link_to "Modifica Profilo", edit_user_path(current_user) %><%#!!!!!!!!!!!!!!! Penso così vada bene pt 2, da fare la route%>
+                    <%= link_to "Edit Account", edit_user_registration_path %>
+                    <%= button_to "Logout", destroy_user_session_path, method: :delete, class: "logout-button" %>
+                </div>
+            </div>
+        <% else %>
+            <%= link_to "Login", new_user_session_path, class: "login-button" %>
+        <% end %>
+    </div>
+  </nav>
