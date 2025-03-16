@@ -8,10 +8,14 @@ Rails.application.routes.draw do
     omniauth_callbacks: "users/omniauth_callbacks"
   }
 
-  Rails.application.routes.draw do 
-    resources :events
-    resources :users, only: [:edit, :update]
+  resources :events do
+    collection do
+      get :search #, controller: 'events/search'
+    end
   end
+
+  resources :users, only: [:edit, :update]
+
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

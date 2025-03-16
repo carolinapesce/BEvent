@@ -6,6 +6,10 @@ class EventsController < ApplicationController
     @events = Event.all
   end
 
+  def search
+    @events = Event.all
+  end
+
   def show
     # @user = current_user
     @event = Event.find(params[:id])
