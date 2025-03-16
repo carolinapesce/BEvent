@@ -10,7 +10,7 @@ Rails.application.routes.draw do
 
   resources :events do
     collection do
-      get :search #, controller: 'events/search'
+      get :search
     end
   end
 
