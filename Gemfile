@@ -78,6 +78,8 @@ gem "dotenv-rails"
 # Faker Gem to seed the db
 gem 'faker'
 
+gem "stripe-rails"
+
 # Cucumber and RSpec
 group :test do
   gem 'cucumber-rails', require: false
