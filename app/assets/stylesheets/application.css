@@ -16,6 +16,10 @@
     border: 0;
 }
 
+body{
+    font-family: 'Heebo', sans-serif
+}
+
 .flash-messages {
     position: fixed;
     top: 20px;
@@ -43,3 +47,270 @@
 .flash.alert {
     background-color: #F44336; 
 }
+
+
+/*-------------NAVBAR--------------*/
+
+.navbar{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 64px;
+    background: white;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: left;
+
+}
+
+/*logo*/
+.brand{  /*logo*/
+    padding-left: 10px;
+    
+}
+
+/*barra di ricerca*/
+.search-bar{ 
+    display: flex;
+    align-items: center;
+    border-radius: 10px;
+    padding: 5px 0px 5px 10px;
+    background-color: #eaeaea;
+    width: 455px; /* Larghezza massima */
+    height: 28px;
+    margin: 0 auto 0 20px; 
+    overflow: hidden; /* Nasconde l'overflow */
+}
+
+.search-input {
+    flex: 1;
+    background-color: #eaeaea;
+}
+
+.search-field {
+    width: 100%;
+    border: none;
+    outline: none;
+    padding: 5px;
+    font-size: 16px;
+    background-color: #eaeaea;
+}
+.search-divider {
+    width: 1px;
+    height: 30px;
+    background-color: #ccc;
+    margin: 0 10px;
+}
+
+.search-dropdown {
+    position: relative;
+}
+
+.city-dropdown {
+    border: none;
+    outline: none;
+    background: none;
+    font-size: 16px;
+    padding: 5px;
+    cursor: pointer;
+    color: #333;
+}
+.city-dropdown option:disabled {
+    color: #999; 
+}
+
+.search-button {
+    background-color: #04A777;
+    border: none;
+    border-radius: 0 10px 10px 0;
+    cursor: pointer;
+    padding: 10px 15px;
+    font-size: 18px;
+    color: white;
+    overflow: hidden;
+    margin-left: -1px;
+
+}
+.search-button:hover {
+    background-color: #03976b;
+}
+
+
+/*link*/
+.nav-link {
+
+    font-weight: 800;
+    text-decoration: none; 
+    color: #000; 
+    font-size: 20px; 
+    transition: none; 
+    padding-right: 16px;
+}
+
+/*bottone lingua*/
+.switch-lan {
+    position: relative;
+    width: 120px;
+    height: 30px;
+    background-color: #F97068;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 5px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.switch-lan:hover {
+    background-color: #f13e35; 
+}
+
+.toggle-btn {
+    position: absolute;
+    width: 50%;
+    height: 80%;
+    background-color: white;
+    border-radius: 15px;
+    transition: transform 0.3s;
+    left: 5px;
+}
+.ita-btn {
+    flex: 1;
+    text-align: center;
+    font-weight: bold;
+    color: white;
+    font-family: 'Heebo', sans-serif;
+    position: relative;
+    z-index: 1;
+}
+.eng-btn {
+    flex: 1;
+    text-align: center;
+    font-weight: bold;
+    color: white;
+    font-family: 'Heebo', sans-serif;
+    position: relative;
+    z-index: 1;
+}
+.switch-lan.active {
+    background-color: #F97068;
+}
+
+.switch-lan.active:hover {
+    background-color: #f13e35; 
+}
+
+.switch-lan.active .toggle-btn {
+    transform: translateX(85%);
+}
+
+/*campanella*/
+.notifications {
+    position: relative;
+}
+
+.notification-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+    color: #333;
+    padding: 10px;
+}
+
+.notification-button:hover {
+    color: #000;
+}
+  
+
+.notification-dropdown {
+    position: absolute;
+    top: 40px; /*distanza dal pulsante */
+    right: 0;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 100px; 
+    padding: 10px;
+    display: none; 
+    z-index: 1000; /*tendina sia sopra altri elementi*/
+}
+  
+  
+.notification-dropdown.active {
+    display: block;
+}
+
+.notification-dropdown.active p {
+    font-size: small;
+}
+
+
+
+/*profilo */
+.profile {
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding-right: 20px;
+}
+
+/* Immagine del profilo */
+.profile-image {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+/* Dropdown nascosto inizialmente */
+.dropdown-content {
+    position: absolute;
+    top: 50px; /* Regola in base alla navbar */
+    right: 0;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+    width: 180px;
+    display: none;
+    flex-direction: column;
+    padding: 10px;
+}
+
+/* Mostra il dropdown quando attivo */
+.dropdown-content.active {
+    display: flex;
+}
+
+/* Stile per i link nel menu */
+.dropdown-item {
+    text-decoration: none;
+    color: #333;
+    padding: 10px;
+    display: block;
+    border-radius: 5px;
+}
+
+.dropdown-item:hover {
+    background: #f4f4f4;
+}
+
+/* Stile per il pulsante di logout */
+.logout-button {
+    background: none;
+    border: none;
+    color: red;
+    text-align: left;
+    cursor: pointer;
+    padding: 10px;
+    width: 100%;
+}
+
+
+
+
+

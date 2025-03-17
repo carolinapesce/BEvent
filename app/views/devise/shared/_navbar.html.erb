@@ -1,38 +1,61 @@
 <nav class="navbar">
-    <div class="logo"><%= link_to "Logo", root_path %>
+    <div class="brand">
+        <%= link_to root_path do %>
+            <%= image_tag "bEvent-brand.png", alt: "bEvent Logo", class: "brand-image" %>
+        <% end %>
     </div>
     <!-- Barra di ricerca -->
     <div class="search-bar">
-        <input type="text" placeholder="Search...">
-        <button><i class="fas fa-search"></i></button>
+        <div class="search-input">
+            <input type="text" placeholder="Search..." class="search-field">
+        </div>
+        <div class="search-divider"></div>
+        <div class="search-dropdown">
+            <select class="city-dropdown">
+                <option value="" disabled selected>Città...</option>
+                <option value="roma">Roma</option>
+                <option value="milano">Milano</option>
+                <option value="napoli">Napoli</option>
+            </select>
+        </div>
+        <button class="search-button">
+            <i class="fas fa-search"></i> 
+        </button>
     </div>
     
     <!-- Link alla pagina di ricerca eventi -->
-    <%#= link_to "Events", events_search_path, class: "nav-link" %> <%#!!!!!!!!!!!!!! Penso così vada bene, da fare la route%>
+    <%= link_to "Events", events_search_path, class: "nav-link" %> <%#!!!!!!!!!!!!!! Penso così vada bene, da fare la route%>
 
     <!-- Link al footer -->
-    <%= link_to "About Us", "#footer", class: "nav-link" %>
+    <%= link_to "About", "#footer", class: "nav-link" %>
     
     <!-- Switch lingua -->
-    <button class="language-switch">IT/EN</button>
+    <div class="switch-lan" onclick="toggleSwitch()">
+        <div class="ita-btn">ITA</div>
+        <div class="toggle-btn"></div>
+        <div class="eng-btn">ENG</div>
+    </div>
     
     <!-- Notifiche -->
-    <div class="notifications">
-        <button class="notification-button">🔔</button>
-        <div class="notification-dropdown">
+    <div data-controller="notifications">
+         <button class="notification-button" data-action="click->notifications#toggle">
+            <i class="fa-solid fa-bell"></i>
+        </button>
+        <div class="notification-dropdown" data-notifications-target="dropdown">
             <p>Nessuna nuova notifica</p>
         </div>
     </div>
+
     
     <!-- Profilo -->
-    <div class="profile">
+    <div class="profile" data-controller="dropdown">
         <% if user_signed_in? %>
             <div class="profile-dropdown">
-                <%= image_tag "Profile.png", class: "profile-image", id: "profile-dropdown-button" %>
-                <div class="dropdown-content">
-                    <%#= link_to "Modifica Profilo", edit_user_path(current_user) %><%#!!!!!!!!!!!!!!! Penso così vada bene pt 2, da fare la route%>
-                    <%= link_to "Edit Account", edit_user_registration_path %>
-                    <%= button_to "Logout", destroy_user_session_path, method: :delete, class: "logout-button" %>
+                <%= image_tag "Profile.png", class: "profile-image", id: "profile-dropdown-button", data: { action: "click->dropdown#toggle" } %>
+                <div class="dropdown-content hidden" data-dropdown-target="menu">
+                    <%#= link_to "Modifica Profilo", edit_user_path(current_user), class: "dropdown-item" %>
+                    <%= link_to "Edit Account", edit_user_registration_path, class: "dropdown-item" %>
+                    <%= button_to "Logout", destroy_user_session_path, method: :delete, class: "dropdown-item logout-button" %>
                 </div>
             </div>
         <% else %>

@@ -21,6 +21,10 @@
     <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
     <%= stylesheet_link_tag "users/#{controller_name}", "data-turbo-track": "reload", media: "all" if asset_path("users/#{controller_name}.css", skip_pipeline: true) rescue nil %>
 
+
+    <!-- Font Awasome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
     <%= javascript_importmap_tags %>
   </head>
 

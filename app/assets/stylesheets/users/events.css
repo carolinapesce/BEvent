@@ -9,10 +9,10 @@ body {
     height: 100%;
 }
 
-.navbar{
-    background: green;
+.brand{
+    background: none;
 }
 
-.logo{
-    background: lightgreen;
+.home-container{
+    padding-top: 60px;
 }
