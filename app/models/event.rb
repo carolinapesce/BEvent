@@ -1,18 +1,17 @@
 class Event < ApplicationRecord
 
-  # belongs_to :user
   has_many :tickets
   has_many :favourites
-  has_many :users, through: :events
+  has_many :users, through: :favourites
   
-  # enum status: { upcoming: 0, ongoing: 1, terminated: 2 }
+  enum :status, upcoming: 0, ongoing: 1, terminated: 2
   
 
   def self.update_status
     now = Time.current
-    where('self.start_datetime > ?', now).update_all(status: :upcoming)
-    where('self.start_datetime <= ? AND self.end_datetime >= ?', now, now).update_all(status: :ongoing)
-    where('self.end_datetime > ?', now).update_all(status: :terminated)
+    where('start_datetime > ?', now).update_all(status: :upcoming)
+    where('start_datetime <= ? AND end_datetime >= ?', now, now).update_all(status: :ongoing)
+    where('end_datetime > ?', now).update_all(status: :terminated)
   end
 
   def formatted_startdate
@@ -20,7 +19,7 @@ class Event < ApplicationRecord
   end
 
   def formatted_starttime
-    start_datetime.strftime("%h:%m:%s")
+    start_datetime.strftime("%H:%M:%S")
   end
 
   def formatted_enddate
@@ -28,7 +27,7 @@ class Event < ApplicationRecord
   end
 
   def formatted_endtime
-    end_datetime.strftime("%h:%m:%s")
+    end_datetime.strftime("%H:%M:%S")
   end
 
   def is_upcoming?
