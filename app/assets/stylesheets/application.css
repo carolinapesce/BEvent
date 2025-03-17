@@ -10,3 +10,36 @@
  */
 
  @import url('https://fonts.googleapis.com/css2?family=Heebo:wght@400;700&family=Jomhuria&display=swap');
+
+ *,html,body{
+    margin: 0;
+    border: 0;
+}
+
+.flash-messages {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1000;
+    width: 80%;
+    max-width: 400px;
+}
+
+.flash {
+    padding: 15px;
+    border-radius: 5px;
+    color: white;
+    font-size: 16px;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    opacity: 0.9;
+}
+
+.flash.notice {
+    background-color: #4CAF50; 
+}
+
+.flash.alert {
+    background-color: #F44336; 
+}

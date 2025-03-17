@@ -1,17 +1,15 @@
-*,html,body{
+body.registrations {
    margin: 0;
    border: 0;
-}
-body{
    font-family: 'Heebo', sans-serif;
    height: 100vh;
    display: flex;
    justify-content: center;
    align-items: center;
-   background: lightgoldenrodyellow;
+   background: white;
 }
 
-.container{
+.registrations .container {
    width: 70vw;
    height: 80vh;
    background: lightblue;
@@ -22,19 +20,24 @@ body{
    border-radius: 20px;
 }
 
-.design{
+.registrations .design {
    grid-area: design;
    display: none;
    border-top-left-radius: 20px;
    border-bottom-left-radius: 20px;
+   overflow: hidden;
 }
 
-.background-image {
+.registrations .background-image {
    object-position: -320px 0;
-   
+   width: 100%;
+   height: 100%;
+   object-fit: cover;
+   border-top-left-radius: 20px;
+   border-bottom-left-radius: 20px;
 }
 
-.signup{
+.registrations .signup {
    grid-area: signup;
    background: white;
    border-radius: 20px;
@@ -42,32 +45,29 @@ body{
    flex-direction: column;
    justify-content: center;
    align-items: center;
-   
 }
 
-@media (min-width: 768px){
-   .container{
+@media (min-width: 768px) {
+   .registrations .container {
        grid-template-columns: 50% 50%;
        grid-template-areas: "design signup";
-
    }
 
-   .design{
+   .registrations .design {
        display: block;
    }
 
-   .signup{
+   .registrations .signup {
        border-top-left-radius: 0px;
        border-bottom-left-radius: 0px;
    }
-
 }
 
-.new_user{
+.registrations .new_user {
    width: 206.4px;
 }
 
-.title{
+.registrations .title {
    width: auto;
    font-family: "Jomhuria", serif;
    font-style: normal;
@@ -76,8 +76,7 @@ body{
    height: 135px;
 }
 
-
-.txt-field{
+.registrations .txt-field {
    background: #e9e9e9;
    height: 40px;
    display: flex;
@@ -88,7 +87,7 @@ body{
    margin: 15px 0;
 }
 
-.txt-field input{
+.registrations .txt-field input {
    background: none;
    border: none;
    outline: none;
@@ -97,7 +96,7 @@ body{
    margin-left: 10px;
 }
 
-.btn-submit{
+.registrations .btn-submit {
    width: calc(80% + 30px);
    padding: 0 0px;
    margin: 15px 0px;
@@ -113,36 +112,35 @@ body{
    line-height: normal;
 }
 
-.line{
+.registrations .line {
    width: calc(80% + 30px);
-   height: 1px; 
+   height: 1px;
    background-color: #333;
 }
 
-
-.google_oauth2-form{
+.registrations .google_oauth2-form {
    width: 206.400px;
 }
 
-.omniauth-button{
+.registrations .omniauth-button {
    margin: 15px 0px;
    margin-left: 8px;
    padding-right: 8px;
 }
 
-.lgn{
+.registrations .lgn {
    width: 206.4px;
    display: inline-flex;
    justify-content: right;
    margin-bottom: 0px;
 }
 
-.informative{
+.registrations .informative {
    font-family: Heebo;
    font-size: 12px;
 }
 
-.login-link{
+.registrations .login-link {
    color: #0075A2;
    text-align: right;
    font-family: Heebo;
@@ -152,4 +150,51 @@ body{
    line-height: normal;
    margin-right: 15px;
    margin-left: 2px;
+}
+
+.registrations #error_explanation {
+   background: rgba(255, 0, 0, 0.1);
+   border: 1px solid red;
+   color: darkred;
+   width: 206.4px;
+   padding: 10px;
+   border-radius: 5px;
+   margin-bottom: 15px;
+   font-size: 10px;
+}
+
+/* Errori */
+.registrations #error_explanation h2 {
+   font-size: 12px;
+   font-weight: bold;
+   color: red;
+   margin-bottom: 5px;
+}
+
+.registrations #error_explanation ul {
+   padding-left: 20px;
+}
+
+.registrations #error_explanation li {
+   font-size: 10px;
+}
+
+/* Imput con erroeri*/
+.registrations .field_with_errors input {
+   color: darkred;
+}
+
+.registrations .field_with_errors input::placeholder {
+   color: darkred;
+   opacity: 0.7;
+}
+
+/* animazione */
+.registrations #error_explanation {
+   animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+   from { opacity: 0; transform: translateY(-5px); }
+   to { opacity: 1; transform: translateY(0); }
 }

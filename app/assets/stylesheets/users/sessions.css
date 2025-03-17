@@ -1,30 +1,26 @@
-
-
-*,html,body{
-    margin: 0;
-    border: 0;
-}
-body{
+body.sessions.new {
     font-family: 'Heebo', sans-serif;
     height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    background: lightgoldenrodyellow;
+    background: white;
+    margin: 0;
+    border: 0;
 }
 
-.container{
+.sessions.new .container {
     width: 70vw;
     height: 80vh;
     background: lightblue;
     display: grid;
     grid-template-columns: 100%;
     grid-template-areas: "login";
-    box-shadow: 0 0 17px 10px rgb(0 0 0 / 30%);
+    box-shadow: 0 0 17px 10px rgba(0, 0, 0, 0.3);
     border-radius: 20px;
 }
 
-.design{
+.sessions.new .design {
     grid-area: design;
     display: none;
     align-items: left;
@@ -33,7 +29,7 @@ body{
     overflow: hidden;
 }
 
-.background-image {
+.sessions.new .background-image {
     width: 100%;
     height: 100%;
     object-fit: cover;
@@ -42,7 +38,7 @@ body{
     border-bottom-left-radius: 20px;
 }
 
-.login{
+.sessions.new .login {
     grid-area: login;
     background: white;
     border-radius: 20px;
@@ -50,38 +46,32 @@ body{
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    
 }
 
-@media (min-width: 768px){
-    .container{
+@media (min-width: 768px) {
+    .sessions.new .container {
         grid-template-columns: 50% 50%;
         grid-template-areas: "design login";
-
     }
 
-    .design{
+    .sessions.new .design {
         display: block;
     }
 
-    .login{
+    .sessions.new .login {
         border-top-left-radius: 0px;
         border-bottom-left-radius: 0px;
     }
-
 }
 
-
-.title{
+.sessions.new .title {
     width: auto;
     font-family: "Jomhuria", serif;
-    font-style: normal;
-    font-weight: 400;
     font-size: 150px;
     height: 135px;
 }
 
-.txt-field{
+.sessions.new .txt-field {
     background: #e9e9e9;
     height: 40px;
     display: flex;
@@ -92,7 +82,7 @@ body{
     margin: 15px 0;
 }
 
-.txt-field input{
+.sessions.new .txt-field input {
     background: none;
     border: none;
     outline: none;
@@ -101,46 +91,42 @@ body{
     margin-left: 10px;
 }
 
-.chckbox-field{
-    grid-area: check;
+/* Checkbox */
+.sessions.new .chckbox-field {
     display: flex;
-    justify-content:left;
+    justify-content: left;
     align-items: center;
     width: 100%;
     cursor: pointer;
     gap: 4px;
-
-    
 }
 
-.chckbox-field input[type="checkbox"]{
-    cursor: pointer;
+.sessions.new .chckbox-field input[type="checkbox"] {
     display: none;
 }
 
-.checkmark{
+.sessions.new .checkmark {
     width: 15px;
     height: 15px;
     background-color: #e9e9e9;
     border: 2px solid #ccc;
     border-radius: 4px;
-    display: inline-block;
     position: relative;
     cursor: pointer;
     transition: all 0.3s ease;
 }
 
-.chckbox-field:hover .checkmark {
+.sessions.new .chckbox-field:hover .checkmark {
     background-color: #d1d1d1;
 }
 
-.chckbox-field input[type="checkbox"]:checked + .checkmark {
-    background-color: #04A777; /* Verde */
+.sessions.new .chckbox-field input[type="checkbox"]:checked + .checkmark {
+    background-color: #04A777;
     border-color: #04A777;
 }
 
-.chckbox-field input[type="checkbox"]:checked + .checkmark::after {
-    content: "✔"; /* Unicode checkmark */
+.sessions.new .chckbox-field input[type="checkbox"]:checked + .checkmark::after {
+    content: "✔";
     font-size: 12px;
     color: white;
     position: absolute;
@@ -149,7 +135,7 @@ body{
     transform: translate(-50%, -50%);
 }
 
-.chckbox-field .remember-label{
+.sessions.new .chckbox-field .remember-label{
     font-size: 10px;
     cursor: pointer;
     color: #000;
@@ -158,23 +144,22 @@ body{
     line-height: normal;
 }
 
-.optional{
+.sessions.new .optional {
     width: calc(30px + 80%);
     display: grid;
     grid-template-columns: 50% 50%;
     grid-template-areas: "check pass";
 }
-.psswrd-link{
-    grid-area: pass;
+
+.sessions.new .psswrd-link {
     display: flex;
-    justify-content:right;
+    justify-content: right;
     align-items: center;
 }
 
-.btn-submit{
+/* Bottone di invio */
+.sessions.new .btn-submit {
     width: calc(80% + 30px);
-    padding: 0 0px;
-    margin: 15px 0px;
     height: 40px;
     border-radius: 45px;
     background: #04A777;
@@ -182,59 +167,51 @@ body{
     color: #FFF;
     text-align: center;
     font-size: 12px;
-    font-style: normal;
     font-weight: 800;
-    line-height: normal;
+    margin: 15px 0;
 }
 
-.line{
+/* Linea divisoria */
+.sessions.new .line {
     width: calc(80% + 30px);
-    height: 1px; 
+    height: 1px;
     background-color: #333;
 }
 
-.forgot-password-link{
+/* Link password dimenticata */
+.sessions.new .forgot-password-link {
     color: #0075A2;
-    text-align: right;
-    font-family: Heebo;
     font-size: 8px;
-    font-style: normal;
     font-weight: 800;
-    line-height: normal;
     margin-left: 55%;
-
 }
 
-.google_oauth2-form{
-    width: 206.400px;
+/* Pulsante Google */
+.sessions.new .google_oauth2-form {
+    width: 206.4px;
 }
 
-.omniauth-button{
-    margin: 15px 0px;
+.sessions.new .omniauth-button {
+    margin: 15px 0;
     margin-left: 8px;
     padding-right: 8px;
 }
 
-.sgnp{
+/* Registrazione */
+.sessions.new .sgnp {
     width: 206.4px;
     display: inline-flex;
     justify-content: right;
-    margin-bottom: 0px;
 }
 
-.informative{
-    font-family: Heebo;
+.sessions.new .informative {
     font-size: 12px;
 }
 
-.signup-link{
+.sessions.new .signup-link {
     color: #0075A2;
-    text-align: right;
-    font-family: Heebo;
     font-size: 12px;
-    font-style: normal;
     font-weight: 800;
-    line-height: normal;
     margin-right: 15px;
     margin-left: 2px;
 }

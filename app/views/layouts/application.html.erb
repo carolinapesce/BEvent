@@ -24,9 +24,19 @@
     <%= javascript_importmap_tags %>
   </head>
 
-  <body>
-      <p class="notice"><%= notice %></p>
-       <p class="alert"><%= alert %></p>
+  <body class="<%= body_class %>">
+
+    <div class="flash-messages">
+      <% if notice.present? %>
+        <div class="flash notice" data-controller="flash"><%= notice %></div>
+      <% end %>
+
+      <% if alert.present? %>
+        <div class="flash alert" data-controller="flash"><%= alert %></div>
+      <% end %>
+    </div>
+
+
     <%= yield %>
   </body>
 </html>
