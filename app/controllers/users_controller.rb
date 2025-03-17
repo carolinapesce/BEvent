@@ -22,4 +22,9 @@ class UsersController < ApplicationController
 
   def destroy
   end
+
+  def favourite
+    @user = current_user
+    @favourites = @user.favourite_events
+  end
 end

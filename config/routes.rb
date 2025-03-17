@@ -14,8 +14,9 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :users, only: [:edit, :update]
-
+  resources :users, only: [:edit, :update] do
+    get :favourite
+  end
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

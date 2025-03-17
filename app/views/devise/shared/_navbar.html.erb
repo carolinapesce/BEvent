@@ -30,6 +30,7 @@
             <div class="profile-dropdown">
                 <%= image_tag "Profile.png", class: "profile-image", id: "profile-dropdown-button" %>
                 <div class="dropdown-content">
+                    <%= link_to "Preferiti", user_favourite_path(current_user) %>
                     <%#= link_to "Modifica Profilo", edit_user_path(current_user) %><%#!!!!!!!!!!!!!!! Penso così vada bene pt 2, da fare la route%>
                     <%= link_to "Edit Account", edit_user_registration_path %>
                     <%= button_to "Logout", destroy_user_session_path, method: :delete, class: "logout-button" %>

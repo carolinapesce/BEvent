@@ -2,8 +2,11 @@ class Event < ApplicationRecord
 
   # belongs_to :user
   has_many :tickets
-
-  enum status: { upcoming: 0, ongoing: 1, terminated: 2 }
+  has_many :favourites
+  has_many :users, through: :events
+  
+  # enum status: { upcoming: 0, ongoing: 1, terminated: 2 }
+  
 
   def self.update_status
     now = Time.current

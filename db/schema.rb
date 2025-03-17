@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_03_16_175457) do
+ActiveRecord::Schema[8.0].define(version: 2025_03_17_113448) do
   create_table "charity_events", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -37,7 +37,6 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_16_175457) do
     t.datetime "start_datetime"
     t.datetime "end_datetime"
     t.string "category"
-    t.integer "status", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "type"
@@ -48,6 +47,16 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_16_175457) do
     t.decimal "current_funds", precision: 10, scale: 2, default: "0.0"
     t.string "city"
     t.string "country"
+    t.integer "status", default: 0
+  end
+
+  create_table "favourites", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "user_id", null: false
+    t.integer "event_id", null: false
+    t.index ["event_id"], name: "index_favourites_on_event_id"
+    t.index ["user_id"], name: "index_favourites_on_user_id"
   end
 
   create_table "tickets", force: :cascade do |t|
@@ -92,6 +101,8 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_16_175457) do
 
   add_foreign_key "donations", "events"
   add_foreign_key "donations", "users"
+  add_foreign_key "favourites", "events"
+  add_foreign_key "favourites", "users"
   add_foreign_key "tickets", "events"
   add_foreign_key "tickets", "users"
 end
