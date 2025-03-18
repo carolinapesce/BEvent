@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
+  
   root to: "events#index"
+  get "events/search", to: "events#search", as: "events_search"
   
   devise_for :users, controllers: {
     registrations: "users/registrations",
@@ -8,6 +10,16 @@ Rails.application.routes.draw do
     confirmations: "users/confirmations",
     passwords: "users/passwords"
   }
+
+  resources :events do
+    collection do
+      get :search
+    end
+  end
+
+  resources :users, only: [:edit, :update] do
+    get :favourite
+  end
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
@@ -21,4 +33,6 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "posts#index"
+
+  
 end

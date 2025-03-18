@@ -77,14 +77,16 @@ gem "dotenv-rails"
 
 # Faker Gem to seed the db
 gem 'faker'
-
 gem "stripe-rails"
+# Whenever Gem for running jobs periodically
+gem 'whenever', require: false
 
 # Cucumber and RSpec
 group :test do
   gem 'cucumber-rails', require: false
   # database_cleaner is not mandatory, but highly recommended
   gem 'database_cleaner'
-  gem 'rspec'
+  gem 'rspec-rails'
   gem 'rspec-expectations'
+  gem 'factory_bot_rails'
 end

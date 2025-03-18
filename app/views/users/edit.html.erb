@@ -1,0 +1,24 @@
+<!-- <h1>Users#edit</h1>
+<p>Find me in app/views/users/edit.html.erb</p> -->
+
+<h1>Modifica Utente</h1>
+
+<%= form_with model: @user, url: user_path(@user), method: :patch do |f| %>
+  <div>
+    <%= f.label :name, "Nome" %>
+    <%= f.text_field :name, placeholder: "Inserisci il nome" %>
+  </div>
+
+  <div>
+    <%= f.label :email, "Email" %>
+    <%= f.email_field :email, placeholder: "Inserisci l'email" %>
+  </div>
+
+  <div>
+    <%= f.submit "Salva modifiche" %>
+  </div>
+<% end %>
+
+<%= button_to "Indietro", users_path %>
+
+

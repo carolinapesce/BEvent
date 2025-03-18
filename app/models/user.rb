@@ -1,6 +1,8 @@
 class User < ApplicationRecord
 
-  has_many :events
+  # has_many :events
+  has_many :favourites
+  has_many :favourite_events, through: :favourites, source: :event
 
   # Definition of roles (User, EventPlanner, Admin)
   def user?
