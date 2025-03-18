@@ -5,7 +5,7 @@
   <!---------------------------------------------------- Contenuto ------------------------------------------------->
   <div class="home-container">
     <div class="hero">
-      <img src="/assets/images/Banner.png" alt="Hero Image" class="hero-image">
+      <%= image_tag "Banner.jpg", alt: "Hero Image", class: "hero-image" %>
       <h1 class="hero-text">Trova gli eventi perfetti per te!</h1>
     </div>
 
@@ -19,7 +19,9 @@
         <div class="events-grid">
 
           <div class="event-card">
-              <img class="event-image">
+              <div class="event-design">
+                <%= image_tag "card1.png", alt: "Event Image", class: "event-image" %>
+              </div>
 
               <div class="event-frame">
 
@@ -29,9 +31,9 @@
                 </div>
 
                 <div class="event-details">
-                  <h3 class="event-title">Titolo</h3>
-                  <p class="event-location">Indirizzo</p>
-                  <p class="event-time">Ore</p>
+                  <h3 class="event-title">THE MOTANS GEOGRAPHIC 2025</h3>
+                  <p class="event-location">Orion Live Club</p>
+                  <p class="event-time">8 PM</p>
                   <p class="event-price">"Gratis"</p>
                 </div>
                 
@@ -45,43 +47,11 @@
     </div>
   </div>
 
-  <footer id="footer" class="footer">
-    <div class="footer-container">
-      <div class="footer-column">
-        <h3>Company</h3>
-        <ul>
-          <li><a href="#">About Us</a></li>
-          <li><a href="#">FAQs</a></li>
-          <li><a href="#">Privacy Policies</a></li>
-          <li><a href="#">Contact Us</a></li>
-          <li><a href="#">Terms of Services</a></li>
-        </ul>
-      </div>
 
-      <div class="footer-column">
-        <h3>Help</h3>
-        <ul>
-          <li><a href="#">Account Support</a></li>
-          <li><a href="#">Listing Events</a></li>
-          <li><a href="#">Event Ticketing</a></li>
-          <li><a href="#">Ticket Purchase Terms and Conditions</a></li>
-        </ul>
-      </div>
+  <!------------------------------------ Footer ---------------------------------------->
 
-      <div class="footer-column">
-        <h3>Follow Us</h3>
-        <div class="social-icons">
-          <a href="#"><i class="fab fa-instagram"></i></a>
-          <a href="#"><i class="fab fa-facebook"></i></a>
-        </div>
-      </div>
-    </div>
+  <%= render "devise/shared/footer" %>
 
-    <div class="footer-bottom">
-      <hr>
-      <p>&copy; 2025 nomesito. All rights reserved.</p>
-    </div>
-
-  </footer>
+  
 
 </div>

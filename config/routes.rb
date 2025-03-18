@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   
   root to: "events#index"
+  get "events/search", to: "events#search", as: "events_search"
   
   devise_for :users, controllers: {
     registrations: "users/registrations",
