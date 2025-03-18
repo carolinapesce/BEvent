@@ -1,6 +1,6 @@
 class User < ApplicationRecord
 
-  # has_many :events
+  has_many :events
   has_many :favourites
   has_many :favourite_events, through: :favourites, source: :event
 
@@ -12,6 +12,7 @@ class User < ApplicationRecord
   def eventplanner?
     self.role == 1
   end
+  
   def admin?
     self.role == 2
   end

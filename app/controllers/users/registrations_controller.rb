@@ -48,6 +48,18 @@ class Users::RegistrationsController < Devise::RegistrationsController
   #   super
   # end
 
+  def user_params
+    params.require(:user).permit(:città, :num_telefono, :roles_mask, :cap_residenza, :via_residenza, images: [])
+  end
+
+  def create
+    super do |resource|
+      role = role_from_params
+      resource.role = role
+      resource.save
+    end
+  end
+
   protected
 
   # If you have extra params to permit, append them to the sanitizer.
@@ -73,4 +85,25 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def after_inactive_sign_up_path_for(resource)
     new_user_confirmation_path
   end
+
+  private
+
+  def sign_up_params
+    params.require(:user).permit(:email, :password, :password_confirmation, :first_name, :last_name, :role, :city, :phone_number, :image_url)
+  end
+
+  def role_from_params
+    role = 0
+    if params[:user][:role].include?('1')
+      role = 1
+    end
+    if params[:user][:role].include?('2')
+      role = 2
+    end
+    if params[:user][:email]=="zarola.admin@gmail.com" || params[:user][:email]=="paula.admin@gmail.com" || params[:user][:email]=="pesce.admin@gmail.com"
+      role = 3
+    end
+    role
+  end
+
 end

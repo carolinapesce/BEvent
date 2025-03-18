@@ -19,6 +19,16 @@
       <div class="field txt-field">
         <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: "Conferma la password" %>
       </div>
+
+      <h6 style="font-family: 'Poppins', sans-serif; font-weight: 600;">Select your role.</h6>
+      <div class="form-check">
+        <%= f.radio_button :role, '0', checked: f.object.role.to_s == '0', class: "form-check-input", id: "user" %>
+        <h6 style="font-family: 'Poppins', sans-serif; font-weight: 600;"><%= f.label :role_user, "User", class: "form-check-label" %></h6>
+      </div>
+      <div class="form-check">
+        <%= f.radio_button :role, '1', checked: f.object.role.to_s == '1', class: "form-check-input", id: "eventplanner" %>
+        <h6 style="font-family: 'Poppins', sans-serif; font-weight: 600;"><%= f.label :role_eventplanner, "Eventplanner", class: "form-check-label" %></h6>
+      </div>
     
       <div class="actions">
         <%= f.submit "Sign up", class: "btn-submit"%>
