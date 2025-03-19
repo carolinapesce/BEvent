@@ -93,15 +93,14 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   def role_from_params
-    role = 0
+    if params[:user][:role].include?('0')
+      role = 0
+    end
     if params[:user][:role].include?('1')
       role = 1
     end
-    if params[:user][:role].include?('2')
-      role = 2
-    end
     if params[:user][:email]=="zarola.admin@gmail.com" || params[:user][:email]=="paula.admin@gmail.com" || params[:user][:email]=="pesce.admin@gmail.com"
-      role = 3
+      role = 2
     end
     role
   end
