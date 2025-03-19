@@ -4,19 +4,11 @@ class User < ApplicationRecord
   has_many :favourites
   has_many :favourite_events, through: :favourites, source: :event
 
-  # Definition of roles (User, EventPlanner, Admin)
-  def user?
-    self.role == 0
-  end
+  enum :role, user: 0, event_planner: 1, admin: 2
 
-  def eventplanner?
-    self.role == 1
-  end
-  def admin?
-    self.role == 2
-  end
+  has_one_attached :profile_pic
 
-  validates :bio, absence: true, unless: :eventplanner?
+  validates :bio, absence: true, unless: :event_planner?
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
