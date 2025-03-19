@@ -5,23 +5,28 @@
         <% end %>
     </div>
     <!-- Barra di ricerca -->
-    <div class="search-bar">
-        <div class="search-input">
-            <input type="text" placeholder="Search..." class="search-field">
+    <% if controller_name != "events" || action_name != "search" %>
+        <div class="search-bar">
+            <div class="search-input">
+                <input type="text" placeholder="Search..." class="search-field">
+            </div>
+            <div class="search-divider"></div>
+            <div class="search-dropdown">
+                <select class="city-dropdown">
+                    <option value="" disabled selected>Città...</option>
+                    <option value="roma">Roma</option>
+                    <option value="milano">Milano</option>
+                    <option value="napoli">Napoli</option>
+                </select>
+            </div>
+            <button class="search-button">
+                <i class="fas fa-search"></i> 
+            </button>
         </div>
-        <div class="search-divider"></div>
-        <div class="search-dropdown">
-            <select class="city-dropdown">
-                <option value="" disabled selected>Città...</option>
-                <option value="roma">Roma</option>
-                <option value="milano">Milano</option>
-                <option value="napoli">Napoli</option>
-            </select>
+    <% else %>
+        <div class="search-bar-placeholder">
         </div>
-        <button class="search-button">
-            <i class="fas fa-search"></i> 
-        </button>
-    </div>
+    <% end %>
     
     <!-- Link alla pagina di ricerca eventi -->
     <%= link_to "Events", search_events_path, class: "nav-link" %> <%#!!!!!!!!!!!!!! Penso così vada bene, da fare la route%>
