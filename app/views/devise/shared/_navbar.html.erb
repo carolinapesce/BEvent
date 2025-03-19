@@ -60,7 +60,7 @@
                 <div class="dropdown-content hidden" data-dropdown-target="menu">
                     <%= link_to "Preferiti", user_favourite_path(current_user), class: "dropdown-item" %>
                     <%#= link_to "Modifica Profilo", edit_user_path(current_user), class: "dropdown-item" %>
-                    <%= link_to "Edit Account", edit_user_registration_path, class: "dropdown-item" %>
+                    <%= link_to "Impostazioni", edit_user_registration_path, class: "dropdown-item" %>
                     <%= button_to "Logout", destroy_user_session_path, method: :delete, class: "dropdown-item logout-button" %>
                 </div>
             </div>
