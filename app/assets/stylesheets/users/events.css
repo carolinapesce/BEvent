@@ -51,7 +51,7 @@ body {
 }
 
 /*------------CARD EVENTI------------------*/
-.container-title{
+.events.index .container-title{
     font-family: 'Montserrat';
     color: #04A777;
     font-size: 35.467px;
@@ -60,19 +60,19 @@ body {
     line-height: normal;
 }
 
-.events-section{
+.events.index .events-section{
     margin-top: 40px;
 }
 
-.event-container{
+.events.index .event-container{
     margin-left: 50px;
 }
 
-.events-grid{
+.events.index .events-grid{
     margin-top: 40px;
 }
 
-.event-card{
+.events.index .event-card{
     display: grid;
     grid-template-rows: 55% 45%;
     grid-template-areas:
@@ -85,7 +85,7 @@ body {
     overflow: hidden;
 }
 
-.event-design {
+.events.index .event-design {
     grid-area: image;
     width: 100%;
     height: 100%;
@@ -93,13 +93,13 @@ body {
     position: relative;
 }
 
-.event-image {
+.events.index .event-image {
     width: 100%;
     height: 100%;
     object-fit: cover; 
 }
 
-.event-frame {
+.events.index .event-frame {
     grid-area: frame;
     width: 100%;
     height: 100%;
@@ -109,7 +109,7 @@ body {
     align-items: center;
 }
 
-.event-date {
+.events.index .event-date {
     grid-area: date;
     display: flex;
     flex-direction: column;

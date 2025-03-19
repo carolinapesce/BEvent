@@ -1,4 +1,4 @@
-body.registrations {
+body.registrations.new {
    margin: 0;
    border: 0;
    font-family: 'Heebo', sans-serif;
@@ -9,7 +9,7 @@ body.registrations {
    background: white;
 }
 
-.registrations .container {
+.registrations.new .container {
    width: 70vw;
    height: 80vh;
    background: lightblue;
@@ -20,7 +20,7 @@ body.registrations {
    border-radius: 20px;
 }
 
-.registrations .design {
+.registrations.new .design {
    grid-area: design;
    display: none;
    border-top-left-radius: 20px;
@@ -28,7 +28,7 @@ body.registrations {
    overflow: hidden;
 }
 
-.registrations .background-image {
+.registrations.new .background-image {
    object-position: -320px 0;
    width: 100%;
    height: 100%;
@@ -37,7 +37,7 @@ body.registrations {
    border-bottom-left-radius: 20px;
 }
 
-.registrations .signup {
+.registrations.new .signup {
    grid-area: signup;
    background: white;
    border-radius: 20px;
@@ -48,26 +48,26 @@ body.registrations {
 }
 
 @media (min-width: 768px) {
-   .registrations .container {
-       grid-template-columns: 50% 50%;
-       grid-template-areas: "design signup";
+   .registrations.new .container {
+      grid-template-columns: 50% 50%;
+      grid-template-areas: "design signup";
    }
 
-   .registrations .design {
-       display: block;
+   .registrations.new .design {
+      display: block;
    }
 
-   .registrations .signup {
-       border-top-left-radius: 0px;
-       border-bottom-left-radius: 0px;
+   .registrations.new .signup {
+      border-top-left-radius: 0px;
+      border-bottom-left-radius: 0px;
    }
 }
 
-.registrations .new_user {
-   width: 206.4px;
+.registrations.new .new_user {
+width: 206.4px;
 }
 
-.registrations .title {
+.registrations.new .title {
    width: auto;
    font-family: "Jomhuria", serif;
    font-style: normal;
@@ -76,7 +76,7 @@ body.registrations {
    height: 135px;
 }
 
-.registrations .txt-field {
+.registrations.new .txt-field {
    background: #e9e9e9;
    height: 40px;
    display: flex;
@@ -87,7 +87,7 @@ body.registrations {
    margin: 15px 0;
 }
 
-.registrations .txt-field input {
+.registrations.new .txt-field input {
    background: none;
    border: none;
    outline: none;
@@ -96,7 +96,7 @@ body.registrations {
    margin-left: 10px;
 }
 
-.registrations .btn-submit {
+.registrations.new .btn-submit {
    width: calc(80% + 30px);
    padding: 0 0px;
    margin: 15px 0px;
@@ -112,35 +112,35 @@ body.registrations {
    line-height: normal;
 }
 
-.registrations .line {
+.registrations.new .line {
    width: calc(80% + 30px);
    height: 1px;
    background-color: #333;
 }
 
-.registrations .google_oauth2-form {
+.registrations.new .google_oauth2-form {
    width: 206.400px;
 }
 
-.registrations .omniauth-button {
+.registrations.new .omniauth-button {
    margin: 15px 0px;
    margin-left: 8px;
    padding-right: 8px;
 }
 
-.registrations .lgn {
+.registrations.new .lgn {
    width: 206.4px;
    display: inline-flex;
    justify-content: right;
    margin-bottom: 0px;
 }
 
-.registrations .informative {
+.registrations.new .informative {
    font-family: Heebo;
    font-size: 12px;
 }
 
-.registrations .login-link {
+.registrations.new .login-link {
    color: #0075A2;
    text-align: right;
    font-family: Heebo;
@@ -152,7 +152,7 @@ body.registrations {
    margin-left: 2px;
 }
 
-.registrations #error_explanation {
+.registrations.new #error_explanation {
    background: rgba(255, 0, 0, 0.1);
    border: 1px solid red;
    color: darkred;
@@ -164,37 +164,179 @@ body.registrations {
 }
 
 /* Errori */
-.registrations #error_explanation h2 {
+.registrations.new #error_explanation h2 {
    font-size: 12px;
    font-weight: bold;
    color: red;
    margin-bottom: 5px;
 }
 
-.registrations #error_explanation ul {
+.registrations.new #error_explanation ul {
    padding-left: 20px;
 }
 
-.registrations #error_explanation li {
+.registrations.new #error_explanation li {
    font-size: 10px;
 }
 
 /* Imput con erroeri*/
-.registrations .field_with_errors input {
+.registrations.new .field_with_errors input {
    color: darkred;
 }
 
-.registrations .field_with_errors input::placeholder {
+.registrations.new .field_with_errors input::placeholder {
    color: darkred;
    opacity: 0.7;
 }
 
 /* animazione */
-.registrations #error_explanation {
+.registrations.new #error_explanation {
    animation: fadeIn 0.5s ease-in-out;
 }
 
 @keyframes fadeIn {
    from { opacity: 0; transform: translateY(-5px); }
    to { opacity: 1; transform: translateY(0); }
+}
+
+
+
+
+
+
+
+
+
+body.registrations.edit{
+   margin: 0;
+   border: 0;
+   font-family: 'Heebo', sans-serif;
+   height: 100vh;
+   background: white;
+   flex: 1;
+}
+
+.registrations.edit .footer {
+   margin-top: 0px;
+}
+
+.registrations.edit .account-settings-container {
+   flex: 1;
+   display: flex;
+   min-width: 100vh;
+   background: white;
+   margin-top: 50px;
+   padding-top: 20px;
+   height: 100%;
+}
+
+/* Sidebar */
+.registrations.edit .sidebar {
+   width: 300px;
+   background: #f5f5f5;
+   padding: 20px;
+   border-right: 1px solid #ddd;
+}
+
+.registrations.edit  h2 {
+   font-size: 1.5rem;
+   margin-bottom: 10px;
+   font-family: 'Montserrat';
+   
+}
+
+.registrations.edit .sidebar ul {
+   list-style: none;
+   padding: 0;
+}
+
+.registrations.edit .sidebar ul li {
+   margin: 10px 0;
+}
+
+.registrations.edit .sidebar ul li a {
+   text-decoration: none;
+   color: #333;
+}
+
+/* Contenuto principale */
+.registrations.edit .settings-content {
+   flex: 1;
+   padding: 30px;
+   padding-left: 100px;
+}
+
+.registrations.edit .settings-content h2 {
+   font-size: 1.8rem;
+   font-family: 'Montserrat';
+}
+
+.registrations.edit .settings-content hr {
+   margin-bottom: 20px;
+}
+
+.registrations.edit .form-group {
+   margin-bottom: 15px;
+   display: flex;
+   flex-direction: column;
+}
+
+.registrations.edit .form-group label {
+   display: block;
+   font-weight: bold;
+   margin-bottom: 5px;
+}
+
+.registrations.edit .form-control {
+   width: 80%;
+   max-width: 450px;
+   padding: 10px;
+   border: 1px solid #ccc;
+   border-radius: 5px;
+}
+
+.registrations.edit .save-btn {
+   background: #04A777;
+   color: white;
+   padding: 10px 15px;
+   border: none;
+   border-radius: 5px;
+   cursor: pointer;
+   font-family: "Montserrat";
+}
+
+.registrations.edit .form-actions{
+   margin-bottom: 20px;
+}
+
+
+.registrations.edit .save-btn:hover {
+   background: #025e42;
+}
+
+
+.registrations.edit .delete-btn {
+   margin-top: 20px;
+   background: #f13e35;
+   color: white;
+   padding: 10px 15px;
+   border: none;
+   border-radius: 5px;
+   cursor: pointer;
+   font-family: "Montserrat";
+}
+
+.registrations.edit .delete-btn:hover {
+   background: rgb(101, 22, 22)e35;
+}
+
+.registrations.edit .back-link {
+   display: inline-block;
+   margin-top: 15px;
+   text-decoration: none;
+   color: #362c51;
+}
+
+.registrations.edit .back-link:hover {
+   text-decoration: underline;
 }

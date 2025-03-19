@@ -1,0 +1,230 @@
+.events.search html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+/* Struttura principale */
+.events.search .page {
+    display: flex;
+    flex-direction: column;
+    width: 100vw;
+    min-height: 100vh;
+}
+
+/* Search Page - Griglia principale */
+.events.search .search-page {
+    flex: 1;
+    display: grid;
+    grid-template-rows: 26% auto; /* Divisione della pagina */
+    grid-template-areas: "search" "content";
+    width: 100vw; 
+}
+
+/* Area di ricerca */
+.events.search .search-area {
+    grid-area: search;
+    margin-top: 20px;
+    padding: 60px;
+    background: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Area contenuto */
+.events.search .content-area {
+    grid-area: content;
+    background: red;
+    display: grid;
+    grid-template-columns: 265px auto;
+    grid-template-areas: "filters events";
+}
+
+/* Stile generale dei filtri */
+.events.search .filters-column {
+    grid-area: filters;
+    background-color: #fff;
+    padding: 20px;
+    font-family: 'Heebo';
+    font-weight: lighter;
+}
+
+/* Titolo principale */
+.events.search .filters-title {
+    font-size: 30px;
+    font-family: 'Montserrat';
+    font-weight: 600;
+    font-style: normal;
+    line-height: normal;
+    margin-bottom: 50px;
+}
+
+/* Stile per ogni sezione */
+.events.search .filter-section {
+    margin-bottom: 20px;
+
+}
+
+/* Titolo delle sezioni */
+.events.search .filter-label {
+    font-size: 20px;
+    font-weight: 300;
+    margin-bottom: 20px;
+    color: rgb(75, 75, 75);
+}
+
+.events.search .filter-inputs {
+    display: flex;
+    flex-direction: column; /* Mette le coppie una sotto l'altra */
+    gap: 10px; /* Aggiunge spazio tra le righe */
+}
+
+
+.events.search .input-group {
+}
+
+/* Input di testo e data */
+.events.search .input-group input{
+    color: rgb(113, 113, 113);
+    width: 50%;
+    padding: 8px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.events.search .input-group label {
+    color: rgb(113, 113, 113);
+    
+}
+
+/* Stile per i checkbox */
+.events.search .filter-checkboxes label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 14px;
+    margin-bottom: 5px;
+    cursor: pointer;
+    color: rgb(113, 113, 113);
+}
+
+.events.search .filter-checkboxes input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+}
+
+/* Barra di separazione tra le sezioni */
+.events.search .filter-section:not(:first-child) {
+    border-top: 1px solid #ccc;
+    padding-top: 15px;
+}
+
+/* Stile del link "More" */
+.events.search .see-more-link {
+    color: blue;
+    font-size: 14px;
+    text-decoration: none;
+    display: block;
+    margin-top: 5px;
+}
+
+.events.search .see-more-link:hover {
+    text-decoration: underline;
+}
+
+/*-------------MAIN---------------------------*/
+
+.events.search .main-content{
+    grid-area: events;
+    background-color: white;
+    padding-left: 50px;
+}
+
+
+.events.search .event-card{
+    width: 471px;
+    height: 154px;
+    display: grid;
+    grid-template-columns: 47% 53%;
+    grid-template-areas: "image details";
+    border-radius: 15px;
+    background: #ffffff;
+    overflow: hidden;
+
+}
+
+.events.search .event-design{
+    grid-area: image;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    position: relative;
+}
+
+.events.search .event-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; 
+}
+
+.events.search .event-frame{
+    padding: 5px;
+    grid-area: details;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start; 
+    gap: 1px;
+}
+
+.events.search .event-title {
+    font-size: 15px;
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 700;
+    line-height: 1.2; /*spazio tra le righe */
+    word-wrap: break-word; /*andare a capo titolo*/
+    max-width: 100%;
+}
+
+.events.search .month {
+    color: #5D5D5D;
+    font-size: 12px;
+    font-family: 'Montserrat';
+    text-transform: uppercase;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    
+}
+
+.events.search .day {
+    color: #5D5D5D;
+    font-size: 12px;
+    font-family: 'Montserrat';
+    text-transform: uppercase;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    
+}
+
+/*altre info */
+.events.search .event-location,
+.event-time,
+.event-price,
+.event-date {
+    font-size: 12px;
+    width: 100%;
+    color: #5D5D5D;
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+
+
