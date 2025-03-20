@@ -10,6 +10,8 @@ class EventsController < ApplicationController
   def search
     @user = current_user
     @events = Event.all
+    @google_maps_api_key = Rails.application.credentials.google_maps_api_key
+    Rails.logger.debug("Google Maps API Key: #{@google_maps_api_key}")
   end
 
   def show

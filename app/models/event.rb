@@ -6,6 +6,12 @@ class Event < ApplicationRecord
   
   enum :status, upcoming: 0, ongoing: 1, terminated: 2
   
+  geocoded_by :full_address
+  after_validation :geocode, if: :will_save_change_to_address?
+
+  def full_address 
+    [address, city, country].compact.join(', ')
+  end
 
   def self.update_status
     now = Time.current

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_03_18_151902) do
+ActiveRecord::Schema[8.0].define(version: 2025_03_20_145826) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -76,6 +76,8 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_18_151902) do
     t.string "city"
     t.string "country"
     t.integer "status", default: 0
+    t.float "latitude"
+    t.float "longitude"
   end
 
   create_table "favourites", force: :cascade do |t|

@@ -37,8 +37,15 @@
     grid-area: content;
     background: red;
     display: grid;
-    grid-template-columns: 265px auto;
-    grid-template-areas: "filters events";
+    grid-template-columns: 265px auto auto;
+    grid-template-areas: "filters events map";
+}
+
+/* Area mappa */
+.events.search .map-area {
+    grid-area: map;
+    background: white;
+    display: flex;
 }
 
 /* Stile generale dei filtri */
