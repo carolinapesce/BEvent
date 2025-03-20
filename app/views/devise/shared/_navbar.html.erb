@@ -19,9 +19,12 @@
                     <option value="napoli">Napoli</option>
                 </select>
             </div>
-            <button class="search-button">
+            <!-- <button class="search-button">
                 <i class="fas fa-search"></i> 
-            </button>
+            </button> -->
+            <%= button_to events_search_path, method: :get, class: "search-button" do %>
+                <i class="fas fa-search"></i>
+            <% end %>
         </div>
     <% else %>
         <div class="search-bar-placeholder">
