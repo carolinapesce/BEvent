@@ -49,13 +49,12 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   def user_params
-    params.require(:user).permit(:città, :num_telefono, :roles_mask, :cap_residenza, :via_residenza, images: [])
+    params.require(:user).permit(:email, :password, :password_confirmation, :first_name, :last_name, :role, :city, :phone_number, :image_url)
   end
 
   def create
     super do |resource|
-      role = role_from_params
-      resource.role = role
+      resource.role = role_from_params
       resource.save
     end
   end

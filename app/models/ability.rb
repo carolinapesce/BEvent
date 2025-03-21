@@ -10,6 +10,7 @@ class Ability
     can :read, :all
     return unless user.eventplanner?
     can :manage, Event, user_id: user.id
+    cannot :read, Cart
     return unless user.admin?
     can :manage, :all
     

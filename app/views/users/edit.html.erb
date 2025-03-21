@@ -5,13 +5,13 @@
 
 <%= form_with model: @user, url: user_path(@user), method: :patch do |f| %>
   <div>
-    <%= f.label :name, "Nome" %>
-    <%= f.text_field :name, placeholder: "Inserisci il nome" %>
+    <%= f.label :first_name, "First name" %>
+    <%= f.text_field :first_name, placeholder: "First name" %>
   </div>
 
   <div>
-    <%= f.label :email, "Email" %>
-    <%= f.email_field :email, placeholder: "Inserisci l'email" %>
+    <%= f.label :last_name, "Last name" %>
+    <%= f.text_field :last_name, placeholder: "Last name" %>
   </div>
 
   <div>
@@ -19,6 +19,6 @@
   </div>
 <% end %>
 
-<%= button_to "Indietro", users_path %>
+<%= link_to "Indietro", root_path %>
 
 
