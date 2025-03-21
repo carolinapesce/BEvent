@@ -1,2 +1,45 @@
-<h1>Users#show</h1>
-<p>Find me in app/views/users/show.html.erb</p>
+<div class="page">
+    <div class="banner">
+        <div class="banner-content">
+            <% if current_user.profile_pic.present? %>
+                <%= image_tag(current_user.profile_pic, style: "height: 50px; width: 50px; border-radius: 50%; cursor: pointer;", data: { action: "click->dropdown#toggle" } )%>
+            <% else %>
+                <%= image_tag("default-avatar.png", style: "height: 50px; width: 50px; border-radius: 50%; cursor: pointer;", data: { action: "click->dropdown#toggle" } )%>
+            <% end %>
+            <div class="name">
+                <h2>Nome</h2>
+                <button>Modifica</button>
+            </div>
+        </div>
+    </div>
+    <div class="page-content">
+         <div class="about">
+            <div class="title"></div>
+            <div class="details">
+                <h3>About</h3>
+                <p>Website</p>
+                <p>Company</p>
+                <p>Location</p>
+                <p>Email</p>
+                <p>Phone</p>
+            </div>
+        </div>
+        <div class="description">
+            <h3>Description</h3>
+            <p>Lorem ipsum dolor sit...</p>
+        </div>
+        <div class="events">
+            <div class="choice">
+                <button class="events_current"></button>
+                <button class="events_past"></button>
+            </div>
+            <div class="line"></div>
+            <div class="events-list">
+                <div class= "events-grid">
+                    <div class= "card"></div>
+                </div>
+                <div class= "sm-btn"></div>
+            </div>
+        </div>
+    </div>
+</div>

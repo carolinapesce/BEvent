@@ -91,7 +91,6 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_21_094555) do
     t.string "city"
     t.string "country"
     t.integer "status", default: 0
-    t.integer "price"
   end
 
   create_table "favourites", force: :cascade do |t|
