@@ -72,6 +72,16 @@ body {
     margin-top: 40px;
 }
 
+.event-card-link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+  }
+  
+  .event-card-link:hover {
+    cursor: pointer;
+  }
+
 .events.index .event-card{
     display: grid;
     grid-template-rows: 55% 45%;

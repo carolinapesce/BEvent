@@ -61,9 +61,9 @@
             <div class="profile-dropdown", style: "height: 50px; width: 50px; border-radius: 45%;">
                 <%#= image_tag(current_user.profile_pic), class: "profile-image", id: "profile-dropdown-button", data: { action: "click->dropdown#toggle" } %>
                 <% if current_user.profile_pic.present? %>
-                    <%= image_tag(current_user.profile_pic, style: "height: 50px; width: 50px; border-radius: 50%;", data: { action: "click->dropdown#toggle" } )%>
+                    <%= image_tag(current_user.profile_pic, style: "height: 50px; width: 50px; border-radius: 50%; cursor: pointer;", data: { action: "click->dropdown#toggle" } )%>
                 <% else %>
-                    <%= image_tag("default-avatar.png", style: "height: 50px; width: 50px; border-radius: 50%;", data: { action: "click->dropdown#toggle" } )%>
+                    <%= image_tag("default-avatar.png", style: "height: 50px; width: 50px; border-radius: 50%; cursor: pointer;", data: { action: "click->dropdown#toggle" } )%>
                 <% end %>
                 <div class="dropdown-content hidden" data-dropdown-target="menu">
                     <%= link_to "Preferiti", user_favourite_path(current_user), class: "dropdown-item" %>
