@@ -10,6 +10,18 @@ class User < ApplicationRecord
 
   validates :bio, absence: true, unless: :event_planner?
 
+  def user?
+    self.role == 0
+  end
+
+  def event_planner?
+    self.role == 1
+  end
+
+  def admin?
+    self.role == 2
+  end
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,

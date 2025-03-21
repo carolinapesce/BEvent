@@ -5,8 +5,23 @@ class Event < ApplicationRecord
   has_many :users, through: :favourites
 
   belongs_to :user
+
+  has_one_attached :poster_pic
   
   enum :status, upcoming: 0, ongoing: 1, terminated: 2
+
+  VALID_CATEGORIES = [
+    "Musica",
+    "Food&Drinks",
+    "Comedy",
+    "Teatro",
+    "Sport",
+    "Hobby",
+    "Arte",
+    "Festa"
+  ]
+
+  validates :category, inclusion: { in: VALID_CATEGORIES, message: "%{value} non è una categoria valida" }
   
 
   def self.update_status
