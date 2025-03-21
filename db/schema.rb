@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_03_18_151902) do
+ActiveRecord::Schema[8.0].define(version: 2025_03_21_094555) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -39,20 +39,19 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_18_151902) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
-ActiveRecord::Schema[8.0].define(version: 2025_03_20_173333) do
-  create_table "carts", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "carts_items", force: :cascade do |t|
-    t.integer "cart_id_id", null: false
-    t.integer "event_id_id", null: false
+  create_table "cart_items", force: :cascade do |t|
+    t.integer "cart_id", null: false
+    t.integer "event_id", null: false
     t.integer "quantity"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["cart_id_id"], name: "index_carts_items_on_cart_id_id"
-    t.index ["event_id_id"], name: "index_carts_items_on_event_id_id"
+    t.index ["cart_id"], name: "index_cart_items_on_cart_id"
+    t.index ["event_id"], name: "index_cart_items_on_event_id"
+  end
+
+  create_table "carts", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "charity_events", force: :cascade do |t|
