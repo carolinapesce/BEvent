@@ -5,12 +5,13 @@ class EventsController < ApplicationController
   def index
     @user = current_user
     @events = Event.all
+    @load_maps = !request.fullpath.include?('maps')
   end
 
   def search
     @user = current_user
     @events = Event.all
-    @google_maps_api_key = Rails.application.credentials.google_maps_api_key
+    @google_maps_api_key = ENV['GOOGLE_MAPS_API_KEY']
     Rails.logger.debug("Google Maps API Key: #{@google_maps_api_key}")
   end
 
@@ -39,7 +40,7 @@ class EventsController < ApplicationController
   end
 
   def event_params
-    params.require(:event).permit(:title,:description,:address,:start_datetime,:end_datetime,:category,:type,:max_participants,
+    params.require(:event).permit(:title,:description,:address,:start_datetime,:end_datetime,:category,:event_type,:max_participants,
                                   :beneficiary,:fundraiser_goal,:city,:country)
   end
 
