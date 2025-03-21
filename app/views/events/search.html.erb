@@ -152,7 +152,7 @@
             
             <!--
             <% if @load_maps %>
-                <%= javascript_include_tag "https://maps.googleapis.com/maps/api/js?key=AIzaSyAdKq-Tj_1Et_5zQNwiYwWLOQNJLdel-VA&v=beta&libraries=maps,marker&callback=initMap", async: true, defer: true %>
+                <%= javascript_include_tag "https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAPS_API_KEY'] %>&v=beta&libraries=maps,marker&callback=initMap", async: true, defer: true %>
             <% end %>
 
             <script>
