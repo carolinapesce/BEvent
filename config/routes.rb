@@ -21,7 +21,7 @@ Rails.application.routes.draw do
     get :favourite
   end
 
-  resources :events, only: [:index, :show]
+  #resources :events, only: [:index, :show]
 
   resources :carts, only: [:show]
 

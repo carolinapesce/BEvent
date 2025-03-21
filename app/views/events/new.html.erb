@@ -19,6 +19,11 @@
         <%= f.text_area :description %>
     </div>
 
+    <div class="form-group">
+        <%= f.label :poster_pic, "Poster dell'evento" %><br />
+        <%= f.file_field :poster_pic %>
+      </div>
+
     <div>
         <%= f.label :start_datetime, "Data e ora di inizio" %>
         <%= f.datetime_select :start_datetime %>
@@ -46,17 +51,17 @@
 
     <div>
         <%= f.label :category, "Categoria" %>
-        <%= f.text_field :category%>
+        <%= f.select :category, Event::VALID_CATEGORIES, prompt: "Seleziona una categoria"%>
     </div>
     
      <div>
-        <%= f.label :max_partecipants, "Numero massimo di partecipanti" %>
-        <%= f.number_field :max_partecipants %>
+        <%= f.label :max_participants, "Numero massimo di partecipanti" %>
+        <%= f.number_field :max_participants %>
     </div>
 
     <div>
-        <%= f.label :type, "Evento di beneficienza?" %>
-        <%= f.checkbox :type %>
+        <%= f.label :charity_event, "Evento di beneficienza?" %>
+        <%= f.checkbox :charity_event %>
     </div>
 
     <div>

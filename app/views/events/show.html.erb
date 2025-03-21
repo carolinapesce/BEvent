@@ -6,7 +6,12 @@
     </div>
     <div class= "show-page">    
         <div class="banner-image">
-            <%= image_tag "card1.png", alt: "Event Image", class: "event-image" %>
+            <% if @event.poster_pic.present? %>
+                <%= image_tag(@event.poster_pic, alt: "Event Image", class: "event-image")%>
+            <% else %>
+                <%= image_tag("default-poster.jpg", alt: "Event Image", class: "event-image" )%>
+            <% end %>
+            <%#= image_tag "card1.png", alt: "Event Image", class: "event-image" %>
         </div>
 
         <div class="event-container">

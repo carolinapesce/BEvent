@@ -7,6 +7,8 @@ class Event < ApplicationRecord
   belongs_to :user
 
   has_one_attached :poster_pic
+
+  self.inheritance_column = :type
   
   enum :status, upcoming: 0, ongoing: 1, terminated: 2
 
