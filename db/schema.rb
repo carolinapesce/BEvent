@@ -91,8 +91,6 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_21_212341) do
     t.string "city"
     t.string "country"
     t.integer "status", default: 0
-    t.float "latitude"
-    t.float "longitude"
     t.float "price", default: 0.0
     t.integer "user_id", null: false
     t.string "type"
