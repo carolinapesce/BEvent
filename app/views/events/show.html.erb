@@ -11,12 +11,11 @@
             <% else %>
                 <%= image_tag("default-poster.jpg", alt: "Event Image", class: "event-image" )%>
             <% end %>
-            <%#= image_tag "card1.png", alt: "Event Image", class: "event-image" %>
         </div>
 
         <div class="event-container">
             <div class="event-header">
-                <h1 class="event-title">THE MOTANS GEOGRAPHIC 2025</h1>
+                <h1 class="event-title"><%= @event.title %></h1>
                 <div class="event-icons">
                     <i class="fa-regular fa-heart"></i>
                     <i class="fa-solid fa-share"></i>
@@ -25,53 +24,61 @@
 
             <div class="event-details">
                 <div class="event-info">
-                    <h3 class="info-title">Date and Time</h3>
-                    <p class="info-date"><i class="fa-regular fa-calendar"></i> Venerdì, 11 Aprile 2025</p>
-                    <p class="info-time"><i class="fa-regular fa-clock"></i> 8:00 PM</p>
+                    <h3 class="info-title">Data e Ora</h3>
+                    <p class="info-date"><i class="fa-regular fa-calendar"></i><%= l(@event.start_datetime, format: "%A, %d %B %Y").gsub(/\b\w/) { |match| match.upcase } %></p>
+                    <p class="info-time"><i class="fa-regular fa-clock"></i><%= @event.start_datetime.strftime("%H:%M") %></p>
                 </div>
 
                 <div class="event-buy">
                     <button class="buy-btn">🎟 Compra un biglietto</button>
                     <div class="tckt-info">
-                        <h4>Ticket Information</h4>
-                        <p><i class="fa-solid fa-ticket"></i> Gratis</p>
+                        <h4>Info Biglietti</h4>
+                        <% if @event.price == 0.0 %>
+                            <p><i class="fa-solid fa-ticket"></i>Gratis</p>
+                        <% else %>
+                            <p><i class="fa-solid fa-ticket"></i><%= @event.price %></p>
+                        <% end %>
                     </div>
                 </div>
             </div>
 
             <div class="event-location">
                 <h3>Location</h3>
-                <p><i class="fa-solid fa-location-dot"></i> Indirizzo dell'evento</p>
+                <p><i class="fa-solid fa-location-dot"></i><%= @event.address+", "+@event.city+", "+@event.country%></p>
                 <div class="map"></div>
             </div>
 
             <div class="event-host">
-                <h3>Hosted by</h3>
+                <h3>Organizzato Da</h3>
                 <div class="host-info">
-                    <%= image_tag "Profile.png", class: "host-image" %>
+                    <% if current_user.profile_pic.present? %>
+                        <%= image_tag(@user.profile_pic, class: "host-image" )%>
+                    <% else %>
+                        <%= image_tag("default-avatar.png", class: "host-image" )%>
+                    <% end %>
+                    <%#= image_tag "Profile.png", class: "host-image" %>
                     <div class="host-details">
-                        <p class="host-name">Diego</p>
+                        <p class="host-name"><%= @user.first_name %></p>
+                        <%#= button_to "Visita profilo", user_show_%>
                         <button class="follow-btn">+ Follow</button>
                     </div>
                 </div>
             </div>
 
             <div class="event-description">
-                <h3>Description</h3>
-                <p>Lorem ipsum dolor sit amet consectetur...</p>
+                <h3>Descrizione</h3>
+                <p><%= @event.description %></p>
             </div>
 
             <div class="tags">
-                <h3>Tags</h3>
+                <h3>Categoria</h3>
                 <div class="tag-list">
-                    <span class="tag">#LivePerformance</span>
-                    <span class="tag">#SeasonalEvent</span>
-                    <span class="tag">#Music</span>
+                    <span class="tag"><%= @event.category %></span>
                 </div>
             </div>
 
             <div class="others">
-                <h3>Other events you may like</h3>
+                <h3>Altri eventi che possono piacerti</h3>
                 <div class="event-suggestions">
                     <div class="event-card">
                         <img src="event1.png" alt="Event 1">

@@ -1,0 +1,7 @@
+it:
+  hello: "Ciao"
+  date:
+    formats:
+      default: "%d/%m/%Y"
+      short: "%d %b"
+      long: "%A, %d %B %Y"

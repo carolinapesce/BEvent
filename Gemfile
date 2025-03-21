@@ -83,6 +83,8 @@ gem "stripe-rails"
 # Whenever Gem for running jobs periodically
 gem 'whenever', require: false
 
+gem 'rails-i18n'
+
 # Cucumber and RSpec
 group :test do
   gem 'cucumber-rails', require: false
