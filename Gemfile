@@ -75,6 +75,8 @@ gem "http"
 
 gem "dotenv-rails"
 
+gem "cancancan"
+
 # Faker Gem to seed the db
 gem 'faker'
 gem "stripe-rails"

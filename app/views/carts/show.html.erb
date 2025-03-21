@@ -1,0 +1,8 @@
+<% if @cart.present? %>
+  <h2>Il tuo carrello</h2>
+  <p>ID carrello: <%= @cart.id %></p>
+<% else %>
+  <p>Il carrello è vuoto.</p>
+<% end %>
+
+<%= link_to "Homepage", root_path%>

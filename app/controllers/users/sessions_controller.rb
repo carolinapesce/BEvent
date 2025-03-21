@@ -15,9 +15,10 @@ class Users::SessionsController < Devise::SessionsController
   # end
 
   # DELETE /resource/sign_out
-  # def destroy
-  #   super
-  # end
+  def destroy
+    session[:cart_id] = nil
+    super
+  end
 
   def after_sign_out_path_for(_resource_or_scope)
     new_user_session_path

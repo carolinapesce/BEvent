@@ -39,6 +39,22 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_18_151902) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
+ActiveRecord::Schema[8.0].define(version: 2025_03_20_173333) do
+  create_table "carts", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "carts_items", force: :cascade do |t|
+    t.integer "cart_id_id", null: false
+    t.integer "event_id_id", null: false
+    t.integer "quantity"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["cart_id_id"], name: "index_carts_items_on_cart_id_id"
+    t.index ["event_id_id"], name: "index_carts_items_on_event_id_id"
+  end
+
   create_table "charity_events", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -76,6 +92,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_18_151902) do
     t.string "city"
     t.string "country"
     t.integer "status", default: 0
+    t.integer "price"
   end
 
   create_table "favourites", force: :cascade do |t|

@@ -3,6 +3,8 @@ class Event < ApplicationRecord
   has_many :tickets
   has_many :favourites
   has_many :users, through: :favourites
+
+  belongs_to :user
   
   enum :status, upcoming: 0, ongoing: 1, terminated: 2
   
