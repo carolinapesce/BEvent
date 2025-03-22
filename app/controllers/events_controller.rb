@@ -11,12 +11,46 @@ class EventsController < ApplicationController
 
   def search
     @user = current_user
+
     @pagy, @events = pagy(Event.all, limit: 5)
 
-    #respond_to do |format|
-    #  format.html
-    #  format.turbo_stream
-    #end
+    # Filtro data
+    if params[:start_datetime].present?
+      @events = @events.where("start_datetime >= ?", params[:start_datetime])
+    end
+    if params[:end_datetime].present?
+      @events = @events.where("end_datetime <= ?", params[:end_datetime])
+    end
+    # Filtro prezzo
+    if params[:min_price].present?
+      @events = @events.where("event_price >= ?", params[:min_price])
+    end
+    if params[:max_price].present?
+      @events = @events.where("event_price <= ?", params[:max_price])
+    end
+    # Filtro orario
+    if params[:time].present?
+      if params[:time][:morning] == true
+        @events = @events.where("start_datetime BETWEEN ? and ?", DateTime.parse("2025-03-22 06:00"), Time.parse("2025-03-22 12:00"))
+      end
+      if params[:time][:afternoon] == true
+        @events = @events.where("start_datetime BETWEEN ? and ?", DateTime.parse("2025-03-22 12:01"), Time.parse("2025-03-22 18:00"))
+      end
+      if params[:time][:evening] == true
+        @events = @events.where("start_datetime BETWEEN ? and ?", DateTime.parse("2025-03-22 18:01"), Time.parse("2025-03-22 23:59"))
+      end
+    end
+    # Filtro Evento di Beneficenza
+    if params[:charity_only] == "true"
+      @events = @events.where(charity_event: true)
+    end
+    # Filtro categoria
+    if params[:category].present?
+      @events = @events.where(category: params[:category])
+    end
+
+    
+
   end
 
   def show
