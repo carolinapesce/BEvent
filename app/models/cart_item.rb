@@ -6,7 +6,7 @@ class CartItem < ApplicationRecord
 
   # calcola il prezzo totale di un singolo evento nel carrello
   def total_price
-      self.quantity * self.event.price
+      self.quantity * self.event.event_price
   end
   
 end
