@@ -4,7 +4,7 @@ class User < ApplicationRecord
   has_many :favourites
   has_many :favourite_events, through: :favourites, source: :event
 
-  enum :role, user: 0, event_planner: 1, admin: 2
+  # enum :role, user: 0, event_planner: 1, admin: 2
 
   has_one_attached :profile_pic
 
