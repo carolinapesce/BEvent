@@ -58,8 +58,8 @@ class EventsController < ApplicationController
   end
 
   def event_params
-    params.require(:event).permit(:title,:description,:address,:start_datetime,:end_datetime,:category,:event_type,:max_participants,:charity_event,
-                                  :beneficiary,:fundraiser_goal,:city,:country,:poster_pic)
+    params.require(:event).permit(:title,:description,:address,:start_datetime,:end_datetime,:category,:event_type,:max_participants,:event_price,
+                                  :charity_event, :beneficiary,:fundraiser_goal,:city,:country,:poster_pic)
   end
 
 end

@@ -35,13 +35,13 @@
     </div>
 
     <div>
-    <%= f.label :address, "Indirizzo" %>
-    <%= f.text_field :address %>
+        <%= f.label :address, "Indirizzo" %>
+        <%= f.text_field :address %>
     </div>
 
     <div>
-    <%= f.label :city, "Città" %>
-    <%= f.text_field :city %>
+        <%= f.label :city, "Città" %>
+        <%= f.text_field :city %>
     </div>
 
     <div>   
@@ -54,9 +54,14 @@
         <%= f.select :category, Event::VALID_CATEGORIES, prompt: "Seleziona una categoria"%>
     </div>
     
-     <div>
+    <div>
         <%= f.label :max_participants, "Numero massimo di partecipanti" %>
         <%= f.number_field :max_participants %>
+    </div>
+
+    <div>
+        <%= f.label :event_price, "prezzo" %>
+        <%= f.number_field :event_price %>
     </div>
 
     <div>
