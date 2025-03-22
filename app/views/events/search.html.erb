@@ -30,88 +30,102 @@
             <!-- Colonna filtri -->
             <div class="filters-column">
                 <h2 class="filters-title">Filtri</h2>
-
-                <!-- Sezione Data -->
-                <div class="filter-section">
-                    <h3 class="filter-label">Data</h3>
-                    <div class="filter-inputs">
-                        <div class="input-group">
-                            <label for="start-date">Da:</label>
-                            <input type="date" id="start-date" name="start-date">
+                <%= form_with(url: search_events_path, method: :get, local: true) do %>
+                    <!-- Sezione Data -->
+                    <div class="filter-section">
+                        <h3 class="filter-label">Data</h3>
+                        <div class="filter-inputs">
+                            <div class="input-group">
+                                <label for="start-date">Da:</label>
+                                <!--input type="date" id="start-date" name="start-date"-->
+                                <%= date_field_tag :start_datetime, params[:start_datetime] %>
+                            </div>
+                            <div class="input-group">
+                                <label for="end-date">A:</label>
+                                <!--input type="date" id="end-date" name="end-date"-->
+                                <%= date_field_tag :end_datetime, params[:end_datetime] %>
+                            </div>
                         </div>
-                        <div class="input-group">
-                            <label for="end-date">A:</label>
-                            <input type="date" id="end-date" name="end-date">
+                    </div>
+
+                    <!-- Sezione Prezzo -->
+                    <div class="filter-section">
+                        <h3 class="filter-label">Prezzo</h3>
+                        <div class="filter-inputs">
+                            <div class="input-group">
+                                <label for="min-price">Min:</label>
+                                <input type="number" id="min-price" name="min-price" placeholder="€">
+                            </div>
+                            <div class="input-group">
+                                <label for="max-price">Max:</label>
+                                <input type="number" id="max-price" name="max-price" placeholder="€">
+                            </div>  
                         </div>
                     </div>
-                </div>
 
-                <!-- Sezione Prezzo -->
-                <div class="filter-section">
-                    <h3 class="filter-label">Prezzo</h3>
-                    <div class="filter-inputs">
-                        <div class="input-group">
-                            <label for="min-price">Min:</label>
-                            <input type="number" id="min-price" name="min-price" placeholder="€">
+                    <!-- Sezione Orario -->
+                    <div class="filter-section">
+                        <h3 class="filter-label">Orario</h3>
+                        <div class="filter-checkboxes">
+                            <label><input type="checkbox" name="time" value="morning"> Mattina</label>
+                            <label><input type="checkbox" name="time" value="afternoon"> Pomeriggio</label>
+                            <label><input type="checkbox" name="time" value="evening"> Sera</label>
                         </div>
-                        <div class="input-group">
-                            <label for="max-price">Max:</label>
-                            <input type="number" id="max-price" name="max-price" placeholder="€">
-                        </div>  
                     </div>
-                </div>
 
-                <!-- Sezione Orario -->
-                <div class="filter-section">
-                    <h3 class="filter-label">Orario</h3>
-                    <div class="filter-checkboxes">
-                        <label><input type="checkbox" name="time" value="morning"> Mattina</label>
-                        <label><input type="checkbox" name="time" value="afternoon"> Pomeriggio</label>
-                        <label><input type="checkbox" name="time" value="evening"> Sera</label>
+                    <!-- Sezione Categorie -->
+                    <div class="filter-section">
+                        <h3 class="filter-label">Categorie</h3>
+                        <div class="filter-checkboxes">
+                            <label><input type="checkbox" name="category" value="adventure"> Adventure Travel</label>
+                            <label><input type="checkbox" name="category" value="art"> Art Exhibitions</label>
+                            <label><input type="checkbox" name="category" value="auctions"> Fundraisers</label>
+                            <label><input type="checkbox" name="category" value="beer"> Festivals</label>
+                            <label><input type="checkbox" name="category" value="benefit"> Concerts</label>
+                        </div>
+                        <a href="#" class="see-more-link">More</a>
                     </div>
-                </div>
-
-                <!-- Sezione Categorie -->
-                <div class="filter-section">
-                    <h3 class="filter-label">Categorie</h3>
-                    <div class="filter-checkboxes">
-                        <label><input type="checkbox" name="category" value="adventure"> Adventure Travel</label>
-                        <label><input type="checkbox" name="category" value="art"> Art Exhibitions</label>
-                        <label><input type="checkbox" name="category" value="auctions"> Fundraisers</label>
-                        <label><input type="checkbox" name="category" value="beer"> Festivals</label>
-                        <label><input type="checkbox" name="category" value="benefit"> Concerts</label>
-                    </div>
-                    <a href="#" class="see-more-link">More</a>
-                </div>
+                    <%= submit_tag 'Filtra' %>
+                <% end %>
             </div>
-    
+            
 
 
             <!-- Sezione eventi -->
             <div class="main-content">
-                <div class="events-grid">
-                    <%= link_to event_path(1), class: "event-card-link" do %>
-                        <div class="event-card">
-                            <div class="event-design">
-                                <%= image_tag "card1.png", alt: "Event Image", class: "event-image" %>
-                            </div>
-
-                            <div class="event-frame">
-                                <h3 class="event-title">THE MOTANS GEOGRAPHIC 2025</h3>
-                                <p class="event-location">Orion Live Club</p>
-                                <div class="event-date">
-                                    <span class="month">APR</span>
-                                    <span class="day">11</span>
+                <div class="events-grid-search">
+                    <%== pagy_nav(@pagy) %>
+                    <% @events.each do |event| %>
+                        <%= link_to event_path(event.id), class: "event-card-link" do %>
+                            <div class="event-card">
+                                <div class="event-design">
+                                    <% if event.poster_pic.present? %>
+                                        <%= image_tag(event.poster_pic, alt: "Event Image", class: "event-image")%>
+                                    <% else %>
+                                        <%= image_tag("default-poster.jpg", alt: "Event Image", class: "event-image" )%>
+                                    <% end %>
                                 </div>
-                                <p class="event-time">8 PM</p>
-                                <p class="event-price">Gratis</p>
-                                
-                                
+
+                                <div class="event-frame">
+                                    <h3 class="event-title"><%= event.title %></h3>
+                                    <p class="event-location"><%= event.address+", "+event.city+", "+event.country %></p>
+                                    <div class="event-date">
+                                        <span class="month"><%= event.start_datetime.strftime("%b") %></span>
+                                        <span class="day"><%= event.start_datetime.strftime("%d") %></span>
+                                    </div>
+                                    <p class="event-time"><%= event.start_datetime.strftime("%H:%M") %></p>
+                                    <% if event.event_price == 0 || event.event_price == nil %>
+                                        <p class="event-price">Gratis</p>
+                                    <% else %>
+                                        <p class="event-price"><%= number_to_currency(event.event_price, unit: "€") %></p>
+                                    <% end %>
+                                </div>
                             </div>
-                        </div>
+                        <% end %>
                     <% end %>
                 </div>
-            </div> 
+            </div>
+
         </div>
     </div>
     <%= render "devise/shared/footer" %>

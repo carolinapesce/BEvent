@@ -85,6 +85,8 @@ gem 'whenever', require: false
 
 gem 'rails-i18n'
 
+gem 'pagy'
+
 # Cucumber and RSpec
 group :test do
   gem 'cucumber-rails', require: false

@@ -1,4 +1,5 @@
 class EventsController < ApplicationController
+  include Pagy::Backend
 
   before_action :authenticate_user!
   before_action :set_event, only: [:show]
@@ -10,7 +11,12 @@ class EventsController < ApplicationController
 
   def search
     @user = current_user
-    @events = Event.all
+    @pagy, @events = pagy(Event.all, limit: 5)
+
+    #respond_to do |format|
+    #  format.html
+    #  format.turbo_stream
+    #end
   end
 
   def show

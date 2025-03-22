@@ -36,7 +36,7 @@
                         <% if @event.event_price == 0.0 %>
                             <p><i class="fa-solid fa-ticket"></i>Gratis</p>
                         <% else %>
-                            <p><i class="fa-solid fa-ticket"></i><%= @event.event_price %></p>
+                            <p><i class="fa-solid fa-ticket"></i><%= number_to_currency(@event.event_price, unit: "€") %></p>
                         <% end %>
                     </div>
                 </div>

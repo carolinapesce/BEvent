@@ -142,6 +142,11 @@
     padding-left: 50px;
 }
 
+.events-grid-search {
+    display: flex;
+    flex-direction: column;
+    gap: 16px; 
+}
 
 .events.search .event-card{
     width: 471px;

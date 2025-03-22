@@ -6,6 +6,9 @@ module ApplicationHelper
   def body_class
     "#{controller_name} #{action_name}"
   end
+
+  include Pagy::Frontend
+  
 end
 
 
