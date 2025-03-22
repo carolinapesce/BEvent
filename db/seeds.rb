@@ -9,6 +9,34 @@
 #   end
 # db/seeds.rb
 
+# Admin
+User.create!(
+  email: "zarola.admin@gmail.com",
+  password: "password",
+  first_name: "Massimo",
+  last_name: "Zarola",
+  role: 2,
+  confirmed_at: Time.now
+)
+
+User.create!(
+  email: "paula.admin@gmail.com",
+  password: "password",
+  first_name: "Kavidu",
+  last_name: "Paula",
+  role: 2,
+  confirmed_at: Time.now
+)
+
+User.create!(
+  email: "pesce.admin@gmail.com",
+  password: "password",
+  first_name: "Carolina",
+  last_name: "Pesce",
+  role: 2,
+  confirmed_at: Time.now
+)
+
 10.times do |i|
   Event.create!(
     title: "Evento #{i + 1}",
@@ -29,9 +57,9 @@
     status: 0,
     latitude: Faker::Address.latitude,
     longitude: Faker::Address.longitude,
-    price: rand(10..50),
-    user_id: 10,  # Associare all'utente con id 10
-    type: nil,  # Non sono eventi di beneficenza, quindi il campo 'type' non è impostato
+    event_price: rand(10..50),
+    user_id: 1,  
+    type: nil,  
     charity_event: false
   )
 end
@@ -56,9 +84,9 @@ end
     status: 0,
     latitude: Faker::Address.latitude,
     longitude: Faker::Address.longitude,
-    price: rand(10..50),
-    user_id: 10,  # Associare all'utente con id 10
-    type: "CharityEvent",  # Evento di beneficenza
+    event_price: rand(10..50),
+    user_id: 1,  
+    type: "CharityEvent",  
     charity_event: true
   )
 end
