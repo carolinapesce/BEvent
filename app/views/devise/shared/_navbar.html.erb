@@ -49,7 +49,7 @@
     
     <!-- Notifiche -->
     <div class="cart-container">
-        <% if can? :read, @cart %>
+        <% if current_user.user? || current_user.admin? %>
             <%= link_to cart_path(@current_cart), class: "dropdown-item" do %>
                 <i class="fa-solid fa-cart-shopping"></i>
             <% end %>
