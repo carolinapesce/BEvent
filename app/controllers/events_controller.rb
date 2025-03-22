@@ -20,7 +20,9 @@ class EventsController < ApplicationController
 
   def new
     #@user = current_user
-    authorize! :create, Event
+    unless current_user.event_planner?
+      redirect_to root_path, alert: "Solo i planner possono creare eventi." and return
+    end
     @event = Event.new
   end
 

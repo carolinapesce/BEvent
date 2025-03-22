@@ -8,10 +8,11 @@ class Ability
     
     return unless user.user?
     can :read, :all
-    can :read, Event
+
     return unless user.event_planner?
     can :manage, Event, user_id: user.id
     cannot :read, Cart
+    
     return unless user.admin?
     can :manage, :all
     
