@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_03_20_175033) do
+ActiveRecord::Schema[8.0].define(version: 2025_03_21_212341) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -37,6 +37,21 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_20_175033) do
     t.bigint "blob_id", null: false
     t.string "variation_digest", null: false
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
+  end
+
+  create_table "cart_items", force: :cascade do |t|
+    t.integer "cart_id", null: false
+    t.integer "event_id", null: false
+    t.integer "quantity"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["cart_id"], name: "index_cart_items_on_cart_id"
+    t.index ["event_id"], name: "index_cart_items_on_event_id"
+  end
+
+  create_table "carts", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "charity_events", force: :cascade do |t|
@@ -76,8 +91,13 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_20_175033) do
     t.string "city"
     t.string "country"
     t.integer "status", default: 0
+    t.integer "price"
+    t.integer "user_id", null: false
+    t.string "type"
+    t.boolean "charity_event", default: false
     t.float "latitude"
     t.float "longitude"
+    t.index ["user_id"], name: "index_events_on_user_id"
   end
 
   create_table "favourites", force: :cascade do |t|
@@ -133,6 +153,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_20_175033) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "donations", "events"
   add_foreign_key "donations", "users"
+  add_foreign_key "events", "users"
   add_foreign_key "favourites", "events"
   add_foreign_key "favourites", "users"
   add_foreign_key "tickets", "events"
