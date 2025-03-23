@@ -1,81 +1,169 @@
-<%= form_with model: @event, local: true do |f| %>
-    <% if @event.errors.any? %>
-    <div class="error-messages">
-        <h2>Ci sono <%= @event.errors.count %> errori:</h2>
-        <ul>
-            <% @event.errors.full_messages.each do |msg| %>
-                <li><%= msg %></li>
+<%= render "devise/shared/navbar" %>
+<div class="pg">
+    <div class="page-back">
+        <i class="fa-solid fa-arrow-left"></i>
+    </div>
+    <div class="new-content">
+        <h1>Crea un nuovo evento</h1>
+        <%= form_with model: @event, local: true, data: { controller: "multi-step" } do |f| %>
+            <% if @event.errors.any? %>
+                <div class="error-messages">
+                    <h2>Ci sono <%= @event.errors.count %> errori:</h2>
+                    <ul>
+                        <% @event.errors.full_messages.each do |msg| %>
+                            <li><%= msg %></li>
+                        <% end %>
+                    </ul>
+                </div>
             <% end %>
-        </ul>
-    </div>
-    <% end %>
-    <div>
-        <%= f.label :title, "Titolo" %>
-        <%= f.text_field :title %>
-    </div>
+        
+            <!-- Barra di progresso  <i class="fa-solid fa-circle"></i>-->
+            <div class="progress-container">
+                <div class="progress-bar">
+                    <div class="progress-fill" data-multi-step-target="progressFill"></div>
+                </div>
+                <div class="progress-steps">
+                    <div class="step" data-step="1">
+                        <div class="circle active"></div>
+                        <p>Edit</p>
+                    </div>
+                    <div class="step" data-step="2">
+                        <div class="circle"></div>
+                        <p>Banner</p>
+                    </div>
+                    <div class="step" data-step="3">
+                        <div class="circle"></div>
+                        <p>Ticketing</p>
+                    </div>
+                    <div class="step" data-step="4">
+                        <div class="circle"></div>
+                        <p>Review</p>
+                    </div>
+                </div>
+            </div>
 
-    <div>
-        <%= f.label :description, "Descrizione" %>
-        <%= f.text_area :description %>
-    </div>
+            <div class="ev-content">
+                <%= f.hidden_field :charity_event, value: false %> 
+                <div class="step-content" data-multi-step-target="step" data-step="1">
+                    <div>
+                        <div class="container-details">
+                            <h2>Event Details</h2>
+                            <div class="campo">
+                                <%= f.label :title, "Titolo" %>
+                                <%= f.text_field :title %>
+                            </div>
+                            <div class="campo">
+                                <%= f.label :category, "Categoria" %>
+                                <%= f.select :category, Event::VALID_CATEGORIES, prompt: "Seleziona una categoria"%>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="container-details">
+                            <h2>Data & Ora</h2>
+                            <div class="campo">
+                                <%= f.label :start_datetime, "Data e ora di inizio" %>
+                                <%= f.datetime_select :start_datetime %>
+                            </div>
 
-    <div class="form-group">
-        <%= f.label :poster_pic, "Poster dell'evento" %><br />
-        <%= f.file_field :poster_pic %>
-      </div>
+                            <div class="campo">
+                                <%= f.label :end_datetime, "Data e ora di fine" %>
+                                <%= f.datetime_select :end_datetime %>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="container-details">
+                            <h2>Location</h2>
+                            <div class="campo">
+                                <%= f.label :address, "Indirizzo" %>
+                                <%= f.text_field :address %>
+                            </div>
+                            <div class="campo">
+                                <%= f.label :city, "Città" %>
+                                <%= f.text_field :city %>
+                            </div>
+                            <div class="campo">   
+                                <%= f.label :country, "Paese" %>
+                                <%= f.text_field :country %>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="container-details">
+                            <h2>Descrizione</h2>
+                            <div class="campo">
+                                <%= f.label :description, "Descrizione" %>
+                                <%= f.text_area :description %>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="zona">
+                        <button type="button" data-action="click->multi-step#nextStep">Next</button>
+                    </div>
+                </div>
 
-    <div>
-        <%= f.label :start_datetime, "Data e ora di inizio" %>
-        <%= f.datetime_select :start_datetime %>
-    </div>
 
-    <div>
-        <%= f.label :end_datetime, "Data e ora di fine" %>
-        <%= f.datetime_select :end_datetime %>
-    </div>
 
-    <div>
-    <%= f.label :address, "Indirizzo" %>
-    <%= f.text_field :address %>
-    </div>
+                <div class="step-content hidden" data-multi-step-target="step" data-step="2">
+                    <div>
+                        <div class="container-details">
+                            <h2>Banner</h2>
+                            <div class="form-group">
+                                <%= f.label :poster_pic, "Poster dell'evento" %>
+                                <%= f.file_field :poster_pic %>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="zona">
+                        <button type="button" data-action="click->multi-step#prevStep">Previous</button>
+                        <button type="button" data-action="click->multi-step#nextStep">Next</button>
+                    </div>
+                </div>
 
-    <div>
-    <%= f.label :city, "Città" %>
-    <%= f.text_field :city %>
-    </div>
+                
 
-    <div>   
-        <%= f.label :country, "Paese" %>
-        <%= f.text_field :country %>
-    </div>
+                <div class="step-content hidden" data-multi-step-target="step" data-step="3">
 
-    <div>
-        <%= f.label :category, "Categoria" %>
-        <%= f.select :category, Event::VALID_CATEGORIES, prompt: "Seleziona una categoria"%>
-    </div>
-    
-     <div>
-        <%= f.label :max_participants, "Numero massimo di partecipanti" %>
-        <%= f.number_field :max_participants %>
-    </div>
+                    <div>
+                        <div class="container-details">
+                            <h2>Ticketing</h2>
+                            <div class="campo">
+                                <%= f.label :price, "Prezzo" %>
+                                <%= f.number_field :price%>
+                            </div>
+                            <div class="campo">
+                                <%= f.label :charity_event, "Evento di beneficienza?" %>
+                                <%= f.checkbox :charity_event %>
+                            </div>
 
-    <div>
-        <%= f.label :charity_event, "Evento di beneficienza?" %>
-        <%= f.checkbox :charity_event %>
-    </div>
+                            <div class="campo">
+                                <%= f.label :beneficiary, "Beneficiario" %>
+                                <%= f.text_field :beneficiary %>
+                            </div>
+                            <div class="campo">
+                                <%= f.label :fundraiser_goal, "Obiettivo raccolta fondi" %>
+                                <%= f.number_field :fundraiser_goal, step: 0.01 %>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="zona">
+                        <button type="button" data-action="click->multi-step#prevStep">Previous</button>
+                        <button type="button" data-action="click->multi-step#nextStep">Next</button>
+                    </div>
+                </div>
 
-    <div>
-        <%= f.label :beneficiary, "Beneficiario" %>
-        <%= f.text_field :beneficiary %>
-    </div>
 
-    <div>
-        <%= f.label :fundraiser_goal, "Obiettivo raccolta fondi" %>
-        <%= f.number_field :fundraiser_goal, step: 0.01 %>
-    </div>
 
-    <div>
-        <%= f.submit "Crea evento" %>
-    </div>
 
-<% end %>
+                <div class="step-content hidden" data-multi-step-target="step" data-step="4">
+                    <h2>Step 4: Review</h2>
+                    <p>Review your event details.</p>
+                    <button type="button" data-action="click->multi-step#prevStep">Previous</button>
+                    <%= f.submit "Submit" %>
+                </div>
+            </div>
+        <% end %>
+    </div>    
+</div>
+<%= render "devise/shared/footer" %>
