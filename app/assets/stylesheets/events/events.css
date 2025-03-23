@@ -204,6 +204,14 @@ body {
     margin-right: 40px;
 }
 
+.events.new .page-back i:hover{
+    transform: scale(1.2);
+    transition: transform 0.2s ease;
+}
+
+
+
+
 
 .events.new .new-content{
     width: 100%;

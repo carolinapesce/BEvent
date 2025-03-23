@@ -1,9 +1,12 @@
 <%= render "devise/shared/navbar" %>
 
 <div class="page">
+    
     <div class= "show-back">
         <i class="fa-solid fa-arrow-left"></i>
     </div>
+
+
     <div class= "show-page">    
         <div class="banner-image">
             <% if @event.poster_pic.present? %>
@@ -17,23 +20,41 @@
             <div class="event-header">
                 <h1 class="event-title"><%= @event.title %></h1>
                 <div class="event-icons">
-                    <i class="fa-regular fa-heart"></i>
-                    <i class="fa-solid fa-share"></i>
+                    <i class="fa-regular fa-heart heart-icon" data-controller="favorite" data-action="click->favorite#toggleFavorite" data-favorite-target="icon"></i>
+                    <i class="fa-solid fa-share share-icon" data-controller="share" data-action="click->share#copyToClipboard" data-share-target="icon"></i>
                 </div>
             </div>
 
             <div class="event-details">
                 <div class="event-info">
+
                     <h3 class="info-title">Data e Ora di Inizio</h3>
-                    <p class="info-date"><i class="fa-regular fa-calendar"></i><%= l(@event.start_datetime, format: "%A, %d %B %Y").gsub(/\b\w/) { |match| match.upcase } %></p>
-                    <p class="info-time"><i class="fa-regular fa-clock"></i><%= @event.start_datetime.strftime("%H:%M") %></p>
+                    <div class="info-temporale">
+                        <p class="info-date">
+                            <i class="fa-regular fa-calendar"></i>
+                            <p><%= l(@event.start_datetime, format: "%A, %d %B %Y").gsub(/\b\w/) { |match| match.upcase } %></p>
+                        </p>
+                        <p class="info-time">
+                            <i class="fa-regular fa-clock"></i>
+                            <p><%= @event.start_datetime.strftime("%H:%M") %></p>
+                        </p>
+                    </div>
+
                     <h3 class="info-title">Data e Ora di Fine</h3>
-                    <p class="info-date"><i class="fa-regular fa-calendar"></i><%= l(@event.end_datetime, format: "%A, %d %B %Y").gsub(/\b\w/) { |match| match.upcase } %></p>
-                    <p class="info-time"><i class="fa-regular fa-clock"></i><%= @event.end_datetime.strftime("%H:%M") %></p>
+                    <div class="info-temporale">
+                        <p class="info-date">
+                            <i class="fa-regular fa-calendar"></i>
+                            <p><%= l(@event.end_datetime, format: "%A, %d %B %Y").gsub(/\b\w/) { |match| match.upcase } %></p>
+                        </p>
+                        <p class="info-time">
+                            <i class="fa-regular fa-clock"></i>
+                            <p><%= @event.end_datetime.strftime("%H:%M") %></p>
+                        </p>
+                    </div>
                 </div>
 
                 <div class="event-buy">
-                    <button class="buy-btn">🎟 Compra un biglietto</button>
+                    <button class="buy-btn">Compra un biglietto</button>
                     <div class="tckt-info">
                         <h4>Info Biglietti</h4>
                         <% if @event.event_price == 0.0 %>
@@ -47,8 +68,10 @@
 
             <div class="event-location">
                 <h3>Location</h3>
-                <p><i class="fa-solid fa-location-dot"></i><%= @event.address+", "+@event.city+", "+@event.country%></p>
-                <div class="map"></div>
+                <div class="info-loc">
+                    <p><i class="fa-solid fa-location-dot"></i><%= @event.address+", "+@event.city+", "+@event.country%></p>
+                    <div class="map"></div>
+                </div>
             </div>
 
             <div class="event-host">
@@ -72,7 +95,9 @@
 
             <div class="event-description">
                 <h3>Descrizione</h3>
-                <p><%= @event.description %></p>
+                <div class="info-desc">
+                    <p><%= @event.description %></p>
+                </div>
             </div>
 
             <div class="tags">

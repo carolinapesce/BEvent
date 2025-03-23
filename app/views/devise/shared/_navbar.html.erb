@@ -48,13 +48,13 @@
     </div>
     
     <!-- Notifiche -->
-    <div class="cart-container">
-        <% if can? :read, @cart %>
+    <% if can? :read, @cart %>
+        <div class="cart-container"></div>
             <%= link_to cart_path(@current_cart), class: "dropdown-item" do %>
                 <i class="fa-solid fa-cart-shopping"></i>
             <% end %>
-        <% end %>
-    </div>
+         </div>
+    <% end %>
 
     <div class="cart-container">
             <%= link_to new_event_path, class: "dropdown-item" do %>

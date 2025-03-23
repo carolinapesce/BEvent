@@ -24,6 +24,13 @@ body.users.favourite{
     font-size: 22px;
 }
 
+
+.users.favourite .fa-arrow-left:hover{
+    transform: scale(1.2);
+    transition: transform 0.2s ease;
+}
+
+
 .users.favourite .favourite-page{
     padding-top: 60px;
     padding: 110px;
