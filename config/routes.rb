@@ -17,7 +17,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :users, only: [:edit, :update] do
+  resources :users, only: [:show, :edit, :update] do
     get :favourite
   end
 
