@@ -1,51 +1,46 @@
 import { Controller } from "@hotwired/stimulus";
 
 export default class extends Controller {
-  static targets = ["step", "progressFill"];
+  static targets = ["step", "progressStep", "progressBar", "nextButton", "prevButton"];
 
   connect() {
-    this.currentStep = 1;
-    this.updateProgress();
-    this.showStep();
-  }
-
-  updateProgress() {
-    const totalSteps = this.stepTargets.length;
-    const stepPercentage = 100 / (totalSteps - 1);
-    
-    // La barra deve fermarsi a metà tra un pallino e il successivo
-    const progress = (this.currentStep - 1) * stepPercentage + stepPercentage / 2;
-    this.progressFillTarget.style.width = `${progress}%`;
-
-    // Attiva i pallini fino alla fase corrente
-    document.querySelectorAll(".progress-steps .circle").forEach((circle, index) => {
-      if (index + 1 <= this.currentStep) {
-        circle.classList.add("active");
-      } else {
-        circle.classList.remove("active");
-      }
-    });
+    this.formStepsNum = 0; // Indice dello step corrente
+    this.updateFormSteps();
+    this.updateProgressbar();
   }
 
   nextStep() {
-    if (this.currentStep < this.stepTargets.length) {
-      this.currentStep++;
-      this.showStep();
+    if (this.formStepsNum < this.stepTargets.length - 1) {
+      this.formStepsNum++;
+      this.updateFormSteps();
+      this.updateProgressbar();
     }
   }
 
   prevStep() {
-    if (this.currentStep > 1) {
-      this.currentStep--;
-      this.showStep();
+    if (this.formStepsNum > 0) {
+      this.formStepsNum--;
+      this.updateFormSteps();
+      this.updateProgressbar();
     }
   }
 
-  showStep() {
-    this.stepTargets.forEach((el) => {
-      el.classList.toggle("hidden", parseInt(el.dataset.step) !== this.currentStep);
+  updateFormSteps() {
+    this.stepTargets.forEach((formStep, index) => {
+      formStep.classList.toggle("form-step-active", index === this.formStepsNum);
+    });
+  }
+
+  updateProgressbar() {
+    this.progressStepTargets.forEach((progressStep, idx) => {
+      progressStep.classList.toggle("progress-step-active", idx <= this.formStepsNum);
     });
 
-    this.updateProgress();
+    const progressActive = this.element.querySelectorAll(".progress-step-active");
+
+    if (this.hasProgressBarTarget) {
+      this.progressBarTarget.style.width =
+        ((progressActive.length - 1) / (this.progressStepTargets.length - 1)) * 100 + "%";
+    }
   }
 }
