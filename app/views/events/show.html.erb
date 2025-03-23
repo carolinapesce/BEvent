@@ -24,9 +24,12 @@
 
             <div class="event-details">
                 <div class="event-info">
-                    <h3 class="info-title">Data e Ora</h3>
+                    <h3 class="info-title">Data e Ora di Inizio</h3>
                     <p class="info-date"><i class="fa-regular fa-calendar"></i><%= l(@event.start_datetime, format: "%A, %d %B %Y").gsub(/\b\w/) { |match| match.upcase } %></p>
                     <p class="info-time"><i class="fa-regular fa-clock"></i><%= @event.start_datetime.strftime("%H:%M") %></p>
+                    <h3 class="info-title">Data e Ora di Fine</h3>
+                    <p class="info-date"><i class="fa-regular fa-calendar"></i><%= l(@event.end_datetime, format: "%A, %d %B %Y").gsub(/\b\w/) { |match| match.upcase } %></p>
+                    <p class="info-time"><i class="fa-regular fa-clock"></i><%= @event.end_datetime.strftime("%H:%M") %></p>
                 </div>
 
                 <div class="event-buy">

@@ -6,13 +6,13 @@ class EventsController < ApplicationController
 
   def index
     @user = current_user
-    @events = Event.all
+    @events = Event.where(status: "upcoming").or(Event.where(status: "ongoing")).order(:start_datetime)
   end
 
   def search
     @user = current_user
 
-    @pagy, @events = pagy(Event.all, limit: 5)
+    @pagy, @events = pagy(Event.where(status: "upcoming").or(Event.where(status: "ongoing")).order(:start_datetime), limit: 5)
 
     # Filtro data
     if params[:start_datetime].present?

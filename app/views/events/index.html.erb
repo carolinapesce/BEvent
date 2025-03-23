@@ -44,8 +44,14 @@
                               <div class="event-details">
                                 <h3 class="event-title"><%= event.title %></h3>
                                 <p class="event-location"><%= event.address + ", " +event.city+", "+event.country%></p>
-                                <p class="event-time"><%= event.start_datetime%></p>
-                                <p class="event-price"><%= event.event_price%></p>
+                                <p class="event-time"><%= event.start_datetime.strftime("%I:%M %p")%></p>
+                                <!--p class="event-price">
+                                  <% if @event && (@event.event_price == 0 || @event.event_price.nil?) %>
+                                    <p><i class="fa-solid fa-ticket"></i>Gratis</p>
+                                  <% elsif @event %>
+                                    <p><i class="fa-solid fa-ticket"></i><%= @event.event_price + " €" %></p>
+                                  <% end %>
+                                </p-->
                               </div>
                           
                             </div>
