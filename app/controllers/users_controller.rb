@@ -1,9 +1,16 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!
 
+  def profile
+    @user = current_user
+    @upcoming_events = @user.events.where(status: 'upcoming').order(:start_datetime)
+    @terminated_events = @user.events.where(status: 'terminated').order(:start_datetime)
+  end
   
   def show
     @user = User.find(params[:id])
+    @upcoming_events = @user.events.where(status: 'upcoming').order(:start_datetime)
+    @terminated_events = @user.events.where(status: 'terminated').order(:start_datetime)
     render 'users/show'
   end
 

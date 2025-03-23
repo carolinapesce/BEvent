@@ -30,7 +30,7 @@ class Event < ApplicationRecord
     now = Time.current
     where('start_datetime > ?', now).update_all(status: :upcoming)
     where('start_datetime <= ? AND end_datetime >= ?', now, now).update_all(status: :ongoing)
-    where('end_datetime > ?', now).update_all(status: :terminated)
+    where('end_datetime < ?', now).update_all(status: :terminated)
   end
 
   def formatted_startdate

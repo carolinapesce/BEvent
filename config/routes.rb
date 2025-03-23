@@ -25,7 +25,7 @@ Rails.application.routes.draw do
 
   resources :carts, only: [:show]
 
-  get 'profile', to: 'users#show', as: "user_show"
+  get 'profile', to: 'users#profile', as: "user_profile"
 
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html

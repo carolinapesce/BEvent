@@ -49,8 +49,6 @@ class EventsController < ApplicationController
       @events = @events.where(category: params[:category])
     end
 
-    
-
   end
 
   def show

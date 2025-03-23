@@ -1,0 +1,254 @@
+.users.profile html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.users.profile .cont{
+    display: flex;
+    flex-direction: column;
+    width: 100vw;
+    min-height: 100vh;
+    max-width: 100vw;
+}
+
+.users.profile .footer {
+    margin-top: auto;
+}
+
+
+
+.users.profile .page {
+    font-family: 'Heebo';
+    flex-grow: 1;
+    display: grid;
+    grid-template-rows: 230px auto;
+    grid-template-areas:"banner" "content";
+    padding-top: 64px;
+}
+
+.users.profile .banner {
+    grid-area: banner;
+}
+
+.users.profile .banner-content {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #f1f1f1;
+}
+
+.users.profile .info-profile{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.users.profile .info-profile h1{
+    margin-left: 30px;
+}
+
+.users.profile .banner-content img {
+    grid-area: banner;
+    border-radius: 50%; 
+    cursor: pointer;
+    width: 140px;
+    height: 140px;
+    margin-left: 80px;
+}
+
+
+
+
+.users.profile .edit-btn {
+    background: #04A777;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-family: "Montserrat";
+    margin-right: 30px;
+}
+ 
+.users.profile .save-btn:hover {
+    background: #025e42;
+}
+
+
+
+
+
+
+.users.profile .page-content {
+    grid-area: content;
+    display: grid;
+    grid-template-columns: 20% auto;
+    grid-template-areas:"about desevents";
+}
+
+.users.profile .about{
+    grid-area: about;
+    padding: 40px;
+    margin: 25px;
+    background-color: #f1f1f1;
+    height: 100%;
+    
+}
+
+.users.profile .about h3{
+    font-family: 'Montserrat';
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.users.profile .about p{
+    font-family: 'Montserrat';
+    font-weight: medium;
+    margin-bottom: 10px;
+
+}
+
+.users.profile .content-profile{
+    grid-area: desevents;
+    display: grid;
+    grid-template-rows: 38% auto;
+    grid-template-areas:"desc" "events";
+    margin: 25px;
+}
+
+.users.profile .description{
+    grid-area: desc;
+    background-color: #f1f1f1;
+    margin-bottom: 34px;
+    padding: 20px; 
+}
+
+.users.profile .description h3{
+    font-family: 'Montserrat';
+    font-weight: bold;
+}
+
+.users.profile .events{
+    display: flex;
+    flex-direction: column;
+    grid-area: events;
+    background-color: #f1f1f1;
+    margin-top: 34px;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.users.profile .choice{
+    display: flex;
+    flex-direction: row;
+    margin-top: 60px;
+}
+
+.users.profile .choice h3{
+    font-family: 'Montserrat';
+    font-weight: bold;
+    margin-left: 60px;
+    margin-right: 60px;
+}
+
+
+.users.profile .line{
+    height: 1px;
+    width: 90%;
+    background-color: black;
+    margin-top: 10px;
+    margin-bottom: 30px;
+}
+
+
+.users.profile .events-list{
+    margin-bottom: 30px;
+}
+
+.users.profile .event-card {
+    width: 600px;
+    height: 154px;
+    display: grid;
+    grid-template-columns: 47% 53%;
+    grid-template-areas: "image details";
+    border-radius: 15px;
+    background: #ffffff;
+    overflow: hidden;
+    margin-top: 30px;
+}
+
+.users.profile .event-design {
+    grid-area: image;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    position: static;
+}
+
+.users.profile .event-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; 
+}
+
+.users.profile .event-frame {
+    padding: 5px;
+    grid-area: details;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start; 
+    gap: 1px;
+}
+
+.users.profile .event-title {
+    font-size: 15px;
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 700;
+    line-height: 1.2; /*spazio tra le righe */
+    word-wrap: break-word; /*andare a capo titolo*/
+    max-width: 100%;
+}
+
+.users.profile .month {
+    color: #5D5D5D;
+    font-size: 12px;
+    font-family: 'Montserrat';
+    text-transform: uppercase;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+.users.profile .day {
+    color: #5D5D5D;
+    font-size: 12px;
+    font-family: 'Montserrat';
+    text-transform: uppercase;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+/*altre info */
+.users.profile .event-location,
+.users.profile .event-time,
+.users.profile .event-price,
+.users.profile .event-date {
+    font-size: 12px;
+    width: 100%;
+    color: #5D5D5D;
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+

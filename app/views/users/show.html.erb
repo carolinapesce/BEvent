@@ -11,7 +11,7 @@
                     <% end %>
                     <h1>Nome</h1>
                 </div>
-                <button class="edit-btn">Modifica</button>
+                <!--button class="edit-btn">Modifica</button-->
             </div>
         </div>
         <div class="page-content">
@@ -21,28 +21,82 @@
                     <h3>About</h3>
                     <p>Website</p>
                     <p>Company</p>
-                    <p>Location</p>
-                    <p>Email</p>
+                    <p>Email</p> 
                     <p>Phone</p> 
                 </div>
             </div>
             <div class="content-profile">
                 <div class="description">
                     <h3>Description</h3>
-                    <p>Lorem ipsum dolor sit amet consectetur. Eget vulputate sociis sit urna sit aliquet. Vivamus facilisis 
-                        diam libero dolor volutpat diam eu. Quis a id posuere etiam at enim vivamus. Urna nisi malesuada libero 
-                        enim ornare in viverra. Nibh commodo quis tellus aliquet nibh tristique lobortis id. Consequat 
-                        ultricies vulputate turpis neque viverra tempor nunc. Et amet massa tellus consequat mauris imperdiet tellus. 
-                        Praesent risus magna nisl turpis egestas ultrices viverra pellentesque blandit. Rutrum consequat eu 
-                        penatibus ipsum at.</p>
+                    <p>
+                        <% if current_user.bio.present? %>
+                            current_user.bio
+                        <% end %>
+                    </p>
                 </div>
                 <div class="events">
                     <div class="choice">
-                        <h3 class="events_current">Current Events</h3>
-                        <h3 class="events_past">Past Events</h3>
+                        <h3 id="upcoming-toggle" class="events_current">Current Events</h3>
+                        <h3 id="past-toggle" class="events_past">Past Events</h3>
                     </div>
                     <div class="line"></div>
-                    <div class="events-list">
+
+                    <% if @upcoming_events.any? %>
+                        <div id="upcoming-events" class="events-list">
+                            <div class="events-grid">
+                                <% @upcoming_events.limit(5).each do |event| %>
+                                    <%= link_to event_path(event), class: "event-card-link" do %>
+                                        <div class="event-card">
+                                            <div class="event-design">
+                                                <%= image_tag "card1.png", alt: "Event Image", class: "event-image" %>
+                                            </div>
+                                            <div class="event-frame">
+                                                <h3 class="event-title"><%= event.title %></h3>
+                                                <p class="event-location"><%= event.address+", "+event.city+", "+event.country %></p>
+                                                <div class="event-date">
+                                                    <span class="month"><%= event.start_datetime.strftime('%b') %></span>
+                                                    <span class="day"><%= event.start_datetime.strftime('%d') %></span>
+                                                </div>
+                                                <p class="event-time"><%= event.start_datetime.strftime('%I:%M %p') %></p>
+                                                <p class="event-price"><%= event.event_price.present? ? event.price : "Free" %></p>
+                                            </div>
+                                        </div>
+                                    <% end %>
+                                <% end %>
+                            </div>
+                        </div>
+                    <% else %>
+                        <p>Nessun evento in programma.</p>
+                    <% end %>
+
+                    <% if @terminated_events.any? %>
+                        <div id="past-events" class="events-list" style="display: none;">
+                            <div class="events-grid">
+                                <% @terminated_events.limit(5).each do |event| %>
+                                    <%= link_to event_path(event), class: "event-card-link" do %>
+                                        <div class="event-card">
+                                            <div class="event-design">
+                                                <%= image_tag "card1.png", alt: "Event Image", class: "event-image" %>
+                                            </div>
+                                            <div class="event-frame">
+                                                <h3 class="event-title"><%= event.title %></h3>
+                                                <p class="event-location"><%= event.address+", "+event.city+", "+event.country %></p>
+                                                <div class="event-date">
+                                                    <span class="month"><%= event.start_datetime.strftime('%b') %></span>
+                                                    <span class="day"><%= event.start_datetime.strftime('%d') %></span>
+                                                </div>
+                                                <p class="event-time"><%= event.start_datetime.strftime('%I:%M %p') %></p>
+                                                <p class="event-price"><%= event.event_price.present? ? event.price : "Free" %></p>
+                                            </div>
+                                        </div>
+                                    <% end %>
+                                <% end %>
+                            </div>
+                        </div>
+                    <% else %>
+                        <p>Nessun evento passato.</p>
+                    <% end %>
+                    <!--div class="events-list">
                         <div class= "events-grid">
                             <%= link_to event_path(1), class: "event-card-link" do %>
                                 <div class="event-card">
@@ -99,7 +153,7 @@
                             <% end %>
                         </div>
                         <div class= "sm-btn"></div>
-                    </div>
+                    </div-->
                 </div>
             </div>
         </div>
@@ -108,4 +162,15 @@
     <%= render "devise/shared/footer" %>
 </div>
 
+<script>
+    document.getElementById("upcoming-toggle").addEventListener("click", function() {
+        document.getElementById("upcoming-events").style.display = "block";
+        document.getElementById("past-events").style.display = "none";
+    });
+
+    document.getElementById("past-toggle").addEventListener("click", function() {
+        document.getElementById("past-events").style.display = "block";
+        document.getElementById("upcoming-events").style.display = "none";
+    });
+</script>
 

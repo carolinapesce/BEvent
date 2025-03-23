@@ -74,7 +74,7 @@
                     <%= image_tag("default-avatar.png", style: "height: 50px; width: 50px; border-radius: 50%; cursor: pointer;", data: { action: "click->dropdown#toggle" } )%>
                 <% end %>
                 <div class="dropdown-content hidden" data-dropdown-target="menu">
-                    <%= link_to "Profilo", user_show_path, class: "dropdown-item" %>
+                    <%= link_to "Profilo", user_profile_path, class: "dropdown-item" %>
                     <%#= link_to "Preferiti", user_favourite_path(current_user), class: "dropdown-item" %>
                     <%#= link_to "Modifica Profilo", edit_user_path(current_user), class: "dropdown-item" %>
                     <%= link_to "Impostazioni", edit_user_registration_path, class: "dropdown-item" %>
