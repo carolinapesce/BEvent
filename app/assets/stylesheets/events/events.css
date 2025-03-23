@@ -231,13 +231,14 @@ body {
     --primary-color: #0075A2;
 }
   
-*,
-*::before,
-*::after {
+/* Applica questi stili solo alla pagina .events.new */
+.events.new *,
+.events.new *::before,
+.events.new *::after {
     box-sizing: border-box;
 }
 
-.progressbar {
+.events.new .progressbar {
     position: relative;
     display: flex;
     justify-content: space-between;
@@ -245,8 +246,8 @@ body {
     margin: 2rem 0 4rem;
 }
 
-.progressbar::before,
-.progress {
+.events.new .progressbar::before,
+.events.new .progress {
     content: "";
     position: absolute;
     top: 50%;
@@ -257,13 +258,13 @@ body {
     z-index: -1;
 }
 
-.progress {
+.events.new .progress {
     background-color: #0075A2;
     width: 0%;
     transition: 0.3s;
 }
 
-    .progress-step {
+.events.new .progress-step {
     width: 1rem;
     height: 1rem;
     background-color: #dcdcdc;
@@ -273,11 +274,11 @@ body {
     align-items: center;
 }
 
-.progress-step::before {
+.events.new .progress-step::before {
     counter-increment: step;
 }
 
-.progress-step::after {
+.events.new .progress-step::after {
     content: attr(data-title);
     position: absolute;
     top: calc(100% + 0.5rem);
@@ -285,22 +286,19 @@ body {
     color: #666;
 }
 
-.progress-step-active {
+.events.new .progress-step-active {
     background-color: #0075A2;
     color: #f3f3f3;
 }
 
-
 /* Form */
-
-
-.form-step {
+.events.new .form-step {
     display: none;
     transform-origin: top;
     animation: animate 0.5s;
 }
 
-.form-step-active {
+.events.new .form-step-active {
     display: block;
 }
 
