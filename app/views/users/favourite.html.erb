@@ -2,7 +2,9 @@
 <%= render "devise/shared/navbar" %>
 <div class= "page">
     <div class= "wrap-title">
-        <i class="fa-solid fa-arrow-left"></i>
+        <%= link_to request.referer || root_path do %>
+            <i class="fa-solid fa-arrow-left"></i>
+        <% end %>
         <h1> Preferiti da  un utente </h1>
     </div>
     <div class= "favourite-page">

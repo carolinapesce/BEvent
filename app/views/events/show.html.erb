@@ -3,7 +3,9 @@
 <div class="page">
     
     <div class= "show-back">
-        <i class="fa-solid fa-arrow-left"></i>
+        <%= link_to request.referer || root_path do %>
+            <i class="fa-solid fa-arrow-left"></i>
+        <% end %>
     </div>
 
 

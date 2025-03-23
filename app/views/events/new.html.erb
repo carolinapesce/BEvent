@@ -1,8 +1,10 @@
 <%= render "devise/shared/navbar" %>
 <div class="pg">
-    <div class="page-back">
-        <i class="fa-solid fa-arrow-left"></i>
-    </div>
+    <%= link_to request.referer || root_path do %>
+        <div class="page-back">
+            <i class="fa-solid fa-arrow-left"></i>
+        </div>
+    <% end %>
     <div class="new-content">
         <h1>Crea un nuovo evento</h1>
         <%= form_with model: @event, local: true, data: { controller: "multi-step" } do |f| %>
