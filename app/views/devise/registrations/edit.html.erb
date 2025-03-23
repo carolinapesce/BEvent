@@ -4,8 +4,8 @@
   <div class="sidebar">
     <h2>Impostazioni Account</h2>
     <ul>
-      <li><a href="#">Modifica Profilo</a></li>
-      <li><a href="#">Modifica Password</a></li>
+      <li><%= link_to "Modifica Profilo", edit_user_path(current_user) %></li>
+      <li id="selected-w"><%= link_to "Modifica Password", edit_user_registration_path %></li>
     </ul>
   </div>
 
@@ -52,13 +52,6 @@
         </div>
       <% end %>
 
-      
-      <div class="form-group">
-        <%= f.label :profile_pic, "Immagine Profilo" %><br />
-        <%= f.file_field :profile_pic %>
-      </div>
-
-      
       <div class="form-actions">
         <%= f.submit "Salva", class: "save-btn" %>
       </div>

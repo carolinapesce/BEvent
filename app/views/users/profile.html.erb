@@ -11,7 +11,7 @@
                     <% end %>
                     <h1><%= current_user.first_name + " " + current_user.last_name %></h1>
                 </div>
-                <%= link_to edit_user_registration_path do %>
+                <%= link_to edit_user_path(current_user) do %>
                     <button class="edit-btn">Modifica</button>
                 <% end %>
             </div>
