@@ -23,8 +23,18 @@ Rails.application.routes.draw do
 
   #resources :events, only: [:index, :show]
 
-  resources :carts, only: [:show]
+  get 'carts/show'
+  
+  get 'carts/:cart_id' => "carts#show", as: "cart"
+  get 'cart_items/:cart_item_id' => "cart_items#show", as: "cart_item"
+  
+  post 'cart_items/:cart_item_id/increase' => "cart_items#increment_number", as: "cart_item_increase"
+  post 'cart_items/:cart_item_id/decrease' => "cart_items#decrease_number", as: "cart_item_decrease"
+  post 'cart_items' => "cart_items#create"
 
+  delete 'carts/:cart_id' => "carts#destroy"
+  delete 'cart_items/:cart_item_id' => "cart_items#destroy", as: "cart_item_delete"
+ 
   get 'profile', to: 'users#show', as: "user_show"
 
 

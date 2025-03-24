@@ -28,18 +28,21 @@
                     <p class="info-date"><i class="fa-regular fa-calendar"></i><%= l(@event.start_datetime, format: "%A, %d %B %Y").gsub(/\b\w/) { |match| match.upcase } %></p>
                     <p class="info-time"><i class="fa-regular fa-clock"></i><%= @event.start_datetime.strftime("%H:%M") %></p>
                 </div>
-
-                <div class="event-buy">
-                    <button class="buy-btn">🎟 Compra un biglietto</button>
-                    <div class="tckt-info">
-                        <h4>Info Biglietti</h4>
-                        <% if @event.event_price == 0 %>
-                            <p><i class="fa-solid fa-ticket"></i>Gratis</p>
-                        <% else %>
-                            <p><i class="fa-solid fa-ticket"></i><%= @event.event_price %></p>
-                        <% end %>
+                <% if can? :read, @cart%>
+                    <div class="event-buy">
+                        aggiungi al carrello
+                        <%= button_to "aggiungi al carrello", cart_items_path(:event_id => @event.id), method: :post %>
+                        <br>
+                        <div class="tckt-info">
+                            <h4>Info Biglietti</h4>
+                            <% if @event.event_price == 0 %>
+                                <p><i class="fa-solid fa-ticket"></i>Gratis</p>
+                            <% else %>
+                                <p><i class="fa-solid fa-ticket"></i><%= number_to_currency(@event.event_price) %></p>
+                            <% end %>
+                        </div>
                     </div>
-                </div>
+                <% end %>
             </div>
 
             <div class="event-location">
@@ -74,20 +77,6 @@
                 <h3>Categoria</h3>
                 <div class="tag-list">
                     <span class="tag"><%= @event.category %></span>
-                </div>
-            </div>
-
-            <div class="others">
-                <h3>Altri eventi che possono piacerti</h3>
-                <div class="event-suggestions">
-                    <div class="event-card">
-                        <img src="event1.png" alt="Event 1">
-                        <p>Evento 1</p>
-                    </div>
-                    <div class="event-card">
-                        <img src="event2.png" alt="Event 2">
-                        <p>Evento 2</p>
-                    </div>
                 </div>
             </div>
         </div>
