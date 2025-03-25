@@ -13,8 +13,8 @@ class CheckoutsController < ApplicationController
       @current_cart.decrease_availability
       checkout = Checkout.create(user: @current_user, cart: @current_cart)
       checkout.save
-      session[:cart_id] = nil
       @success_session = Stripe::Checkout::Session.retrieve(id: params[:session_id], expand: ['line_items'])
+      @current_cart.destroy
     else
       redirect_to cancel_url(session: session)
     end
