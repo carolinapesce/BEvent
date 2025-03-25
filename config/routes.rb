@@ -23,7 +23,7 @@ Rails.application.routes.draw do
 
   #resources :events, only: [:index, :show]
 
-  get 'checkouts/index'
+  get 'checkouts/index/:id' => 'checkouts#index', as: 'checkouts_index'
   get 'checkouts/show'
   get 'checkouts/new'
 

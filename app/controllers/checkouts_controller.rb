@@ -1,7 +1,7 @@
 class CheckoutsController < ApplicationController
 
   def index
-    @user_checkout = User.find(params[:user_id])
+    @user_checkouts = @current_user
   end
 
   def show
@@ -9,20 +9,20 @@ class CheckoutsController < ApplicationController
   end
 
   def success
-    session = Stripe::Checkout::Session.retrieve(params[:session_id])
-    if !session.nil? 
-      #@current_cart.decrease_quantity
-      checkout = Checkout.create!(user: @current_user, cart: @current_cart)
-      #checkout.save
+    session = Stripe::Checkout::Session.retrieve(id: params[:session_id])
+    if !session.nil?
+      @current_cart.decrease_availability
+      checkout = Checkout.create(user: @current_user, cart: @current_cart)
+      checkout.save
       session[:cart_id] = nil
-      @success_session = Stripe::Checkout::Session.retrieve(params[:session_id], expand: ['line_items'])
+      @success_session = Stripe::Checkout::Session.retrieve(id: params[:session_id], expand: ['line_items'])
     else
       redirect_to cancel_url(session: session)
     end
   end
 
   def cancel
-    @cancel_session = Stripe::Checkout::Session.retrieve(params[:session_id], expand: ['line_items'])
+    @cancel_session = Stripe::Checkout::Session.retrieve(id: params[:session_id], expand: ['line_items'])
   end
 
   def create
