@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_03_22_105704) do
+ActiveRecord::Schema[8.0].define(version: 2025_03_24_095122) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -59,6 +59,13 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_22_105704) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "checkouts", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "cart_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "donations", force: :cascade do |t|
     t.string "donation_id", null: false
     t.integer "event_id", null: false
@@ -91,12 +98,14 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_22_105704) do
     t.string "city"
     t.string "country"
     t.integer "status", default: 0
-    t.float "latitude"
-    t.float "longitude"
     t.integer "user_id", null: false
     t.string "type"
     t.boolean "charity_event", default: false
+    t.float "latitude"
+    t.float "longitude"
     t.integer "event_price"
+    t.string "stripe_event_id"
+    t.string "stripe_price_id"
     t.index ["user_id"], name: "index_events_on_user_id"
   end
 
@@ -144,6 +153,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_22_105704) do
     t.datetime "confirmed_at", precision: nil
     t.datetime "confirmation_sent_at", precision: nil
     t.string "unconfirmed_email"
+    t.string "stripe_customer_id"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true

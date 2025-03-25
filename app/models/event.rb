@@ -4,6 +4,9 @@ class Event < ApplicationRecord
   has_many :favourites
   has_many :users, through: :favourites
 
+  after_create :set_stripe_event_id
+  after_update :update_stripe_price_obj, if: :saved_change_to_event_price?
+
   belongs_to :user
 
   has_one_attached :poster_pic
@@ -59,6 +62,17 @@ class Event < ApplicationRecord
 
   def has_ended?
     Time.current > end_datetime
+  end
+
+  def set_stripe_event_id 
+    product = Stripe::Product.create(name: self.title, description: self.description)
+    price = Stripe::Price.create(product: product, unit_amount: (self.event_price*100).to_i, currency: 'eur')
+    update(stripe_event_id: product.id, stripe_price_id: price.id)
+  end
+
+  def update_stripe_price_obj 
+    price = Stripe::Price.create(product: self.stripe_event_id, unit_amount: (self.event_price*100).to_i, currency: 'eur')
+    update(stripe_price_id: price.id)
   end
 
 end
