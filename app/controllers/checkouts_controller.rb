@@ -5,7 +5,6 @@ class CheckoutsController < ApplicationController
   end
 
   def show
-    @checkout = Checkout.find(params[:id])
   end
 
   def success
