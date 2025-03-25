@@ -23,6 +23,14 @@ Rails.application.routes.draw do
 
   #resources :events, only: [:index, :show]
 
+  get 'checkouts/index'
+  get 'checkouts/show'
+  get 'checkouts/new'
+
+  post 'checkouts/create' => "checkouts#create", as: "checkouts_create"
+  get 'checkouts/success' => "checkouts#success", as: "checkouts_success"
+  get 'checkouts/cancel' => "checkouts#cancel", as: "checkouts_cancel"
+
   get 'carts/show'
   
   get 'carts/:cart_id' => "carts#show", as: "cart"

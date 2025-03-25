@@ -1,0 +1,11 @@
+<h1>I miei ordini</h1>
+
+<table>
+    <tbody>
+        <% @user_checkouts.checkouts.each do |checkout| %>
+        <tr>
+            <%= checkout.id%>
+        </tr>
+        <% end %>
+    </tbody>
+</table>
