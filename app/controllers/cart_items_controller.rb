@@ -8,7 +8,7 @@ class CartItemsController < ApplicationController
   def create
     
     event_id = params[:event_id]
-    event = event.find(event_id)
+    event = Event.find(event_id)
 
     if (@cart_item = @current_cart.cart_items.find_by(:event_id => event_id))
       increment_number
@@ -27,18 +27,17 @@ class CartItemsController < ApplicationController
   def increment_number
     @cart_item = CartItem.find(params[:cart_item_id])
     if (@cart_item.quantity + 1) > (@cart_item.event.max_participants - @cart_item.event.current_participants)
-      flash[:notice] = "It's not possible to add additional ticket of #{@cart_item.event.title}."
+      flash[:notice] = "non è possibile aggiungere un altro biglietto di #{@cart_item.event.title}."
       redirect_to cart_path(@current_cart)
       return
     end
-    @cart_item.quantity += 1
-    @cart_item.save
+    @cart_item.increment!(:quantity)
     redirect_to cart_path(@current_cart)
   end
     
   def decrease_number
     @cart_item = CartItem.find(params[:cart_item_id])
-    @cart_item.quantity -= 1
+    @cart_item.decrement(:quantity)
     if @cart_item.quantity == 0
       @cart_item.destroy
     end

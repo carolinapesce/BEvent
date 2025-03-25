@@ -28,6 +28,27 @@ Rails.application.routes.draw do
 
   resources :carts, only: [:show]
 
+  get 'checkouts/index/:id' => 'checkouts#index', as: 'checkouts_index'
+  get 'checkouts/show'
+  get 'checkouts/new'
+
+  post 'checkouts/create' => "checkouts#create", as: "checkouts_create"
+  get 'checkouts/success' => "checkouts#success", as: "checkouts_success"
+  get 'checkouts/cancel' => "checkouts#cancel", as: "checkouts_cancel"
+
+  get 'carts/show'
+  
+  get 'carts/:cart_id' => "carts#show", as: "cart"
+  get 'cart_items/:cart_item_id' => "cart_items#show", as: "cart_item"
+  
+  post 'cart_items/:cart_item_id/increase' => "cart_items#increment_number", as: "cart_item_increase"
+  post 'cart_items/:cart_item_id/decrease' => "cart_items#decrease_number", as: "cart_item_decrease"
+  post 'cart_items' => "cart_items#create"
+
+  delete 'carts/:cart_id' => "carts#destroy"
+  delete 'cart_items/:cart_item_id' => "cart_items#destroy", as: "cart_item_delete"
+
+  get 'profile', to: 'users#show', as: "user_show"
   get 'profile', to: 'users#profile', as: "user_profile"
 
 

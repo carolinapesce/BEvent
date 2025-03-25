@@ -60,7 +60,7 @@ class EventsController < ApplicationController
 
   def new
     #@user = current_user
-    unless current_user.event_planner?
+    unless current_user.event_planner? || current_user.admin?
       redirect_to root_path, alert: "Solo i planner possono creare eventi." and return
     end
     @event = Event.new
@@ -69,7 +69,7 @@ class EventsController < ApplicationController
   def create
     puts ">>> Entrato nel metodo CREATE"
     puts ">>> Ruolo utente: #{current_user.role}"
-    unless current_user.event_planner?
+    unless current_user.event_planner? || current_user.admin?
       redirect_to root_path, alert: "Solo i planner possono creare eventi." and return
     end
     puts ">>> SONO QUI"
@@ -98,8 +98,8 @@ class EventsController < ApplicationController
   end
 
   def event_params
-    params.require(:event).permit(:title,:description,:address,:start_datetime,:end_datetime,:category,:event_type,:max_participants,:charity_event,
-                                  :beneficiary,:fundraiser_goal,:city,:country,:poster_pic)
+    params.require(:event).permit(:title,:description,:address,:start_datetime,:end_datetime,:category,:event_type,:max_participants,:event_price,
+                                  :charity_event, :beneficiary,:fundraiser_goal,:city,:country,:poster_pic)
   end
 
 end
