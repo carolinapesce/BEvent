@@ -58,7 +58,7 @@
                                                     <span class="day"><%= event.start_datetime.strftime('%d') %></span>
                                                 </div>
                                                 <p class="event-time"><%= event.start_datetime.strftime('%I:%M %p') %></p>
-                                                <p class="event-price"><%= event.event_price.present? ? event.price : "Free" %></p>
+                                                <p class="event-price"><%= event.event_price.present? ? event.event_price : "Free" %></p>
                                             </div>
                                         </div>
                                     <% end %>
@@ -86,7 +86,7 @@
                                                     <span class="day"><%= event.start_datetime.strftime('%d') %></span>
                                                 </div>
                                                 <p class="event-time"><%= event.start_datetime.strftime('%I:%M %p') %></p>
-                                                <p class="event-price"><%= event.event_price.present? ? event.price : "Free" %></p>
+                                                <p class="event-price"><%= event.event_price.present? ? event.event_price : "Free" %></p>
                                             </div>
                                         </div>
                                     <% end %>
