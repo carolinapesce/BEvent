@@ -66,12 +66,12 @@ class Event < ApplicationRecord
 
   def set_stripe_event_id 
     product = Stripe::Product.create(name: self.title, description: self.description)
-    price = Stripe::Price.create(product: product, unit_amount: (self.event_price*100).to_i, currency: 'eur')
+    price = Stripe::Price.create(product: product, unit_amount: (self.event_price*100), currency: 'eur')
     update(stripe_event_id: product.id, stripe_price_id: price.id)
   end
 
   def update_stripe_price_obj 
-    price = Stripe::Price.create(product: self.stripe_event_id, unit_amount: (self.event_price*100).to_i, currency: 'eur')
+    price = Stripe::Price.create(product: self.stripe_event_id, unit_amount: (self.event_price*100), currency: 'eur')
     update(stripe_price_id: price.id)
   end
 
