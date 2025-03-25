@@ -3,27 +3,30 @@
   <br>
   <%= link_to "aggiungi evento", events_search_path%>
 <%else%>
-<h1>il tuo carrello contiene:</h1>
-<ul>
-  <% @cart.cart_items.each do |cart_elem| %>
-    <li>
-      title: <%= cart_elem.event.title %>
-      / prezzo: <%= number_to_currency(cart_elem.event.event_price) %>
-      / quanità: <%= cart_elem.quantity %>
-      / prezzo totale: <%= number_to_currency(cart_elem.total_price) %>
-      <ul>
-        <li>
-          <%= button_to "aggiungi", cart_item_increase_path(cart_item_id: cart_elem), id: "aggiungi" %>
-          <%= button_to "diminuisci", cart_item_decrease_path(cart_item_id: cart_elem), id: "diminuisci" %>
-        </li>
-        <li>
-          <%= button_to "rimuovi evento", cart_item_delete_path(cart_elem), method: :delete %>
-        </li>
-      </ul>
-    </li>
-  <% end %>
-</ul>
-<h3>Sub total: <%= number_to_currency(@cart.sub_total) %></h3>
-
-<%= button_to "svuota il carrello", cart_path(@current_cart), method: :delete %>
+  <h1>il tuo carrello contiene:</h1>
+  <ul>
+    <% @cart.cart_items.each do |cart_elem| %>
+      <li>
+        title: <%= cart_elem.event.title %>
+        / prezzo: <%= number_to_currency(cart_elem.event.event_price) %>
+        / quanità: <%= cart_elem.quantity %>
+        / prezzo totale: <%= number_to_currency(cart_elem.total_price) %>
+        <ul>
+          <li>
+            <%= button_to "aggiungi", cart_item_increase_path(cart_item_id: cart_elem), id: "aggiungi" %>
+          </li>
+          <li>
+            <%= button_to "diminuisci", cart_item_decrease_path(cart_item_id: cart_elem), id: "diminuisci" %>
+          </li>
+          <li>
+            <%= button_to "rimuovi evento", cart_item_delete_path(cart_elem), method: :delete %>
+          </li>
+        </ul>
+      </li>
+    <% end %>
+  </ul>
+  <h3>Sub total: <%= number_to_currency(@cart.sub_total) %></h3><br>
+  <%= link_to "aggiungi eventi", events_search_path %><br>
+  <%= button_to "Compra", checkouts_create_path(event_id: @event_id) %><br>
+  <%= button_to "svuota il carrello", cart_path(@current_cart), method: :delete %>
 <%end%>
