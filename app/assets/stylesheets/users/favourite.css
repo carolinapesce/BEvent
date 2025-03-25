@@ -2,6 +2,8 @@ body.users.favourite{
     height: 100%;
     margin: 0;
     padding: 0;
+    display: flex;
+    flex-direction: column;
 }
 
 .users.favourite .page{
@@ -42,6 +44,16 @@ body.users.favourite{
     min-width: 100vw;
     min-height: 100vh;
 }
+
+.users.favourite .event-card-link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+  }
+  
+  .event-card-link:hover {
+    cursor: pointer;
+  }
 
 
 .users.favourite .event-card{

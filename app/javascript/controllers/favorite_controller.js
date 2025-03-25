@@ -4,7 +4,7 @@ export default class extends Controller {
   static targets = ["icon"];
 
   connect() {
-    const isFavorited = this.iconTarget.dataset.status === "true";
+    const isFavorited = this.element.dataset.status === "true";
 
     if (isFavorited) {
       this.iconTarget.classList.add("fa-regular");
@@ -83,6 +83,7 @@ export default class extends Controller {
         // Cambia icona e colore
         this.element.dataset.favouritesId = data.id;
         this.element.dataset.status = "true";
+
         this.iconTarget.classList.add("fa-regular");
         this.iconTarget.classList.add("fa-solid");
         this.iconTarget.classList.add("favorited");
@@ -109,10 +110,13 @@ export default class extends Controller {
       method: 'DELETE',
     })
     .then(response => {
+      this.element.dataset.favouritesId = ''
+      this.element.dataset.status = "false";
+      
       this.iconTarget.classList.add("fa-regular");
       this.iconTarget.classList.remove("fa-solid");
       this.iconTarget.classList.remove("favorited");
-      this.element.dataset.status = "false";
+
       // Aggiunge effetto pop
       this.iconTarget.classList.add("animated");
 
