@@ -1,8 +1,16 @@
 class Event < ApplicationRecord
 
   has_many :tickets
-  has_many :favourites
-  has_many :users, through: :favourites
+  
+  #has_many :favourites
+  #has_many :users, through: :favourites
+  has_many :favourites, dependent: :destroy
+  has_many :favourite_users, through: :favourites, source: :user, dependent: :destroy
+
+  def favourited_by?(user = nil)
+    return if user.nil?
+    favourite_users.include?(user)
+  end
 
   belongs_to :user
 
@@ -60,5 +68,7 @@ class Event < ApplicationRecord
   def has_ended?
     Time.current > end_datetime
   end
+
+  
 
 end

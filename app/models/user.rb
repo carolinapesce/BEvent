@@ -1,8 +1,9 @@
 class User < ApplicationRecord
 
   has_many :events
-  has_many :favourites
-  has_many :favourite_events, through: :favourites, source: :event
+
+  has_many :favourites, dependent: :destroy
+  has_many :favourite_events, through: :favourites, source: :event, dependent: :destroy
 
   # enum :role, user: 0, event_planner: 1, admin: 2
 
@@ -20,6 +21,10 @@ class User < ApplicationRecord
 
   def admin?
     self.role == 2
+  end
+
+  def favourited?(event)
+    favourite_events.include?(event)
   end
 
   # Include default devise modules. Others available are:

@@ -21,6 +21,9 @@ Rails.application.routes.draw do
     get :favourite
   end
 
+
+  resources :favourites, only: [:create, :destroy]
+
   #resources :events, only: [:index, :show]
 
   resources :carts, only: [:show]

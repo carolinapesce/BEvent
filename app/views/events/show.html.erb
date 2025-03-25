@@ -22,7 +22,16 @@
             <div class="event-header">
                 <h1 class="event-title"><%= @event.title %></h1>
                 <div class="event-icons">
-                    <i class="fa-regular fa-heart heart-icon" data-controller="favorite" data-action="click->favorite#toggleFavorite" data-favorite-target="icon"></i>
+                    <i 
+                    class="fa-regular fa-heart heart-icon" 
+                    data-controller="favorite" 
+                    data-action="click->favorite#updateFavouriteStatus" 
+                    data-favorite-target="icon"
+                    data-status=<%= @event.favourited_by?(current_user) %>
+                    data-event-id=<%= @event.id %>
+                    data-user-id=<%= current_user.id %>
+                    data-favourites-id=<%= @event.favourites.find_by(user: current_user)&.id %>></i>
+
                     <i class="fa-solid fa-share share-icon" data-controller="share" data-action="click->share#copyToClipboard" data-share-target="icon"></i>
                 </div>
             </div>
