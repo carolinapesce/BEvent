@@ -228,9 +228,17 @@ body{
     background: none;
     padding:0 20px 0 20px;
 }
-.cart-container .dropdown-item:hover {
+.cart-container .cart-link:hover {
     background: none;
     cursor: default;
+}
+
+.cart-container .cart-link{
+    text-decoration: none;
+    color: #333;
+    padding: 10px;
+    display: block;
+    border-radius: 5px;
 }
 
 .cart-container i {
@@ -241,6 +249,37 @@ body{
 .cart-container i:hover{
     color: #04A777;
 }
+
+/*Bottone Carrello*/
+.create-container {
+    position: relative;
+    background: none;
+    padding:0 20px 0 20px;
+}
+
+.cart-container .create-link{
+    text-decoration: none;
+    color: #333;
+    padding: 10px;
+    display: block;
+    border-radius: 5px;
+}
+
+.create-container .create-link:hover {
+    background: none;
+    cursor: default;
+}
+
+.create-container i {
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.create-container i:hover{
+    color: #04A777;
+}
+
+
 
 
 /*Icona profilo*/

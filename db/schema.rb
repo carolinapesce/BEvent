@@ -98,6 +98,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_24_095122) do
     t.string "city"
     t.string "country"
     t.integer "status", default: 0
+    t.float "price", default: 0.0
     t.integer "user_id", null: false
     t.string "type"
     t.boolean "charity_event", default: false

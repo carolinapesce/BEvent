@@ -37,9 +37,6 @@
     <%= link_to "Preferiti", user_favourite_path(current_user), class: "nav-link" %>
 
     
-
-    
-    
     <!-- Switch lingua -->
     <div class="switch-lan" onclick="toggleSwitch()">
         <div class="ita-btn">ITA</div>
@@ -48,19 +45,22 @@
     </div>
     
     <!-- Notifiche -->
-    <% if can? :read, @cart %>
-        <div class="cart-container"></div>
-            <%= link_to cart_path(@current_cart), class: "dropdown-item" do %>
+    <% if can?(:read, Cart) && @current_cart.present? %>
+        <div class="cart-container">
+            <%= link_to cart_path(@current_cart), class: "cart-link" do %>
                 <i class="fa-solid fa-cart-shopping"></i>
             <% end %>
-         </div>
+        </div>
     <% end %>
 
-    <div class="cart-container">
-            <%= link_to new_event_path, class: "dropdown-item" do %>
+
+    <% if can?(:create, Event) %>
+        <div class="create-container">
+            <%= link_to new_event_path, class: "create-link" do %>
                 <i class="fa-solid fa-plus"></i>
             <% end %>
-    </div>
+        </div>
+    <% end %>
 
     
     <!-- Profilo -->
@@ -85,4 +85,4 @@
             <%= link_to "Login", new_user_session_path, class: "login-button" %>
         <% end %>
     </div>
-  </nav>
+</nav>
