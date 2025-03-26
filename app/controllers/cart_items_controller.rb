@@ -26,7 +26,7 @@ class CartItemsController < ApplicationController
   # se è possibile comprare più biglietti, aumenta la quantità, altrimenti da un errore
   def increment_number
     @cart_item = CartItem.find(params[:cart_item_id])
-    if (@cart_item.quantity + 1) > (@cart_item.event.max_participants - @cart_item.event.current_participants)
+    if (@cart_item.quantity + 1) >= (@cart_item.event.max_participants - @cart_item.event.current_participants)
       flash[:notice] = "non è possibile aggiungere un altro biglietto di #{@cart_item.event.title}."
       redirect_to cart_path(@current_cart)
       return

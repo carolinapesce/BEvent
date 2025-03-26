@@ -1,2 +1,30 @@
-<h1 style="color=red">il tuo pagamento  andato a buon fine</h1>
+<h1>Pagamento completato con successo!</h1>
+
+<br>
+
+<h2>Dettagli dell'ordine:</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Evento</th>
+      <th>Quantità</th>
+      <th>Prezzo</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @line_items.each do |item| %>
+      <tr>
+        <td><%= item.description %></td>
+        <td><%= item.quantity %></td>
+        <td><%= number_to_currency(item.amount_total / 100.0) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<p><strong>Totale: <%= number_to_currency(@success_session.amount_total / 100.0) %></strong></p>
+
+<br>
+
 <%= link_to "Torna alla homepage", root_path %>
