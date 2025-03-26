@@ -5,6 +5,8 @@ class FavouritesController < ApplicationController
   protect_from_forgery with: :null_session
   skip_before_action :verify_authenticity_token
 
+  load_and_authorize_resource @favorite
+
   def create
     #event = Event.find(params[:event_id])
     #current_user.favourite_events.create(event: event) unless current_user.favorited?(event)

@@ -5,12 +5,17 @@ class Ability
 
   def initialize(user)
     # Define abilities for the user here. For example:
+    
     if user.user?
       can :read, :all
+      can :search, Event
+      can :manage, Cart, user_id: user.id
+      can :manage, Favourite, user_id: user.id
     elsif user.event_planner?
-      can :create, Event
-      can :manage, Event, user_id: user.id
-      cannot :read, Cart
+      can [:read, :create, :search], Event
+      can [:update, :destroy], Event, user_id: user.id
+      cannot :manage, Cart
+      cannot :manage, Favourite
     elsif user.admin?
       can :manage, :all
     end

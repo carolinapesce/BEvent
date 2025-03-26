@@ -4,6 +4,8 @@ class EventsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_event, only: [:show]
 
+  load_and_authorize_resource @event
+
   def index
     @user = current_user
     @events = Event.where(status: "upcoming").or(Event.where(status: "ongoing")).order(:start_datetime)

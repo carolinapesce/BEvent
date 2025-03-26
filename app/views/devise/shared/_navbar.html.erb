@@ -45,7 +45,7 @@
     </div>
     
     <!-- Notifiche -->
-    <% if can?(:read, Cart) && @current_cart.present? %>
+    <% if can? :read, Cart%>
         <div class="cart-container">
             <%= link_to cart_path(@current_cart), class: "cart-link" do %>
                 <i class="fa-solid fa-cart-shopping"></i>
@@ -54,7 +54,7 @@
     <% end %>
 
 
-    <% if can?(:create, Event) %>
+    <% if can? :create, Event %>
         <div class="create-container">
             <%= link_to new_event_path, class: "create-link" do %>
                 <i class="fa-solid fa-plus"></i>
