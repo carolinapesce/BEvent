@@ -1,6 +1,7 @@
 class Cart < ApplicationRecord
   has_many :cart_items, dependent: :destroy
   has_many :events, through: :cart_items
+  has_one :checkout
 
   # decrementa la disponibilità dell'evento quando viene aggiunto al carrello
   def decrease_availability

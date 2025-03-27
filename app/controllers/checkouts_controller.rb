@@ -1,22 +1,35 @@
 class CheckoutsController < ApplicationController
 
   def index
-    @user_checkouts = @current_user
+    @user_checkouts = Checkout.where(user_id: @current_user.id).includes(cart: { cart_items: :event }).order(completed_at: :desc)
+    puts @user_checkouts
   end
 
   def show
   end
 
   def success
-    session = Stripe::Checkout::Session.retrieve(id: params[:session_id])
-    if !session.nil?
-      @current_cart.decrease_availability
-      checkout = Checkout.create(user: @current_user, cart: @current_cart)
-      checkout.save
-      @success_session = Stripe::Checkout::Session.retrieve(id: params[:session_id], expand: ['line_items'])
-      @current_cart.destroy
+    @session = Stripe::Checkout::Session.retrieve(id: params[:session_id], expand: ['line_items'])
+    if @session.nil?
+      redirect_to cancel_url(session: @session)
     else
-      redirect_to cancel_url(session: session)
+      @checkout = Checkout.create(user_id: @current_user.id, 
+                                  cart_id: @current_cart.id,
+                                  stripe_session_id: @session.id,
+                                  total_amount: @session.amount_total,
+                                  completed_at: Time.now)
+      @checkout.save
+
+      @current_cart.decrease_availability
+      @current_cart.cart_items.each do |cart_item|
+        @current_cart.update(cart_item_id: cart_item.id) # Salva l'id del cart_item nel carrello
+      end
+
+      @success_session = @session
+      @line_items = @session.line_items.data
+      
+      @new_cart = Cart.create(cart_item_id: nil)
+      session[:cart_id] = @new_cart.id
     end
   end
 

@@ -1,1 +1,26 @@
 <h1>I miei ordini</h1>
+
+<% if @user_checkouts.any? %>
+  <% @user_checkouts.each do |checkout| %>
+    <div class="checkout">
+      <h2>Ordine ##<%= checkout.id %> - <%= checkout.completed_at.strftime("%d/%m/%Y %H:%M") %></h2>
+      <p>Totale pagato: <%= number_to_currency(checkout.total_amount / 100.0, unit: "€") %></p>
+
+      <h3>Eventi acquistati:</h3>
+      <ul>
+        <% checkout.cart.cart_items.each do |cart_item| %>
+          <li>
+            <strong><%= cart_item.event.title %></strong> - 
+            <%= cart_item.quantity %> biglietto(i) - 
+            Prezzo: <%= number_to_currency(cart_item.event.event_price / 100.0, unit: "€") %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+    <hr>
+  <% end %>
+<% else %>
+  <p>Non hai ancora effettuato acquisti.</p>
+<% end %>
+
+<%= link_to "torna alla home", root_path %>
