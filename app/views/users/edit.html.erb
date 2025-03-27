@@ -42,8 +42,25 @@
           <%= f.file_field :profile_pic %>
         </div>
 
+        <% if @current_user.role.nil? %>
+          <div class="form-group">
+            <%= f.label :role, "Seleziona il tuo ruolo" %><br>
+
+            <div class="form-check">
+              <%= f.radio_button :role, '0', checked: @user.role == '0', class: "form-check-input", id: "user" %>
+              <%= f.label :role, "User", class: "form-check-label", for: "user" %>
+            </div>
+
+            <div class="form-check">
+              <%= f.radio_button :role, '1', checked: @user.role == '1', class: "form-check-input", id: "eventplanner" %>
+              <%= f.label :role, "Eventplanner", class: "form-check-label", for: "eventplanner" %>
+            </div>
+
+          </div>
+        <% end %>
+        
         <div class="form-actions">
-          <%= f.submit "Salva modifiche", class: "save-btn"  %>
+          <%= f.submit "Salva modifiche", class: "save-btn" %>
         </div>
       <% end %>
     </div>

@@ -34,11 +34,19 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   # end
 
   protected
+
   def after_omniauth_failure_path_for(_scope)
     new_user_session_path
   end
+
   def after_sign_in_path_for(resource_or_scope)
-    stored_location_for(resource_or_scope) || root_path
+    @user = current_user
+    if @user.role.nil?
+      flash[:alert] = "Inserisci il tuo ruolo per continuare."
+      edit_user_path(@user.id)
+    else
+      stored_location_for(resource_or_scope) || root_path
+    end
   end
 
   # The path used when OmniAuth fails
