@@ -37,6 +37,27 @@ User.create!(
   confirmed_at: Time.now
 )
 
+# Utente normale 
+User.create!(
+  email: "user@gmail.com",
+  password: "password",
+  first_name: "Carolina",
+  last_name: "Pesce",
+  role: 0,
+  confirmed_at: Time.now
+)
+
+# Event planner
+User.create!(
+  id: 5,
+  email: "eventplanner@gmail.com",
+  password: "password",
+  first_name: "Carolina",
+  last_name: "Pesce",
+  role: 1,
+  confirmed_at: Time.now
+)
+
 10.times do |i|
   Event.create!(
     title: "Evento #{i + 1}",
@@ -58,9 +79,11 @@ User.create!(
     latitude: Faker::Address.latitude,
     longitude: Faker::Address.longitude,
     event_price: rand(10..50),
-    user_id: 1,  
+    user_id: 5,  
     type: nil,  
-    charity_event: false
+    charity_event: false,
+    stripe_event_id:i+1,
+    stripe_price_id: i+1
   )
 end
 
@@ -85,8 +108,10 @@ end
     latitude: Faker::Address.latitude,
     longitude: Faker::Address.longitude,
     event_price: rand(10..50),
-    user_id: 1,  
+    user_id: 5,  
     type: "CharityEvent",  
-    charity_event: true
+    charity_event: true,
+    stripe_event_id:i+1,
+    stripe_price_id: i+1
   )
 end

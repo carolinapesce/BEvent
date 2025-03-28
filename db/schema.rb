@@ -102,11 +102,11 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_27_000013) do
     t.string "city"
     t.string "country"
     t.integer "status", default: 0
+    t.float "latitude"
+    t.float "longitude"
     t.integer "user_id", null: false
     t.string "type"
     t.boolean "charity_event", default: false
-    t.float "latitude"
-    t.float "longitude"
     t.integer "event_price"
     t.string "stripe_event_id"
     t.string "stripe_price_id"
