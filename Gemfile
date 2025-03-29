@@ -79,13 +79,17 @@ gem "cancancan"
 
 # Faker Gem to seed the db
 gem 'faker'
+
 gem "stripe-rails"
+
 # Whenever Gem for running jobs periodically
 gem 'whenever', require: false
 
 gem 'rails-i18n'
 
 gem 'pagy'
+
+gem 'prawn'
 
 # Cucumber and RSpec
 group :test do

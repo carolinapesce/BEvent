@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <style>
+        body { font-family: Arial, sans-serif; color: #333; }
+        .container { max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #ddd; border-radius: 5px; }
+        .header { background-color: #f4f4f4; padding: 10px; text-align: center; font-size: 20px; font-weight: bold; }
+        .content { padding: 20px; }
+        .footer { margin-top: 20px; font-size: 12px; color: #777; text-align: center; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">Conferma d'Acquisto</div>
+        <div class="content">
+        <p>Ciao <%= @order.user.email %>,</p>
+        <p>Grazie per il tuo acquisto! Ecco i dettagli del tuo ordine:</p>
+        
+        <ul>
+            <% @order.cart_items.each do |ticket| %>
+            <li>
+                <strong>Evento:</strong> <%= ticket.event.title %> <br>
+                <strong>Data:</strong> <%= ticket.event.start_datetime.strftime("%d/%m/%Y %H:%M") %> <br>
+                <strong>Quantità:</strong> <%= ticket.quantity %> biglietti
+            </li>
+            <% end %>
+        </ul>
+
+        <p>Troverai i tuoi biglietti in allegato in formato PDF.</p>
+
+        <p>Grazie per aver supportato la nostra causa!</p>
+
+        <p>Saluti,</p>
+        <p>Il team di bEvent</p>
+        </div>
+        <div class="footer">
+        <p>Questa è un'email automatica, non rispondere direttamente.</p>
+        </div>
+    </div>
+</body>
+</html>

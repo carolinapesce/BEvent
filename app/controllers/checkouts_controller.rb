@@ -30,6 +30,8 @@ class CheckoutsController < ApplicationController
       
       @new_cart = Cart.create(cart_item_id: nil)
       session[:cart_id] = @new_cart.id
+
+      TicketMailer.confirmation(@checkout).deliver_now!
     end
   end
 
