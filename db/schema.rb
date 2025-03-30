@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_03_27_000013) do
+ActiveRecord::Schema[8.0].define(version: 2025_03_30_215301) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -111,6 +111,8 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_27_000013) do
     t.integer "event_price"
     t.string "stripe_event_id"
     t.string "stripe_price_id"
+    t.integer "reviews_count"
+    t.decimal "average_rating"
     t.index ["user_id"], name: "index_events_on_user_id"
   end
 
@@ -121,6 +123,17 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_27_000013) do
     t.integer "event_id", null: false
     t.index ["event_id"], name: "index_favourites_on_event_id"
     t.index ["user_id"], name: "index_favourites_on_user_id"
+  end
+
+  create_table "reviews", force: :cascade do |t|
+    t.string "content"
+    t.integer "rating"
+    t.integer "user_id", null: false
+    t.integer "event_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["event_id"], name: "index_reviews_on_event_id"
+    t.index ["user_id"], name: "index_reviews_on_user_id"
   end
 
   create_table "tickets", force: :cascade do |t|
@@ -171,6 +184,8 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_27_000013) do
   add_foreign_key "events", "users"
   add_foreign_key "favourites", "events"
   add_foreign_key "favourites", "users"
+  add_foreign_key "reviews", "events"
+  add_foreign_key "reviews", "users"
   add_foreign_key "tickets", "events"
   add_foreign_key "tickets", "users"
 end

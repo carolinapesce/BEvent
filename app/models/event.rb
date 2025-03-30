@@ -1,6 +1,8 @@
 class Event < ApplicationRecord
 
   has_many :tickets
+  has_many :reviews, dependent: :destroy
+
   
   #has_many :favourites
   #has_many :users, through: :favourites
@@ -85,6 +87,11 @@ class Event < ApplicationRecord
   def update_stripe_price_obj 
     price = Stripe::Price.create(product: self.stripe_event_id, unit_amount: (self.event_price*100), currency: 'eur')
     update(stripe_price_id: price.id)
+  end
+
+  def update_average_rating
+    avg_rating = reviews.average(:rating)
+    update_column(:average_rating, avg_rating)
   end
 
 end

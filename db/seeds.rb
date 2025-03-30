@@ -85,7 +85,8 @@ User.create!(
     type: nil,  
     charity_event: false,
     stripe_event_id:i+1,
-    stripe_price_id: i+1
+    stripe_price_id: i+1,
+    reviews_count: 0
   )
 end
 
@@ -116,6 +117,7 @@ end
     type: "CharityEvent",  
     charity_event: true,
     stripe_event_id:i+1,
-    stripe_price_id: i+1
+    stripe_price_id: i+1,
+    reviews_count: 0
   )
 end

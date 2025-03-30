@@ -1,6 +1,7 @@
 class User < ApplicationRecord
 
   has_many :events
+  has_many :reviews, dependent: :destroy
   
   has_many :favourites, dependent: :destroy
   has_many :favourite_events, through: :favourites, source: :event, dependent: :destroy
