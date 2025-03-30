@@ -62,7 +62,7 @@ User.create!(
   Event.create!(
     title: "Evento #{i + 1}",
     description: "Descrizione dell'evento #{i + 1}",
-    current_participants: rand(1..50),
+    current_participants: 0,
     address: "Indirizzo #{i + 1}",
     start_datetime: Faker::Time.forward(days: rand(1..10), period: :morning),
     end_datetime: Faker::Time.forward(days: rand(1..10), period: :afternoon),
@@ -91,7 +91,7 @@ end
   Event.create!(
     title: "Evento di beneficenza #{i + 1}",
     description: "Descrizione dell'evento di beneficenza #{i + 1}",
-    current_participants: rand(1..50),
+    current_participants: 0,
     address: "Indirizzo beneficenza #{i + 1}",
     start_datetime: Faker::Time.forward(days: rand(1..10), period: :morning),
     end_datetime: Faker::Time.forward(days: rand(1..10), period: :afternoon),

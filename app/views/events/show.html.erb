@@ -66,9 +66,14 @@
 
                 <div class="event-buy">
                     <% if can? :read, @cart%>
-                        aggiungi al carrello
-                        <%= button_to "aggiungi al carrello", cart_items_path(:event_id => @event.id), method: :post %>
-                        <br>
+                        <% if @event.is_full? %>
+                            Non ci sono più biglietti disponibili.
+                            <br>
+                        <% else %>
+                            aggiungi al carrello
+                            <%= button_to "aggiungi al carrello", cart_items_path(:event_id => @event.id), method: :post %>
+                            <br>
+                        <% end %>
                     <% end %>
                     <div class="tckt-info">
                         <h4>Info Biglietti</h4>

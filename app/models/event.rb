@@ -71,6 +71,10 @@ class Event < ApplicationRecord
   def has_ended?
     Time.current > end_datetime
   end
+  
+  def is_full?
+    current_participants >= max_participants
+  end
 
   def set_stripe_event_id 
     product = Stripe::Product.create(name: self.title, description: self.description)

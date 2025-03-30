@@ -12,7 +12,7 @@
           <li>
             <strong><%= cart_item.event.title %></strong> - 
             <%= cart_item.quantity %> biglietto(i) - 
-            Prezzo: <%= number_to_currency(cart_item.event.event_price / 100.0, unit: "€") %>
+            Prezzo: <%= number_to_currency(cart_item.event.event_price, unit: "€") %>
           </li>
         <% end %>
       </ul>
