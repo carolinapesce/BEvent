@@ -59,13 +59,15 @@ User.create!(
 )
 
 10.times do |i|
+  start_time = Faker::Time.forward(days: rand(1..10), period: [:morning, :afternoon, :evening].sample)
+  end_time = start_time + rand(1..[5.hours, (start_time.end_of_day - start_time)].min)
   Event.create!(
     title: "Evento #{i + 1}",
     description: "Descrizione dell'evento #{i + 1}",
     current_participants: 0,
     address: "Indirizzo #{i + 1}",
-    start_datetime: Faker::Time.forward(days: rand(1..10), period: :morning),
-    end_datetime: Faker::Time.forward(days: rand(1..10), period: :afternoon),
+    start_datetime: start_time,
+    end_datetime: end_time,
     category: ["Musica", "Sport", "Comedy","Teatro", "Hobby", "Festa", "Arte", "Food&Drinks",].sample,
     event_type: ["Pubblico", "Privato"].sample,
     max_participants: rand(20..100),
@@ -88,13 +90,15 @@ User.create!(
 end
 
 10.times do |i|
+  start_time = Faker::Time.forward(days: rand(1..10), period: [:morning, :afternoon, :evening].sample)
+  end_time = start_time + rand(1..[5.hours, (start_time.end_of_day - start_time)].min)
   Event.create!(
     title: "Evento di beneficenza #{i + 1}",
     description: "Descrizione dell'evento di beneficenza #{i + 1}",
     current_participants: 0,
     address: "Indirizzo beneficenza #{i + 1}",
-    start_datetime: Faker::Time.forward(days: rand(1..10), period: :morning),
-    end_datetime: Faker::Time.forward(days: rand(1..10), period: :afternoon),
+    start_datetime: start_time,
+    end_datetime: end_time,
     category: ["Musica", "Sport", "Comedy","Teatro", "Hobby", "Festa", "Arte", "Food&Drinks",].sample,
     event_type: "Beneficenza",
     max_participants: rand(20..100),

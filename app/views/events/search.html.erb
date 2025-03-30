@@ -6,21 +6,21 @@
         <div class="search-area">
             <div class="search-section">
                 <div class="search-bar">
-                    <div class="search-input">
-                        <input type="text" placeholder="Search..." class="search-field">
-                    </div>
-                    <div class="search-divider"></div>
-                    <div class="search-dropdown">
-                        <select class="city-dropdown">
-                            <option value="" disabled selected>Città...</option>
-                            <option value="roma">Roma</option>
-                            <option value="milano">Milano</option>
-                            <option value="napoli">Napoli</option>
-                        </select>
-                    </div>
-                    <button class="search-button">
-                        <i class="fas fa-search"></i> 
-                    </button>
+                    <%= form_with url: events_search_path, method: :get, local: true, class: "search-bar" do %>
+                        <div class="search-input">
+                            <%= text_field_tag :query, params[:query], placeholder: "Cerca...", class: "search-field" %>
+                        </div>
+
+                        <div class="search-divider"></div>
+
+                        <div class="search-dropdown">
+                            <%= select_tag :city, options_for_select([['Città...', ''], 'Roma', 'Milano', 'Napoli', 'Torino', 'Firenze'], params[:city]), class: "city-dropdown" %>
+                        </div>
+
+                        <button type="submit" class="search-button">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    <% end %>
                 </div>
             </div>
         </div>
@@ -69,15 +69,15 @@
                     <div class="filter-section">
                         <h3 class="filter-label">Orario</h3>
                         <div class="filter-checkboxes">
-                            <label><%= check_box_tag 'time[morning]', 'true', params.dig(:time,:morning) == true %> Mattina</label>
-                            <label><%= check_box_tag "time[afternoon]", "true", params.dig(:time,:afternoon) == true%> Pomeriggio</label>
-                            <label><%= check_box_tag "time[evening]", "true", params.dig(:time,:evening) == true %> Sera</label>
+                            <label><%= check_box_tag 'time[morning]', 'true', params.dig(:time,:morning).present?%> Mattina</label>
+                            <label><%= check_box_tag "time[afternoon]", "true", params.dig(:time,:afternoon).present?%> Pomeriggio</label>
+                            <label><%= check_box_tag "time[evening]", "true", params.dig(:time,:evening).present? %> Sera</label>
                         </div>
                     </div>
                     
                     <!-- Sezione Eventi di Beneficenza -->
                     <div class="filter-section">
-                        <h3 class="filter-label">Categorie</h3>
+                        <h3 class="filter-label">Tipo di Evento</h3>
                         <div class="filter-checkboxes">
                             <label><%= check_box_tag :charity_only, "true", params[:charity_only] == "true" %> Eventi di beneficenza</label>
                         </div>

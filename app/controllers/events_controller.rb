@@ -14,7 +14,17 @@ class EventsController < ApplicationController
   def search
     @user = current_user
 
-    @pagy, @events = pagy(Event.where(status: "upcoming").or(Event.where(status: "ongoing")).order(:start_datetime), limit: 5)
+    #@pagy, @events = pagy(Event.where(status: "upcoming").or(Event.where(status: "ongoing")).order(:start_datetime), limit: 5)
+
+    @query = params[:query]
+    @city = params[:city]
+    if @query.present?
+      @events = @events.where("title LIKE ? OR description LIKE ?", "%#{@query}%", "%#{@query}%")
+    end
+
+    if @city.present?
+      @events = @events.where("city LIKE ?", "%#{@city}%")
+    end
 
     # Filtro data
     if params[:start_datetime].present?
@@ -32,15 +42,11 @@ class EventsController < ApplicationController
     end
     # Filtro orario
     if params[:time].present?
-      if params[:time][:morning] == true
-        @events = @events.where("start_datetime BETWEEN ? and ?", DateTime.parse("2025-03-22 06:00"), Time.parse("2025-03-22 12:00"))
-      end
-      if params[:time][:afternoon] == true
-        @events = @events.where("start_datetime BETWEEN ? and ?", DateTime.parse("2025-03-22 12:01"), Time.parse("2025-03-22 18:00"))
-      end
-      if params[:time][:evening] == true
-        @events = @events.where("start_datetime BETWEEN ? and ?", DateTime.parse("2025-03-22 18:01"), Time.parse("2025-03-22 23:59"))
-      end
+      time_filters = []
+      time_filters << "(CAST(strftime('%H', start_datetime) AS INTEGER) BETWEEN 6 AND 11)" if params[:time][:morning].present?
+      time_filters << "(CAST(strftime('%H', start_datetime) AS INTEGER) BETWEEN 12 AND 18)" if params[:time][:afternoon].present?
+      time_filters << "(CAST(strftime('%H', start_datetime) AS INTEGER) BETWEEN 19 AND 23)" if params[:time][:evening].present?
+      @events = @events.where(time_filters.join(" OR ")) if time_filters.any?
     end
     # Filtro Evento di Beneficenza
     if params[:charity_only] == "true"
@@ -50,6 +56,8 @@ class EventsController < ApplicationController
     if params[:category].present?
       @events = @events.where(category: params[:category])
     end
+
+    @pagy, @events = pagy(@events.where(status: "upcoming").or(Event.where(status: "ongoing")).order(:start_datetime), limit: 5)
 
   end
 

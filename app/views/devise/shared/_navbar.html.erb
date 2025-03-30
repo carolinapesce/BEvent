@@ -7,7 +7,22 @@
     <!-- Barra di ricerca -->
     <% if controller_name != "events" || action_name != "search" %>
         <div class="search-bar">
-            <div class="search-input">
+            <%= form_with url: events_search_path, method: :get, local: true, class: "search-bar" do %>
+                <div class="search-input">
+                    <%= text_field_tag :query, params[:query], placeholder: "Cerca...", class: "search-field" %>
+                </div>
+
+                <div class="search-divider"></div>
+
+                <div class="search-dropdown">
+                    <%= select_tag :city, options_for_select([['Città...', ''], 'Roma', 'Milano', 'Napoli', 'Torino', 'Firenze'], params[:city]), class: "city-dropdown" %>
+                </div>
+
+                <button type="submit" class="search-button">
+                    <i class="fas fa-search"></i>
+                </button>
+            <% end %>
+            <!--div class="search-input">
                 <input type="text" placeholder="Search..." class="search-field">
             </div>
             <div class="search-divider"></div>
@@ -21,10 +36,10 @@
             </div>
             <!-- <button class="search-button">
                 <i class="fas fa-search"></i> 
-            </button> -->
+            </button> 
             <%= button_to events_search_path, method: :get, class: "search-button" do %>
                 <i class="fas fa-search"></i>
-            <% end %>
+            <% end %>-->
         </div>
     <% else %>
         <div class="search-bar-placeholder">
