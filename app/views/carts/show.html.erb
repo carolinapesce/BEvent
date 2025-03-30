@@ -1,64 +1,78 @@
 <%= render "devise/shared/navbar" %>
 
-<div class="tckt-pg">
-  <% if @cart.cart_items.size == 0%>
-    <h1>il tuo carrello è vuoto</h1>
-    <br>
-    <%= link_to "aggiungi evento", events_search_path%>
-  <%else%>
-    <div class="cart-cont">
+<div class="cart-menu">
+  
+  <div class="sidebar">
+    <h2>Acquisti</h2>
+    <ul>
+      <li><%= link_to "Carrello", cart_path(@current_cart)%></li>
+      <li><%= link_to "I miei biglietti", checkouts_index_path(current_user.id)%></li>
+    </ul>
+  </div>
 
-      <div class="cart-title">
-        <h2>Il tuo carrello contiene:</h2>
+  <div class="cart-content">
+    <% if @cart.cart_items.empty? %>
+      <div class="cart-empty">
+        <h1>Il tuo carrello è vuoto</h1>
+        <br>
+        <%= link_to "Aggiungi evento", events_search_path, class: "add-event-link" %>
       </div>
+    <% else %>
+      <div class="cart-contai">
 
-      <div class="cart-main">
-        <ul>
-          <% @cart.cart_items.each do |cart_elem| %>
-            <li class="cart-card">
-              
-              <div class="card-border"></div>
+        <div class="cart-title">
+          <h2>Il tuo carrello contiene:</h2>
+        </div>
 
-              <div class="cart-content">
-                <div class="cart-info">
-                  <h3 class="ticket-title"><%= cart_elem.event.title %></h3>
-                  <p class="ticket-price"><%= number_to_currency(cart_elem.total_price) %></p>
+        <div class="cart-main">
+          <ul class="cart-list">
+            <% @cart.cart_items.each do |cart_elem| %>
+              <li class="cart-card">
+                <div class="card-border"></div>
+                <div class="cart-content">
+                  <div class="cart-info">
+                    <h3 class="ticket-title"><%= cart_elem.event.title %></h3>
+                    <p class="ticket-price"><%= number_to_currency(cart_elem.total_price) %></p>
+                  </div>
+
+                  <div class="cart-actions">
+                    <%= button_to cart_item_decrease_path(cart_item_id: cart_elem), class: "btn-icon decrease" do %>
+                      <i class="fa-solid fa-minus"></i>
+                    <% end %>
+                    <span class="ticket-quantity"><%= cart_elem.quantity %></span>
+                    <%= button_to cart_item_increase_path(cart_item_id: cart_elem), class: "btn-icon increase" do %>
+                      <i class="fa-solid fa-plus"></i>
+                    <% end %>
+                  </div>
                 </div>
-
-                <div class="cart-actions">
-                  <%= button_to cart_item_decrease_path(cart_item_id: cart_elem), class: "btn-icon decrease" do %>
-                    <i class="fa-solid fa-minus"></i>
-                  <% end %>
-                  <span class="ticket-quantity"><%= cart_elem.quantity %></span>
-                  <%= button_to cart_item_increase_path(cart_item_id: cart_elem), class: "btn-icon increase" do %>
-                    <i class="fa-solid fa-plus"></i>
-                  <% end %>
-                </div>
-              </div>
-            </li>
-          <% end %>
-        </ul>
-      </div>
-      
-      <div class="cart-foot">
-        <div class="cart-summary">
-          <p class="summary-text">
-            <span class="total-text"> Totale: <span class="total-amount"><%= number_to_currency(@cart.sub_total) %></span> </span>
-          </p>
-        </div>
-        
-        <div class="checkout-button">
-          <%= button_to checkouts_create_path(event_id: @event_id), data: { turbo: false }, class: "btn proceed-btn" do %>
-            Procedi <i class="fa-solid fa-chevron-right"></i>
-          <% end %>
+              </li>
+            <% end %>
+          </ul>
         </div>
 
-        <div class="clear-cart">
-          <%= button_to "Svuota il carrello", cart_path(@current_cart), method: :delete, class: "btn clear-cart-btn" %>
+        <div class="cart-foot">
+          <div class="cart-summary">
+            <p class="summary-text">
+              <span class="total-text"> Totale: <span class="total-amount"><%= number_to_currency(@cart.sub_total) %></span> </span>
+            </p>
+          </div>
+
+          <div class="checkout-button">
+            <%= button_to checkouts_create_path(event_id: @event_id), data: { turbo: false }, class: "btn proceed-btn" do %>
+              Procedi <i class="fa-solid fa-chevron-right"></i>
+            <% end %>
+          </div>
+
+          <div class="clear-cart">
+            <%= button_to "Svuota il carrello", cart_path(@current_cart), method: :delete, class: "btn clear-cart-btn" %>
+          </div>
         </div>
+
       </div>
-    </div>
-  <%end%>
+    <% end %>
+  </div>
+
 </div>
+
 
 <%= render "devise/shared/footer" %>
