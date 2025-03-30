@@ -14,6 +14,11 @@
     grid-area: back;
 }
 
+.events.show .show-back a{
+    text-decoration: none;
+    color: inherit;
+}
+
 .events.show .show-back i{
     font-size: 30px;
     margin-left: 20px;
@@ -164,6 +169,12 @@
     margin-top: 20px;
 }
 
+.events.show .tckt-div {
+    display: flex;
+    flex-direction: row;
+    margin-top: 10px;
+    gap: 8px;
+}
 
 .events.show .buy-btn {
     background-color: #04A777;

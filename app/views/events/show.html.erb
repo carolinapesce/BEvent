@@ -70,17 +70,22 @@
                             Non ci sono più biglietti disponibili.
                             <br>
                         <% else %>
-                            aggiungi al carrello
-                            <%= button_to "aggiungi al carrello", cart_items_path(:event_id => @event.id), method: :post %>
+                            <%= button_to "Aggiungi al carrello", cart_items_path(:event_id => @event.id), method: :post,  class: "buy-btn"  %>
                             <br>
                         <% end %>
                     <% end %>
                     <div class="tckt-info">
                         <h4>Info Biglietti</h4>
                         <% if @event.event_price == 0.0 %>
-                            <p><i class="fa-solid fa-ticket"></i>Gratis</p>
+                            <div class="tckt-div">
+                                <p><i class="fa-solid fa-ticket"></i></p>
+                                <p>Gratis</p>
+                            </div>
                         <% else %>
-                            <p><i class="fa-solid fa-ticket"></i><%= number_to_currency(@event.event_price) %></p>
+                            <div class="tckt-div">
+                                <p><i class="fa-solid fa-ticket"></i></p>
+                                <p><%= number_to_currency(@event.event_price) %></p>
+                            </div>
                         <% end %>
                     </div>
                 </div>
