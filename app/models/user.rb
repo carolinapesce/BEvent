@@ -33,7 +33,7 @@ class User < ApplicationRecord
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
-  devise :database_authenticatable, :registerable,
+  devise :database_authenticatable, :registerable, :timeoutable, :lockable,
          :recoverable, :rememberable, :validatable, :confirmable,
          :omniauthable, omniauth_providers: [:google_oauth2]
 
@@ -61,7 +61,7 @@ class User < ApplicationRecord
       email: self.email,
       address: address_obj_json,
       phone: self.phone_number,
-      name: self.first_name + ' ' + self.last_name
+      #name: self.first_name + ' ' + self.last_name
     )
     update(stripe_customer_id: customer.id)
   end
