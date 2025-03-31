@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_03_30_215301) do
+ActiveRecord::Schema[8.0].define(version: 2025_03_31_213225) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -102,7 +102,6 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_30_215301) do
     t.string "city"
     t.string "country"
     t.integer "status", default: 0
-    t.float "price", default: 0.0
     t.integer "user_id", null: false
     t.string "type"
     t.boolean "charity_event", default: false
@@ -172,6 +171,10 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_30_215301) do
     t.datetime "confirmation_sent_at", precision: nil
     t.string "unconfirmed_email"
     t.string "stripe_customer_id"
+    t.integer "failed_attempts", default: 0
+    t.datetime "locked_at"
+    t.string "unlock_token"
+    t.datetime "unlock_sent_at"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
