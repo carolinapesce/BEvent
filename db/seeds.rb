@@ -121,3 +121,44 @@ end
     reviews_count: 0
   )
 end
+
+10.times do |i|
+  start_time = Time.now - rand(1..30).days
+  end_time = start_time + rand(1..8).hours
+  event = Event.create!(
+    title: "Evento #{i + 1}",
+    description: "Descrizione dell'evento #{i + 1}",
+    current_participants: 0,
+    address: "Indirizzo #{i + 1}",
+    start_datetime: start_time,
+    end_datetime: end_time,
+    category: ["Musica", "Sport", "Comedy","Teatro", "Hobby", "Festa", "Arte", "Food&Drinks",].sample,
+    event_type: ["Pubblico", "Privato"].sample,
+    max_participants: rand(20..100),
+    charity_id: nil,
+    beneficiary: nil,
+    fundraiser_goal: nil,
+    current_funds: 0.0,
+    city: ["Roma", "Milano", "Napoli", "Torino", "Firenze"].sample,
+    country: "Italia",
+    status: 2,
+    latitude: Faker::Address.latitude,
+    longitude: Faker::Address.longitude,
+    event_price: rand(10..50),
+    user_id: 5,  
+    type: nil,  
+    charity_event: false,
+    stripe_event_id:i+1,
+    stripe_price_id: i+1,
+    reviews_count: 0
+  )
+
+  5.times do
+    Review.create!(
+      user_id: 4,
+      event_id: event.id,
+      content: Faker::Lorem.paragraph(sentence_count: 10),
+      rating: (1..5).to_a.sample
+    )
+  end
+end

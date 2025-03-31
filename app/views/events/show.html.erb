@@ -132,6 +132,21 @@
                 </div>
             </div>
 
+            <div class="event-description">
+                <% if @event.has_ended? %>
+                    <% if @event.reviews.any? %>
+                        <% @event.reviews.each do |review| %>
+                            <p> <%= review.user.first_name %></p>
+                            <p> <%= review.content %> </p>
+                            <p> Rating: <%= review.rating %>/5</p>
+                        <% end %>
+                    <% else %>
+                        Non ci sono ancora recensioni per questo evento.
+                    <% end %>
+                    
+                <% end %>
+            </div>
+
             <div class="others">
                 <h3>Altri eventi che possono piacerti</h3>
                 <div class="event-suggestions">
