@@ -1,67 +1,53 @@
 body.registrations.new {
-   margin: 0;
-   border: 0;
    font-family: 'Heebo', sans-serif;
    height: 100vh;
    display: flex;
-   justify-content: center;
-   align-items: center;
-   background: white;
+   margin: 0;
+   border: 0;
 }
 
-.registrations.new .container {
-   width: 70vw;
-   height: 80vh;
-   background: lightblue;
-   display: grid;
-   grid-template-columns: 100%;
-   grid-template-areas: "signup";
-   box-shadow: 0 0 17px 10px rgb(0 0 0 / 30%);
-   border-radius: 20px;
-}
-
+/* Sezione sinistra con immagine */
 .registrations.new .design {
-   grid-area: design;
-   display: none;
-   border-top-left-radius: 20px;
-   border-bottom-left-radius: 20px;
-   overflow: hidden;
+   width: 50%;
+   height: 100vh;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   background: lightblue;
 }
 
 .registrations.new .background-image {
-   object-position: -320px 0;
    width: 100%;
    height: 100%;
    object-fit: cover;
-   border-top-left-radius: 20px;
-   border-bottom-left-radius: 20px;
 }
 
+/* Sezione destra con il form */
 .registrations.new .signup {
-   grid-area: signup;
-   background: white;
-   border-radius: 20px;
+   width: 50%;
+   height: 100vh;
    display: flex;
    flex-direction: column;
    justify-content: center;
    align-items: center;
+   background: white;
 }
 
-@media (min-width: 768px) {
-   .registrations.new .container {
-      grid-template-columns: 50% 50%;
-      grid-template-areas: "design signup";
+/* Adattamento per dispositivi mobili */
+@media (max-width: 768px) {
+   body.registrations.new {
+       flex-direction: column;
    }
 
    .registrations.new .design {
-      display: block;
+       display: none;
    }
 
    .registrations.new .signup {
-      border-top-left-radius: 0px;
-      border-bottom-left-radius: 0px;
+       width: 100%;
    }
 }
+
 
 .registrations.new .new_user {
 width: 206.4px;
@@ -197,6 +183,40 @@ width: 206.4px;
 @keyframes fadeIn {
    from { opacity: 0; transform: translateY(-5px); }
    to { opacity: 1; transform: translateY(0); }
+}
+
+
+.registrations.new .role-selection {
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 15px 0 0 0;
+    padding: 15px;
+}
+
+.registrations.new .role-title {
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.registrations.new .role-options {
+    display: flex;
+    gap: 20px;
+}
+
+.registrations.new .role-label {
+    display: flex;
+    flex-direction: row;
+    gap: 3px;
+    align-items: center;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.registrations.new .role-label input {
+    margin-bottom: 5px;
 }
 
 

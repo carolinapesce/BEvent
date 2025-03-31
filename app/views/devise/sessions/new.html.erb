@@ -1,45 +1,45 @@
-<div class="container">
-  <div class="design">
-  <%= image_tag "party_back.jpg", class: "background-image" %></div>
-  <div class="login">
-    <h2 class = "title">Log in</h2> 
+<div class="design">
+  <%= image_tag "party_back.jpg", class: "background-image" %>
+</div>
 
-    <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-      <div class="field txt-field">
-        <%= f.email_field :email, autofocus: true, placeholder: "Inserisci la tua email", autocomplete: "email" %>
-      </div>
-  
-      <div class="field txt-field">
-        <%= f.password_field :password, placeholder: "Inserisci la tua password",autocomplete: "current-password" %>
-      </div>
-  
-      <% if devise_mapping.rememberable? %>
-        <div class="optional">
-          <div class="field chckbox-field">
-            <%= f.check_box :remember_me %>
-            <label for="user_remember_me" class="checkmark"></label>
-            <%= f.label :remember_me, class: "remember-label" %>
-          </div>
-          <div class="psswrd-link">
-            <%= render "devise/shared/forgot_password" %>
-          </div>
-        </div>
-      <% end %>
-      <div class="actions">
-        <%= f.submit "Log in", class: "btn-submit" %>
-      </div>
+<div class="login">
+  <h2 class="title">Log in</h2> 
 
-      <div class="line"></div>
-
-    <% end %>
-
-    <%= render "devise/shared/omniauth_links" %>
-    <div class="sgnp">
-      <p class="informative">Don't have an account?</p>
-      <%= render "devise/shared/sign_up" %>
+  <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+    <div class="field txt-field">
+      <%= f.email_field :email, autofocus: true, placeholder: "Inserisci la tua email", autocomplete: "email" %>
     </div>
 
-    
+    <div class="field txt-field">
+      <%= f.password_field :password, placeholder: "Inserisci la tua password",autocomplete: "current-password" %>
+    </div>
 
+    <% if devise_mapping.rememberable? %>
+      <div class="optional">
+        <div class="field chckbox-field">
+          <%= f.check_box :remember_me %>
+          <label for="user_remember_me" class="checkmark"></label>
+          <%= f.label :remember_me, class: "remember-label" %>
+        </div>
+        <div class="psswrd-link">
+          <%= render "devise/shared/forgot_password" %>
+        </div>
+      </div>
+    <% end %>
+    
+    <div class="actions">
+      <%= f.submit "Log in", class: "btn-submit" %>
+    </div>
+
+    <div class="line"></div>
+
+  <% end %>
+
+  <%= render "devise/shared/omniauth_links" %>
+
+  <div class="sgnp">
+    <p class="informative">Don't have an account?</p>
+    <%= render "devise/shared/sign_up" %>
   </div>
 </div>
+
