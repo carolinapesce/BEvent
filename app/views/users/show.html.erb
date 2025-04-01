@@ -1,166 +1,95 @@
 <%= render "devise/shared/navbar" %>
-<div class="cont">
-    <div class="page">
-        <div class="banner">
-            <div class="banner-content">
-                <div class="info-profile">
-                    <% if current_user.profile_pic.present? %>
-                        <%= image_tag(current_user.profile_pic, data: { action: "click->dropdown#toggle" } )%>
-                    <% else %>
-                        <%= image_tag("default-avatar.png", data: { action: "click->dropdown#toggle" } )%>
-                    <% end %>
-                    <h1>Nome</h1>
-                </div>
-                <!--button class="edit-btn">Modifica</button-->
+
+<div class="page">
+    <div class="banner">
+        <div class="banner-content">
+            <div class="info-profile">
+                <% if current_user.profile_pic.present? %>
+                    <%= image_tag(current_user.profile_pic, data: { action: "click->dropdown#toggle" } )%>
+                <% else %>
+                    <%= image_tag("default-avatar.png", data: { action: "click->dropdown#toggle" } )%>
+                <% end %>
+                <h1>Nome</h1>
             </div>
         </div>
-        <div class="page-content">
-            <div class="about">
-                <div class="title"></div>
-                <div class="details">
-                    <h3>About</h3>
-                    <p>Website</p>
-                    <p>Company</p>
-                    <p>Email</p> 
-                    <p>Phone</p> 
-                </div>
-            </div>
-            <div class="content-profile">
-                <div class="description">
-                    <h3>Description</h3>
-                    <p>
-                        <% if current_user.bio.present? %>
-                            current_user.bio
-                        <% end %>
-                    </p>
-                </div>
-                <div class="events">
-                    <div class="choice">
-                        <h3 id="upcoming-toggle" class="events_current">Current Events</h3>
-                        <h3 id="past-toggle" class="events_past">Past Events</h3>
-                    </div>
-                    <div class="line"></div>
-
-                    <% if @upcoming_events.any? %>
-                        <div id="upcoming-events" class="events-list">
-                            <div class="events-grid">
-                                <% @upcoming_events.limit(5).each do |event| %>
-                                    <%= link_to event_path(event), class: "event-card-link" do %>
-                                        <div class="event-card">
-                                            <div class="event-design">
-                                                <%= image_tag "card1.png", alt: "Event Image", class: "event-image" %>
-                                            </div>
-                                            <div class="event-frame">
-                                                <h3 class="event-title"><%= event.title %></h3>
-                                                <p class="event-location"><%= event.address+", "+event.city+", "+event.country %></p>
-                                                <div class="event-date">
-                                                    <span class="month"><%= event.start_datetime.strftime('%b') %></span>
-                                                    <span class="day"><%= event.start_datetime.strftime('%d') %></span>
-                                                </div>
-                                                <p class="event-time"><%= event.start_datetime.strftime('%I:%M %p') %></p>
-                                                <p class="event-price"><%= event.event_price.present? ? event.event_price : "Free" %></p>
-                                            </div>
-                                        </div>
-                                    <% end %>
-                                <% end %>
-                            </div>
-                        </div>
-                    <% else %>
-                        <p>Nessun evento in programma.</p>
-                    <% end %>
-
-                    <% if @terminated_events.any? %>
-                        <div id="past-events" class="events-list" style="display: none;">
-                            <div class="events-grid">
-                                <% @terminated_events.limit(5).each do |event| %>
-                                    <%= link_to event_path(event), class: "event-card-link" do %>
-                                        <div class="event-card">
-                                            <div class="event-design">
-                                                <%= image_tag "card1.png", alt: "Event Image", class: "event-image" %>
-                                            </div>
-                                            <div class="event-frame">
-                                                <h3 class="event-title"><%= event.title %></h3>
-                                                <p class="event-location"><%= event.address+", "+event.city+", "+event.country %></p>
-                                                <div class="event-date">
-                                                    <span class="month"><%= event.start_datetime.strftime('%b') %></span>
-                                                    <span class="day"><%= event.start_datetime.strftime('%d') %></span>
-                                                </div>
-                                                <p class="event-time"><%= event.start_datetime.strftime('%I:%M %p') %></p>
-                                                <p class="event-price"><%= event.event_price.present? ? event.event_price : "Free" %></p>
-                                            </div>
-                                        </div>
-                                    <% end %>
-                                <% end %>
-                            </div>
-                        </div>
-                    <% else %>
-                        <p>Nessun evento passato.</p>
-                    <% end %>
-                    <!--div class="events-list">
-                        <div class= "events-grid">
-                            <%= link_to event_path(1), class: "event-card-link" do %>
-                                <div class="event-card">
-                                    <div class="event-design">
-                                        <%= image_tag "card1.png", alt: "Event Image", class: "event-image" %>
-                                    </div>
-                                    <div class="event-frame">
-                                        <h3 class="event-title">THE MOTANS GEOGRAPHIC 2025</h3>
-                                        <p class="event-location">Orion Live Club</p>
-                                        <div class="event-date">
-                                            <span class="month">APR</span>
-                                            <span class="day">11</span>
-                                        </div>
-                                        <p class="event-time">8 PM</p>
-                                        <p class="event-price">Gratis</p>
-                                    </div>
-                                </div>
-                            <% end %>
-
-                            <%= link_to event_path(1), class: "event-card-link" do %>
-                                <div class="event-card">
-                                    <div class="event-design">
-                                        <%= image_tag "card1.png", alt: "Event Image", class: "event-image" %>
-                                    </div>
-                                    <div class="event-frame">
-                                        <h3 class="event-title">THE MOTANS GEOGRAPHIC 2025</h3>
-                                        <p class="event-location">Orion Live Club</p>
-                                        <div class="event-date">
-                                            <span class="month">APR</span>
-                                            <span class="day">11</span>
-                                        </div>
-                                        <p class="event-time">8 PM</p>
-                                        <p class="event-price">Gratis</p>
-                                    </div>
-                                </div>
-                            <% end %>
-
-                            <%= link_to event_path(1), class: "event-card-link" do %>
-                                <div class="event-card">
-                                    <div class="event-design">
-                                        <%= image_tag "card1.png", alt: "Event Image", class: "event-image" %>
-                                    </div>
-                                    <div class="event-frame">
-                                        <h3 class="event-title">THE MOTANS GEOGRAPHIC 2025</h3>
-                                        <p class="event-location">Orion Live Club</p>
-                                        <div class="event-date">
-                                            <span class="month">APR</span>
-                                            <span class="day">11</span>
-                                        </div>
-                                        <p class="event-time">8 PM</p>
-                                        <p class="event-price">Gratis</p>
-                                    </div>
-                                </div>
-                            <% end %>
-                        </div>
-                        <div class= "sm-btn"></div>
-                    </div-->
-                </div>
-            </div>
-        </div>
-        
     </div>
-    <%= render "devise/shared/footer" %>
+    <div class="page-content">
+        <div class="description">
+            <h3>Descrizione</h3>
+            <p>
+                <% if current_user.bio.present? %>
+                    current_user.bio
+                <% end %>
+            </p>
+        </div>
+    </div>
+
+    <div class="events">
+        <div class="choice">
+            <h3 id="upcoming-toggle" class="events_current">Prossimi Eventi</h3>
+            <h3 id="past-toggle" class="events_past">Eventi Passati</h3>
+        </div>
+        <div class="line"></div>
+
+        <% if @upcoming_events.any? %>
+            <div id="upcoming-events" class="events-list">
+                <div class="events-grid">
+                    <% @upcoming_events.limit(5).each do |event| %>
+                        <%= link_to event_path(event), class: "event-card-link" do %>
+                            <div class="event-card">
+                                <div class="event-design">
+                                    <%= image_tag "card1.png", alt: "Event Image", class: "event-image" %>
+                                </div>
+                                <div class="event-frame">
+                                    <h3 class="event-title"><%= event.title %></h3>
+                                    <p class="event-location"><%= event.address+", "+event.city+", "+event.country %></p>
+                                    <div class="event-date">
+                                        <span class="month"><%= event.start_datetime.strftime('%b') %></span>
+                                        <span class="day"><%= event.start_datetime.strftime('%d') %></span>
+                                    </div>
+                                    <p class="event-time"><%= event.start_datetime.strftime('%I:%M %p') %></p>
+                                    <p class="event-price"><%= event.event_price.present? ? event.event_price : "Free" %></p>
+                                </div>
+                            </div>
+                        <% end %>
+                    <% end %>
+                </div>
+            </div>
+        <% else %>
+            <p>Nessun evento in programma.</p>
+        <% end %>
+
+        <% if @terminated_events.any? %>
+            <div id="past-events" class="events-list" style="display: none;">
+                <div class="events-grid">
+                    <% @terminated_events.limit(5).each do |event| %>
+                        <%= link_to event_path(event), class: "event-card-link" do %>
+                            <div class="event-card">
+                                <div class="event-design">
+                                    <%= image_tag "card1.png", alt: "Event Image", class: "event-image" %>
+                                </div>
+                                <div class="event-frame">
+                                    <h3 class="event-title"><%= event.title %></h3>
+                                    <p class="event-location"><%= event.address+", "+event.city+", "+event.country %></p>
+                                    <div class="event-date">
+                                        <span class="month"><%= event.start_datetime.strftime('%b') %></span>
+                                        <span class="day"><%= event.start_datetime.strftime('%d') %></span>
+                                    </div>
+                                    <p class="event-time"><%= event.start_datetime.strftime('%I:%M %p') %></p>
+                                    <p class="event-price"><%= event.event_price.present? ? event.event_price : "Free" %></p>
+                                </div>
+                            </div>
+                        <% end %>
+                    <% end %>
+                </div>
+            </div>
+        <% else %>
+            <p>Nessun evento passato.</p>
+        <% end %>
+    </div>
+    
 </div>
+
 
 <script>
     document.getElementById("upcoming-toggle").addEventListener("click", function() {
@@ -173,4 +102,6 @@
         document.getElementById("upcoming-events").style.display = "none";
     });
 </script>
+
+<%= render "devise/shared/footer" %>
 
