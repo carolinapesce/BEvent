@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_03_31_213225) do
+ActiveRecord::Schema[8.0].define(version: 2025_04_01_161701) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -45,6 +45,9 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_31_213225) do
     t.integer "quantity"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.decimal "donation_amount"
+    t.boolean "anonymous"
+    t.text "message"
     t.index ["cart_id"], name: "index_cart_items_on_cart_id"
     t.index ["event_id"], name: "index_cart_items_on_event_id"
   end
@@ -71,7 +74,6 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_31_213225) do
   end
 
   create_table "donations", force: :cascade do |t|
-    t.string "donation_id", null: false
     t.integer "event_id", null: false
     t.integer "user_id", null: false
     t.float "amount", default: 0.0, null: false
@@ -102,6 +104,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_31_213225) do
     t.string "city"
     t.string "country"
     t.integer "status", default: 0
+    t.float "price", default: 0.0
     t.integer "user_id", null: false
     t.string "type"
     t.boolean "charity_event", default: false

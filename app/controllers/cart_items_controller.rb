@@ -7,15 +7,28 @@ class CartItemsController < ApplicationController
   # se l'evento è già presente nel carrello, aumenta il numero, altrimenti lo inserisce 
   def create
     event_id = params[:event_id]
-    @cart_item = @current_cart.cart_items.find_or_initialize_by(event_id: event_id)
+    event = Event.find(event_id)
+    donation_amount = params[:donation_amount].to_f if event.charity_event?
+    user_id = params[:user_id]
+    message = params[:message] if event.charity_event?
+    anonymous = params[:anonymous] == "1"
+    @cart_item = @current_cart.cart_items.find_or_initialize_by(event_id: event_id, donation_amount: donation_amount, message: message, anonymous: anonymous)
     
     if @cart_item.new_record?
       @cart_item.quantity = 1
+      @cart_item.donation_amount = donation_amount if @cart_item.donation_amount.present?
     else
       @cart_item.increment!(:quantity)
     end
   
     if @cart_item.save
+      #@donation = Donation.create!(
+      #      event_id: event.id,
+      #      user_id: user_id,
+      #      amount: donation_amount, 
+      #      message: message, 
+      #      anonymous: anonymous
+      #    )
       flash[:success] = "Evento aggiunto al carrello !"
       redirect_to cart_path(@current_cart)
     else

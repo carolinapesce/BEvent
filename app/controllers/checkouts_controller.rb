@@ -20,6 +20,18 @@ class CheckoutsController < ApplicationController
                                   completed_at: Time.now)
       @checkout.save
 
+      @current_cart.cart_items.each do |cart_item|
+        if cart_item.event.charity_event? 
+          Donation.create!(
+            user_id: @current_user.id,
+            event_id: cart_item.event_id,
+            amount: cart_item.donation_amount,
+            anonymous: cart_item.anonymous,  
+            message: cart_item.message       
+          )
+        end
+      end
+
       @current_cart.decrease_availability
       @current_cart.cart_items.each do |cart_item|
         @current_cart.update(cart_item_id: cart_item.id) # Salva l'id del cart_item nel carrello
@@ -41,8 +53,18 @@ class CheckoutsController < ApplicationController
 
   def create
     line_items_json = @current_cart.cart_items.map do |item|
-      { price: item.event.stripe_price_id, quantity: item.quantity}
+      if item.event.charity_event? && item.donation_amount.present?
+        price = Stripe::Price.create({
+          unit_amount: (item.donation_amount * 100).to_i,
+          currency: 'eur',
+          product_data: { name: "Donazione per #{item.event.title}" }
+        })
+        { price: price.id, quantity: 1 }
+      else
+        { price: item.event.stripe_price_id, quantity: item.quantity }
+      end
     end
+  
 
     @session = Stripe::Checkout::Session.create({
         customer: @current_user.stripe_customer_id,
