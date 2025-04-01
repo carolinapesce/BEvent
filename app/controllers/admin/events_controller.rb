@@ -6,6 +6,27 @@ class Admin::EventsController < ApplicationController
     @events = Event.all
   end
 
+  def new
+    @event = Event.new
+  end
+
+  def create
+    if params[:event][:charity_event] == true
+      @event = CharityEvent.new(event_params)
+    else
+      @event = Event.new(event_params)
+    end
+    
+    @event.user = current_user
+
+    if @event.save
+      redirect_to events_path, notice: "Evento creato con successo!"
+    else
+      flash[:alert] = "Errore nella creazione dell'evento: #{@event.errors.full_messages.to_sentence}"
+      render :new, status: :unprocessable_entity
+    end
+  end
+
   def edit
     @event = Event.find(params[:id])
   end
