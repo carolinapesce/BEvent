@@ -1,0 +1,15 @@
+<%= form_for @user, url: admin_users_path do |f| %>
+  <%= f.label :last_name %>
+  <%= f.text_field :first_name %>
+
+  <%= f.label :last_name %>
+  <%= f.text_field :last_name %>
+
+  <%= f.label :email %>
+  <%= f.email_field :email %>
+
+  <%= f.label :role %>
+  <%= f.select :role, options_for_select([['User', 0], ['Event Planner', 1], ['Admin', 2]]) %>
+
+  <%= f.submit 'Crea Utente' %>
+<% end %>

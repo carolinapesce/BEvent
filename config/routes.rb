@@ -51,6 +51,14 @@ Rails.application.routes.draw do
   #get 'profile', to: 'users#show', as: "user_show"
   get 'profile', to: 'users#profile', as: "user_profile"
 
+  # ADMIN
+
+  namespace :admin do
+    get 'dashboard', to: 'dashboard#show'
+    resources :users
+    resources :events
+  end
+
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

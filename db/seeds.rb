@@ -41,8 +41,8 @@ User.create!(
 User.create!(
   email: "user@gmail.com",
   password: "password",
-  first_name: "Carolina",
-  last_name: "Pesce",
+  first_name: "Mario",
+  last_name: "Rossi",
   role: 0,
   confirmed_at: Time.now
 )
@@ -52,8 +52,8 @@ User.create!(
   id: 5,
   email: "eventplanner@gmail.com",
   password: "password",
-  first_name: "Carolina",
-  last_name: "Pesce",
+  first_name: "Maria",
+  last_name: "Bianchi",
   role: 1,
   confirmed_at: Time.now
 )

@@ -1,0 +1,36 @@
+<h1>Gestione Utenti</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Nome</th>
+      <th>Email</th>
+      <th>Ruolo</th>
+      <th>Azioni</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @users.each do |user| %>
+      <tr>
+        <td><%= user.first_name %></td>
+        <td><%= user.email %></td>
+        <td>
+            <% if user.role == 0 %>
+                User
+            <% elsif user.role == 1 %>
+                Event Planner
+            <% elsif user.role == 2 %>
+                Admin
+            <% end %>
+        
+        </td>
+        <td>
+          <%= link_to 'Modifica', edit_admin_user_path(user) %> |
+          <%= link_to 'Elimina', admin_user_path(user), method: :delete, data: { confirm: 'Sei sicuro?' } %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to 'Crea un nuovo utente', new_admin_user_path %>
