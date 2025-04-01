@@ -370,3 +370,39 @@
 .events.show .others{
     margin-top: 50px;
 }
+
+
+.events.show .reviews-section {
+    margin-top: 20px;
+}
+
+.events.show .review-card {
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 15px;
+    margin-bottom: 15px;
+}
+
+.events.show .review-header {
+    font-weight: bold;
+    font-size: 1.1rem;
+    color: #333;
+}
+
+.events.show .review-content {
+    margin-top: 5px;
+    font-size: 1rem;
+    color: #555;
+}
+
+.events.show .review-rating {
+    margin-top: 10px;
+    color: #f4c542;
+    font-size: 1.2rem;
+}
+
+.events.show .no-reviews {
+    color: #777;
+    font-style: italic;
+}
