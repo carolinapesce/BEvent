@@ -34,7 +34,7 @@
                     <%= cart_item.quantity %> biglietto(i) - 
                     Prezzo: <%= number_to_currency(cart_item.event.event_price, unit: "€") %>
                     <% if cart_item.event.has_ended? %>
-                      <%= link_to "Lascia Recensione", cart_path(@current_cart), class: "review-bt"%>
+                      <%= link_to "Lascia Recensione", new_review_path, class: "review-bt"%>
                     <% end %>
                   </li>
                 <% end %>
