@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_03_21_212341) do
+ActiveRecord::Schema[8.0].define(version: 2025_04_01_161701) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -45,6 +45,9 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_21_212341) do
     t.integer "quantity"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.decimal "donation_amount"
+    t.boolean "anonymous"
+    t.text "message"
     t.index ["cart_id"], name: "index_cart_items_on_cart_id"
     t.index ["event_id"], name: "index_cart_items_on_event_id"
   end
@@ -52,6 +55,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_21_212341) do
   create_table "carts", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "cart_item_id"
   end
 
   create_table "charity_events", force: :cascade do |t|
@@ -59,8 +63,17 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_21_212341) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "checkouts", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "cart_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "stripe_session_id"
+    t.integer "total_amount"
+    t.datetime "completed_at"
+  end
+
   create_table "donations", force: :cascade do |t|
-    t.string "donation_id", null: false
     t.integer "event_id", null: false
     t.integer "user_id", null: false
     t.float "amount", default: 0.0, null: false
@@ -91,12 +104,16 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_21_212341) do
     t.string "city"
     t.string "country"
     t.integer "status", default: 0
-    t.integer "price"
     t.integer "user_id", null: false
     t.string "type"
     t.boolean "charity_event", default: false
     t.float "latitude"
     t.float "longitude"
+    t.integer "event_price"
+    t.string "stripe_event_id"
+    t.string "stripe_price_id"
+    t.integer "reviews_count"
+    t.decimal "average_rating"
     t.index ["user_id"], name: "index_events_on_user_id"
   end
 
@@ -107,6 +124,17 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_21_212341) do
     t.integer "event_id", null: false
     t.index ["event_id"], name: "index_favourites_on_event_id"
     t.index ["user_id"], name: "index_favourites_on_user_id"
+  end
+
+  create_table "reviews", force: :cascade do |t|
+    t.string "content"
+    t.integer "rating"
+    t.integer "user_id", null: false
+    t.integer "event_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["event_id"], name: "index_reviews_on_event_id"
+    t.index ["user_id"], name: "index_reviews_on_user_id"
   end
 
   create_table "tickets", force: :cascade do |t|
@@ -144,6 +172,11 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_21_212341) do
     t.datetime "confirmed_at", precision: nil
     t.datetime "confirmation_sent_at", precision: nil
     t.string "unconfirmed_email"
+    t.string "stripe_customer_id"
+    t.integer "failed_attempts", default: 0
+    t.datetime "locked_at"
+    t.string "unlock_token"
+    t.datetime "unlock_sent_at"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
@@ -156,6 +189,8 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_21_212341) do
   add_foreign_key "events", "users"
   add_foreign_key "favourites", "events"
   add_foreign_key "favourites", "users"
+  add_foreign_key "reviews", "events"
+  add_foreign_key "reviews", "users"
   add_foreign_key "tickets", "events"
   add_foreign_key "tickets", "users"
 end

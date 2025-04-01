@@ -1,7 +1,39 @@
-<p>Hello <%= @email %>!</p>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+        <td align="center" style="padding: 20px;">
+            <table class="content" width="600" border="0" cellspacing="0" cellpadding="0" style="border-collapse: collapse; border: 1px solid #cccccc;">
+                <!-- Header -->
+                <tr>
+                    <td class="header" style="background-color: #04A777; font-family: 'Open Sans', Helvetica, Arial, sans-serif;letter-spacing: 1px; padding: 40px; text-align: center; color: white; font-size: 60px;">
+                    BEvent
+                    </td>
+                </tr>
 
-<% if @resource.try(:unconfirmed_email?) %>
-  <p>We're contacting you to notify you that your email is being changed to <%= @resource.unconfirmed_email %>.</p>
-<% else %>
-  <p>We're contacting you to notify you that your email has been changed to <%= @resource.email %>.</p>
-<% end %>
+                <!-- Corpo -->
+                <tr>
+                    <td class="body" style="padding: 40px; text-align: left; font-size: 16px; line-height: 1.6; font-family: Arial, Helvetica, sans-serif;">
+                        <h2>Ciao <%= @email %>!</h2> <br>
+
+                        <% if @resource.try(:unconfirmed_email?) %>
+                          <p>Ti informiamo che l'indirizzo email associato al tuo account su BEvent è stato modificato con <%= @resource.unconfirmed_email %>.</p>
+                        <% else %>
+                          <p>Ti informiamo che l'indirizzo email associato al tuo account su BEvent è stato modificato con <%= @resource.email %>.</p>
+                        <% end %>
+
+                        <br>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="body" style="padding: 40px; text-align: left; font-size: 16px; line-height: 1.6;">       
+                    </td>
+                </tr>
+                <!-- Footer -->
+                <tr>
+                    <td class="footer" style="background-color: #04A777; padding: 40px; text-align: center; color: white; font-size: 14px;  font-family: Arial, Helvetica, sans-serif;">
+                    Copyright &copy; 2024 | BEvent
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+</table>

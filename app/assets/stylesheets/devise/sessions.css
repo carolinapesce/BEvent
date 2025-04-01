@@ -2,67 +2,53 @@ body.sessions.new {
     font-family: 'Heebo', sans-serif;
     height: 100vh;
     display: flex;
-    justify-content: center;
-    align-items: center;
-    background: white;
     margin: 0;
     border: 0;
 }
 
-.sessions.new .container {
-    width: 70vw;
-    height: 80vh;
-    background: lightblue;
-    display: grid;
-    grid-template-columns: 100%;
-    grid-template-areas: "login";
-    box-shadow: 0 0 17px 10px rgba(0, 0, 0, 0.3);
-    border-radius: 20px;
-}
-
+/* Sezione sinistra con l'immagine */
 .sessions.new .design {
-    grid-area: design;
-    display: none;
-    align-items: left;
-    border-top-left-radius: 20px;
-    border-bottom-left-radius: 20px;
-    overflow: hidden;
+    width: 50%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: lightblue;
 }
 
 .sessions.new .background-image {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: -50px 0;
-    border-top-left-radius: 20px;
-    border-bottom-left-radius: 20px;
+    border-radius: 0;
 }
 
+/* Sezione destra con il form */
 .sessions.new .login {
-    grid-area: login;
-    background: white;
-    border-radius: 20px;
+    width: 50%;
+    height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    background: white;
 }
 
-@media (min-width: 768px) {
-    .sessions.new .container {
-        grid-template-columns: 50% 50%;
-        grid-template-areas: "design login";
+/* Adattamento per schermi piccoli */
+@media (max-width: 768px) {
+    body.sessions.new {
+        flex-direction: column;
     }
 
     .sessions.new .design {
-        display: block;
+        display: none;
     }
 
     .sessions.new .login {
-        border-top-left-radius: 0px;
-        border-bottom-left-radius: 0px;
+        width: 100%;
     }
 }
+
 
 .sessions.new .title {
     width: auto;

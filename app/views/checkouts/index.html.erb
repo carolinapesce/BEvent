@@ -1,0 +1,48 @@
+<%= render "devise/shared/navbar" %>
+<div class="shopping-menu">
+  
+  <div class="sidebar">
+    <h2>Acquisti</h2>
+    <ul>
+      <li><%= link_to "Carrello", cart_path(@current_cart)%></li>
+      <li><%= link_to "I miei biglietti", checkouts_index_path(current_user.id) %></li>
+    </ul>
+  </div>
+
+  <div class="shopping-content">
+    <h2>I miei ordini</h2>
+
+    <% if @user_checkouts.any? %>
+      <div class="checkout-container">
+        <% @user_checkouts.each do |checkout| %>
+          <div class="checkout-card">
+            <h2>Ordine <%= checkout.id %> - <%= checkout.completed_at.strftime("%d/%m/%Y %H:%M") %></h2>
+            <p class="checkout-total">Totale pagato: <%= number_to_currency(checkout.total_amount / 100.0, unit: "€") %></p>
+
+            <h3>Eventi acquistati:</h3>
+            <ul class="checkout-items">
+              <% checkout.cart.cart_items.each do |cart_item| %>
+                <% if cart_item.donation_amount.present?%>
+                  <li>
+                    <strong><%= cart_item.event.title %></strong> - 
+                    <%= cart_item.quantity %> biglietto(i) - 
+                    Donazione: <%= number_to_currency(cart_item.donation_amount, unit: "€") %>
+                  </li>
+                <% else %>
+                  <li>
+                    <strong><%= cart_item.event.title %></strong> - 
+                    <%= cart_item.quantity %> biglietto(i) - 
+                    Prezzo: <%= number_to_currency(cart_item.event.event_price, unit: "€") %>
+                  </li>
+                <% end %>
+              <% end %>
+            </ul>
+          </div>
+        <% end %>
+      </div>
+    <% else %>
+      <p class="no-orders">Non hai ancora effettuato acquisti.</p>
+    <% end %>
+  </div>
+</div>
+<%= render "devise/shared/footer" %>

@@ -149,6 +149,11 @@
     padding-left: 50px;
 }
 
+.events-grid-search {
+    display: flex;
+    flex-direction: column;
+    gap: 16px; 
+}
 
 .events.search .event-card{
     width: 471px;
@@ -231,6 +236,37 @@
     font-style: normal;
     font-weight: 700;
     line-height: normal;
+}
+
+.events.search .pagy.nav{
+    display:flex;
+    flex-direction: row;
+    gap: 10px;
+    align-items: center;
+}
+
+.pagy.nav a[aria-label="Previous"],
+.pagy.nav a[aria-label="Next"] {
+    font-size: 0;
+}
+
+.pagy.nav a[aria-label="Previous"]::before {
+    font-family: "Font Awesome 6 Free"; /* Usa Font Awesome */
+    content: "\f053"; /* Codice Unicode per "fa-arrow-left" */
+    font-weight: 900; /* Peso del font per l'icona solida */
+    font-size: 16px; /* Dimensione dell'icona */
+    display: inline-block;
+    margin-right: 5px; /* Spazio tra l'icona e il bordo */
+    line-height: normal;
+}
+
+.pagy.nav a[aria-label="Next"]::before {
+    font-family: "Font Awesome 6 Free"; /* Usa Font Awesome */
+    content: "\f054"; /* Codice Unicode per "fa-arrow-right" */
+    font-weight: 900; /* Peso del font per l'icona solida */
+    font-size: 16px; /* Dimensione dell'icona */
+    display: inline-block;
+    margin-left: 5px; /* Spazio tra l'icona e il bordo */
 }
 
 

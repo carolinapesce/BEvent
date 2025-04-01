@@ -1,0 +1,44 @@
+<%= render "devise/shared/navbar" %>
+<div class="shopping-menu">
+  
+  <div class="sidebar">
+    <h2>Acquisti</h2>
+    <ul>
+      <li><%= link_to "Carrello", cart_path(@current_cart)%></li>
+      <li><%= link_to "I miei biglietti", checkouts_index_path(current_user.id)%></li>
+      <li><%= link_to "Esito Transazione", "#", onclick: "return false;" %></li>
+    </ul>
+  </div>
+
+  <div class="shopping-content">
+    <h2>Pagamento completato con successo!</h2>
+    <hr>
+
+    <h3>Dettagli dell'ordine:</h3>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Evento</th>
+          <th>Quantità</th>
+          <th>Prezzo</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @line_items.each do |item| %>
+          <tr>
+            <td><%= item.description %></td>
+            <td><%= item.quantity %></td>
+            <td><%= number_to_currency(item.amount_total / 100.0) %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+
+    <p><strong>Totale: <%= number_to_currency(@success_session.amount_total / 100.0) %></strong></p>
+
+  </div>
+</div>
+
+
+<%= render "devise/shared/footer" %>

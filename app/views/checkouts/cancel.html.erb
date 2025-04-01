@@ -1,0 +1,11 @@
+<h1>Pagamento non riuscito</h1>
+
+<div class="alert alert-danger">
+<%= flash[:alert] = "Si è verificato un errore durante il pagamento. Riprova più tardi." %>
+</div>
+
+<p>Ci dispiace, ma il pagamento non è andato a buon fine. Riprova più tardi.</p>
+
+<%= link_to 'Riprova il pagamento', checkouts_create_path, class: 'btn btn-primary' %>
+
+<%= link_to "Torna alla homepage", root_path %>

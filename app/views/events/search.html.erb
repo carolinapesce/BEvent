@@ -6,21 +6,21 @@
         <div class="search-area">
             <div class="search-section">
                 <div class="search-bar">
-                    <div class="search-input">
-                        <input type="text" placeholder="Search..." class="search-field">
-                    </div>
-                    <div class="search-divider"></div>
-                    <div class="search-dropdown">
-                        <select class="city-dropdown">
-                            <option value="" disabled selected>Città...</option>
-                            <option value="roma">Roma</option>
-                            <option value="milano">Milano</option>
-                            <option value="napoli">Napoli</option>
-                        </select>
-                    </div>
-                    <button class="search-button">
-                        <i class="fas fa-search"></i> 
-                    </button>
+                    <%= form_with url: events_search_path, method: :get, local: true, class: "search-bar" do %>
+                        <div class="search-input">
+                            <%= text_field_tag :query, params[:query], placeholder: "Cerca...", class: "search-field" %>
+                        </div>
+
+                        <div class="search-divider"></div>
+
+                        <div class="search-dropdown">
+                            <%= select_tag :city, options_for_select([['Città...', ''], 'Roma', 'Milano', 'Napoli', 'Torino', 'Firenze'], params[:city]), class: "city-dropdown" %>
+                        </div>
+
+                        <button type="submit" class="search-button">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    <% end %>
                 </div>
             </div>
         </div>
@@ -30,84 +30,112 @@
             <!-- Colonna filtri -->
             <div class="filters-column">
                 <h2 class="filters-title">Filtri</h2>
-
-                <!-- Sezione Data -->
-                <div class="filter-section">
-                    <h3 class="filter-label">Data</h3>
-                    <div class="filter-inputs">
-                        <div class="input-group">
-                            <label for="start-date">Da:</label>
-                            <input type="date" id="start-date" name="start-date">
+                <%= form_with(url: search_events_path, method: :get, local: true) do %>
+                    <!-- Sezione Data -->
+                    <div class="filter-section">
+                        <h3 class="filter-label">Data</h3>
+                        <div class="filter-inputs">
+                            <div class="input-group">
+                                <label for="start-date">Da:</label>
+                                <!--input type="date" id="start-date" name="start-date"-->
+                                <%= date_field_tag :start_datetime, params[:start_datetime] %>
+                            </div>
+                            <div class="input-group">
+                                <label for="end-date">A:</label>
+                                <!--input type="date" id="end-date" name="end-date"-->
+                                <%= date_field_tag :end_datetime, params[:end_datetime] %>
+                            </div>
                         </div>
-                        <div class="input-group">
-                            <label for="end-date">A:</label>
-                            <input type="date" id="end-date" name="end-date">
+                    </div>
+
+                    <!-- Sezione Prezzo -->
+                    <div class="filter-section">
+                        <h3 class="filter-label">Prezzo</h3>
+                        <div class="filter-inputs">
+                            <div class="input-group">
+                                <label for="min-price">Min:</label>
+                                <%= number_field_tag :min_price, params[:min_price] %>
+                                <!--input type="number" id="min-price" name="min-price" placeholder="€"-->
+                            </div>
+                            <div class="input-group">
+                                <label for="max-price">Max:</label>
+                                <%= number_field_tag :max_price, params[:max_price] %>
+                                <!--input type="number" id="max-price" name="max-price" placeholder="€"-->
+                            </div>  
                         </div>
                     </div>
-                </div>
 
-                <!-- Sezione Prezzo -->
-                <div class="filter-section">
-                    <h3 class="filter-label">Prezzo</h3>
-                    <div class="filter-inputs">
-                        <div class="input-group">
-                            <label for="min-price">Min:</label>
-                            <input type="number" id="min-price" name="min-price" placeholder="€">
+                    <!-- Sezione Orario -->
+                    <div class="filter-section">
+                        <h3 class="filter-label">Orario</h3>
+                        <div class="filter-checkboxes">
+                            <label><%= check_box_tag 'time[morning]', 'true', params.dig(:time,:morning).present?%> Mattina</label>
+                            <label><%= check_box_tag "time[afternoon]", "true", params.dig(:time,:afternoon).present?%> Pomeriggio</label>
+                            <label><%= check_box_tag "time[evening]", "true", params.dig(:time,:evening).present? %> Sera</label>
                         </div>
-                        <div class="input-group">
-                            <label for="max-price">Max:</label>
-                            <input type="number" id="max-price" name="max-price" placeholder="€">
-                        </div>  
                     </div>
-                </div>
+                    
+                    <!-- Sezione Eventi di Beneficenza -->
+                    <div class="filter-section">
+                        <h3 class="filter-label">Tipo di Evento</h3>
+                        <div class="filter-checkboxes">
+                            <label><%= check_box_tag :charity_only, "true", params[:charity_only] == "true" %> Eventi di beneficenza</label>
+                        </div>
+                    </div>
 
-                <!-- Sezione Orario -->
-                <div class="filter-section">
-                    <h3 class="filter-label">Orario</h3>
-                    <div class="filter-checkboxes">
-                        <label><input type="checkbox" name="time" value="morning"> Mattina</label>
-                        <label><input type="checkbox" name="time" value="afternoon"> Pomeriggio</label>
-                        <label><input type="checkbox" name="time" value="evening"> Sera</label>
+                    <!-- Sezione Categorie -->
+                    <div class="filter-section">
+                        <h3 class="filter-label">Categorie</h3>
+                        <div class="filter-checkboxes">
+                            <label><%= check_box_tag "category[]", "Musica", params[:category]&.include?("Musica") %>Musica</label>
+                            <label><%= check_box_tag "category[]", "Food&Drinks", params[:category]&.include?("Food&Drinks") %>Food&Drinks</label>
+                            <label><%= check_box_tag "category[]", "Comedy", params[:category]&.include?("Comedy") %>Comedy</label>
+                            <label><%= check_box_tag "category[]", "Teatro", params[:category]&.include?("Teatro") %>Teatro</label>
+                            <label><%= check_box_tag "category[]", "Sport", params[:category]&.include?("Sport") %>Sport</label>
+                            <label><%= check_box_tag "category[]", "Hobby", params[:category]&.include?("Hobby") %>Hobby</label>
+                            <label><%= check_box_tag "category[]", "Arte", params[:category]&.include?("Arte") %>Arte</label>
+                            <label><%= check_box_tag "category[]", "Festa", params[:category]&.include?("Hobby") %>Festa</label>
+                        </div>
+                        <!--a href="#" class="see-more-link">More</a-->
                     </div>
-                </div>
-
-                <!-- Sezione Categorie -->
-                <div class="filter-section">
-                    <h3 class="filter-label">Categorie</h3>
-                    <div class="filter-checkboxes">
-                        <label><input type="checkbox" name="category" value="adventure"> Adventure Travel</label>
-                        <label><input type="checkbox" name="category" value="art"> Art Exhibitions</label>
-                        <label><input type="checkbox" name="category" value="auctions"> Fundraisers</label>
-                        <label><input type="checkbox" name="category" value="beer"> Festivals</label>
-                        <label><input type="checkbox" name="category" value="benefit"> Concerts</label>
-                    </div>
-                    <a href="#" class="see-more-link">More</a>
-                </div>
+                    <%= submit_tag 'Filtra' %>
+                <% end %>
             </div>
-    
+            
 
 
             <!-- Sezione eventi -->
             <div class="main-content">
-                <div class="events-grid">
-                    <div class="event-card">
-                        <div class="event-design">
-                            <%= image_tag "card1.png", alt: "Event Image", class: "event-image" %>
-                        </div>
+                <div class="events-grid-search">
+                    <%== pagy_nav(@pagy) %>
+                    <% @events.each do |event| %>
+                        <%= link_to event_path(event.id), class: "event-card-link" do %>
+                            <div class="event-card">
+                                <div class="event-design">
+                                    <% if event.poster_pic.present? %>
+                                        <%= image_tag(event.poster_pic, alt: "Event Image", class: "event-image")%>
+                                    <% else %>
+                                        <%= image_tag("default-poster.jpg", alt: "Event Image", class: "event-image" )%>
+                                    <% end %>
+                                </div>
 
-                        <div class="event-frame">
-                            <h3 class="event-title">THE MOTANS GEOGRAPHIC 2025</h3>
-                            <p class="event-location">Orion Live Club</p>
-                            <div class="event-date">
-                                <span class="month">APR</span>
-                                <span class="day">11</span>
+                                <div class="event-frame">
+                                    <h3 class="event-title"><%= event.title %></h3>
+                                    <p class="event-location"><%= event.address+", "+event.city+", "+event.country %></p>
+                                    <div class="event-date">
+                                        <span class="month"><%= event.start_datetime.strftime("%b") %></span>
+                                        <span class="day"><%= event.start_datetime.strftime("%d") %></span>
+                                    </div>
+                                    <p class="event-time"><%= event.start_datetime.strftime("%H:%M") %></p>
+                                    <% if event.event_price == 0 || event.event_price == nil %>
+                                        <p class="event-price">Gratis</p>
+                                    <% else %>
+                                        <p class="event-price"><%= number_to_currency(event.event_price, unit: "€") %></p>
+                                    <% end %>
+                                </div>
                             </div>
-                            <p class="event-time">8 PM</p>
-                            <p class="event-price">Gratis</p>
-                            
-                            
-                        </div>
-                    </div>
+                        <% end %>
+                    <% end %>
                 </div>
             </div> 
 
@@ -195,6 +223,8 @@
                 };
             </script>-->
            
+            </div>
+
         </div>
     </div>
     <%= render "devise/shared/footer" %>

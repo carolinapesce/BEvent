@@ -1,0 +1,232 @@
+.users.show html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.users.show .page {
+    font-family: 'Heebo';
+    display: flex;
+    flex-direction: column;
+    padding-top: 64px;
+    width: 100vw;
+    min-height: 100vh;
+}
+
+.users.show .banner {
+    min-height: 200px;
+}
+
+.users.show .banner-content {
+    width: 100%;
+    min-height: 200px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #f1f1f1;
+}
+
+.users.show .info-profile{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.users.show .info-profile h1{
+    margin-left: 30px;
+}
+
+.users.show .banner-content img {
+    border-radius: 50%; 
+    cursor: pointer;
+    width: 140px;
+    height: 140px;
+    margin-left: 80px;
+}
+
+
+
+
+.users.show .edit-btn {
+    background: #04A777;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-family: "Montserrat";
+    margin-right: 30px;
+}
+ 
+.users.show .save-btn:hover {
+    background: #025e42;
+}
+
+
+
+
+
+
+.users.show .page-content {
+    display: flex;
+    flex-direction: row;
+    flex-grow: 1;
+}
+
+
+
+
+.users.show .description{
+    background-color: #f1f1f1;
+    margin: 25px;
+    padding: 20px; 
+    width: 100%; 
+}
+
+.users.show .description h3{
+    font-family: 'Montserrat';
+    font-weight: bold;
+}
+
+.users.show .events{
+    display: flex;
+    flex-direction: column;
+    background-color: #f1f1f1;
+    margin-top: 34px;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.users.show .choice{
+    display: flex;
+    flex-direction: row;
+    margin-top: 60px;
+}
+
+.users.show .choice h3{
+    font-family: 'Montserrat';
+    font-weight: bold;
+    margin-left: 60px;
+    margin-right: 60px;
+}
+
+
+.users.show .line{
+    height: 1px;
+    width: 90%;
+    background-color: black;
+    margin-top: 10px;
+    margin-bottom: 30px;
+}
+
+
+.users.show .events-list{
+    margin-bottom: 30px;
+}
+
+.users.show .event-card {
+    width: 600px;
+    height: 154px;
+    display: grid;
+    grid-template-columns: 47% 53%;
+    grid-template-areas: "image details";
+    border-radius: 15px;
+    background: #ffffff;
+    overflow: hidden;
+    margin-top: 30px;
+}
+
+.users.show .event-design {
+    grid-area: image;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    position: static;
+}
+
+.users.show .event-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; 
+}
+
+.users.show .event-frame {
+    padding: 5px;
+    grid-area: details;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start; 
+    gap: 1px;
+}
+
+.users.show .event-title {
+    font-size: 15px;
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 700;
+    line-height: 1.2; /*spazio tra le righe */
+    word-wrap: break-word; /*andare a capo titolo*/
+    max-width: 100%;
+}
+
+.users.show .month {
+    color: #5D5D5D;
+    font-size: 12px;
+    font-family: 'Montserrat';
+    text-transform: uppercase;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+.users.show .day {
+    color: #5D5D5D;
+    font-size: 12px;
+    font-family: 'Montserrat';
+    text-transform: uppercase;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+/*altre info */
+.users.show .event-location,
+.users.show .event-time,
+.users.show .event-price,
+.users.show .event-date {
+    font-size: 12px;
+    width: 100%;
+    color: #5D5D5D;
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+.users.show .events_current{
+    cursor: pointer;
+    padding: 5px;
+}
+
+.users.show .events_current:hover{
+    transform: scale(1.08);
+    background-color: #d0d0d0;
+    border-radius: 5px;
+}
+
+.users.show .events_past{
+    cursor: pointer;
+    padding: 5px;
+}
+
+.users.show .events_past:hover{
+    transform: scale(1.08);
+    background-color: #d0d0d0;
+    border-radius: 5px;
+}
+
+

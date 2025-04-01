@@ -7,7 +7,22 @@
     <!-- Barra di ricerca -->
     <% if controller_name != "events" || action_name != "search" %>
         <div class="search-bar">
-            <div class="search-input">
+            <%= form_with url: events_search_path, method: :get, local: true, class: "search-bar" do %>
+                <div class="search-input">
+                    <%= text_field_tag :query, params[:query], placeholder: "Cerca...", class: "search-field" %>
+                </div>
+
+                <div class="search-divider"></div>
+
+                <div class="search-dropdown">
+                    <%= select_tag :city, options_for_select([['Città...', ''], 'Roma', 'Milano', 'Napoli', 'Torino', 'Firenze'], params[:city]), class: "city-dropdown" %>
+                </div>
+
+                <button type="submit" class="search-button">
+                    <i class="fas fa-search"></i>
+                </button>
+            <% end %>
+            <!--div class="search-input">
                 <input type="text" placeholder="Search..." class="search-field">
             </div>
             <div class="search-divider"></div>
@@ -21,10 +36,10 @@
             </div>
             <!-- <button class="search-button">
                 <i class="fas fa-search"></i> 
-            </button> -->
+            </button> 
             <%= button_to events_search_path, method: :get, class: "search-button" do %>
                 <i class="fas fa-search"></i>
-            <% end %>
+            <% end %>-->
         </div>
     <% else %>
         <div class="search-bar-placeholder">
@@ -32,10 +47,10 @@
     <% end %>
     
     <!-- Link alla pagina di ricerca eventi -->
-    <%= link_to "Events", search_events_path, class: "nav-link" %> <%#!!!!!!!!!!!!!! Penso così vada bene, da fare la route%>
+    <%= link_to "Eventi", search_events_path, class: "nav-link" %> <%#!!!!!!!!!!!!!! Penso così vada bene, da fare la route%>
 
-    <!-- Link al footer -->
-    <%= link_to "About", "#footer", class: "nav-link" %>
+    <%= link_to "Preferiti", user_favourite_path(current_user), class: "nav-link" %>
+
     
     <!-- Switch lingua -->
     <div class="switch-lan" onclick="toggleSwitch()">
@@ -45,28 +60,40 @@
     </div>
     
     <!-- Notifiche -->
-    <div data-controller="notifications">
-         <button class="notification-button" data-action="click->notifications#toggle">
-            <i class="fa-solid fa-bell"></i>
-        </button>
-        <div class="notification-dropdown" data-notifications-target="dropdown">
-            <p>Nessuna nuova notifica</p>
+    <% if can? :read, Cart%>
+        <div class="cart-container">
+            <%= link_to cart_path(@current_cart), class: "cart-link" do %>
+                <i class="fa-solid fa-cart-shopping"></i>
+            <% end %>
         </div>
-    </div>
+    <% end %>
+
+
+    <% if can? :create, Event %>
+        <div class="create-container">
+            <%= link_to new_event_path, class: "create-link" do %>
+                <i class="fa-solid fa-plus"></i>
+            <% end %>
+        </div>
+    <% end %>
 
     
     <!-- Profilo -->
-    <div class="profile" data-controller="dropdown">
+    <div class="profile-menu" data-controller="dropdown">
         <% if user_signed_in? %>
             <div class="profile-dropdown", style: "height: 50px; width: 50px; border-radius: 45%;">
                 <%#= image_tag(current_user.profile_pic), class: "profile-image", id: "profile-dropdown-button", data: { action: "click->dropdown#toggle" } %>
                 <% if current_user.profile_pic.present? %>
-                    <%= image_tag(current_user.profile_pic, style: "height: 50px; width: 50px; border-radius: 50%;", data: { action: "click->dropdown#toggle" } )%>
+                    <%= image_tag(current_user.profile_pic, style: "height: 50px; width: 50px; border-radius: 50%; cursor: pointer;", data: { action: "click->dropdown#toggle" } )%>
                 <% else %>
-                    <%= image_tag("default-avatar.png", style: "height: 50px; width: 50px; border-radius: 50%;", data: { action: "click->dropdown#toggle" } )%>
+                    <%= image_tag("default-avatar.png", style: "height: 50px; width: 50px; border-radius: 50%; cursor: pointer;", data: { action: "click->dropdown#toggle" } )%>
                 <% end %>
                 <div class="dropdown-content hidden" data-dropdown-target="menu">
-                    <%= link_to "Preferiti", user_favourite_path(current_user), class: "dropdown-item" %>
+                    <%= link_to "Profilo", user_profile_path, class: "dropdown-item" %>
+                    <% if can? :read, Cart%>
+                        <%= link_to "I miei biglietti", checkouts_index_path(current_user.id), class: "dropdown-item" %>
+                    <% end %>
+                    <%#= link_to "Preferiti", user_favourite_path(current_user), class: "dropdown-item" %>
                     <%#= link_to "Modifica Profilo", edit_user_path(current_user), class: "dropdown-item" %>
                     <%= link_to "Impostazioni", edit_user_registration_path, class: "dropdown-item" %>
                     <%= button_to "Logout", destroy_user_session_path, method: :delete, class: "dropdown-item logout-button" %>
@@ -76,4 +103,4 @@
             <%= link_to "Login", new_user_session_path, class: "login-button" %>
         <% end %>
     </div>
-  </nav>
+</nav>

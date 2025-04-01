@@ -5,6 +5,7 @@ import "controllers"
 
 
 
+
 function toggleSwitch() {
     let switchElement = document.querySelector(".switch-lan");
     switchElement.classList.toggle("active");

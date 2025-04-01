@@ -1,18 +1,39 @@
 class User < ApplicationRecord
 
-  # has_many :events
-  has_many :favourites
-  has_many :favourite_events, through: :favourites, source: :event
+  has_many :events
+  has_many :reviews, dependent: :destroy
+  
+  has_many :favourites, dependent: :destroy
+  has_many :favourite_events, through: :favourites, source: :event, dependent: :destroy
+  has_many :checkouts
 
-  enum :role, user: 0, event_planner: 1, admin: 2
+  after_create :set_stripe_customer_id
+
+  # enum :role, user: 0, event_planner: 1, admin: 2
 
   has_one_attached :profile_pic
 
   validates :bio, absence: true, unless: :event_planner?
 
+  def user?
+    self.role == 0
+  end
+
+  def event_planner?
+    self.role == 1
+  end
+
+  def admin?
+    self.role == 2
+  end
+
+  def favourited?(event)
+    favourite_events.include?(event)
+  end
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
-  devise :database_authenticatable, :registerable,
+  devise :database_authenticatable, :registerable, :timeoutable, :lockable,
          :recoverable, :rememberable, :validatable, :confirmable,
          :omniauthable, omniauth_providers: [:google_oauth2]
 
@@ -29,5 +50,20 @@ class User < ApplicationRecord
     end
   end
 
+  private
+
+  def set_stripe_customer_id 
+    address_obj_json = { 
+      city: self.city, 
+      country: 'IT'
+    }
+    customer = Stripe::Customer.create(
+      email: self.email,
+      address: address_obj_json,
+      phone: self.phone_number,
+      #name: self.first_name + ' ' + self.last_name
+    )
+    update(stripe_customer_id: customer.id)
+  end
 
 end
