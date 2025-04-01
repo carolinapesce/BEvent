@@ -94,7 +94,7 @@
                             <label><%= check_box_tag "category[]", "Sport", params[:category]&.include?("Sport") %>Sport</label>
                             <label><%= check_box_tag "category[]", "Hobby", params[:category]&.include?("Hobby") %>Hobby</label>
                             <label><%= check_box_tag "category[]", "Arte", params[:category]&.include?("Arte") %>Arte</label>
-                            <label><%= check_box_tag "category[]", "Festa", params[:category]&.include?("Hobby") %>Festa</label>
+                            <label><%= check_box_tag "category[]", "Festa", params[:category]&.include?("Festa") %>Festa</label>
                         </div>
                         <!--a href="#" class="see-more-link">More</a-->
                     </div>
@@ -176,11 +176,11 @@
                 window.initMap = initMap;
             </script>
 
-            <script async defer src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAPS_API_KEY'] %>&map_ids=74d5e23654ee93dd&callback=initMap&v=beta"></script>-->
+            <script async defer src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAPS_API_KEY'] %>&map_ids=74d5e23654ee93dd&callback=initMap&v=beta"></script>
             
             <!--
             <% if @load_maps %>
-                <%= javascript_include_tag "https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAPS_API_KEY'] %>&v=beta&libraries=maps,marker&callback=initMap", async: true, defer: true %>
+                <%#= javascript_include_tag "https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAPS_API_KEY'] %>&v=beta&libraries=maps,marker&callback=initMap", async: true, defer: true %>
             <% end %>
 
             <script>
