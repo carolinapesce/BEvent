@@ -1,7 +1,56 @@
-<p>Hello <%= @resource.email %>!</p>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+        <td align="center" style="padding: 20px;">
+            <table class="content" width="600" border="0" cellspacing="0" cellpadding="0" style="border-collapse: collapse; border: 1px solid #cccccc;">
+                <!-- Header -->
+                <tr>
+                    <td class="header" style="background-color: #04A777; font-family: 'Open Sans', Helvetica, Arial, sans-serif;letter-spacing: 1px; padding: 40px; text-align: center; color: white; font-size: 60px;">
+                    BEvent
+                    </td>
+                </tr>
 
-<p>Your account has been locked due to an excessive number of unsuccessful sign in attempts.</p>
+                <!-- Body -->
+                <tr>
+                    <td class="body" style="padding: 40px; text-align: left; font-size: 16px; line-height: 1.6; font-family: Arial, Helvetica, sans-serif;">
+                        <h2>Ciao <%= @resource.email %>!</h2> <br>
+                        <p>Il tuo account è stato bloccato per gli eccessivi tentativi di accesso non riusciti!!!</p>
+                        <br>
+                    </td>
+                </tr>
 
-<p>Click the link below to unlock your account:</p>
+                
+                <tr>
+                    <td class="body" style="padding: 40px; text-align: left; font-size: 16px; line-height: 1.6;  font-family: Arial, Helvetica, sans-serif;">  
+                        <p>Clicca il bottone qui sotto per sbloccare il tuo account.</p>
+                        <br>   
+                    </td>
+                </tr>
 
-<p><%= link_to 'Unlock my account', unlock_url(@resource, unlock_token: @token) %></p>
+                <tr>
+                    <td style="padding: 0px 40px 0px 40px; text-align: center;">
+                        <!-- CTA Button -->
+                        <table cellspacing="0" cellpadding="0" style="margin: auto;">
+                            <tr>
+                                <td align="center" style="background-color: #F97068; padding: 10px 20px; border-radius: 5px;">
+                                    <%= link_to 'Sblocca il tuo account', unlock_url(@resource, unlock_token: @token), style: "color: #ffffff; text-decoration: none; font-weight: bold; font-family: Arial, Helvetica, sans-serif;", target: "_blank" %>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="body" style="padding: 40px; text-align: left; font-size: 16px; line-height: 1.6;">       
+                    </td>
+                </tr>
+
+                <!-- Footer -->
+                <tr>
+                    <td class="footer" style="background-color: #04A777; padding: 40px; text-align: center; color: white; font-size: 14px; font-family: Arial, Helvetica, sans-serif;">
+                    Copyright &copy; 2024 | BEvent
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+</table>

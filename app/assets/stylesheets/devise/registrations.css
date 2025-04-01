@@ -138,22 +138,32 @@ width: 206.4px;
    margin-left: 2px;
 }
 
+
+/*--------------Errori-----------*/
+
 .registrations.new #error_explanation {
-   background: rgba(255, 0, 0, 0.1);
+   background: #F44336;
    border: 1px solid red;
-   color: darkred;
-   width: 206.4px;
+   color: white;
    padding: 10px;
    border-radius: 5px;
    margin-bottom: 15px;
-   font-size: 10px;
+   font-size: 14px;
+   position: fixed;
+   top: 20px;
+   left: 50%;
+   transform: translateX(-50%);
+   z-index: 1001;
+   width: 80%;
+   max-width: 400px;
+   justify-content: center;
 }
 
-/* Errori */
+
 .registrations.new #error_explanation h2 {
-   font-size: 12px;
+   font-size: 16px;
    font-weight: bold;
-   color: red;
+   color: darkred;
    margin-bottom: 5px;
 }
 
@@ -162,16 +172,14 @@ width: 206.4px;
 }
 
 .registrations.new #error_explanation li {
-   font-size: 10px;
+   font-size: 14px;
 }
 
 /* Imput con erroeri*/
-.registrations.new .field_with_errors input {
-   color: darkred;
-}
+
 
 .registrations.new .field_with_errors input::placeholder {
-   color: darkred;
+   color: red;
    opacity: 0.7;
 }
 
@@ -382,75 +390,56 @@ body.registrations.edit{
 /* -------------------------------------CREATE--------------------------------------- */
 
 
-
-
-
-
-
 body.registrations.create {
-   margin: 0;
-   border: 0;
    font-family: 'Heebo', sans-serif;
    height: 100vh;
    display: flex;
-   justify-content: center;
-   align-items: center;
-   background: white;
+   margin: 0;
+   border: 0;
 }
 
-.registrations.create .container {
-   width: 70vw;
-   height: 80vh;
-   background: lightblue;
-   display: grid;
-   grid-template-columns: 100%;
-   grid-template-areas: "signup";
-   box-shadow: 0 0 17px 10px rgb(0 0 0 / 30%);
-   border-radius: 20px;
-}
-
+/* Sezione sinistra con immagine */
 .registrations.create .design {
-   grid-area: design;
-   display: none;
-   border-top-left-radius: 20px;
-   border-bottom-left-radius: 20px;
-   overflow: hidden;
+   width: 50%;
+   height: 100vh;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   background: lightblue;
 }
 
 .registrations.create .background-image {
-   object-position: -320px 0;
    width: 100%;
    height: 100%;
    object-fit: cover;
-   border-top-left-radius: 20px;
-   border-bottom-left-radius: 20px;
 }
 
+/* Sezione destra con il form */
 .registrations.create .signup {
-   grid-area: signup;
-   background: white;
-   border-radius: 20px;
+   width: 50%;
+   height: 100vh;
    display: flex;
    flex-direction: column;
    justify-content: center;
    align-items: center;
+   background: white;
 }
 
-@media (min-width: 768px) {
-   .registrations.create .container {
-      grid-template-columns: 50% 50%;
-      grid-template-areas: "design signup";
+/* Adattamento per dispositivi mobili */
+@media (max-width: 768px) {
+   body.registrations.create {
+       flex-direction: column;
    }
 
    .registrations.create .design {
-      display: block;
+       display: none;
    }
 
    .registrations.create .signup {
-      border-top-left-radius: 0px;
-      border-bottom-left-radius: 0px;
+       width: 100%;
    }
 }
+
 
 .registrations.create .new_user {
 width: 206.4px;
@@ -541,22 +530,31 @@ width: 206.4px;
    margin-left: 2px;
 }
 
+/*----------------------Errori----------------*/
+
 .registrations.create #error_explanation {
-   background: rgba(255, 0, 0, 0.1);
+   background: #F44336;
    border: 1px solid red;
-   color: darkred;
-   width: 206.4px;
+   color: white;
    padding: 10px;
    border-radius: 5px;
    margin-bottom: 15px;
-   font-size: 10px;
+   font-size: 14px;
+   position: fixed;
+   top: 20px;
+   left: 50%;
+   transform: translateX(-50%);
+   z-index: 1001;
+   width: 80%;
+   max-width: 400px;
+   justify-content: center;
 }
 
-/* Errori */
+
 .registrations.create #error_explanation h2 {
-   font-size: 12px;
+   font-size: 16px;
    font-weight: bold;
-   color: red;
+   color: darkred;
    margin-bottom: 5px;
 }
 
@@ -565,16 +563,14 @@ width: 206.4px;
 }
 
 .registrations.create #error_explanation li {
-   font-size: 10px;
+   font-size: 14px;
 }
 
 /* Imput con erroeri*/
-.registrations.create .field_with_errors input {
-   color: darkred;
-}
+
 
 .registrations.create .field_with_errors input::placeholder {
-   color: darkred;
+   color: red;
    opacity: 0.7;
 }
 

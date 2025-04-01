@@ -92,7 +92,6 @@
 .users.show .events{
     display: flex;
     flex-direction: column;
-    grid-area: events;
     background-color: #f1f1f1;
     margin-top: 34px;
     justify-content: center;

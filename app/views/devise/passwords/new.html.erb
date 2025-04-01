@@ -3,7 +3,7 @@
 </div>
 
 <div class="pass">
-  <h2 class="title">Forgot password?</h2>
+  <h2 class="title">Password dimenticata?</h2>
 
   <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
     <%= render "devise/shared/error_messages", resource: resource %>
@@ -13,7 +13,7 @@
     </div>
 
     <div class="actions">
-      <%= f.submit "Send me reset instructions", class: "btn-submit" %>
+      <%= f.submit "Invia istruzioni di reset", class: "btn-submit" %>
     </div>
 
     <div class="line"></div>
@@ -22,12 +22,12 @@
   <%= render "devise/shared/omniauth_links" %>
 
   <div class="sgnp">
-    <p class="informative">Don't have an account?</p>
+    <p class="informative">Non hai un account?</p>
     <%= render "devise/shared/sign_up" %>
   </div>
 
   <div class="lgn">
-    <p class="informative">Already changed password?</p>
+    <p class="informative">Password già cambiata?</p>
     <%= render "devise/shared/log_in" %>
   </div>
 </div>
