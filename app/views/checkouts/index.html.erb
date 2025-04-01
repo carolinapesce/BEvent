@@ -22,11 +22,19 @@
             <h3>Eventi acquistati:</h3>
             <ul class="checkout-items">
               <% checkout.cart.cart_items.each do |cart_item| %>
-                <li>
-                  <strong><%= cart_item.event.title %></strong> - 
-                  <%= cart_item.quantity %> biglietto(i) - 
-                  Prezzo: <%= number_to_currency(cart_item.event.event_price, unit: "€") %>
-                </li>
+                <% if cart_item.donation_amount.present?%>
+                  <li>
+                    <strong><%= cart_item.event.title %></strong> - 
+                    <%= cart_item.quantity %> biglietto(i) - 
+                    Donazione: <%= number_to_currency(cart_item.donation_amount, unit: "€") %>
+                  </li>
+                <% else %>
+                  <li>
+                    <strong><%= cart_item.event.title %></strong> - 
+                    <%= cart_item.quantity %> biglietto(i) - 
+                    Prezzo: <%= number_to_currency(cart_item.event.event_price, unit: "€") %>
+                  </li>
+                <% end %>
               <% end %>
             </ul>
           </div>
