@@ -66,46 +66,46 @@
 
                 <% if @event.charity_event? %>
                     <div class="event-buy">
-                        <h2>Fai una Donazione</h2>
-                        <%= form_with url: cart_items_path(:event_id => @event.id), method: :post do |f| %>
-                            <label for="donation_amount">Importo della Donazione (Euro):</label>
-                            <%= f.number_field :donation_amount, value: 1, step: 0.01, min: 1.00, required: true %>
+                        <h4>Fai una Donazione</h4>
+                        <%= form_with url: cart_items_path(:event_id => @event.id), method: :post, class: "donation-form" do |f| %>
+                            <div class="donation-input">
+                                <label for="donation_amount"><i class="fa-solid fa-hand-holding-heart"></i> Importo (Euro):</label>
+                                <%= f.number_field :donation_amount, value: 1, step: 0.01, min: 1.00, required: true, class: "donation-field" %>
+                            </div>
 
                             <%= hidden_field_tag :user_id, current_user.id %>
 
-                            <label for="anonymous">Donare in modo anonimo?</label>
-                            <%= f.check_box :anonymous %>
+                            <div class="donation-options">
+                                <label class="checkbox-container">
+                                <%= f.check_box :anonymous, class: "donation-checkbox" %>
+                                Donare in modo anonimo?
+                                </label>
+                            </div>
 
-                            <label for="message">Messaggio (facoltativo):</label>
-                            <%= f.text_area :message, placeholder: "Lascia un messaggio..." %>
+                            <div class="donation-message">
+                                <label for="message">Messaggio (facoltativo):</label>
+                                <%= f.text_area :message, placeholder: "Lascia un messaggio...", class: "donation-textarea" %>
+                            </div>
 
-                            <%= f.submit "Dona e Partecipa", class: "btn btn-primary" %>
+                            <%= f.submit "Dona e Partecipa", class: "donation-btn" %>
                         <% end %>
                     </div>
                 <% else %>
                     <div class="event-buy">
-                        <% if can? :read, @cart%>
-                            <% if @event.is_full? %>
-                                Non ci sono più biglietti disponibili.
-                                <br>
-                            <% else %>
-                                <%= button_to "Aggiungi al carrello", cart_items_path(:event_id => @event.id), method: :post,  class: "buy-btn"  %>
-                                <br>
-                            <% end %>
+                        <% if can? :read, @cart %>
+                        <% if @event.is_full? %>
+                            <p class="sold-out">Non ci sono più biglietti disponibili.</p>
+                        <% else %>
+                            <%= button_to "Aggiungi al carrello", cart_items_path(:event_id => @event.id), method: :post, class: "buy-btn" %>
                         <% end %>
+                        <% end %>
+
                         <div class="tckt-info">
-                            <h4>Info Biglietti</h4>
-                            <% if @event.event_price == 0.0 %>
-                                <div class="tckt-div">
-                                    <p><i class="fa-solid fa-ticket"></i></p>
-                                    <p>Gratis</p>
-                                </div>
-                            <% else %>
-                                <div class="tckt-div">
-                                    <p><i class="fa-solid fa-ticket"></i></p>
-                                    <p><%= number_to_currency(@event.event_price) %></p>
-                                </div>
-                            <% end %>
+                        <h4>Info Biglietti</h4>
+                        <div class="tckt-div">
+                            <p><i class="fa-solid fa-ticket"></i></p>
+                            <p><%= @event.event_price.zero? ? "Gratis" : number_to_currency(@event.event_price) %></p>
+                        </div>
                         </div>
                     </div>
                 <% end %>
