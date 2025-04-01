@@ -108,3 +108,16 @@
     text-align: center;
     margin-top: 20px;
 }
+
+.checkouts.index .review-bt{
+    background: #04A777;
+    color: white;
+    margin-left: 40px;
+    padding: 6px;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.checkouts.index .review-bt:hover{
+    background: #03855e;
+}

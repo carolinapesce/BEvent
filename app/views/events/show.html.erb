@@ -153,6 +153,13 @@
             </div>
 
             <div class="reviews-section">
+                <div class="review-title">
+                    <h3>Recensioni</h3>
+                    <div class="review-media">
+                        <i class="fa-solid fa-star"></i>
+                        <p><%= @event.average_rating.present? ? @event.average_rating.round(1) : "N/A" %></p>
+                    </div>
+                </div>
                 <% if @event.has_ended? %>
                     <% if @event.reviews.any? %>
                         <% @event.reviews.each do |review| %>

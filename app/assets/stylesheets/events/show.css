@@ -504,8 +504,37 @@
 
 
 .events.show .reviews-section {
-    margin-top: 20px;
+    margin-top: 50px;
 }
+
+.events.show .review-title{
+    margin-bottom: 15px;
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    align-items: center;
+}
+
+.events.show .review-media{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 5px;
+    font-size: 1.6rem;
+    
+}
+
+.events.show .review-media i{
+    color: #f4c542;
+}
+
+.events.show .review-media p{
+    font-weight: 700;
+}
+
+
+
+
 
 .events.show .review-card {
     background: #fff;
@@ -517,7 +546,7 @@
 
 .events.show .review-header {
     font-weight: bold;
-    font-size: 1.1rem;
+    font-size: 1.0rem;
     color: #333;
 }
 
