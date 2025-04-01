@@ -1,36 +1,44 @@
-<h1>Gestione Utenti</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Nome</th>
-      <th>Email</th>
-      <th>Ruolo</th>
-      <th>Azioni</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @users.each do |user| %>
-      <tr>
-        <td><%= user.first_name %></td>
-        <td><%= user.email %></td>
-        <td>
-            <% if user.role == 0 %>
-                User
-            <% elsif user.role == 1 %>
-                Event Planner
-            <% elsif user.role == 2 %>
-                Admin
-            <% end %>
-        
-        </td>
-        <td>
-          <%= link_to 'Modifica', edit_admin_user_path(user) %> |
-          <%= link_to 'Elimina', admin_user_path(user), method: :delete, data: { confirm: 'Sei sicuro?' } %>
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<%= link_to 'Crea un nuovo utente', new_admin_user_path %>
+<!-- Modifica al file HTML.erb -->
+<div class="admin-users-container">
+  <h1 class="admin-users-title">Gestione Utenti</h1>
+  
+  <div class="admin-users-actions">
+    <%= link_to 'Crea un nuovo utente', new_admin_user_path, class: 'admin-users-new-btn' %>
+  </div>
+  
+  <div class="admin-users-table-container">
+    <table class="admin-users-table">
+      <thead>
+        <tr>
+          <th>Nome</th>
+          <th>Email</th>
+          <th>Ruolo</th>
+          <th>Azioni</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @users.each do |user| %>
+          <tr>
+            <td><%= user.first_name %></td>
+            <td><%= user.email %></td>
+            <td>
+              <span class="role-badge <%= role_class(user.role) %>">
+                <% if user.role == 0 %>
+                  User
+                <% elsif user.role == 1 %>
+                  Event Planner
+                <% elsif user.role == 2 %>
+                  Admin
+                <% end %>
+              </span>
+            </td>
+            <td class="actions-cell">
+              <%= link_to 'Modifica', edit_admin_user_path(user), class: 'action-link edit-link' %>
+              <%= link_to 'Elimina', admin_user_path(user), method: :delete, data: { confirm: 'Sei sicuro?' }, class: 'action-link delete-link' %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
