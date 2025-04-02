@@ -8,11 +8,16 @@ class EventsController < ApplicationController
 
   def index
     @user = current_user
+    @events = Event.all
+    @load_maps = !request.fullpath.include?('maps')
     @events = Event.where(status: "upcoming").or(Event.where(status: "ongoing")).order(:start_datetime)
   end
 
   def search
     @user = current_user
+    @events = Event.all
+    @google_maps_api_key = ENV['GOOGLE_MAPS_API_KEY']
+    Rails.logger.debug("Google Maps API Key: #{@google_maps_api_key}")
 
     #@pagy, @events = pagy(Event.where(status: "upcoming").or(Event.where(status: "ongoing")).order(:start_datetime), limit: 5)
 

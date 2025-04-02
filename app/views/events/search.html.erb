@@ -94,7 +94,7 @@
                             <label><%= check_box_tag "category[]", "Sport", params[:category]&.include?("Sport") %>Sport</label>
                             <label><%= check_box_tag "category[]", "Hobby", params[:category]&.include?("Hobby") %>Hobby</label>
                             <label><%= check_box_tag "category[]", "Arte", params[:category]&.include?("Arte") %>Arte</label>
-                            <label><%= check_box_tag "category[]", "Festa", params[:category]&.include?("Hobby") %>Festa</label>
+                            <label><%= check_box_tag "category[]", "Festa", params[:category]&.include?("Festa") %>Festa</label>
                         </div>
                         <!--a href="#" class="see-more-link">More</a-->
                     </div>
@@ -137,6 +137,92 @@
                         <% end %>
                     <% end %>
                 </div>
+            </div> 
+
+            <!-- Mappa -->
+            <div class="map-area">
+                <div id="map" style="width: 100%; height: 500px;"></div>
+            </div>
+            
+            
+            <script>    
+                async function initMap() {
+                    const { Map } = await google.maps.importLibrary("maps");
+                    const { AdvancedMarkerElement } = await google.maps.importLibrary("marker");
+                    const map = new Map(document.getElementById("map"), {
+                        mapId: "74d5e23654ee93dd",
+                        center: { lat: 41.9028, lng: 12.4964 }, // Default su Milano, cambia se necessario
+                        zoom: 11
+                    });
+                    
+                    var events = <%= raw @events.to_json(only: [:latitude, :longitude, :title]) %>;
+                    console.log(events);
+
+                    
+                    events.forEach(function(event) {
+                        console.log("Creazione marker per:", event);
+                        if (event.latitude && event.longitude) {
+                            const marker = new AdvancedMarkerElement({
+                                map: map,
+                                position: { lat: parseFloat(event.latitude), lng: parseFloat(event.longitude) },
+                                title: event.title
+                            });
+                        } else {
+                            console.warn("Evento senza coordinate valide:", event);
+                        }
+                    });
+            
+                }
+                window.initMap = initMap;
+            </script>
+
+            <script async defer src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAPS_API_KEY'] %>&map_ids=74d5e23654ee93dd&callback=initMap&v=beta"></script>
+            
+            <!--
+            <% if @load_maps %>
+                <%#= javascript_include_tag "https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAPS_API_KEY'] %>&v=beta&libraries=maps,marker&callback=initMap", async: true, defer: true %>
+            <% end %>
+
+            <script>
+                async function initMap() {
+                    const { Map } = await google.maps.importLibrary("maps");
+                    const { AdvancedMarkerElement } = await google.maps.importLibrary("marker");
+
+                    const map = new Map(document.getElementById("map"), {
+                        center: { lat: 41.9028, lng: 12.4964 },
+                        zoom: 11,
+                        mapId: "74d5e23654ee93dd"
+                    });
+
+                    const events = <%= raw @events.to_json(only: [:latitude, :longitude, :title]) %>;
+                    console.log("Eventi:", events);
+
+                    events.forEach(event => {
+                        if (event.latitude && event.longitude) {
+                            new AdvancedMarkerElement({
+                                map,
+                                position: {
+                                    lat: parseFloat(event.latitude),
+                                    lng: parseFloat(event.longitude)
+                                },
+                                title: event.title
+                            });
+                            console.log(`Marker creato: ${event.title} alle coordinate (${event.latitude}, ${event.longitude})`);
+                        } else {
+                            console.warn("Evento senza coordinate valide:", event);
+                        }
+                    });
+                }
+
+                window.onload = () => {
+                    if (typeof google !== "undefined" && google.maps) {
+                        initMap();
+                    } else {
+                        console.error("Google Maps non è stato caricato correttamente.");
+                    }
+                };
+            </script>-->
+           
             </div>
 
         </div>

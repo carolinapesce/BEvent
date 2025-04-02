@@ -59,9 +59,20 @@ User.create!(
   confirmed_at: Time.now
 )
 
+city_coordinates = {
+  "Roma" => [41.9028, 12.4964],
+  "Milano" => [45.4642, 9.1900],
+  "Napoli" => [40.8522, 14.2681],
+  "Torino" => [45.0703, 7.6869],
+  "Firenze" => [43.7696, 11.2558]
+}
+
 30.times do |i|
   start_time = Faker::Time.forward(days: rand(1..10), period: [:morning, :afternoon, :evening].sample)
   end_time = start_time + rand(1..[5.hours, (start_time.end_of_day - start_time)].min)
+  city = city_coordinates.keys.sample
+  latitude, longitude = city_coordinates[city]
+
   Event.create!(
     title: "Evento #{i + 1}",
     description: "Descrizione dell'evento #{i + 1}",
@@ -76,11 +87,11 @@ User.create!(
     beneficiary: nil,
     fundraiser_goal: nil,
     current_funds: 0.0,
-    city: ["Roma", "Milano", "Napoli", "Torino", "Firenze"].sample,
+    city: city,
     country: "Italia",
     status: 0,
-    latitude: Faker::Address.latitude,
-    longitude: Faker::Address.longitude,
+    latitude: latitude,
+    longitude: longitude,
     event_price: rand(10..50),
     user_id: 5,  
     type: nil,  
@@ -94,6 +105,9 @@ end
 30.times do |i|
   start_time = Faker::Time.forward(days: rand(1..10), period: [:morning, :afternoon, :evening].sample)
   end_time = start_time + rand(1..[5.hours, (start_time.end_of_day - start_time)].min)
+  city = city_coordinates.keys.sample
+  latitude, longitude = city_coordinates[city]
+
   Event.create!(
     title: "Evento di beneficenza #{i + 1}",
     description: "Descrizione dell'evento di beneficenza #{i + 1}",
@@ -108,11 +122,11 @@ end
     beneficiary: "Beneficiario #{i + 1}",
     fundraiser_goal: rand(1000..5000),
     current_funds: 0,
-    city: ["Roma", "Milano", "Napoli", "Torino", "Firenze"].sample,
+    city: city,
     country: "Italia",
     status: 0,
-    latitude: Faker::Address.latitude,
-    longitude: Faker::Address.longitude,
+    latitude: latitude,
+    longitude: longitude,
     event_price: rand(10..50),
     user_id: 5,  
     type: "CharityEvent",  
@@ -126,6 +140,9 @@ end
 10.times do |i|
   start_time = Time.now - rand(1..30).days
   end_time = start_time + rand(1..8).hours
+  city = city_coordinates.keys.sample
+  latitude, longitude = city_coordinates[city]
+
   event = Event.create!(
     title: "Evento #{i + 1}",
     description: "Descrizione dell'evento #{i + 1}",
@@ -140,11 +157,11 @@ end
     beneficiary: nil,
     fundraiser_goal: nil,
     current_funds: 0.0,
-    city: ["Roma", "Milano", "Napoli", "Torino", "Firenze"].sample,
+    city: city,
     country: "Italia",
     status: 2,
-    latitude: Faker::Address.latitude,
-    longitude: Faker::Address.longitude,
+    latitude: latitude,
+    longitude: longitude,
     event_price: rand(10..50),
     user_id: 5,  
     type: nil,  

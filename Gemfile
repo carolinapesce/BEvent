@@ -85,6 +85,7 @@ gem "stripe-rails"
 # Whenever Gem for running jobs periodically
 gem 'whenever', require: false
 
+gem 'geocoder'
 gem 'rails-i18n'
 
 gem 'pagy'

@@ -38,6 +38,16 @@ class Event < ApplicationRecord
 
   validates :category, inclusion: { in: VALID_CATEGORIES, message: "%{value} non è una categoria valida" }
   
+  geocoded_by :full_address
+  after_validation :geocode, if: :full_address_changed?
+
+  def full_address
+    [address, city, country].compact.join(', ')
+  end
+
+  def full_address_changed?
+    will_save_change_to_address? || will_save_change_to_city? || will_save_change_to_country?
+  end
 
   def self.update_status
     now = Time.current
