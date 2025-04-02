@@ -49,8 +49,9 @@
     <!-- Link alla pagina di ricerca eventi -->
     <%= link_to "Eventi", search_events_path, class: "nav-link" %> <%#!!!!!!!!!!!!!! Penso così vada bene, da fare la route%>
 
-    <%= link_to "Preferiti", user_favourite_path(current_user), class: "nav-link" %>
-
+    <% if can? :read, @favourite%>
+        <%= link_to "Preferiti", user_favourite_path(current_user), class: "nav-link" %>
+    <% end %>
     
     <!-- Switch lingua -->
     <div class="switch-lan" onclick="toggleSwitch()">
