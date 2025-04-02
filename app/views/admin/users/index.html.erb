@@ -1,5 +1,12 @@
 
 <div class="admin-users-container">
+
+  <div class= "show-back">
+        <%= link_to request.referer || root_path do %>
+            <i class="fa-solid fa-arrow-left"></i>
+        <% end %>
+  </div>
+
   <h1 class="admin-users-title">Gestione Utenti</h1>
 
   <div class="search-area">

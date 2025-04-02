@@ -42,6 +42,22 @@
     min-width: 250px;
     text-align: center;
   }
+
+  .admin-logout-btn {
+    background-color: #F44336;
+    color: white;
+    padding: 1.2rem 2.5rem;
+    font-family: 'Heebo', sans-serif;
+    font-weight: 600;
+    font-size: 1.2rem;
+    border: none;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    min-width: 250px;
+    text-align: center;
+  }
   
   .admin-dashboard-btn:hover {
     background-color: #038a65;
@@ -51,6 +67,17 @@
   
   /* Effetto al click */
   .admin-dashboard-btn:active {
+    transform: translateY(-1px);
+  }
+
+  .admin-logout-btn:hover {
+    background-color: #c8352a;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  }
+  
+  /* Effetto al click */
+  .admin-logout-btn:active {
     transform: translateY(-1px);
   }
   

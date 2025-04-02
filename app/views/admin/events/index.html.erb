@@ -1,5 +1,11 @@
 
 <div class="admin-events-container">
+  <div class= "show-back">
+        <%= link_to request.referer || root_path do %>
+            <i class="fa-solid fa-arrow-left"></i>
+        <% end %>
+  </div>
+  
   <h1 class="admin-events-title">Gestione Eventi</h1>
 
   <div class="search-area">

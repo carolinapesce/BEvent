@@ -1,8 +1,18 @@
 <div class="admin-dashboard-container">
-  <h1 class="admin-dashboard-title">Benvenuto nella Dashboard dell'Amministratore</h1>
+  <h1 class="admin-dashboard-title">Benvenuto nella Dashboard dell'Amministratore, <%= current_user.first_name %> </h1>
   
   <div class="admin-dashboard-actions">
     <%= link_to 'Gestisci Utenti', admin_users_path, class: 'admin-dashboard-btn' %>
     <%= link_to 'Gestisci Eventi', admin_events_path, class: 'admin-dashboard-btn' %>
   </div>
+
+  <div>
+  
+  
+  </div>
+
+  <div>
+    <%= button_to "Logout", destroy_user_session_path, method: :delete, class: 'admin-logout-btn' %>
+  </div>
+
 </div>
