@@ -7,6 +7,8 @@ class User < ApplicationRecord
   has_many :favourite_events, through: :favourites, source: :event, dependent: :destroy
   has_many :checkouts
 
+  has_many :supports, dependent: :destroy
+
   after_create :set_stripe_customer_id
 
   # enum :role, user: 0, event_planner: 1, admin: 2
