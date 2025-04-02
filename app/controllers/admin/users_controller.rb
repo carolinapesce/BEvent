@@ -4,6 +4,20 @@ class Admin::UsersController < ApplicationController
 
   def index
     @users = User.all
+    @query = params[:query]
+    @role = params[:role]
+    if @query.present?
+      @users = @users.where("first_name LIKE ? OR last_name LIKE ? OR email LIKE ?", "%#{@query}%", "%#{@query}%", "%#{@query}%")
+    end
+    if @role.present?
+      role_mapping = {
+        "User" => 0,
+        "Event Planner" => 1,
+        "Admin" => 2
+      }
+      role_value = role_mapping[@role]
+      @users = @users.where(role: role_value) if role_value.present?
+    end
   end
 
   def new
@@ -12,6 +26,7 @@ class Admin::UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
+    @user.confirmed_at = Time.now
     if @user.save
       redirect_to admin_users_path, notice: 'Utente creato con successo.'
     else
@@ -45,6 +60,6 @@ class Admin::UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:first_name, :last_name, :email, :role)
+    params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation, :role)
   end
 end

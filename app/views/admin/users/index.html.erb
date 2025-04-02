@@ -1,6 +1,28 @@
 
 <div class="admin-users-container">
   <h1 class="admin-users-title">Gestione Utenti</h1>
+
+  <div class="search-area">
+    <div class="search-section">
+      <div class="search-bar">
+        <%= form_with url: admin_users_path, method: :get, local: true, class: "search-bar" do %>
+           <div class="search-input">
+              <%= text_field_tag :query, params[:query], placeholder: "Cerca...", class: "search-field" %>
+            </div>
+
+            <div class="search-divider"></div>
+
+            <div class="search-dropdown">
+              <%= select_tag :role, options_for_select([['Ruolo...', ''], 'User', 'Event Planner', 'Admin', params[:role]]), class: "city-dropdown" %>
+            </div>
+
+            <button type="submit" class="search-button">
+              <i class="fas fa-search"></i>
+            </button>
+        <% end %>
+      </div>
+    </div>
+  </div>
   
   <div class="admin-users-actions">
     <%= link_to 'Crea un nuovo utente', new_admin_user_path, class: 'admin-users-new-btn' %>
@@ -34,7 +56,7 @@
             </td>
             <td class="actions-cell">
               <%= link_to 'Modifica', edit_admin_user_path(user), class: 'action-link edit-link' %>
-              <%= link_to 'Elimina', admin_user_path(user), method: :delete, data: { confirm: 'Sei sicuro?' }, class: 'action-link delete-link' %>
+              <%= button_to 'Elimina', admin_user_path(user), method: :delete, data: { confirm: 'Sei sicuro?' }, class: 'action-link delete-link' %>
             </td>
           </tr>
         <% end %>

@@ -1,6 +1,34 @@
 
 <div class="admin-events-container">
   <h1 class="admin-events-title">Gestione Eventi</h1>
+
+  <div class="search-area">
+    <div class="search-section">
+      <div class="search-bar">
+        <%= form_with url: admin_events_path, method: :get, local: true, class: "search-bar" do %>
+          <div class="search-input">
+            <%= text_field_tag :query, params[:query], placeholder: "Cerca...", class: "search-field" %>
+          </div>
+
+          <div class="search-divider"></div>
+
+          <div class="search-dropdown">
+            <%= select_tag :city, options_for_select([['Città...', ''], 'Roma', 'Milano', 'Napoli', 'Torino', 'Firenze'], params[:city]), class: "city-dropdown" %>
+          </div>
+
+          <div class="search-divider"></div>
+
+          <div class="search-dropdown">
+            <%= select_tag :category, options_for_select([['Categoria...', ''], 'Musica', 'Food&Drinks', 'Comedy', 'Teatro', 'Sport', 'Hobby', 'Arte', 'Festa'], params[:category]), class: "city-dropdown" %>
+          </div>
+
+          <button type="submit" class="search-button">
+            <i class="fas fa-search"></i>
+          </button>
+        <% end %>
+      </div>
+    </div>
+  </div>
   
   <div class="admin-events-actions">
     <%= link_to 'Crea un nuovo evento', new_admin_event_path, class: 'admin-events-new-btn' %>
@@ -13,6 +41,8 @@
           <th>Titolo</th>
           <th>Data di inizio</th>
           <th>Data di fine</th>
+          <th>Indirizzo</th>
+          <th>Categoria</th>
           <th>Azioni</th>
         </tr>
       </thead>
@@ -22,9 +52,11 @@
             <td><%= event.title %></td>
             <td><%= event.start_datetime.strftime("%d/%m/%Y %H:%M") %></td>
             <td><%= event.end_datetime.strftime("%d/%m/%Y %H:%M") %></td>
+            <td><%= event.address + ", " + event.city + ", " + event.country %></td>
+            <td><%= event.category %></td>
             <td class="actions-cell">
               <%= link_to 'Modifica', edit_admin_event_path(event), class: 'action-link edit-link' %>
-              <%= link_to 'Elimina', admin_event_path(event), method: :delete, data: { confirm: 'Sei sicuro?' }, class: 'action-link delete-link' %>
+              <%= button_to 'Elimina', admin_event_path(event), method: :delete, data: { confirm: 'Sei sicuro?' }, class: 'action-link delete-link' %>
             </td>
           </tr>
         <% end %>

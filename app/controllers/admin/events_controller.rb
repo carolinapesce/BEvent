@@ -4,6 +4,20 @@ class Admin::EventsController < ApplicationController
 
   def index
     @events = Event.all
+    @query = params[:query]
+    @city = params[:city]
+    @category = params[:category]
+    if @query.present?
+      @events = @events.where("title LIKE ? OR description LIKE ? OR user.email LIKE ?", "%#{@query}%", "%#{@query}%", "%#{@query}%")
+    end
+
+    if @city.present?
+      @events = @events.where("city LIKE ?", "%#{@city}%")
+    end
+
+    if @category.present?
+      @events = @events.where("category LIKE ?", "%#{@category}%")
+    end
   end
 
   def new
