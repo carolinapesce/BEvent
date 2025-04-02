@@ -153,11 +153,18 @@
             </div>
 
             <div class="map-area">
-                <div id="map" style="width: 100%; height: 500px;"></div>
+                <div id="map" data-static="true" style="width: 100%; height: 500px;">
+                    <%= image_tag "https://maps.googleapis.com/maps/api/staticmap?" +
+                        "center=#{CGI.escape(@event.city)}" +
+                        "&zoom=13&size=600x300" +
+                        "&markers=color:red|#{@event.latitude},#{@event.longitude}" +
+                        "&key=#{ENV['GOOGLE_MAPS_API_KEY']}",
+                        alt: "Mappa evento" %>
+                </div>
             </div>
             
             
-            <script>    
+            <!--script>    
                 async function initMap() {
                     const { Map } = await google.maps.importLibrary("maps");
                     const { AdvancedMarkerElement } = await google.maps.importLibrary("marker");
@@ -186,10 +193,7 @@
             
                 }
                 window.initMap = initMap;
-            </script>
-
-            <script async defer src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAPS_API_KEY'] %>&map_ids=74d5e23654ee93dd&callback=initMap&v=beta"></script>
-            
+            </script-->
 
             <div class="reviews-section">
                 <div class="review-title">

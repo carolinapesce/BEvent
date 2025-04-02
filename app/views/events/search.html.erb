@@ -6,7 +6,7 @@
         <div class="search-area">
             <div class="search-section">
                 <div class="search-bar">
-                    <%= form_with url: events_search_path, method: :get, local: true, class: "search-bar" do %>
+                    <%= form_with url: events_search_path, method: :get, local: true, class: "search-bar", data: { turbo: false } do %>
                         <div class="search-input">
                             <%= text_field_tag :query, params[:query], placeholder: "Cerca...", class: "search-field" %>
                         </div>
@@ -14,7 +14,7 @@
                         <div class="search-divider"></div>
 
                         <div class="search-dropdown">
-                            <%= select_tag :city, options_for_select([['Città...', ''], 'Roma', 'Milano', 'Napoli', 'Torino', 'Firenze'], params[:city]), class: "city-dropdown" %>
+                            <%= select_tag :city, options_for_select([['Città...', ''], 'Roma', 'Milano', 'Napoli', 'Torino', 'Firenze'], params[:city]), class: "city-dropdown", id: "city-dropdown" %>
                         </div>
 
                         <button type="submit" class="search-button">
@@ -146,12 +146,20 @@
             
             
             <script>    
+                const cityCoordinates = {
+                    "Milano": { lat: 45.4642, lng: 9.1900 },
+                    "Roma": { lat: 41.9028, lng: 12.4964 },
+                    "Napoli": { lat: 40.8518, lng: 14.2681 },
+                    "Torino": { lat: 45.0703, lng: 7.6869 },
+                    "Firenze": { lat: 43.7696, lng: 11.2558 }
+                };
                 async function initMap() {
                     const { Map } = await google.maps.importLibrary("maps");
                     const { AdvancedMarkerElement } = await google.maps.importLibrary("marker");
+                    const defaultCity = "Roma"; 
                     const map = new Map(document.getElementById("map"), {
                         mapId: "74d5e23654ee93dd",
-                        center: { lat: 41.9028, lng: 12.4964 }, // Default su Milano, cambia se necessario
+                        center: cityCoordinates[defaultCity], // Default su Milano, cambia se necessario
                         zoom: 11
                     });
                     
@@ -171,57 +179,23 @@
                             console.warn("Evento senza coordinate valide:", event);
                         }
                     });
+
+                    const selectedCity = "<%= params[:city] %>";
+                    if (selectedCity && cityCoordinates[selectedCity]) {
+                        map.setCenter(cityCoordinates[selectedCity]);
+                    }
             
                 }
-                window.initMap = initMap;
+                document.addEventListener("turbo:render", function() {
+                        if (document.getElementById("map") && !document.getElementById("map").dataset.static) {
+                            initMap(); 
+                        }
+                });
+                //window.initMap = initMap;
             </script>
 
             <script async defer src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAPS_API_KEY'] %>&map_ids=74d5e23654ee93dd&callback=initMap&v=beta"></script>
             
-            <!--
-            <% if @load_maps %>
-                <%#= javascript_include_tag "https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAPS_API_KEY'] %>&v=beta&libraries=maps,marker&callback=initMap", async: true, defer: true %>
-            <% end %>
-
-            <script>
-                async function initMap() {
-                    const { Map } = await google.maps.importLibrary("maps");
-                    const { AdvancedMarkerElement } = await google.maps.importLibrary("marker");
-
-                    const map = new Map(document.getElementById("map"), {
-                        center: { lat: 41.9028, lng: 12.4964 },
-                        zoom: 11,
-                        mapId: "74d5e23654ee93dd"
-                    });
-
-                    const events = <%= raw @events.to_json(only: [:latitude, :longitude, :title]) %>;
-                    console.log("Eventi:", events);
-
-                    events.forEach(event => {
-                        if (event.latitude && event.longitude) {
-                            new AdvancedMarkerElement({
-                                map,
-                                position: {
-                                    lat: parseFloat(event.latitude),
-                                    lng: parseFloat(event.longitude)
-                                },
-                                title: event.title
-                            });
-                            console.log(`Marker creato: ${event.title} alle coordinate (${event.latitude}, ${event.longitude})`);
-                        } else {
-                            console.warn("Evento senza coordinate valide:", event);
-                        }
-                    });
-                }
-
-                window.onload = () => {
-                    if (typeof google !== "undefined" && google.maps) {
-                        initMap();
-                    } else {
-                        console.error("Google Maps non è stato caricato correttamente.");
-                    }
-                };
-            </script>-->
            
             </div>
 
