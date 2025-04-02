@@ -16,80 +16,84 @@
             <% end %>
         </div>
     </div>
-    <div class="page-content">
-        <div class="description">
-            <h3>Descrizione</h3>
-            <p>
-                <% if current_user.bio.present? %>
-                    current_user.bio
-                <% end %>
-            </p>
-        </div>
-        
-    </div>
-    <div class="events">
-        <div class="choice">
-            <h3 id="upcoming-toggle" class="events_current">Prossimi Eventi</h3>
-            <h3 id="past-toggle" class="events_past">Eventi Passati</h3>
-        </div>
-        <div class="line"></div>
-
-        <% if @upcoming_events.any? %>
-            <div id="upcoming-events" class="events-list">
-                <div class="events-grid">
-                    <% @upcoming_events.limit(5).each do |event| %>
-                        <%= link_to event_path(event), class: "event-card-link" do %>
-                            <div class="event-card">
-                                <div class="event-design">
-                                    <%= image_tag "card1.png", alt: "Event Image", class: "event-image" %>
-                                </div>
-                                <div class="event-frame">
-                                    <h3 class="event-title"><%= event.title %></h3>
-                                    <p class="event-location"><%= event.address+", "+event.city+", "+event.country %></p>
-                                    <div class="event-date">
-                                        <span class="month"><%= event.start_datetime.strftime('%b') %></span>
-                                        <span class="day"><%= event.start_datetime.strftime('%d') %></span>
-                                    </div>
-                                    <p class="event-time"><%= event.start_datetime.strftime('%I:%M %p') %></p>
-                                    <p class="event-price"><%= event.event_price.present? ? event.event_price : "Free" %></p>
-                                </div>
-                            </div>
-                        <% end %>
+    
+    <% if can? :create, Event%>
+        <div class="page-content">
+            <div class="description">
+                <h3>Descrizione</h3>
+                <p>
+                    <% if current_user.bio.present? %>
+                        current_user.bio
                     <% end %>
-                </div>
+                </p>
             </div>
-        <% else %>
-            <p>Nessun evento in programma.</p>
-        <% end %>
+            
+        </div>
+    
+        <div class="events">
+            <div class="choice">
+                <h3 id="upcoming-toggle" class="events_current">Prossimi Eventi</h3>
+                <h3 id="past-toggle" class="events_past">Eventi Passati</h3>
+            </div>
+            <div class="line"></div>
 
-        <% if @terminated_events.any? %>
-            <div id="past-events" class="events-list" style="display: none;">
-                <div class="events-grid">
-                    <% @terminated_events.limit(5).each do |event| %>
-                        <%= link_to event_path(event), class: "event-card-link" do %>
-                            <div class="event-card">
-                                <div class="event-design">
-                                    <%= image_tag "card1.png", alt: "Event Image", class: "event-image" %>
-                                </div>
-                                <div class="event-frame">
-                                    <h3 class="event-title"><%= event.title %></h3>
-                                    <p class="event-location"><%= event.address+", "+event.city+", "+event.country %></p>
-                                    <div class="event-date">
-                                        <span class="month"><%= event.start_datetime.strftime('%b') %></span>
-                                        <span class="day"><%= event.start_datetime.strftime('%d') %></span>
+            <% if @upcoming_events.any? %>
+                <div id="upcoming-events" class="events-list">
+                    <div class="events-grid">
+                        <% @upcoming_events.limit(5).each do |event| %>
+                            <%= link_to event_path(event), class: "event-card-link" do %>
+                                <div class="event-card">
+                                    <div class="event-design">
+                                        <%= image_tag "card1.png", alt: "Event Image", class: "event-image" %>
                                     </div>
-                                    <p class="event-time"><%= event.start_datetime.strftime('%I:%M %p') %></p>
-                                    <p class="event-price"><%= event.event_price.present? ? event.event_price : "Free" %></p>
+                                    <div class="event-frame">
+                                        <h3 class="event-title"><%= event.title %></h3>
+                                        <p class="event-location"><%= event.address+", "+event.city+", "+event.country %></p>
+                                        <div class="event-date">
+                                            <span class="month"><%= event.start_datetime.strftime('%b') %></span>
+                                            <span class="day"><%= event.start_datetime.strftime('%d') %></span>
+                                        </div>
+                                        <p class="event-time"><%= event.start_datetime.strftime('%I:%M %p') %></p>
+                                        <p class="event-price"><%= event.event_price.present? ? event.event_price : "Free" %></p>
+                                    </div>
                                 </div>
-                            </div>
+                            <% end %>
                         <% end %>
-                    <% end %>
+                    </div>
                 </div>
-            </div>
-        <% else %>
-            <p>Nessun evento passato.</p>
-        <% end %>
-    </div>
+            <% else %>
+                <p>Nessun evento in programma.</p>
+            <% end %>
+
+            <% if @terminated_events.any? %>
+                <div id="past-events" class="events-list" style="display: none;">
+                    <div class="events-grid">
+                        <% @terminated_events.limit(5).each do |event| %>
+                            <%= link_to event_path(event), class: "event-card-link" do %>
+                                <div class="event-card">
+                                    <div class="event-design">
+                                        <%= image_tag "card1.png", alt: "Event Image", class: "event-image" %>
+                                    </div>
+                                    <div class="event-frame">
+                                        <h3 class="event-title"><%= event.title %></h3>
+                                        <p class="event-location"><%= event.address+", "+event.city+", "+event.country %></p>
+                                        <div class="event-date">
+                                            <span class="month"><%= event.start_datetime.strftime('%b') %></span>
+                                            <span class="day"><%= event.start_datetime.strftime('%d') %></span>
+                                        </div>
+                                        <p class="event-time"><%= event.start_datetime.strftime('%I:%M %p') %></p>
+                                        <p class="event-price"><%= event.event_price.present? ? event.event_price : "Free" %></p>
+                                    </div>
+                                </div>
+                            <% end %>
+                        <% end %>
+                    </div>
+                </div>
+            <% else %>
+                <p>Nessun evento passato.</p>
+            <% end %>
+        </div>
+    <% end %>
 </div>
 
 

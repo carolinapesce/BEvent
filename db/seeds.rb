@@ -54,11 +54,12 @@ User.create!(
   password: "password",
   first_name: "Maria",
   last_name: "Bianchi",
+  bio: Faker::Lorem.paragraph(sentence_count: 20),
   role: 1,
   confirmed_at: Time.now
 )
 
-10.times do |i|
+30.times do |i|
   start_time = Faker::Time.forward(days: rand(1..10), period: [:morning, :afternoon, :evening].sample)
   end_time = start_time + rand(1..[5.hours, (start_time.end_of_day - start_time)].min)
   Event.create!(
@@ -90,7 +91,7 @@ User.create!(
   )
 end
 
-10.times do |i|
+30.times do |i|
   start_time = Faker::Time.forward(days: rand(1..10), period: [:morning, :afternoon, :evening].sample)
   end_time = start_time + rand(1..[5.hours, (start_time.end_of_day - start_time)].min)
   Event.create!(
@@ -106,7 +107,7 @@ end
     charity_id: "Charity #{i + 1}",
     beneficiary: "Beneficiario #{i + 1}",
     fundraiser_goal: rand(1000..5000),
-    current_funds: rand(100..1000),
+    current_funds: 0,
     city: ["Roma", "Milano", "Napoli", "Torino", "Firenze"].sample,
     country: "Italia",
     status: 0,

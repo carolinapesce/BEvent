@@ -29,6 +29,7 @@ class CheckoutsController < ApplicationController
             anonymous: cart_item.anonymous,  
             message: cart_item.message       
           )
+          cart_item.event.current_funds += cart_item.donation_amount
         end
       end
 

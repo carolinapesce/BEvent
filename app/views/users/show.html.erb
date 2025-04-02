@@ -4,12 +4,12 @@
     <div class="banner">
         <div class="banner-content">
             <div class="info-profile">
-                <% if current_user.profile_pic.present? %>
-                    <%= image_tag(current_user.profile_pic, data: { action: "click->dropdown#toggle" } )%>
+                <% if @user.profile_pic.present? %>
+                    <%= image_tag(@user.profile_pic, data: { action: "click->dropdown#toggle" } )%>
                 <% else %>
                     <%= image_tag("default-avatar.png", data: { action: "click->dropdown#toggle" } )%>
                 <% end %>
-                <h1>Nome</h1>
+                <h1><%= @user.first_name + " " + @user.last_name %></h1>
             </div>
         </div>
     </div>
@@ -17,8 +17,8 @@
         <div class="description">
             <h3>Descrizione</h3>
             <p>
-                <% if current_user.bio.present? %>
-                    current_user.bio
+                <% if @user.bio.present? %>
+                    <%= @user.bio %>
                 <% end %>
             </p>
         </div>
