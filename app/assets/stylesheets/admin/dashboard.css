@@ -73,7 +73,6 @@
 
   /*----------------------------Gestione Eventi*/
 
-  /* CSS per la pagina di Gestione Eventi */
 .admin-events-container {
     max-width: 1200px;
     margin: 0 auto;
@@ -209,7 +208,6 @@
 
   /*---------------------------Gestione Utenti_-------------*/
 
-  /* CSS per la pagina di Gestione Utenti */
 .admin-users-container {
     max-width: 1200px;
     margin: 0 auto;
@@ -367,5 +365,142 @@
     .role-badge {
       padding: 0.2rem 0.5rem;
       font-size: 0.75rem;
+    }
+  }
+
+
+
+
+
+  /*-------------------Form Utente---------------------*/
+.admin-user-form-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem;
+    background-color: white;
+    min-height: 80vh;
+  }
+  
+  .admin-user-form-title {
+    font-family: 'Jomhuria', cursive;
+    font-size: 3.5rem;
+    color: #000;
+    margin-bottom: 2rem;
+    font-weight: normal;
+    letter-spacing: 1px;
+    text-align: center;
+  }
+  
+  .admin-user-form-card {
+    background-color: #fff;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    margin: 0 auto;
+  }
+  
+  .form-group {
+    margin-bottom: 1.5rem;
+  }
+  
+  .form-label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-family: 'Heebo', sans-serif;
+    font-weight: 500;
+    color: #333;
+    font-size: 1rem;
+  }
+  
+  .form-input, .form-select {
+    width: 100%;
+    padding: 0.8rem 1rem;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-family: 'Heebo', sans-serif;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    box-sizing: border-box;
+  }
+  
+  .form-input:focus, .form-select:focus {
+    border-color: #04A777;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(4, 167, 119, 0.2);
+  }
+  
+  .form-select {
+    appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+ 
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    background-size: 1em;
+  }
+  
+  .form-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+    margin-top: 2rem;
+  }
+  
+  .form-submit-btn {
+    background-color: #04A777;
+    color: white;
+    padding: 0.8rem 1.5rem;
+    font-family: 'Heebo', sans-serif;
+    font-weight: 600;
+    font-size: 1rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .form-submit-btn:hover {
+    background-color: #038a65;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  }
+  
+  .form-cancel-btn {
+    background-color: red;
+    color: white;
+    padding: 0.8rem 1.5rem;
+    font-family: 'Heebo', sans-serif;
+    font-weight: 600;
+    font-size: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  }
+  
+  .form-cancel-btn:hover {
+    background-color: rgb(179, 6, 6);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Responsive design */
+  @media (max-width: 768px) {
+    .admin-user-form-title {
+      font-size: 2.8rem;
+    }
+    
+    .admin-user-form-card {
+      padding: 1.5rem;
+    }
+    
+    .form-actions {
+      flex-direction: column;
+    }
+    
+    .form-submit-btn, .form-cancel-btn {
+      width: 100%;
+      text-align: center;
     }
   }

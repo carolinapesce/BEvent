@@ -8,6 +8,7 @@ class Admin::EventsController < ApplicationController
 
   def new
     @event = Event.new
+    @event_planners = User.where(role: 1).order(:first_name) # 1 = Event Planner
   end
 
   def create

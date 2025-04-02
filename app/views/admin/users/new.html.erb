@@ -1,15 +1,37 @@
-<%= form_for @user, url: admin_users_path do |f| %>
-  <%= f.label :last_name %>
-  <%= f.text_field :first_name %>
+<div class="admin-user-form-container">
+  <h1 class="admin-user-form-title">Crea Nuovo Utente</h1>
+  
+  <div class="admin-user-form-card">
+    <%= form_for @user, url: admin_users_path do |f| %>
+      <div class="form-group">
+        <%= f.label :first_name, 'Nome', class: 'form-label' %>
+        <%= f.text_field :first_name, class: 'form-input' %>
+      </div>
+      
+      <div class="form-group">
+        <%= f.label :last_name, 'Cognome', class: 'form-label' %>
+        <%= f.text_field :last_name, class: 'form-input' %>
+      </div>
+      
+      <div class="form-group">
+        <%= f.label :email, 'Email', class: 'form-label' %>
+        <%= f.email_field :email, class: 'form-input' %>
+      </div>
 
-  <%= f.label :last_name %>
-  <%= f.text_field :last_name %>
-
-  <%= f.label :email %>
-  <%= f.email_field :email %>
-
-  <%= f.label :role %>
-  <%= f.select :role, options_for_select([['User', 0], ['Event Planner', 1], ['Admin', 2]]) %>
-
-  <%= f.submit 'Crea Utente' %>
-<% end %>
+      <div class="form-group">
+        <%= f.label :password, 'Password', class: 'form-label' %>
+        <%= f.email_field :password, class: 'form-input' %>
+      </div>
+      
+      <div class="form-group">
+        <%= f.label :role, 'Ruolo', class: 'form-label' %>
+        <%= f.select :role, options_for_select([['User', 0], ['Event Planner', 1], ['Admin', 2]]), {}, class: 'form-select' %>
+      </div>
+      
+      <div class="form-actions">
+        <%= f.submit 'Crea Utente', class: 'form-submit-btn' %>
+        <%= link_to 'Annulla', admin_users_path, class: 'form-cancel-btn' %>
+      </div>
+    <% end %>
+  </div>
+</div>
