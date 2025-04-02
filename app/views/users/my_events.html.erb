@@ -1,0 +1,77 @@
+<%= render "devise/shared/navbar" %>
+<div class= "page">
+    <div class= "wrap-title">
+        <%= link_to root_path do %>
+            <i class="fa-solid fa-arrow-left"></i>
+        <% end %>
+        <h1> I Miei Eventi </h1>
+    </div>
+
+    <div class="search-area">
+        <div class="search-section">
+        <div class="search-bar">
+            <%= form_with url: user_my_events_path, method: :get, local: true, class: "search-bar" do %>
+            <div class="search-input">
+                <%= text_field_tag :query, params[:query], placeholder: "Cerca...", class: "search-field" %>
+            </div>
+
+            <div class="search-divider"></div>
+
+            <div class="search-dropdown">
+                <%= select_tag :city, options_for_select([['Città...', ''], 'Roma', 'Milano', 'Napoli', 'Torino', 'Firenze'], params[:city]), class: "city-dropdown" %>
+            </div>
+
+            <div class="search-divider"></div>
+
+            <div class="search-dropdown">
+                <%= select_tag :category, options_for_select([['Categoria...', ''], 'Musica', 'Food&Drinks', 'Comedy', 'Teatro', 'Sport', 'Hobby', 'Arte', 'Festa'], params[:category]), class: "city-dropdown" %>
+            </div>
+
+            <button type="submit" class="search-button">
+                <i class="fas fa-search"></i>
+            </button>
+            <% end %>
+        </div>
+        </div>
+    </div>
+
+    <div class= "my_events-page">
+        <% if @events == [] %>
+            <p>Non gestisci nessun evento.</p>
+        <% else %>
+            <% @events.each do |event|%>
+                <%= link_to event_path(event.id), class: "event-card-link" do %>
+                    <div class="event-card">
+                        <div class="event-design">
+                            <% if event.poster_pic.present? %>
+                                <%= image_tag(event.poster_pic, alt: "Event Image", class: "event-image")%>
+                            <% else %>
+                                <%= image_tag("default-poster.jpg", alt: "Event Image", class: "event-image" )%>
+                            <% end %>
+                        </div>
+
+                        <div class="event-frame">
+                            <h3 class="event-title"><%= event.title %></h3>
+                            <p class="event-location"><%= event.address+", "+event.city+", "+event.country %></p>
+                            <div class="event-date">
+                                 <span class="month"><%= event.start_datetime.strftime("%b") %></span>
+                                <span class="day"><%= event.start_datetime.strftime("%d") %></span>
+                            </div>
+                            <p class="event-time"><%= event.start_datetime.strftime("%H:%M") %></p>
+                            <% if event.event_price == 0 || event.event_price == nil %>
+                                <p class="event-price">Gratis</p>
+                            <% else %>
+                                <p class="event-price"><%= number_to_currency(event.event_price, unit: "€") %></p>
+                            <% end %>
+                            <%= link_to 'Modifica', edit_event_path(event.id), class: 'action-link edit-link' %>
+                            <%= button_to 'Elimina', event_path(event.id), method: :delete, data: { confirm: 'Sei sicuro?' }, class: 'action-link delete-link' %>
+                        </div>
+                    </div>
+                <% end %>
+            <% end %>
+        <% end %>
+    </div>
+    <%= render "devise/shared/footer" %>
+</div>
+
+<%#= render "devise/shared/footer" %>
