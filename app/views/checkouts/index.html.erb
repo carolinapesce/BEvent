@@ -34,7 +34,12 @@
                     <%= cart_item.quantity %> biglietto(i) - 
                     Prezzo: <%= number_to_currency(cart_item.event.event_price, unit: "€") %>
                     <% if cart_item.event.has_ended? %>
-                      <%= link_to "Lascia Recensione", new_review_path, class: "review-bt"%>
+                      <% user_review = cart_item.event.reviews.find_by(user_id: current_user.id)%>
+                      <% if user_review.nil? %>
+                        <%= link_to "Lascia Recensione", new_review_path(event_id: cart_item.event.id), class: "review-bt"%>
+                      <% else %>
+                        <%= link_to "Modifica Recensione", edit_review_path(user_review), class: "review-bt"%>
+                      <% end %>
                     <% end %>
                   </li>
                 <% end %>

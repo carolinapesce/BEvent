@@ -34,7 +34,7 @@
         <% if @upcoming_events.any? %>
             <div id="upcoming-events" class="events-list">
                 <div class="events-grid">
-                    <% @upcoming_events.limit(5).each do |event| %>
+                    <% @upcoming_events.each do |event| %>
                         <%= link_to event_path(event), class: "event-card-link" do %>
                             <div class="event-card">
                                 <div class="event-design">
@@ -62,7 +62,7 @@
         <% if @terminated_events.any? %>
             <div id="past-events" class="events-list" style="display: none;">
                 <div class="events-grid">
-                    <% @terminated_events.limit(5).each do |event| %>
+                    <% @terminated_events.each do |event| %>
                         <%= link_to event_path(event), class: "event-card-link" do %>
                             <div class="event-card">
                                 <div class="event-design">
