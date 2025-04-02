@@ -21,6 +21,7 @@ Rails.application.routes.draw do
     get :favourite
   end
 
+  resources :supports, only: [:new, :create]
 
   resources :favourites, only: [:create, :destroy]
 
