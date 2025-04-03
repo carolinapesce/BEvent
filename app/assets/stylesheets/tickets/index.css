@@ -1,0 +1,123 @@
+.tickets.index .shopping-menu {
+    display: flex;
+    min-height: 100vh;
+    margin-top: 80px;
+    margin-bottom: 80px;
+}
+
+.tickets.index .sidebar {
+    width: 250px;
+    background-color: #f5f5f5;
+    padding: 20px;
+}
+
+.tickets.index .sidebar h2 {
+    font-size: 22px;
+    font-weight: bold;
+    margin-bottom: 15px;
+    font-family: 'Montserrat';
+}
+
+.tickets.index .sidebar ul {
+    list-style: none;
+    padding: 0;
+}
+
+.tickets.index .sidebar li {
+    margin-bottom: 10px;
+}
+
+.tickets.index .sidebar a {
+    text-decoration: none;
+    color: black;
+    font-size: 16px;
+    display: block;
+    padding: 10px;
+    border-radius: 4px;
+    transition: background 0.2s ease-in-out;
+    font-family: "Open Sans";
+}
+
+.tickets.index .sidebar a:hover {
+    background-color: #ddd;
+}
+
+/* Contenuto principale */
+.tickets.index .shopping-content {
+    flex: 1;
+    padding: 30px;
+}
+
+.tickets.index .shopping-content h2 {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.tickets.index .checkout-container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+/* Card degli ordini */
+.tickets.index .checkout-card {
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease-in-out;
+}
+
+.tickets.index .checkout-card:hover {
+    transform: scale(1.02);
+}
+
+.tickets.index .checkout-card h2 {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+.tickets.index .checkout-total {
+    font-size: 16px;
+    font-weight: bold;
+    color: #28a745;
+}
+
+.tickets.index .checkout-items {
+    list-style: none;
+    padding: 0;
+    margin-top: 10px;
+}
+
+.tickets.index .checkout-items li {
+    padding: 5px 0;
+    border-bottom: 1px solid #ddd;
+}
+
+.tickets.index .checkout-items li:last-child {
+    border-bottom: none;
+}
+
+.tickets.index .no-orders {
+    font-size: 16px;
+    font-weight: bold;
+    color: #888;
+    text-align: center;
+    margin-top: 20px;
+}
+
+.tickets.index .review-bt{
+    background: #04A777;
+    color: white;
+    margin-left: 40px;
+    padding: 6px;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.tickets.index .review-bt:hover{
+    background: #03855e;
+}

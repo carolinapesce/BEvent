@@ -5,7 +5,8 @@
     <h2>Acquisti</h2>
     <ul>
       <li><%= link_to "Carrello", cart_path(@current_cart)%></li>
-      <li><%= link_to "I miei biglietti", checkouts_index_path(current_user.id) %></li>
+      <li><%= link_to "I miei ordini", checkouts_index_path(current_user.id) %></li>
+      <li><%= link_to "I miei biglietti", tickets_path(current_user.id) %></li>
     </ul>
   </div>
 
@@ -51,6 +52,7 @@
     <% else %>
       <p class="no-orders">Non hai ancora effettuato acquisti.</p>
     <% end %>
+    
   </div>
 </div>
 <%= render "devise/shared/footer" %>

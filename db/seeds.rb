@@ -9,6 +9,31 @@
 #   end
 # db/seeds.rb
 
+
+
+# Utente normale 
+10.times do |i|
+  User.create!(
+    email: "user#{i + 1}@gmail.com",
+    password: "password",
+    first_name: "Nome #{i + 1}",
+    last_name: "Cognome #{i + 1}",
+    role: 0,
+    confirmed_at: Time.now
+  )
+end
+
+# Event planner
+User.create!(
+  email: "eventplanner@gmail.com",
+  password: "password",
+  first_name: "Maria",
+  last_name: "Bianchi",
+  bio: Faker::Lorem.paragraph(sentence_count: 20),
+  role: 1,
+  confirmed_at: Time.now
+)
+
 # Admin
 User.create!(
   email: "zarola.admin@gmail.com",
@@ -34,28 +59,6 @@ User.create!(
   first_name: "Carolina",
   last_name: "Pesce",
   role: 2,
-  confirmed_at: Time.now
-)
-
-# Utente normale 
-User.create!(
-  email: "user@gmail.com",
-  password: "password",
-  first_name: "Mario",
-  last_name: "Rossi",
-  role: 0,
-  confirmed_at: Time.now
-)
-
-# Event planner
-User.create!(
-  id: 5,
-  email: "eventplanner@gmail.com",
-  password: "password",
-  first_name: "Maria",
-  last_name: "Bianchi",
-  bio: Faker::Lorem.paragraph(sentence_count: 20),
-  role: 1,
   confirmed_at: Time.now
 )
 
@@ -171,12 +174,14 @@ end
     reviews_count: 0
   )
 
-  5.times do
+  reviewers = User.where(role: 0).sample(5)
+
+  reviewers.each do |user|
     Review.create!(
-      user_id: 4,
+      user_id: user.id,
       event_id: event.id,
       content: Faker::Lorem.paragraph(sentence_count: 10),
       rating: (1..5).to_a.sample
-    )
+    ) 
   end
 end

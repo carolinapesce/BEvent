@@ -6,6 +6,7 @@ class User < ApplicationRecord
   has_many :favourites, dependent: :destroy
   has_many :favourite_events, through: :favourites, source: :event, dependent: :destroy
   has_many :checkouts
+  has_many :tickets
 
   has_many :supports, dependent: :destroy
 
