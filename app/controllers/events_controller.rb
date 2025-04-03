@@ -112,6 +112,10 @@ class EventsController < ApplicationController
   def update
     @event = Event.find(params[:id])
     if @event.update(event_params)
+      users = @event.users_who_bought
+      users.each do |user|
+        EventMailer.event_updated(event, user).deliver_now!
+      end
       redirect_to user_my_events_path(current_user), notice: 'Evento aggiornato con successo.'
     else
       render :edit

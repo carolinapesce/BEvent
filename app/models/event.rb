@@ -5,7 +5,7 @@ class Event < ApplicationRecord
 
   
   #has_many :favourites
-  #has_many :users, through: :favourites
+  has_many :users, through: :tickets
   has_many :favourites, dependent: :destroy
   has_many :favourite_users, through: :favourites, source: :user, dependent: :destroy
 
@@ -47,6 +47,10 @@ class Event < ApplicationRecord
 
   def full_address_changed?
     will_save_change_to_address? || will_save_change_to_city? || will_save_change_to_country?
+  end
+
+  def users_who_bought
+    users.distinct
   end
 
   def self.update_status
