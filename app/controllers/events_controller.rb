@@ -7,6 +7,7 @@ class EventsController < ApplicationController
   load_and_authorize_resource @event
 
   def index
+    check_if_blocked
     @user = current_user
     @events = Event.all
     @load_maps = !request.fullpath.include?('maps')
@@ -127,6 +128,13 @@ class EventsController < ApplicationController
     @event.destroy
     redirect_to user_my_events_path(current_user), notice: 'Evento eliminato con successo.'
   end
+
+  def check_if_blocked
+    if current_user.blocked?
+      sign_out current_user
+      redirect_to root_path
+    end
+  end  
 
   def set_event
     @event = Event.find(params[:id])

@@ -34,6 +34,18 @@ class User < ApplicationRecord
     favourite_events.include?(event)
   end
 
+  def blocked?
+    blocked
+  end
+
+  def active_for_authentication?
+    super && !blocked?
+  end
+
+  def inactive_message
+    blocked? ? "Il tuo account è stato bloccato." : super
+  end
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable, :timeoutable, :lockable,

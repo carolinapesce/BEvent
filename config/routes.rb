@@ -25,6 +25,12 @@ Rails.application.routes.draw do
   resources :supports, only: [:new, :create]
   namespace :admin do
     resources :supports, only: [:index, :show, :update]
+    resources :users do
+      member do
+        patch :block
+        patch :unblock
+      end
+    end
   end
   
   resources :favourites, only: [:create, :destroy]
