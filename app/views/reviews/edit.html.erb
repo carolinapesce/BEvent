@@ -1,2 +1,40 @@
-Pagina per modificare recensione
-<%= button_to 'Elimina', review_path, method: :delete, data: { confirm: 'Sei sicuro?' }, class: 'action-link delete-link' %>
+<%= render "devise/shared/navbar" %>
+
+<div class="pg-review">
+
+    <div class="new-review-container">
+        <h2>Modifica la tua recensione per <%= @review.event.title %></h2>
+
+        <%= form_with(model: [@review.event, @review], url: review_path(@review), method: :patch, local: true) do |form| %>
+            <%= form.hidden_field :event_id, value: @review.event.id %>
+
+            <div class="form-group">
+                <%= form.label :content, "Recensione", class: "form-label" %>
+                <%= form.text_area :content, class: "form-textarea", value: @review.content, rows: 4 %>
+            </div>
+            
+            <div class="form-group">
+                <label class="form-label">Valutazione</label>
+                <div class="rating-container" data-controller="star-rating">
+                    <% (1..5).each do |i| %>
+                        <%= form.radio_button :rating, i, id: "star_#{i}", checked: (i == @review.rating), class: "rating-input" %>
+                        <label for="star_<%= i %>" 
+                            class="rating-star" 
+                            data-star-rating-target="star" 
+                            data-action="click->star-rating#rate">
+                            <i class="fa-solid fa-star"></i>
+                        </label>
+                    <% end %>
+                </div>
+            </div>
+            
+            <div class="form-actions">
+                <%= form.submit "Aggiorna Recensione", class: "submit-button" %>
+            </div>
+        <% end %>
+        <%= button_to 'Elimina', review_path, method: :delete, data: { confirm: 'Sei sicuro?' }, class: 'delete-review' %>
+    </div>
+
+</div>
+
+<%= render "devise/shared/footer" %>

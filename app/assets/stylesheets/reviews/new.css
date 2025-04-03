@@ -1,8 +1,8 @@
-.reviews.new .pg-review{
+.reviews .pg-review{
   margin-top: 80px;
 }
 
-.reviews.new .new-review-container {
+.reviews .new-review-container {
     max-width: 600px;
     margin: 2rem auto;
     padding: 2rem;
@@ -11,7 +11,7 @@
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 }
   
-.reviews.new .review-form-title {
+.reviews .review-form-title {
     font-family: 'Jomhuria', cursive;
     color: #000;
     font-size: 2.5rem;
@@ -19,11 +19,11 @@
     text-align: center;
 }
   
-.reviews.new .form-group {
+.reviews .form-group {
     margin-bottom: 1.5rem;
 }
   
-.reviews.new .form-label {
+.reviews .form-label {
     font-family: 'Heebo', sans-serif;
     font-weight: 500;
     color: #333;
@@ -31,7 +31,7 @@
     margin-bottom: 0.5rem;
 }
   
-.reviews.new .form-textarea {
+.reviews .form-textarea {
     width: 100%;
     padding: 12px;
     border: 1px solid #ddd;
@@ -41,13 +41,13 @@
     transition: border-color 0.3s ease;
 }
 
-.reviews.new .form-textarea:focus {
+.reviews .form-textarea:focus {
     border-color: #04A777;
     outline: none;
     box-shadow: 0 0 0 2px rgba(4, 167, 119, 0.2);
 }
   
-.reviews.new .rating-container {
+.reviews .rating-container {
   display: flex;
   justify-content: center; /* Allinea a sinistra */
   gap: 4px;
@@ -55,11 +55,11 @@
   direction: ltr; /* Importante per il riempimento da sinistra */
 }
 
-.reviews.new .rating-input {
+.reviews .rating-input {
   display: none;
 }
 
-.reviews.new .rating-star {
+.reviews .rating-star {
   font-size: 2rem;
   color: white;
   -webkit-text-stroke: 1px #FFD700; /* Bordo giallo */
@@ -91,7 +91,7 @@
   color: #FFD700;
 }
   
-.reviews.new .submit-button {
+.reviews .submit-button {
     background-color: #04A777;
     color: white;
     border: none;
@@ -105,8 +105,30 @@
     transition: all 0.3s ease;
 }
 
-.reviews.new .submit-button:hover {
+.reviews .submit-button:hover {
     background-color: #038c63;
     transform: translateY(-2px);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.reviews .delete-review{
+    background-color: rgb(218, 12, 12);
+    color: white;
+    border: none;
+    margin-top: 20px;
+    padding: 12px 24px;
+    font-family: 'Heebo', sans-serif;
+    font-weight: 600;
+    border-radius: 8px;
+    cursor: pointer;
+    width: 100%;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+
+}
+
+.reviews .delete-review:hover {
+  background-color: rgb(156, 7, 7);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }

@@ -24,14 +24,17 @@ class ReviewsController < ApplicationController
   end
 
   def edit
-    @review = Review.find(params[:id])
+    @review = current_user.reviews.find(params[:id]) # Assicura che solo il proprietario possa editare
+    @event = @review.event
   end
-
+  
   def update
-    @review = Review.find(params[:id])
+    @review = current_user.reviews.find(params[:id])
+    
     if @review.update(review_params)
-      redirect_to checkouts_index_path(current_user), notice: 'Recensione aggiornata con successo.'
+      redirect_to checkouts_index_path(current_user), notice: 'Recensione aggiornata con successo!'
     else
+      @event = @review.event
       render :edit
     end
   end
