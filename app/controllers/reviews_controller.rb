@@ -1,18 +1,24 @@
 class ReviewsController < ApplicationController
 
+
+  before_action :authenticate_user!
+ 
   def index
     @reviews = Review.all
   end 
 
   def new
-    Review.new
+    @event = Event.find(params[:event_id])
+    @review = Review.new
   end 
 
   def create
-    @review = Review.new(review_params)
-    if @user.save
-      redirect_to checkouts_index_path(current_user), notice: 'Recensione creata con successo.'
+    @review = current_user.reviews.new(review_params)
+    
+    if @review.save
+      redirect_to checkouts_index_path(current_user), notice: 'Recensione inviata con successo!'
     else
+      @event = @review.event
       render :new
     end
   end

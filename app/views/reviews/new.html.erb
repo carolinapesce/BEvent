@@ -1,1 +1,38 @@
-Pagina per creare recensione
+<%= render "devise/shared/navbar" %>
+
+<div class="pg-review">
+    <div class="new-review-container">
+        <h2>Lascia una recensione per <%= @event.title %></h2>
+
+        <%= form_with(model: [@event, @review], url: reviews_path, local: true) do |form| %>
+            <%= form.hidden_field :event_id, value: @event.id %>
+
+            <div class="form-group">
+            <%= form.label :content, "Recensione", class: "form-label" %>
+            <%= form.text_area :content, class: "form-textarea", placeholder: "Raccontaci la tua esperienza...", rows: 4 %>
+            </div>
+            
+            <div class="form-group">
+                <label class="form-label">Valutazione</label>
+                <div class="rating-container" data-controller="star-rating">
+                    <% (1..5).each do |i| %>
+                        <%= form.radio_button :rating, i, id: "star_#{i}", class: "rating-input" %>
+                        <label for="star_<%= i %>" 
+                            class="rating-star" 
+                            data-star-rating-target="star"
+                            data-action="click->star-rating#rate">
+                        <i class="fa-solid fa-star"></i>
+                        </label>
+                    <% end %>
+                </div>
+            </div>
+            
+            <div class="form-actions">
+                <%= form.submit "Invia Recensione", class: "submit-button" %>
+            </div>
+        <% end %>
+
+    </div>
+</div>
+
+<%= render "devise/shared/footer" %>
