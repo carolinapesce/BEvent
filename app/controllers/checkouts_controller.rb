@@ -24,7 +24,8 @@ class CheckoutsController < ApplicationController
         @ticket = Ticket.create(user_id: @current_user.id,
                       event_id: cart_item.event_id,
                       price: cart_item.event.event_price,
-                      booked_datetime: cart_item.event.start_datetime)
+                      booked_datetime: cart_item.event.start_datetime,
+                      quantity: cart_item.quantity)
       end
       @ticket.save
 
