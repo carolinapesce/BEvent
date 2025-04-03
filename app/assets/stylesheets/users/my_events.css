@@ -151,3 +151,10 @@ body.users.my_events{
     font-weight: 700;
     line-height: normal;
 }
+
+.users.my_events .search-area{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-top: 50px;
+}

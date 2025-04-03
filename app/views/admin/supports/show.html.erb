@@ -1,15 +1,40 @@
-<h1>Dettagli della Richiesta di Supporto</h1>
 
-<p><strong>Utente:</strong> <%= @support.user.email %></p>
-<p><strong>Oggetto:</strong> <%= @support.subject %></p>
-<p><strong>Messaggio:</strong></p>
-<p><%= @support.message %></p>
-
-<h2>Rispondi alla Richiesta</h2>
-<%= form_with model: @support, url: admin_support_path(@support), method: :patch do |f| %>
-  <div>
-    <%= f.label :response, "Risposta" %>
-    <%= f.text_area :response, required: true %>
+<div class="admin-support-container">
+  
+  <h1 class="admin-support-title">Dettagli della Richiesta di Supporto</h1>
+  
+  <div class="admin-support-details">
+    <div class="detail-item">
+      <span class="detail-label">Utente:</span>
+      <span class="detail-value"><%= @support.user.email %></span>
+    </div>
+    
+    <div class="detail-item">
+      <span class="detail-label">Oggetto:</span>
+      <span class="detail-value"><%= @support.subject %></span>
+    </div>
+    
+    <div class="detail-item">
+      <span class="detail-label">Messaggio:</span>
+      <div class="message-content">
+        <%= simple_format(@support.message) %>
+      </div>
+    </div>
   </div>
-  <%= f.submit "Invia Risposta" %>
-<% end %>
+  
+  <div class="admin-support-response">
+    <h2 class="response-title">Rispondi alla Richiesta</h2>
+    
+    <%= form_with model: @support, url: admin_support_path(@support), method: :patch, class: "response-form" do |f| %>
+      <div class="form-group">
+        <%= f.label :response, "Risposta *", class: "form-label" %>
+        <%= f.text_area :response, class: "form-textarea", required: true, rows: 6 %>
+      </div>
+      
+      <div class="form-actions">
+        <%= f.submit "Invia Risposta", class: "form-submit-btn" %>
+        <%= link_to "Annulla", admin_supports_path, class: "form-cancel-btn" %>
+      </div>
+    <% end %>
+  </div>
+</div>

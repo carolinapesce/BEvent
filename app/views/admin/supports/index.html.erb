@@ -1,20 +1,38 @@
-<h1>Richieste di Supporto</h1>
 
-<table>
-  <tr>
-    <th>Utente</th>
-    <th>Oggetto</th>
-    <th>Messaggio</th>
-    <th>Azione</th>
-  </tr>
-  <% @supports.each do |request| %>
-    <tr>
-      <td><%= request.user.email %></td>
-      <td><%= request.subject %></td>
-      <td><%= truncate(request.message, length: 50) %></td>
-      <td><%= link_to "Rispondi", admin_support_path(request) %></td>
-    </tr>
-  <% end %>
-</table>
-
-<%= link_to "home", root_path %>
+<div class="admin-supports-container">
+  <div class= "show-back">
+        <%= link_to request.referer || root_path do %>
+            <i class="fa-solid fa-arrow-left"></i>
+        <% end %>
+  </div>
+  <h1 class="admin-supports-title">Richieste di Supporto</h1>
+  
+  <div class="admin-supports-table-container">
+    <table class="admin-supports-table">
+      <thead>
+        <tr>
+          <th>Utente</th>
+          <th>Oggetto</th>
+          <th>Messaggio</th>
+          <th>Azioni</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @supports.each do |request| %>
+          <tr>
+            <td><%= request.user.email %></td>
+            <td><%= request.subject %></td>
+            <td><%= truncate(request.message, length: 50) %></td>
+            <td class="actions-cell">
+              <%= link_to 'Rispondi', admin_support_path(request), class: 'action-link reply-link' %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+  
+  <div class="admin-supports-footer">
+    <%= link_to 'Torna alla Home', admin_dashboard_path, class: 'admin-supports-home-btn' %>
+  </div>
+</div>
