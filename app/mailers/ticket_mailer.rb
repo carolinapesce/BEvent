@@ -5,7 +5,7 @@ class TicketMailer < ApplicationMailer
     @order = order
 
     @order.cart_items.each do |item|
-      pdf_content = TicketPdf.generate(item.event, @order, item.quantity)  
+      pdf_content = TicketPdf.generate_checkout(item.event, @order, item.quantity)  
       attachments["biglietti_#{item.event.title.parameterize}.pdf"] = pdf_content
     end
 

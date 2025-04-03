@@ -18,18 +18,21 @@
           <div class="checkout-card">
             <strong><%= ticket.event.title %></strong>
             <ul class="checkout-items">
-                <li>
-                    <%= ticket.quantity %> biglietto(i) - 
-                    Prezzo: <%= number_to_currency(ticket.event.event_price, unit: "€") %>
-                    <% if ticket.event.has_ended? %>
-                      <% user_review = ticket.event.reviews.find_by(user_id: current_user.id)%>
-                      <% if user_review.nil? %>
-                        <%= link_to "Lascia Recensione", new_review_path(event_id: ticket.event.id), class: "review-bt"%>
-                      <% else %>
-                        <%= link_to "Modifica Recensione", edit_review_path(user_review), class: "review-bt"%>
-                      <% end %>
-                    <% end %>
-                </li>
+              <li>
+                <%= ticket.quantity %> biglietto(i) - 
+                Prezzo: <%= number_to_currency(ticket.event.event_price, unit: "€") %>
+                <%= link_to download_pdf_ticket_path(ticket), class: "pdf-button", target: "_blank" do %>
+                  <%= image_tag("download_icon.png", alt: "Scarica PDF", class: "download-icon") %>
+                <% end %>
+                <% if ticket.event.has_ended? %>
+                  <% user_review = ticket.event.reviews.find_by(user_id: current_user.id)%>
+                  <% if user_review.nil? %>
+                    <%= link_to "Lascia Recensione", new_review_path(event_id: ticket.event.id), class: "review-bt"%>
+                  <% else %>
+                    <%= link_to "Modifica Recensione", edit_review_path(user_review), class: "review-bt"%>
+                  <% end %>
+                <% end %>
+              </li>
             </ul>
           </div>
         <% end %>

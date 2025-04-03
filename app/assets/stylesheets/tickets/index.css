@@ -121,3 +121,10 @@
 .tickets.index .review-bt:hover{
     background: #03855e;
 }
+
+.download-icon {
+    width: 30px;
+    height: auto;
+    margin-left: 8px;
+    vertical-align: middle;
+}
