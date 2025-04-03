@@ -9,7 +9,8 @@
 #   end
 # db/seeds.rb
 
-
+Event.skip_callback(:validate, :before, :start_date_cannot_be_in_the_past)
+Event.skip_callback(:validate, :before, :end_date_must_be_after_start_date)
 
 # Utente normale 
 10.times do |i|
@@ -185,3 +186,6 @@ end
     ) 
   end
 end
+
+Event.set_callback(:validate, :before, :start_date_cannot_be_in_the_past)
+Event.set_callback(:validate, :before, :end_date_must_be_after_start_date)
