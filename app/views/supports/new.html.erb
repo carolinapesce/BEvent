@@ -1,0 +1,20 @@
+<h1>Contatta l'assistenza</h1>
+
+<%= form_with model: @support, url: supports_path, local: true do |f| %>
+  <div>
+    <label>Email</label>
+    <%= current_user.email %>
+  </div>
+
+  <div>
+    <%= f.label :subject, "Oggetto" %>
+    <%= f.text_field :subject, required: true %>
+  </div>
+
+  <div>
+    <%= f.label :message, "Messaggio" %>
+    <%= f.text_area :message, required: true %>
+  </div>
+
+  <%= f.submit "Invia richiesta" %>
+<% end %>

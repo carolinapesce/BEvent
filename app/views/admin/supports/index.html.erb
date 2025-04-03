@@ -1,0 +1,20 @@
+<h1>Richieste di Supporto</h1>
+
+<table>
+  <tr>
+    <th>Utente</th>
+    <th>Oggetto</th>
+    <th>Messaggio</th>
+    <th>Azione</th>
+  </tr>
+  <% @supports.each do |request| %>
+    <tr>
+      <td><%= request.user.email %></td>
+      <td><%= request.subject %></td>
+      <td><%= truncate(request.message, length: 50) %></td>
+      <td><%= link_to "Rispondi", admin_support_path(request) %></td>
+    </tr>
+  <% end %>
+</table>
+
+<%= link_to "home", root_path %>

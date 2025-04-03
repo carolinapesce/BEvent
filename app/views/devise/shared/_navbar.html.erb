@@ -96,6 +96,12 @@
                     <% if can? :read, Cart%>
                         <%= link_to "I miei biglietti", checkouts_index_path(current_user.id), class: "dropdown-item" %>
                     <% end %>
+                    <% if current_user.user? || current_user.event_planner? %>
+                        <%= link_to "Supporto", new_support_path, class: "dropdown-item" %>
+                    <% end %>
+                    <% if current_user.admin? %>
+                        <%= link_to "Supporto", admin_supports_path, class: "dropdown-item" %>
+                    <% end %>
                     <%#= link_to "Preferiti", user_favourite_path(current_user), class: "dropdown-item" %>
                     <%#= link_to "Modifica Profilo", edit_user_path(current_user), class: "dropdown-item" %>
                     <%= link_to "Impostazioni", edit_user_registration_path, class: "dropdown-item" %>

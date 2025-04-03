@@ -1,0 +1,15 @@
+<h1>Dettagli della Richiesta di Supporto</h1>
+
+<p><strong>Utente:</strong> <%= @support.user.email %></p>
+<p><strong>Oggetto:</strong> <%= @support.subject %></p>
+<p><strong>Messaggio:</strong></p>
+<p><%= @support.message %></p>
+
+<h2>Rispondi alla Richiesta</h2>
+<%= form_with model: @support, url: admin_support_path(@support), method: :patch do |f| %>
+  <div>
+    <%= f.label :response, "Risposta" %>
+    <%= f.text_area :response, required: true %>
+  </div>
+  <%= f.submit "Invia Risposta" %>
+<% end %>

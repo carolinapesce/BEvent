@@ -22,7 +22,11 @@ Rails.application.routes.draw do
     get :my_events
   end
 
-
+  resources :supports, only: [:new, :create]
+  namespace :admin do
+    resources :supports, only: [:index, :show, :update]
+  end
+  
   resources :favourites, only: [:create, :destroy]
 
   #resources :events, only: [:index, :show]

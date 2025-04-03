@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_04_01_161701) do
+ActiveRecord::Schema[8.0].define(version: 2025_04_03_092256) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -104,7 +104,6 @@ ActiveRecord::Schema[8.0].define(version: 2025_04_01_161701) do
     t.string "city"
     t.string "country"
     t.integer "status", default: 0
-    t.float "price", default: 0.0
     t.integer "user_id", null: false
     t.string "type"
     t.boolean "charity_event", default: false
@@ -138,8 +137,17 @@ ActiveRecord::Schema[8.0].define(version: 2025_04_01_161701) do
     t.index ["user_id"], name: "index_reviews_on_user_id"
   end
 
+  create_table "supports", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.string "subject"
+    t.text "message"
+    t.text "response"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_supports_on_user_id"
+  end
+
   create_table "tickets", force: :cascade do |t|
-    t.string "ticket_id", null: false
     t.float "price", null: false
     t.string "seat_number"
     t.integer "user_id", null: false
@@ -192,6 +200,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_04_01_161701) do
   add_foreign_key "favourites", "users"
   add_foreign_key "reviews", "events"
   add_foreign_key "reviews", "users"
+  add_foreign_key "supports", "users"
   add_foreign_key "tickets", "events"
   add_foreign_key "tickets", "users"
 end
