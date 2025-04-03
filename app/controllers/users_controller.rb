@@ -7,6 +7,25 @@ class UsersController < ApplicationController
     @terminated_events = @user.events.where(status: 'terminated').order(:start_datetime)
   end
 
+  def my_events
+    @events = Event.where(user_id: current_user.id)
+    @query = params[:query]
+    @city = params[:city]
+    @category = params[:category]
+    if @query.present?
+      @events = @events.where("title LIKE ? OR description LIKE ?", "%#{@query}%", "%#{@query}%")
+    end
+
+    if @city.present?
+      @events = @events.where("city LIKE ?", "%#{@city}%")
+    end
+
+    if @category.present?
+      @events = @events.where("category LIKE ?", "%#{@category}%")
+    end
+    render 'users/my_events'
+  end
+
   def show
     @user = User.find(params[:id])
     @upcoming_events = @user.events.where(status: 'upcoming').order(:start_datetime)
