@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!
+  load_and_authorize_resource
 
   def profile
     @user = current_user
@@ -32,6 +33,7 @@ class UsersController < ApplicationController
   end
 
   def favourite
+    #authorize! :read, Favourite
     @user = current_user
     @favourites = @user.favourite_events
   end
