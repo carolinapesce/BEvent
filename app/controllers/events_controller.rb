@@ -106,6 +106,22 @@ class EventsController < ApplicationController
   end
 
   def edit
+    @event = Event.find(params[:id])
+  end
+
+  def update
+    @event = Event.find(params[:id])
+    if @event.update(event_params)
+      redirect_to user_my_events_path(current_user), notice: 'Evento aggiornato con successo.'
+    else
+      render :edit
+    end
+  end
+
+  def destroy
+    @event = Event.find(params[:id])
+    @event.destroy
+    redirect_to user_my_events_path(current_user), notice: 'Evento eliminato con successo.'
   end
 
   def set_event

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_04_02_204736) do
+ActiveRecord::Schema[8.0].define(version: 2025_04_03_092256) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -148,7 +148,6 @@ ActiveRecord::Schema[8.0].define(version: 2025_04_02_204736) do
   end
 
   create_table "tickets", force: :cascade do |t|
-    t.string "ticket_id", null: false
     t.float "price", null: false
     t.string "seat_number"
     t.integer "user_id", null: false

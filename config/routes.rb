@@ -19,6 +19,7 @@ Rails.application.routes.draw do
 
   resources :users, only: [:show, :edit, :update] do
     get :favourite
+    get :my_events
   end
 
   resources :supports, only: [:new, :create]
