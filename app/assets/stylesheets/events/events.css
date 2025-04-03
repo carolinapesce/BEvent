@@ -449,3 +449,272 @@ body {
 .events.new .sbm-btn input:hover{
     background: #036245;
 }
+
+/*-----------------------------------------------CREATE-----------------------------*/
+.events.create .pg {
+    display: flex;
+    flex-direction: row;
+    width: 100vw;
+    min-height: 100vh;
+    max-width: 100vw;
+    padding-top: 64px;
+}
+
+.events.create .page-title{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.events.create .page-back i{
+    font-size: 24px;
+    margin-top: 10px;
+    margin-left: 40px;
+    margin-right: 40px;
+}
+
+.events.create .page-back i:hover{
+    transform: scale(1.2);
+    transition: transform 0.2s ease;
+}
+
+
+
+
+
+.events.create .new-content{
+    width: 100%;
+    margin-right: 100px;
+}
+
+
+.events.create .progress-container {
+    width: 100%;
+    position: relative;
+    margin-bottom: 30px;
+}
+  
+/* Progressbar */
+
+:root {
+    --primary-color: #0075A2;
+}
+  
+/* Applica questi stili solo alla pagina .events.create */
+.events.create *,
+.events.create *::before,
+.events.create *::after {
+    box-sizing: border-box;
+}
+
+.events.create .progressbar {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    counter-reset: step;
+    margin: 2rem 0 4rem;
+}
+
+.events.create .progressbar::before,
+.events.create .progress {
+    content: "";
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 4px;
+    width: 100%;
+    background-color: #dcdcdc;
+    z-index: -1;
+}
+
+.events.create .progress {
+    background-color: #0075A2;
+    width: 0%;
+    transition: 0.3s;
+}
+
+.events.create .progress-step {
+    width: 1rem;
+    height: 1rem;
+    background-color: #dcdcdc;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.events.create .progress-step::before {
+    counter-increment: step;
+}
+
+.events.create .progress-step::after {
+    content: attr(data-title);
+    position: absolute;
+    top: calc(100% + 0.5rem);
+    font-size: 0.85rem;
+    color: #666;
+}
+
+.events.create .progress-step-active {
+    background-color: #0075A2;
+    color: #f3f3f3;
+}
+
+/* Form */
+.events.create .form-step {
+    display: none;
+    transform-origin: top;
+    animation: animate 0.5s;
+}
+
+.events.create .form-step-active {
+    display: block;
+}
+
+@keyframes animate {
+    from {
+      transform: scale(1, 0);
+      opacity: 0;
+    }
+    to {
+      transform: scale(1, 1);
+      opacity: 1;
+    }
+}
+
+.events.create .ev-content{
+    margin-top: 100px;
+    height: 100%;
+}
+
+
+.events.create .container-details{
+    margin-top: 100px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.events.create .form-step input,
+.events.create .form-step textarea{
+    width: 800px;
+    height: 30px;
+
+}
+
+.events.create .form-step textarea{
+    height: 200px;
+}
+
+.events.create .form-step select {
+    background-color: white;
+
+}
+
+.events.create .c-tempo {
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+
+}
+
+
+.events.create .form-step input,
+.events.create .form-step textarea,
+.events.create .form-step select {
+    border: 1px solid #acacac;
+    border-radius:8px;
+    font-size: 12px;
+    font-family: "Open Sans";
+    
+
+}
+
+.events.create .form-step h2{
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    margin-left: 167px;
+}
+
+.events.create .form-step label{
+    font-size: 20px;
+}
+
+.events.create .zona{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: right;
+}
+
+.events.create .campo,
+.events.create .form-group{
+    display: flex;
+    align-items: center; /* Allinea verticalmente le etichette e gli input */
+    gap: 20px; /* Spazio tra l'etichetta e l'input */
+    margin-top: 20px;
+}
+
+.events.create .campo label,
+.events.create .form-group label{
+    flex: 0 0 150px; /* Larghezza fissa per le etichette */
+    text-align: right; /* Allinea il testo delle etichette a destra */
+    font-family: "Open Sans";
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+}
+
+
+.events.create .campo input[type="checkbox"] {
+    width: 30px; /* Dimensione standard per i checkbox */
+    height: 30px;
+    margin-right: auto; /* Lo sposta a sinistra in linea con gli altri input */
+}
+
+/* Bottoni */
+
+.events.create .form-step button{
+    background: #0075A2;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-family: "Montserrat";
+    font-size: 20px;
+    margin-right: 30px;
+    margin-top: 60px ;
+    margin-left: 30px;
+    margin-bottom: 70px;
+    transition: 0.3s;
+}
+
+.events.create .form-step button:hover {
+    background: #034c68;
+}
+
+.events.create .sbm-btn input{
+    background: #04A777;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-family: "Montserrat";
+    font-size: 20px;
+    margin-right: 30px;
+    margin-top: 60px ;
+    margin-left: 30px;
+    margin-bottom: 70px;
+    transition: 0.3s;
+    width: 115px;
+    height: 44px;
+
+}
+.events.create .sbm-btn input:hover{
+    background: #036245;
+}

@@ -9,7 +9,12 @@ export default class extends Controller {
     this.updateProgressbar();
   }
 
-  nextStep() {
+  nextStep(event) {
+    if (!this.validateCurrentStep()) {
+      event.preventDefault();
+      alert("Per favore, compila tutti i campi obbligatori prima di procedere.");
+      return;
+    }
     if (this.formStepsNum < this.stepTargets.length - 1) {
       this.formStepsNum++;
       this.updateFormSteps();
@@ -42,5 +47,27 @@ export default class extends Controller {
       this.progressBarTarget.style.width =
         ((progressActive.length - 1) / (this.progressStepTargets.length - 1)) * 100 + "%";
     }
+  }
+
+  validateCurrentStep() {
+    let currentStepElement = this.stepTargets[this.formStepsNum];
+    let inputs = currentStepElement.querySelectorAll("input[required], select[required], textarea[required]");
+
+    let allValid = Array.from(inputs).every(input => {
+      if (!input.value.trim()) {
+        input.classList.add("error"); // Evidenzia il campo non valido
+        return false;
+      } else {
+        input.classList.remove("error");
+        return true;
+      }
+    });
+    return allValid;
+  }
+
+  submitForm(event) {
+    event.preventDefault(); // Assicura che il comportamento predefinito venga gestito
+    this.stepTargets.forEach(step => step.style.display = "block"); // Rendi visibili tutti i campi
+    this.element.requestSubmit(); // Invia il form correttamente
   }
 }

@@ -1,23 +1,14 @@
 <%= render "devise/shared/navbar" %>
 <div class="pg">
-    <%= link_to request.referer || root_path do %>
+    <%= link_to root_path do %>
         <div class="page-back">
             <i class="fa-solid fa-arrow-left"></i>
         </div>
     <% end %>
     <div class="new-content">
         <h1>Crea un nuovo evento</h1>
+        
         <%= form_with model: @event, local: true, data: { controller: "multi-step" } do |f| %>
-            <% if @event.errors.any? %>
-                <div class="error-messages">
-                    <h2>Ci sono <%= @event.errors.count %> errori:</h2>
-                    <ul>
-                        <% @event.errors.full_messages.each do |msg| %>
-                            <li><%= msg %></li>
-                        <% end %>
-                    </ul>
-                </div>
-            <% end %>
 
             <!-- Barra di progresso -->
             <div class="progress-container">
@@ -60,6 +51,13 @@
                                 <%= f.label :end_datetime, "Data e ora di fine" %>
                                 <div class="c-tempo">
                                     <%= f.datetime_select :end_datetime , required: true %>
+                                </div>
+                            </div>
+
+                            <div class="campo">
+                                <%= f.label :max_participants, "Numero massimo di partecipanti" %>
+                                <div class="c-tempo">
+                                    <%= f.number_field :max_participants , required: true %>
                                 </div>
                             </div>
                         </div>
@@ -153,7 +151,7 @@
                     <p>Controlla che i dati che hai inseerito siano tutti corretti.</p>
                     <div class="sbm-btn">
                         <button type="button" data-action="click->multi-step#prevStep" class="btn-prev">Previous</button>
-                        <%= f.submit "Salva" %>
+                        <%= f.submit "Salva", data: { action: "click->multi-step#submitForm" } %>
                     </div>
                 </div>
             </div>

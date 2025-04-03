@@ -33,7 +33,7 @@ class ReviewsController < ApplicationController
   def destroy
     @review = Review.find(params[:id])
     @review.destroy
-    redirect_to checkouts_index_path(current_user), notice: 'Recensione eliminata con successo.'
+    redirect_to tickets_path(current_user), notice: 'Recensione eliminata con successo.'
   end
 
   private

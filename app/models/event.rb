@@ -12,10 +12,8 @@ class Event < ApplicationRecord
   after_create :set_stripe_event_id
   after_update :update_stripe_price_obj, if: :saved_change_to_event_price?
 
-  def favourited_by?(user = nil)
-    return if user.nil?
-    favourite_users.include?(user)
-  end
+  validate :start_date_cannot_be_in_the_past
+  validate :end_date_must_be_after_start_date
 
   belongs_to :user
 
@@ -40,6 +38,23 @@ class Event < ApplicationRecord
   
   geocoded_by :full_address
   after_validation :geocode, if: :full_address_changed?
+
+  def start_date_cannot_be_in_the_past
+    if start_datetime.present? && start_datetime < Time.current
+      errors.add(:start_datetime, "La data non può essere nel passato")
+    end
+  end
+
+  def end_date_must_be_after_start_date
+    if end_datetime.present? && start_datetime.present? && end_datetime <= start_datetime
+      errors.add(:end_datetime, "L'orario di fine deve essere successivo all'orario di inizio")
+    end
+  end
+
+  def favourited_by?(user = nil)
+    return if user.nil?
+    favourite_users.include?(user)
+  end
 
   def full_address
     [address, city, country].compact.join(', ')
@@ -93,7 +108,7 @@ class Event < ApplicationRecord
   end
 
   def set_stripe_event_id 
-    product = Stripe::Product.create(name: self.title, description: self.description)
+    product = Stripe::Product.create(name: self.title, description: self.description.blank? ? nil : self.description)
     price = Stripe::Price.create(product: product, unit_amount: (self.event_price*100), currency: 'eur')
     update(stripe_event_id: product.id, stripe_price_id: price.id)
   end
