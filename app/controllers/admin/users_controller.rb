@@ -53,6 +53,21 @@ class Admin::UsersController < ApplicationController
     redirect_to admin_users_path, notice: 'Utente eliminato con successo.'
   end
 
+  def block
+    user = User.find(params[:id])
+    user.update(blocked: true)
+
+    UserMailer.account_blocked(user).deliver_now!
+
+    redirect_to admin_users_path, notice: "L'utente #{user.email} è stato bloccato."
+  end
+
+  def unblock
+    user = User.find(params[:id])
+    user.update(blocked: false)
+    redirect_to admin_users_path, notice: "L'utente #{user.email} è stato sbloccato."
+  end
+
   private
 
   def check_admin_role
