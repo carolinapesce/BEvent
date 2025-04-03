@@ -1,2 +1,27 @@
 <h1>Supports#create</h1>
 <p>Find me in app/views/supports/create.html.erb</p>
+
+<div class="support-container">
+  <h1 class="support-title">Contatta l'assistenza</h1>
+
+  <%= form_with model: @support, url: supports_path, local: true do |f| %>
+    <div class="form-group">
+      <label class="form-label">Email</label>
+      <div class="current-email"><%= current_user.email %></div>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :subject, "Oggetto", class: "form-label" %>
+      <%= f.text_field :subject, class: "form-input", required: true %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :message, "Messaggio", class: "form-label" %>
+      <%= f.text_area :message, class: "form-textarea", rows: 5, required: true %>
+    </div>
+
+    <div class="form-actions">
+      <%= f.submit "Invia richiesta", class: "submit-button" %>
+    </div>
+  <% end %>
+</div>
