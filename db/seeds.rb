@@ -12,31 +12,6 @@
 Event.skip_callback(:validate, :before, :start_date_cannot_be_in_the_past)
 Event.skip_callback(:validate, :before, :end_date_must_be_after_start_date)
 
-# Utente normale 
-10.times do |i|
-  User.create!(
-    email: "user#{i + 1}@gmail.com",
-    password: "password",
-    first_name: "Nome #{i + 1}",
-    last_name: "Cognome #{i + 1}",
-    role: 0,
-    id: i+6,
-    confirmed_at: Time.now
-  )
-end
-
-# Event planner
-User.create!(
-  email: "eventplanner@gmail.com",
-  password: "password",
-  first_name: "Maria",
-  last_name: "Bianchi",
-  bio: Faker::Lorem.paragraph(sentence_count: 20),
-  role: 1,
-  id: 5,
-  confirmed_at: Time.now
-)
-
 # Admin
 User.create!(
   email: "zarola.admin@gmail.com",
@@ -68,6 +43,32 @@ User.create!(
   confirmed_at: Time.now
 )
 
+# Utente normale 
+10.times do |i|
+  User.create!(
+    email: "user#{i + 1}@gmail.com",
+    password: "password",
+    first_name: "Nome #{i + 1}",
+    last_name: "Cognome #{i + 1}",
+    role: 0,
+    confirmed_at: Time.now
+  )
+end
+
+# Event planner
+10.times do |i|
+  User.create!(
+    email: "eventplanner#{i + 1}@gmail.com",
+    password: "password",
+    first_name: "Nome EP #{i + 1}",
+    last_name: "Cognome EP #{i + 1}",
+    bio: Faker::Lorem.paragraph(sentence_count: 20),
+    role: 1,
+    confirmed_at: Time.now
+  )
+end
+
+
 city_coordinates = {
   "Roma" => [41.9028, 12.4964],
   "Milano" => [45.4642, 9.1900],
@@ -75,6 +76,8 @@ city_coordinates = {
   "Torino" => [45.0703, 7.6869],
   "Firenze" => [43.7696, 11.2558]
 }
+
+eventplanners = User.where(role: 1)
 
 30.times do |i|
   start_time = Faker::Time.forward(days: rand(1..10), period: [:morning, :afternoon, :evening].sample)
@@ -102,7 +105,7 @@ city_coordinates = {
     latitude: latitude,
     longitude: longitude,
     event_price: rand(10..50),
-    user_id: 5,  
+    user_id: eventplanners.sample.id,  
     type: nil,  
     charity_event: false,
     stripe_event_id:i+1,
@@ -137,7 +140,7 @@ end
     latitude: latitude,
     longitude: longitude,
     event_price: rand(10..50),
-    user_id: 5,  
+    user_id: eventplanners.sample.id,
     type: "CharityEvent",  
     charity_event: true,
     stripe_event_id:i+1,
@@ -172,7 +175,7 @@ end
     latitude: latitude,
     longitude: longitude,
     event_price: rand(10..50),
-    user_id: 5,  
+    user_id: eventplanners.sample.id,  
     type: nil,  
     charity_event: false,
     stripe_event_id:i+1,
@@ -183,6 +186,31 @@ end
   reviewers = User.where(role: 0).sample(5)
 
   reviewers.each do |user|
+
+    cart = Cart.create!(
+    )
+
+    cart_item = CartItem.create!(
+      cart_id: cart.id,
+      event_id: event.id,
+      quantity: 1
+    )
+
+    Checkout.create!(
+      user_id: user.id,
+      cart_id: cart.id,
+      completed_at: Time.now,
+      stripe_session_id: i+1,
+      total_amount: event.event_price*100
+    )
+
+    Ticket.create!(
+      price: event.event_price,
+      user_id: user.id,
+      event_id: event.id,
+      quantity: 1
+    )
+
     Review.create!(
       user_id: user.id,
       event_id: event.id,

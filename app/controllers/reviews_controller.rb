@@ -16,7 +16,7 @@ class ReviewsController < ApplicationController
     @review = current_user.reviews.new(review_params)
     
     if @review.save
-      redirect_to checkouts_index_path(current_user), notice: 'Recensione inviata con successo!'
+      redirect_to tickets_path(current_user), notice: 'Recensione inviata con successo!'
     else
       @event = @review.event
       render :new
@@ -32,7 +32,7 @@ class ReviewsController < ApplicationController
     @review = current_user.reviews.find(params[:id])
     
     if @review.update(review_params)
-      redirect_to checkouts_index_path(current_user), notice: 'Recensione aggiornata con successo!'
+      redirect_to tickets_path(current_user), notice: 'Recensione aggiornata con successo!'
     else
       @event = @review.event
       render :edit
