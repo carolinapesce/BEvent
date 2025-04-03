@@ -12,8 +12,8 @@ class Event < ApplicationRecord
   after_create :set_stripe_event_id
   after_update :update_stripe_price_obj, if: :saved_change_to_event_price?
 
-  #validate :start_date_cannot_be_in_the_past
-  #validate :end_date_must_be_after_start_date
+  validate :start_date_cannot_be_in_the_past
+  validate :end_date_must_be_after_start_date
 
   belongs_to :user
 

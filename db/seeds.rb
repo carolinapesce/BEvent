@@ -20,6 +20,7 @@ Event.skip_callback(:validate, :before, :end_date_must_be_after_start_date)
     first_name: "Nome #{i + 1}",
     last_name: "Cognome #{i + 1}",
     role: 0,
+    id: i+6,
     confirmed_at: Time.now
   )
 end
@@ -32,6 +33,7 @@ User.create!(
   last_name: "Bianchi",
   bio: Faker::Lorem.paragraph(sentence_count: 20),
   role: 1,
+  id: 5,
   confirmed_at: Time.now
 )
 
@@ -42,6 +44,7 @@ User.create!(
   first_name: "Massimo",
   last_name: "Zarola",
   role: 2,
+  id: 1,
   confirmed_at: Time.now
 )
 
@@ -51,6 +54,7 @@ User.create!(
   first_name: "Kavidu",
   last_name: "Paula",
   role: 2,
+  id: 2,
   confirmed_at: Time.now
 )
 
@@ -60,6 +64,7 @@ User.create!(
   first_name: "Carolina",
   last_name: "Pesce",
   role: 2,
+  id: 3,
   confirmed_at: Time.now
 )
 
