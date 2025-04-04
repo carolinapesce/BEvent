@@ -1,11 +1,11 @@
 
 <%= render "devise/shared/navbar" %>
 <div class= "page">
-    <div class= "wrap-title">
-        <%= link_to request.referer || root_path do %>
+    <div class="wrap-title">
+        <%= link_to '#', onclick: "history.back(); return false;" do %>
             <i class="fa-solid fa-arrow-left"></i>
         <% end %>
-        <h1> Preferiti da  un utente </h1>
+        <h1>Eventi Preferiti</h1>
     </div>
     <div class= "favourite-page">
         <% if @favourites == [] %>

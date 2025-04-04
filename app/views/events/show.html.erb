@@ -2,12 +2,11 @@
 
 <div class="page">
     
-    <div class= "show-back">
-        <%= link_to request.referer || root_path do %>
+    <div class="show-back">
+        <%= link_to '#', onclick: "history.back(); return false;" do %>
             <i class="fa-solid fa-arrow-left"></i>
         <% end %>
     </div>
-
 
     <div class= "show-page">    
         <div class="banner-image">
