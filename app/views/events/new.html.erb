@@ -113,27 +113,29 @@
 
                 
 
-                <div class="form-step" data-multi-step-target="step" data-step="3">
+                <div class="form-step" data-multi-step-target="step" data-step="3" data-controller="charity" >
 
                     <div>
                         <div class="container-details">
                             <h2>Ticketing</h2>
-                            <div class="campo">
+                            <div class="campo" data-charity-target="price">
                                 <%= f.label :event_price, "Prezzo" %>
-                                <%= f.number_field :event_price, required: true %>
+                                <%= f.number_field :event_price, required: true, id: "event_price" %>
                             </div>
                             <div class="campo">
                                 <%= f.label :charity_event, "Evento di beneficienza?" %>
-                                <%= f.checkbox :charity_event %>
+                                <%= f.check_box :charity_event, data: { action: "change->charity#toggleFields", charity_target: "charityCheckbox" } %>
                             </div>
 
-                            <div class="campo">
-                                <%= f.label :beneficiary, "Beneficiario" %>
-                                <%= f.text_field :beneficiary %>
-                            </div>
-                            <div class="campo">
-                                <%= f.label :fundraiser_goal, "Obiettivo raccolta fondi" %>
-                                <%= f.number_field :fundraiser_goal, step: 0.01 %>
+                            <div id="charity_fields" class="campo" data-charity-target="charityFields" style="display: none;">
+                                <div class="campo">
+                                    <%= f.label :beneficiary, "Beneficiario" %>
+                                    <%= f.text_field :beneficiary, data: { charityTarget: "beneficiary" }, id: "beneficiary_field" %>
+                                </div>
+                                <div class="campo">
+                                    <%= f.label :fundraiser_goal, "Obiettivo raccolta fondi" %>
+                                    <%= f.number_field :fundraiser_goal, step: 0.01, data: { charityTarget: "fundraiserGoal" }, id: "fundraiser_goal_field" %>
+                                </div>
                             </div>
                         </div>
                     </div>

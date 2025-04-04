@@ -70,8 +70,8 @@ class EventsController < ApplicationController
   def show
     @user = current_user
     @events = Event.all
-    @organizer = @event.user
     @event = Event.find(params[:id])
+    @organizer = @event.user
   end
 
   def new

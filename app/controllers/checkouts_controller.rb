@@ -23,7 +23,7 @@ class CheckoutsController < ApplicationController
       @current_cart.cart_items.each do |cart_item|
         @ticket = Ticket.create(user_id: @current_user.id,
                       event_id: cart_item.event_id,
-                      price: cart_item.event.event_price,
+                      price: cart_item.donation_amount.present? ? cart_item.donation_amount : cart_item.event.event_price,
                       booked_datetime: cart_item.event.start_datetime,
                       quantity: cart_item.quantity)
       end

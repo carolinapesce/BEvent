@@ -108,6 +108,7 @@ class Event < ApplicationRecord
   end
 
   def set_stripe_event_id 
+    set_charity_price if self.charity_event?
     product = Stripe::Product.create(name: self.title, description: self.description.blank? ? nil : self.description)
     price = Stripe::Price.create(product: product, unit_amount: (self.event_price*100), currency: 'eur')
     update(stripe_event_id: product.id, stripe_price_id: price.id)
@@ -121,6 +122,10 @@ class Event < ApplicationRecord
   def update_average_rating
     avg_rating = reviews.average(:rating)
     update_column(:average_rating, avg_rating)
+  end
+
+  def set_charity_price
+    self.event_price = 0
   end
 
 end

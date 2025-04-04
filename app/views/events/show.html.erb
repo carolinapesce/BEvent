@@ -157,45 +157,13 @@
             <div class="map-area">
                 <div id="map" data-static="true" style="width: 100%; height: 500px;">
                     <%= image_tag "https://maps.googleapis.com/maps/api/staticmap?" +
-                        "center=#{CGI.escape(@event.city)}" +
+                        "center=#{@event.latitude},#{@event.longitude}" +
                         "&zoom=13&size=600x300" +
                         "&markers=color:red|#{@event.latitude},#{@event.longitude}" +
                         "&key=#{ENV['GOOGLE_MAPS_API_KEY']}",
                         alt: "Mappa evento" %>
                 </div>
             </div>
-            
-            
-            <!--script>    
-                async function initMap() {
-                    const { Map } = await google.maps.importLibrary("maps");
-                    const { AdvancedMarkerElement } = await google.maps.importLibrary("marker");
-                    const map = new Map(document.getElementById("map"), {
-                        mapId: "74d5e23654ee93dd",
-                        center: { lat: 41.9028, lng: 12.4964 }, // Default su Milano, cambia se necessario
-                        zoom: 11
-                    });
-                    
-                    var events = <%= raw @events.to_json(only: [:latitude, :longitude, :title]) %>;
-                    console.log(events);
-
-                    
-                    events.forEach(function(event) {
-                        console.log("Creazione marker per:", event);
-                        if (event.latitude && event.longitude) {
-                            const marker = new AdvancedMarkerElement({
-                                map: map,
-                                position: { lat: parseFloat(event.latitude), lng: parseFloat(event.longitude) },
-                                title: event.title
-                            });
-                        } else {
-                            console.warn("Evento senza coordinate valide:", event);
-                        }
-                    });
-            
-                }
-                window.initMap = initMap;
-            </script-->
 
             <div class="reviews-section">
                 <div class="review-title">
