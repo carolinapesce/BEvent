@@ -15,11 +15,7 @@
                 <%= link_to event_path(event.id), class: "event-card-link" do %>
                     <div class="event-card">
                         <div class="event-design">
-                            <% if event.poster_pic.present? %>
-                                            <%= image_tag(event.poster_pic, alt: "Event Image", class: "event-image")%>
-                            <% else %>
-                                <%= image_tag("default-poster.jpg", alt: "Event Image", class: "event-image" )%>
-                            <% end %>
+                            <%= image_tag(event_image(event), alt: "Event Image", class: "event-image") %>
                         </div>
 
                         <div class="event-frame">
