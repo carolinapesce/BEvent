@@ -15,6 +15,13 @@ export default class extends Controller {
       alert("Per favore, compila tutti i campi obbligatori prima di procedere.");
       return;
     }
+
+    this.updateHiddenFields();
+
+    if (this.formStepsNum === this.stepTargets.length - 2) {
+      this.showRecap();
+    }
+
     if (this.formStepsNum < this.stepTargets.length - 1) {
       this.formStepsNum++;
       this.updateFormSteps();
@@ -65,9 +72,94 @@ export default class extends Controller {
     return allValid;
   }
 
+  
+  updateHiddenFields() {
+    const fields = [
+      ["title", "text"],
+      ["category", "select"],
+      ["max_participants", "number"],
+      ["address", "text"],
+      ["city", "text"],
+      ["country", "text"],
+      ["description", "textarea"],
+      ["event_price", "number"],
+      ["poster_pic", "file"],
+      ["charity_event", "checkbox"],
+      ["beneficiary", "text"],
+      ["fundraiser_goal", "number"]
+    ];
+
+    fields.forEach(([fieldName, type]) => {
+      const input = document.querySelector(`[name*='[${fieldName}]']`);
+      const hidden = document.getElementById(`hidden_${fieldName}`);
+
+      if (input && hidden) {
+        if (type === "checkbox") {
+          hidden.value = input.checked ? "Sì" : "No";
+        } else if (type === "file") {
+          hidden.value = input.files.length > 0 ? input.files[0].name : "";
+        } else {
+          hidden.value = input.value;
+        }
+      }
+    });
+
+    // ✅ NUOVO: composizione manuale del datetime di inizio
+    const startHidden = document.getElementById("hidden_start_datetime");
+    if (startHidden) {
+      startHidden.value = this.composeDatetime("start");
+    }
+
+    // ✅ NUOVO: composizione manuale del datetime di fine
+    const endHidden = document.getElementById("hidden_end_datetime");
+    if (endHidden) {
+      endHidden.value = this.composeDatetime("end");
+    }
+  
+  }
+
+  composeDatetime(prefix) {
+    const y = document.querySelector(`#event_${prefix}_datetime_1i`)?.value;
+    const m = document.querySelector(`#event_${prefix}_datetime_2i`)?.value.padStart(2, '0');
+    const d = document.querySelector(`#event_${prefix}_datetime_3i`)?.value.padStart(2, '0');
+    const h = document.querySelector(`#event_${prefix}_datetime_4i`)?.value.padStart(2, '0');
+    const min = document.querySelector(`#event_${prefix}_datetime_5i`)?.value.padStart(2, '0');
+
+    if (y && m && d && h && min) {
+      return `${d}/${m}/${y} ${h}:${min}`;
+    }
+    return "-";
+  }
+
+  showRecap() {
+    const map = {
+      title: "preview_title",
+      category: "preview_category",
+      start_datetime: "preview_start_datetime",
+      end_datetime: "preview_end_datetime",
+      max_participants: "preview_max_participants",
+      address: "preview_address",
+      city: "preview_city",
+      country: "preview_country",
+      description: "preview_description",
+      poster_filename: "preview_poster",
+      event_price: "preview_price",
+      charity_event: "preview_charity",
+      beneficiary: "preview_beneficiary",
+      fundraiser_goal: "preview_goal"
+    };
+
+    Object.entries(map).forEach(([hiddenId, previewId]) => {
+      const hidden = document.getElementById(`hidden_${hiddenId}`);
+      const preview = document.getElementById(previewId);
+
+      if (hidden && preview) {
+        preview.textContent = hidden.value || "-";
+      }
+    });
+  }
+
   submitForm(event) {
-    //event.preventDefault(); // Assicura che il comportamento predefinito venga gestito
-    //this.stepTargets.forEach(step => step.style.display = "block"); // Rendi visibili tutti i campi
     this.element.submit(); // Invia il form correttamente
   }
 }

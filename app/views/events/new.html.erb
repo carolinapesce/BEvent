@@ -30,10 +30,12 @@
                             <div class="campo">
                                 <%= f.label :title, "Titolo" %>
                                 <%= f.text_field :title, required: true  %>
+                                <input type="hidden" id="hidden_title">
                             </div>
                             <div class="campo">
                                 <%= f.label :category, "Categoria" %>
                                 <%= f.select :category, Event::VALID_CATEGORIES, prompt: "Seleziona una categoria", required: true %>
+                                <input type="hidden" id="hidden_category">
                             </div>
                         </div>
                     </div>
@@ -44,6 +46,7 @@
                                 <%= f.label :start_datetime, "Data e ora di inizio" %>
                                 <div class="c-tempo">
                                     <%= f.datetime_select :start_datetime, required: true  %>
+                                    <input type="hidden" id="hidden_start_datetime">
                                 </div>
                             </div>
 
@@ -51,6 +54,7 @@
                                 <%= f.label :end_datetime, "Data e ora di fine" %>
                                 <div class="c-tempo">
                                     <%= f.datetime_select :end_datetime , required: true %>
+                                    <input type="hidden" id="hidden_end_datetime">
                                 </div>
                             </div>
 
@@ -58,6 +62,7 @@
                                 <%= f.label :max_participants, "Numero massimo di partecipanti" %>
                                 <div class="c-tempo">
                                     <%= f.number_field :max_participants , required: true %>
+                                    <input type="hidden" id="hidden_max_participants">
                                 </div>
                             </div>
                         </div>
@@ -68,14 +73,17 @@
                             <div class="campo">
                                 <%= f.label :address, "Indirizzo" %>
                                 <%= f.text_field :address , required: true %>
+                                <input type="hidden" id="hidden_address">
                             </div>
                             <div class="campo">
                                 <%= f.label :city, "Città" %>
                                 <%= f.text_field :city , required: true %>
+                                <input type="hidden" id="hidden_city">
                             </div>
                             <div class="campo">   
                                 <%= f.label :country, "Paese" %>
                                 <%= f.text_field :country, required: true  %>
+                                <input type="hidden" id="hidden_country">
                             </div>
                         </div>
                     </div>
@@ -85,6 +93,7 @@
                             <div class="campo">
                                 <%= f.label :description, "Descrizione" %>
                                 <%= f.text_area :description %>
+                                <input type="hidden" id="hidden_description">
                             </div>
                         </div>
                     </div>
@@ -101,7 +110,8 @@
                             <h2>Banner</h2>
                             <div class="form-group">
                                 <%= f.label :poster_pic, "Poster dell'evento" %>
-                                <%= f.file_field :poster_pic %>
+                                <%= f.file_field :poster_pic, id: "poster_pic_input" %>
+                                <input type="hidden" id="hidden_poster_filename">
                             </div>
                         </div>
                     </div>
@@ -121,20 +131,25 @@
                             <div class="campo" data-charity-target="price">
                                 <%= f.label :event_price, "Prezzo" %>
                                 <%= f.number_field :event_price, required: true, id: "event_price" %>
+                                <input type="hidden" id="hidden_event_price">
                             </div>
                             <div class="campo">
                                 <%= f.label :charity_event, "Evento di beneficienza?" %>
-                                <%= f.check_box :charity_event, data: { action: "change->charity#toggleFields", charity_target: "charityCheckbox" } %>
+                                <%= f.check_box :charity_event, data: { action: "change->charity#toggleFields", charity_target: "charityCheckbox" }, id: "charity_event_checkbox" %>
+                                <input type="hidden" id="hidden_charity_event">
                             </div>
 
                             <div id="charity_fields" class="campo" data-charity-target="charityFields" style="display: none;">
                                 <div class="campo">
                                     <%= f.label :beneficiary, "Beneficiario" %>
                                     <%= f.text_field :beneficiary, data: { charityTarget: "beneficiary" }, id: "beneficiary_field" %>
+                                    <input type="hidden" id="hidden_beneficiary">
                                 </div>
+
                                 <div class="campo">
                                     <%= f.label :fundraiser_goal, "Obiettivo raccolta fondi" %>
                                     <%= f.number_field :fundraiser_goal, step: 0.01, data: { charityTarget: "fundraiserGoal" }, id: "fundraiser_goal_field" %>
+                                    <input type="hidden" id="hidden_fundraiser_goal">
                                 </div>
                             </div>
                         </div>
@@ -150,12 +165,32 @@
 
                 <div class="form-step" data-multi-step-target="step" data-step="4">
                     <h2>Ricontrolla</h2>
-                    <p>Controlla che i dati che hai inseerito siano tutti corretti.</p>
+                    <p>Controlla che i dati che hai inserito siano tutti corretti.</p>
+
+                    <div class="review-container">
+                        <h3>Dettagli Evento</h3>
+                        <p><strong>Titolo:</strong> <span id="preview_title"></span></p>
+                        <p><strong>Categoria:</strong> <span id="preview_category"></span></p>
+                        <p><strong>Data e ora di inizio:</strong> <span id="preview_start_datetime"></span></p>
+                        <p><strong>Data e ora di fine:</strong> <span id="preview_end_datetime"></span></p>
+                        <p><strong>Numero massimo di partecipanti:</strong> <span id="preview_max_participants"></span></p>
+                        <p><strong>Indirizzo:</strong> <span id="preview_address"></span></p>
+                        <p><strong>Città:</strong> <span id="preview_city"></span></p>
+                        <p><strong>Paese:</strong> <span id="preview_country"></span></p>
+                        <p><strong>Descrizione:</strong> <span id="preview_description"></span></p>
+                        <p><strong>Banner caricato:</strong> <span id="preview_poster"></span></p>
+                        <p><strong>Prezzo:</strong> <span id="preview_price"></span></p>
+                        <p><strong>Evento benefico:</strong> <span id="preview_charity"></span></p>
+                        <p><strong>Beneficiario:</strong> <span id="preview_beneficiary"></span></p>
+                        <p><strong>Obiettivo raccolta:</strong> <span id="preview_goal"></span></p>
+                    </div>
+
                     <div class="sbm-btn">
                         <button type="button" data-action="click->multi-step#prevStep" class="btn-prev">Previous</button>
                         <button type="button" data-action="click->multi-step#submitForm">Salva</button>
                     </div>
                 </div>
+
             </div>
         <% end %>
     </div>    
@@ -163,3 +198,63 @@
 
 
 <%= render "devise/shared/footer" %>
+
+
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+    // Titolo e categoria
+    const titleInput = document.querySelector("#event_title");
+    const categorySelect = document.querySelector("#event_category");
+    const hiddenTitle = document.querySelector("#hidden_title");
+    const hiddenCategory = document.querySelector("#hidden_category");
+
+    titleInput?.addEventListener("input", () => {
+        hiddenTitle.value = titleInput.value;
+    });
+
+    categorySelect?.addEventListener("change", () => {
+        hiddenCategory.value = categorySelect.options[categorySelect.selectedIndex].text;
+    });
+
+    // Poster pic (solo nome file)
+    const posterInput = document.querySelector("#poster_pic_input");
+    const hiddenPoster = document.querySelector("#hidden_poster_filename");
+
+    posterInput?.addEventListener("change", () => {
+        hiddenPoster.value = posterInput.files[0]?.name || "";
+    });
+
+    // Prezzo
+    const eventPriceInput = document.querySelector("#event_price");
+    const hiddenEventPrice = document.querySelector("#hidden_event_price");
+
+    eventPriceInput?.addEventListener("input", () => {
+        hiddenEventPrice.value = eventPriceInput.value;
+    });
+
+    // Evento di beneficienza checkbox
+    const charityCheckbox = document.querySelector("#charity_event_checkbox");
+    const hiddenCharity = document.querySelector("#hidden_charity_event");
+
+    charityCheckbox?.addEventListener("change", () => {
+        hiddenCharity.value = charityCheckbox.checked ? "Sì" : "No";
+    });
+
+    // Beneficiario
+    const beneficiaryField = document.querySelector("#beneficiary_field");
+    const hiddenBeneficiary = document.querySelector("#hidden_beneficiary");
+
+    beneficiaryField?.addEventListener("input", () => {
+        hiddenBeneficiary.value = beneficiaryField.value;
+    });
+
+    // Obiettivo raccolta fondi
+    const fundraiserField = document.querySelector("#fundraiser_goal_field");
+    const hiddenFundraiser = document.querySelector("#hidden_fundraiser_goal");
+
+    fundraiserField?.addEventListener("input", () => {
+        hiddenFundraiser.value = fundraiserField.value;
+    });
+    });
+
+</script>
