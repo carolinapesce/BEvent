@@ -92,12 +92,14 @@ gem 'pagy'
 
 gem 'prawn'
 
+gem 'webmock'
+
 # Cucumber and RSpec
 group :test do
   gem 'cucumber-rails', require: false
-  # database_cleaner is not mandatory, but highly recommended
   gem 'database_cleaner'
   gem 'rspec-rails'
   gem 'rspec-expectations'
   gem 'factory_bot_rails'
+  gem 'stripe-ruby-mock'
 end

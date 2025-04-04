@@ -66,8 +66,8 @@ export default class extends Controller {
   }
 
   submitForm(event) {
-    event.preventDefault(); // Assicura che il comportamento predefinito venga gestito
-    this.stepTargets.forEach(step => step.style.display = "block"); // Rendi visibili tutti i campi
-    this.element.requestSubmit(); // Invia il form correttamente
+    //event.preventDefault(); // Assicura che il comportamento predefinito venga gestito
+    //this.stepTargets.forEach(step => step.style.display = "block"); // Rendi visibili tutti i campi
+    this.element.submit(); // Invia il form correttamente
   }
 }
