@@ -34,7 +34,7 @@
                     <option value="napoli">Napoli</option>
                 </select>
             </div>
-            <!-- <button class="search-button">
+            <button class="search-button">
                 <i class="fas fa-search"></i> 
             </button> 
             <%= button_to events_search_path, method: :get, class: "search-button" do %>
@@ -48,32 +48,33 @@
     
     <!-- Link alla pagina di ricerca eventi -->
     <%= link_to "Eventi", search_events_path, class: "nav-link" %> <%#!!!!!!!!!!!!!! Penso così vada bene, da fare la route%>
+    <% if !current_user.admin?%>
+        <% if can? :create, Event %>
+            <%= link_to "I miei eventi", user_my_events_path(current_user), class: "nav-link" %>
+        <% else %>
+            <%= link_to "Preferiti", user_favourite_path(current_user), class: "nav-link" %>
+        <% end %>
+        
+        <!-- Cart -->
+        <% if can? :read, Cart%>
+            <div class="cart-container">
+                <%= link_to cart_path(@current_cart), class: "cart-link" do %>
+                    <i class="fa-solid fa-cart-shopping"></i>
+                <% end %>
+            </div>
+        <% end %>
 
-    <% if can? :create, Event %>
-        <%= link_to "I miei eventi", user_my_events_path(current_user), class: "nav-link" %>
+
+        <% if can? :create, Event %>
+            <div class="create-container">
+                <%= link_to new_event_path, class: "create-link" do %>
+                    <i class="fa-solid fa-plus"></i>
+                <% end %>
+            </div>
+        <% end %>
     <% else %>
-        <%= link_to "Preferiti", user_favourite_path(current_user), class: "nav-link" %>
+        <%= link_to "Dashboard", admin_dashboard_path, class: "nav-link" %>
     <% end %>
-    
-    
-    <!-- Notifiche -->
-    <% if can? :read, Cart%>
-        <div class="cart-container">
-            <%= link_to cart_path(@current_cart), class: "cart-link" do %>
-                <i class="fa-solid fa-cart-shopping"></i>
-            <% end %>
-        </div>
-    <% end %>
-
-
-    <% if can? :create, Event %>
-        <div class="create-container">
-            <%= link_to new_event_path, class: "create-link" do %>
-                <i class="fa-solid fa-plus"></i>
-            <% end %>
-        </div>
-    <% end %>
-
     
     <!-- Profilo -->
     <div class="profile-menu" data-controller="dropdown">
@@ -87,17 +88,15 @@
                 <% end %>
                 <div class="dropdown-content hidden" data-dropdown-target="menu">
                     <%= link_to "Profilo", user_profile_path, class: "dropdown-item" %>
-                    <% if can? :read, Cart%>
+                    <% if can? :see, Ticket %>
                         <%= link_to "I miei biglietti", tickets_path(current_user.id), class: "dropdown-item" %>
                     <% end %>
-                    <% if current_user.user? || current_user.event_planner? %>
+                    <% if !current_user.admin? %>
                         <%= link_to "Supporto", new_support_path, class: "dropdown-item" %>
                     <% end %>
                     <% if current_user.admin? %>
                         <%= link_to "Supporto", admin_supports_path, class: "dropdown-item" %>
                     <% end %>
-                    <%#= link_to "Preferiti", user_favourite_path(current_user), class: "dropdown-item" %>
-                    <%#= link_to "Modifica Profilo", edit_user_path(current_user), class: "dropdown-item" %>
                     <%= link_to "Impostazioni", edit_user_registration_path, class: "dropdown-item" %>
                     <%= button_to "Logout", destroy_user_session_path, method: :delete, class: "dropdown-item logout-button" %>
                 </div>

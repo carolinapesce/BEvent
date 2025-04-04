@@ -44,8 +44,8 @@
                     <%= button_to cart_item_increase_path(cart_item_id: cart_elem), class: "btn-icon increase" do %>
                       <i class="fa-solid fa-plus"></i>
                     <% end %>
-                      <%= button_to cart_item_delete_path(cart_item_id: cart_elem.id), class: "delete-link" do %>
-                        <i class="fa-solid fa-trash"></i> 
+                    <%= button_to cart_item_delete_path(cart_item_id: cart_elem.id), method: :delete, class: "delete-link" do %>
+                      <i class="fa-solid fa-trash"></i> 
                     <% end %>                
                   </div>
               </li>
