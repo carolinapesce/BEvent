@@ -8,7 +8,8 @@ class TicketsController < ApplicationController
 
   def download_pdf
     ticket = Ticket.find(params[:id])
-    pdf = TicketPdf.generate_ticket(ticket.event, ticket, ticket.quantity)
+    tot_quantity = Ticket.where(event_id: ticket.event_id, user_id: ticket.user_id).sum(:quantity)
+    pdf = TicketPdf.generate_ticket(ticket.event, ticket, tot_quantity)
 
     send_data pdf, 
               filename: "biglietti_#{ticket.event.title.parameterize}.pdf",
