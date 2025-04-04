@@ -1,12 +1,6 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!
 
-  def profile
-    @user = current_user
-    @upcoming_events = @user.events.where(status: 'upcoming').order(:start_datetime)
-    @terminated_events = @user.events.where(status: 'terminated').order(:start_datetime)
-  end
-
   def my_events
     @events = Event.where(user_id: current_user.id)
     @query = params[:query]
@@ -41,7 +35,7 @@ class UsersController < ApplicationController
       .compact
       .select { |event| event.status == 'terminated' }
       .sort_by(&:start_datetime)
-  
+      
     render 'users/show'
   end  
 
