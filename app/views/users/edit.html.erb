@@ -1,18 +1,21 @@
 <!-- <h1>Users#edit</h1>
 <p>Find me in app/views/users/edit.html.erb</p> -->
 
-<%= render "devise/shared/navbar" %>
+<% if @user.role.present? && @user.first_name.present? && @user.last_name.present? %>
+  <%= render "devise/shared/navbar" %>
+<% end %>
 
 <div class="page-info">
   <div class="account-settings-container">
-    <div class="sidebar">
-      <h2>Impostazioni Account</h2>
-      <ul>
-        <li id="selected-w"><%= link_to "Modifica Profilo", edit_user_path(current_user) %></li>
-        <li><%= link_to "Modifica Password", edit_user_registration_path %></li>
-      </ul>
-    </div>
-
+    <% if @user.role.present? && @user.first_name.present? && @user.last_name.present? %>
+      <div class="sidebar">
+        <h2>Impostazioni Account</h2>
+        <ul>
+          <li id="selected-w"><%= link_to "Modifica Profilo", edit_user_path(current_user) %></li>
+          <li><%= link_to "Modifica Password", edit_user_registration_path %></li>
+        </ul>
+      </div>
+    <% end %>
     <div class="settings-content">
       <h2>Modifica Account</h2>
       <hr>
@@ -66,6 +69,7 @@
     </div>
   </div>
 </div>
-<%= render "devise/shared/footer" %>
 
-
+<% if @user.role.present? && @user.first_name.present? && @user.last_name.present? %>
+  <%= render "devise/shared/footer" %>
+<% end %>
