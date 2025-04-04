@@ -101,11 +101,11 @@ body {
 
 .events.index .events-grid{
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    grid-template-columns: repeat(3, 1fr);
     gap: 25px;
     margin-top: 20px;
+    width: 100%; /* Assicura che la griglia usi tutto lo spazio */
 }
-
 
 .event-card-link {
     text-decoration: none;
@@ -120,6 +120,7 @@ body {
     display: flex;
     flex-direction: column;
     width: 100%;
+    min-width: 0; /* Risolve problemi di overflow */
     height: 332px;
     border-radius: 15px;
     background: #ffffff;
@@ -240,6 +241,12 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+@media (max-width: 900px) {
+    .events.index .events-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
 }
 
 @media (max-width: 768px) {

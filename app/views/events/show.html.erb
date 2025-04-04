@@ -60,6 +60,37 @@
                             <p><%= @event.end_datetime.strftime("%H:%M") %></p>
                         </p>
                     </div>
+
+
+                    <div class="event-description">
+                        <h3>Descrizione</h3>
+                        <div class="info-desc">
+                            <p><%= @event.description %></p>
+                        </div>
+                    </div>
+
+                    <div class="event-host">
+                        <h3>Organizzato Da</h3>
+                        <%= link_to user_path(@organizer.id), style: "text-decoration: none;" do%>
+                            <div class="host-info">
+                                <% if @organizer.profile_pic.present? %>
+                                    <%= image_tag(@organizer.profile_pic, class: "host-image" )%>
+                                <% else %>
+                                    <%= image_tag("default-avatar.png", class: "host-image" )%>
+                                <% end %>
+                                <%#= image_tag "Profile.png", class: "host-image" %>
+                                <div class="host-details">
+                                    <p class="host-name"><%= @organizer.first_name %></p>
+                                    <!--p><%= link_to @organizer.first_name, user_path(@organizer.id)%></p-->
+                                    <!--button class="follow-btn">Visita</button-->
+                                </div>
+                            </div>
+                        <% end %>
+                    </div>
+
+            
+
+
                 </div>
 
                 <% if @event.charity_event? %>
@@ -87,6 +118,26 @@
 
                             <%= f.submit "Dona e Partecipa", class: "donation-btn" %>
                         <% end %>
+
+                        <div>
+                            <% if @event.charity_event? %>
+                                <div class="donation-progress">
+                                    <h4>Stato della raccolta fondi</h4>
+                                    <div class="progress-container">
+                                        <div class="progress-bar" 
+                                            style="width: <%= [(@event.current_funds / @event.fundraiser_goal * 100).round(2), 100].min %>%">
+                                        </div>
+                                        <span class="progress-text">
+                                            <%= number_to_currency(@event.current_funds) %> di <%= number_to_currency(@event.fundraiser_goal) %> 
+                                            (<%= [(@event.current_funds / @event.fundraiser_goal * 100).round(2), 100].min %>%)
+                                        </span>
+                                    </div>
+                                    <% if @event.current_funds >= @event.fundraiser_goal %>
+                                        <p class="goal-reached">🎉 Obiettivo raggiunto! Grazie per il vostro supporto!</p>
+                                    <% end %>
+                                </div>
+                            <% end %>
+                        </div>
                     </div>
                 <% else %>
                     <div class="event-buy">
@@ -108,38 +159,26 @@
                     </div>
                 <% end %>
             </div>
+            
 
             <div class="event-location">
                 <h3>Location</h3>
                 <div class="info-loc">
-                    <p><i class="fa-solid fa-location-dot"></i><%= @event.address+", "+@event.city+", "+@event.country%></p>
-                    <div class="map"></div>
-                </div>
-            </div>
-
-            <div class="event-host">
-                <h3>Organizzato Da</h3>
-                <%= link_to user_path(@organizer.id), style: "text-decoration: none;" do%>
-                    <div class="host-info">
-                        <% if @organizer.profile_pic.present? %>
-                            <%= image_tag(@organizer.profile_pic, class: "host-image" )%>
-                        <% else %>
-                            <%= image_tag("default-avatar.png", class: "host-image" )%>
-                        <% end %>
-                        <%#= image_tag "Profile.png", class: "host-image" %>
-                        <div class="host-details">
-                            <p class="host-name"><%= @organizer.first_name %></p>
-                            <!--p><%= link_to @organizer.first_name, user_path(@organizer.id)%></p-->
-                            <!--button class="follow-btn">Visita</button-->
+                    <div class="info-wrt">
+                        <p><i class="fa-solid fa-location-dot"></i><%= @event.address+", "+@event.city+", "+@event.country%></p>
+                    </div>
+                    <div class="map">
+                        <div class="map-area">
+                            <div id="map" data-static="true" style="width: 100%;">
+                                <%= image_tag "https://maps.googleapis.com/maps/api/staticmap?" +
+                                    "center=#{@event.latitude},#{@event.longitude}" +
+                                    "&zoom=13&size=600x300" +
+                                    "&markers=color:red|#{@event.latitude},#{@event.longitude}" +
+                                    "&key=#{ENV['GOOGLE_MAPS_API_KEY']}",
+                                    alt: "Mappa evento" %>
+                            </div>
                         </div>
                     </div>
-                <% end %>
-            </div>
-
-            <div class="event-description">
-                <h3>Descrizione</h3>
-                <div class="info-desc">
-                    <p><%= @event.description %></p>
                 </div>
             </div>
 
@@ -149,18 +188,6 @@
                     <span class="tag"><%= @event.category %></span>
                 </div>
             </div>
-
-            <div class="map-area">
-                <div id="map" data-static="true" style="width: 100%; height: 500px;">
-                    <%= image_tag "https://maps.googleapis.com/maps/api/staticmap?" +
-                        "center=#{@event.latitude},#{@event.longitude}" +
-                        "&zoom=13&size=600x300" +
-                        "&markers=color:red|#{@event.latitude},#{@event.longitude}" +
-                        "&key=#{ENV['GOOGLE_MAPS_API_KEY']}",
-                        alt: "Mappa evento" %>
-                </div>
-            </div>
-
             <div class="reviews-section">
                 <div class="review-title">
                     <h3>Recensioni</h3>
