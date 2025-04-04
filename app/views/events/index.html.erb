@@ -16,7 +16,8 @@
         <% Event::VALID_CATEGORIES.each do |category| %>
           <% events_for_category = @events.select { |event| event.category == category } %>
           <% if events_for_category.any? %>
-      
+
+              <div class="event-category-cont">
                 <h2 class="container-title">Eventi di <%= category %></h2>
 
                 <div class="events-grid">
@@ -28,9 +29,11 @@
                     </div>
                   <% end %>
                 </div>
-
-                <%= link_to "Vedi di più", search_events_path(category: category), class: 'event-title' %>
-
+                <div class="category-explore">
+                  <%= link_to "Vedi di più", search_events_path(category: category), class: 'event-title' %>
+                </div>
+                
+              </div>
             <% end %>
           <% end %>
         </div>
