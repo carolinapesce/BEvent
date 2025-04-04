@@ -1,5 +1,7 @@
 class TicketsController < ApplicationController
 
+  load_and_authorize_resource
+
   def index
     @tickets = Ticket.where(user_id: current_user.id)
   end

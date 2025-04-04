@@ -11,11 +11,13 @@ class Ability
       can :search, Event
       can :manage, Cart, user_id: user.id
       can :manage, Favourite, user_id: user.id
+      can :manage, Checkout, user_id: user.id
+      can :manage, Ticket, user_id: user.id
+      can :manage, Review, user_id: user.id
     elsif user.event_planner?
       can [:read, :create, :search], Event
       can [:update, :destroy], Event, user_id: user.id
-      cannot :manage, Cart
-      cannot :manage, Favourite
+      can :see, Review
     elsif user.admin?
       can :manage, :all
     end

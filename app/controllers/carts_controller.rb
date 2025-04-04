@@ -2,7 +2,7 @@ class CartsController < ApplicationController
   before_action :authenticate_user!
   before_action :checks_oauth_params
 
-  load_and_authorize_resource @current_cart
+  load_and_authorize_resource #@current_cart
 
   def show
     @cart = @current_cart
