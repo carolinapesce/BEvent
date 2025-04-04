@@ -11,6 +11,9 @@
                 <% end %>
                 <h1><%= @user.first_name + " " + @user.last_name %></h1>
             </div>
+            <%= link_to edit_user_path(current_user) do %>
+                <button class="edit-btn">Modifica</button>
+            <% end %>
         </div>
     </div>
     <div class="page-content">

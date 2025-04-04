@@ -87,7 +87,7 @@
                     <%= image_tag("default-avatar.png", style: "height: 50px; width: 50px; border-radius: 50%; cursor: pointer;", data: { action: "click->dropdown#toggle" } )%>
                 <% end %>
                 <div class="dropdown-content hidden" data-dropdown-target="menu">
-                    <%= link_to "Profilo", user_profile_path, class: "dropdown-item" %>
+                    <%= link_to "Profilo", user_path(current_user), class: "dropdown-item" %>
                     <% if can? :see, Ticket %>
                         <%= link_to "I miei biglietti", tickets_path(current_user.id), class: "dropdown-item" %>
                     <% end %>

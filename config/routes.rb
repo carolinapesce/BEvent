@@ -59,9 +59,6 @@ Rails.application.routes.draw do
   delete 'carts/:cart_id' => "carts#destroy"
   delete 'cart_items/:cart_item_id' => "cart_items#destroy", as: "cart_item_delete"
 
-  #get 'profile', to: 'users#show', as: "user_show"
-  get 'profile', to: 'users#profile', as: "user_profile"
-
   # ADMIN
 
   namespace :admin do
