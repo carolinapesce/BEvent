@@ -58,7 +58,7 @@
           </div>
 
           <div class="checkout-button">
-            <%= button_to checkouts_create_path(event_id: @event_id), data: { turbo: false }, class: "btn proceed-btn" do %>
+            <%= button_to checkouts_create_path, data: { turbo: false }, class: "btn proceed-btn" do %>
               Procedi <i class="fa-solid fa-chevron-right"></i>
             <% end %>
           </div>

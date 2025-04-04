@@ -49,6 +49,7 @@ class Admin::EventsController < ApplicationController
   def update
     @event = Event.find(params[:id])
     if @event.update(event_params)
+      EventMailer.event_planner_updated(@event, @event.user).deliver_now!
       redirect_to admin_events_path, notice: 'Evento aggiornato con successo.'
     else
       render :edit

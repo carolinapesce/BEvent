@@ -6,6 +6,7 @@
 
 <p>Ci dispiace, ma il pagamento non è andato a buon fine. Riprova più tardi.</p>
 
-<%= link_to 'Riprova il pagamento', checkouts_create_path, class: 'btn btn-primary' %>
-
+<%= button_to checkouts_create_path, data: { turbo: false }, class: "btn proceed-btn" do %>
+  Riprova il pagamento <i class="fa-solid fa-chevron-right"></i>
+<% end %>
 <%= link_to "Torna alla homepage", root_path %>
