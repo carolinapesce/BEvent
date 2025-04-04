@@ -83,12 +83,12 @@ class EventsController < ApplicationController
   end
 
   def create
-    puts ">>> Entrato nel metodo CREATE"
-    puts ">>> Ruolo utente: #{current_user.role}"
+    #puts ">>> Entrato nel metodo CREATE"
+    #puts ">>> Ruolo utente: #{current_user.role}"
     unless current_user.event_planner? || current_user.admin?
       redirect_to root_path, alert: "Solo i planner possono creare eventi." and return
     end
-    puts ">>> SONO QUI"
+    #puts ">>> SONO QUI"
 
     if params[:event][:charity_event] == true
       @event = CharityEvent.new(event_params)

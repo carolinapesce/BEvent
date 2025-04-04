@@ -14,6 +14,9 @@ class Event < ApplicationRecord
 
   validate :start_date_cannot_be_in_the_past
   validate :end_date_must_be_after_start_date
+  validates :title, presence: true
+  validates :address, presence: true
+  validates :start_datetime, presence: true
 
   belongs_to :user
 
