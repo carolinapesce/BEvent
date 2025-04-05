@@ -23,18 +23,23 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @tickets = @user.tickets.includes(:event)
-  
-    @upcoming_events = @tickets
-      .map(&:event)
-      .compact
-      .select { |event| event.status == 'upcoming' }
-      .sort_by(&:start_datetime)
-  
-    @terminated_events = @tickets
-      .map(&:event)
-      .compact
-      .select { |event| event.status == 'terminated' }
-      .sort_by(&:start_datetime)
+    
+    if @user.role == 0
+      @upcoming_events = @tickets
+        .map(&:event)
+        .compact
+        .select { |event| event.status == 'upcoming' }
+        .sort_by(&:start_datetime)
+    
+      @terminated_events = @tickets
+        .map(&:event)
+        .compact
+        .select { |event| event.status == 'terminated' }
+        .sort_by(&:start_datetime)
+    else
+      @upcoming_events = @user.events.where(status: 'upcoming')
+      @terminated_events = @user.events.where(status:'terminated')
+    end
       
     render 'users/show'
   end  
