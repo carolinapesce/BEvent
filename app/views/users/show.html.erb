@@ -17,14 +17,16 @@
         </div>
     </div>
     <div class="page-content">
-        <div class="description">
-            <h3>Descrizione</h3>
-            <p>
-                <% if @user.bio.present? %>
-                    <%= @user.bio %>
-                <% end %>
-            </p>
-        </div>
+        <% if @user.role==1%>
+            <div class="description">
+                <h3>Descrizione</h3>
+                <p>
+                    <% if @user.bio.present? %>
+                        <%= @user.bio %>
+                    <% end %>
+                </p>
+            </div>
+        <% end %>
     </div>
 
     <div class="events">
