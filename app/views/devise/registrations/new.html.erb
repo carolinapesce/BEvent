@@ -9,23 +9,23 @@
     <%= render "devise/shared/error_messages", resource: resource %>
 
     <div class="field txt-field">
-      <%= f.text_field :first_name, placeholder: "First name" %>
+      <%= f.text_field :first_name, placeholder: "First name", required: true %>
     </div>
 
     <div class="field txt-field">
-      <%= f.text_field :last_name, placeholder: "Last name" %>
+      <%= f.text_field :last_name, placeholder: "Last name", required: true %>
     </div>
 
     <div class="field txt-field">
-      <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "Inserisci la tua email" %>
+      <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "Inserisci la tua email", required: true %>
     </div>
 
     <div class="field txt-field">
-      <%= f.password_field :password, autocomplete: "new-password", placeholder: "Inserisci la tua password" %>
+      <%= f.password_field :password, autocomplete: "new-password", placeholder: "Inserisci la tua password", required: true %>
     </div>
 
     <div class="field txt-field">
-      <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: "Conferma la password" %>
+      <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: "Conferma la password", required: true %>
     </div>
 
     <!-- Nuova sezione per la scelta del ruolo -->
@@ -33,11 +33,11 @@
       <h6 class="role-title">Seleziona il ruolo</h6>
       <div class="role-options">
         <label class="role-label">
-          <%= f.radio_button :role, '0', checked: f.object.role.to_s == '0', class: "form-check-input",  id: "user" %>
+          <%= f.radio_button :role, '0', checked: f.object.role.to_s == '0', class: "form-check-input",  id: "user", required: true %>
           <span>User</span>
         </label>
         <label class="role-label">
-          <%= f.radio_button :role, '1', checked: f.object.role.to_s == '1', class: "form-check-input", id: "eventplanner" %>
+          <%= f.radio_button :role, '1', checked: f.object.role.to_s == '1', class: "form-check-input", id: "eventplanner", required: true %>
           <span>Eventplanner</span>
         </label>
       </div>
