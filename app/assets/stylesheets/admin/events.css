@@ -1,4 +1,4 @@
-/* CSS per la pagina di modifica evento */
+/*--------------------------------Modifica-Evento-------------------------------------------*/
 .events.edit .admin-event-edit-container {
     max-width: 1200px;
     margin: 0 auto;
@@ -121,7 +121,7 @@
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   }
   
-  /* Responsive design */
+  /*Responsive*/
   @media (max-width: 768px) {
     .events.edit .admin-event-edit-title {
       font-size: 2.8rem;
@@ -147,7 +147,7 @@
   }
 
 
-  /*---------------------Nuovo Evento--------------*/
+  /*--------------------------------------Nuovo Evento-----------------------------------*/
   
 .events.new .admin-event-new-container {
   max-width: 1200px;

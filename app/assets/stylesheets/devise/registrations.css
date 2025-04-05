@@ -6,7 +6,6 @@ body.registrations.new {
    border: 0;
 }
 
-/* Sezione sinistra con immagine */
 .registrations.new .design {
    width: 50%;
    height: 100vh;
@@ -22,7 +21,6 @@ body.registrations.new {
    object-fit: cover;
 }
 
-/* Sezione destra con il form */
 .registrations.new .signup {
    width: 50%;
    height: 100vh;
@@ -33,7 +31,7 @@ body.registrations.new {
    background: white;
 }
 
-/* Adattamento per dispositivi mobili */
+/* Responsive */
 @media (max-width: 768px) {
    body.registrations.new {
        flex-direction: column;
@@ -175,15 +173,12 @@ width: 206.4px;
    font-size: 14px;
 }
 
-/* Imput con erroeri*/
-
 
 .registrations.new .field_with_errors input::placeholder {
    color: red;
    opacity: 0.7;
 }
 
-/* animazione */
 .registrations.new #error_explanation {
    animation: fadeIn 0.5s ease-in-out;
 }
@@ -233,7 +228,7 @@ width: 206.4px;
 
 
 
-
+/*---------------------------------------------EDIT-----------------------------------------------*/
 
 body.registrations.edit{
    margin: 0;
@@ -298,7 +293,6 @@ body.registrations.edit{
    font-family: "Open Sans";
 }
 
-/* Contenuto principale */
 .registrations.edit .settings-content {
    flex: 1;
    padding: 30px;
@@ -398,7 +392,6 @@ body.registrations.create {
    border: 0;
 }
 
-/* Sezione sinistra con immagine */
 .registrations.create .design {
    width: 50%;
    height: 100vh;
@@ -414,7 +407,6 @@ body.registrations.create {
    object-fit: cover;
 }
 
-/* Sezione destra con il form */
 .registrations.create .signup {
    width: 50%;
    height: 100vh;
@@ -425,7 +417,7 @@ body.registrations.create {
    background: white;
 }
 
-/* Adattamento per dispositivi mobili */
+/*Responsive*/
 @media (max-width: 768px) {
    body.registrations.create {
        flex-direction: column;
@@ -566,15 +558,12 @@ width: 206.4px;
    font-size: 14px;
 }
 
-/* Imput con erroeri*/
-
 
 .registrations.create .field_with_errors input::placeholder {
    color: red;
    opacity: 0.7;
 }
 
-/* animazione */
 .registrations.create #error_explanation {
    animation: fadeIn 0.5s ease-in-out;
 }

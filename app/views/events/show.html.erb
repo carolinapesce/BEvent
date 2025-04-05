@@ -77,11 +77,8 @@
                                 <% else %>
                                     <%= image_tag("default-avatar.png", class: "host-image" )%>
                                 <% end %>
-                                <%#= image_tag "Profile.png", class: "host-image" %>
                                 <div class="host-details">
                                     <p class="host-name"><%= @organizer.first_name %></p>
-                                    <!--p><%= link_to @organizer.first_name, user_path(@organizer.id)%></p-->
-                                    <!--button class="follow-btn">Visita</button-->
                                 </div>
                             </div>
                         <% end %>

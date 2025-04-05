@@ -22,24 +22,6 @@
                     <i class="fas fa-search"></i>
                 </button>
             <% end %>
-            <!--div class="search-input">
-                <input type="text" placeholder="Search..." class="search-field">
-            </div>
-            <div class="search-divider"></div>
-            <div class="search-dropdown">
-                <select class="city-dropdown">
-                    <option value="" disabled selected>Città...</option>
-                    <option value="roma">Roma</option>
-                    <option value="milano">Milano</option>
-                    <option value="napoli">Napoli</option>
-                </select>
-            </div>
-            <button class="search-button">
-                <i class="fas fa-search"></i> 
-            </button> 
-            <%= button_to events_search_path, method: :get, class: "search-button" do %>
-                <i class="fas fa-search"></i>
-            <% end %>-->
         </div>
     <% else %>
         <div class="search-bar-placeholder">
@@ -47,7 +29,7 @@
     <% end %>
     
     <!-- Link alla pagina di ricerca eventi -->
-    <%= link_to "Eventi", search_events_path, class: "nav-link" %> <%#!!!!!!!!!!!!!! Penso così vada bene, da fare la route%>
+    <%= link_to "Eventi", search_events_path, class: "nav-link" %> 
     <% if !current_user.admin?%>
         <% if can? :create, Event %>
             <%= link_to "I miei eventi", user_my_events_path(current_user), class: "nav-link" %>
@@ -80,7 +62,6 @@
     <div class="profile-menu" data-controller="dropdown">
         <% if user_signed_in? %>
             <div class="profile-dropdown", style: "height: 50px; width: 50px; border-radius: 45%;">
-                <%#= image_tag(current_user.profile_pic), class: "profile-image", id: "profile-dropdown-button", data: { action: "click->dropdown#toggle" } %>
                 <% if current_user.profile_pic.present? %>
                     <%= image_tag(current_user.profile_pic, style: "height: 50px; width: 50px; border-radius: 50%; cursor: pointer;", data: { action: "click->dropdown#toggle" } )%>
                 <% else %>

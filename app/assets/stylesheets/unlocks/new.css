@@ -6,7 +6,6 @@ body.unlocks {
     border: 0;
 }
 
-/* Sezione sinistra con immagine */
 .unlocks .design {
     width: 50%;
     height: 100vh;
@@ -21,7 +20,6 @@ body.unlocks {
     object-fit: cover;
 }
 
-/* Sezione destra con il form */
 .unlocks .pass {
     width: 50%;
     height: 100vh;
@@ -189,7 +187,6 @@ body.unlocks {
     font-size: 14px;
 }
 
-/* Imput con erroeri*/
 
 
 .unlocks .field_with_errors input::placeholder {
@@ -197,7 +194,6 @@ body.unlocks {
     opacity: 0.7;
 }
 
-/* animazione */
 .unlocks #error_explanation {
     animation: fadeIn 0.5s ease-in-out;
 }

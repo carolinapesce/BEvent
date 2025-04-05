@@ -60,10 +60,10 @@
   
 .reviews .rating-container {
   display: flex;
-  justify-content: center; /* Allinea a sinistra */
+  justify-content: center; 
   gap: 4px;
   margin: 1rem 0;
-  direction: ltr; /* Importante per il riempimento da sinistra */
+  direction: ltr; 
 }
 
 .reviews .rating-input {
@@ -73,7 +73,7 @@
 .reviews .rating-star {
   font-size: 2rem;
   color: white;
-  -webkit-text-stroke: 1px #FFD700; /* Bordo giallo */
+  -webkit-text-stroke: 1px #FFD700; 
   cursor: pointer;
   transition: all 0.2s ease;
   position: relative;
@@ -84,17 +84,14 @@
   color: #FFD700 !important;
 }
 
-/* Colora tutte le stelle a sinistra di quella hoverata */
 .rating-star:hover ~ .rating-star {
   color: white !important;
 }
 
-/* Colora le stelle selezionate */
 .rating-input:checked ~ .rating-star {
   color: #FFD700;
 }
 
-/* Corregge l'effetto hover per le stelle precedenti */
 
 .rating-star:hover,
 .rating-star:hover ~ .rating-star,

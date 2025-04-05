@@ -29,7 +29,6 @@ body.users.edit{
     height: 100%;
  }
  
- /* Sidebar */
  .users.edit .sidebar {
     width: 300px;
     background: #f5f5f5;
@@ -69,7 +68,6 @@ body.users.edit{
     font-family: "Open Sans";
  }
  
- /* Contenuto principale */
  .users.edit .settings-content {
     display: flex;
     flex-direction: column;

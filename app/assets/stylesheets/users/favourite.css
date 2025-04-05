@@ -157,12 +157,11 @@ body.users.favourite{
     font-family: 'Montserrat';
     font-style: normal;
     font-weight: 700;
-    line-height: 1.2; /*spazio tra le righe */
-    word-wrap: break-word; /*andare a capo titolo*/
+    line-height: 1.2;
+    word-wrap: break-word; 
     max-width: 100%;
 }
 
-/*altre info */
 .event-location,
 .event-time,
 .event-price {
@@ -187,6 +186,6 @@ body.users.favourite{
     
     .users.favourite .event-card {
         width: 100%;
-        max-width: 390px; /* Mantiene le proporzioni */
+        max-width: 390px; 
     }
 }

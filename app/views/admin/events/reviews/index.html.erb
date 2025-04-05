@@ -6,36 +6,7 @@
         <% end %>
   </div>
   
-  <h1 class="admin-events-title">Gestione Recensioni di <%= @event.title %></h1>
-
-  <!--div class="search-area">
-    <div class="search-section">
-      <div class="search-bar">
-        <%= form_with url: admin_events_path, method: :get, local: true, class: "search-bar" do %>
-          <div class="search-input">
-            <%= text_field_tag :query, params[:query], placeholder: "Cerca...", class: "search-field" %>
-          </div>
-
-          <div class="search-divider"></div>
-
-          <div class="search-dropdown">
-            <%= select_tag :city, options_for_select([['Città...', ''], 'Roma', 'Milano', 'Napoli', 'Torino', 'Firenze'], params[:city]), class: "city-dropdown" %>
-          </div>
-
-          <div class="search-divider"></div>
-
-          <div class="search-dropdown">
-            <%= select_tag :category, options_for_select([['Categoria...', ''], 'Musica', 'Food&Drinks', 'Comedy', 'Teatro', 'Sport', 'Hobby', 'Arte', 'Festa'], params[:category]), class: "city-dropdown" %>
-          </div>
-
-          <button type="submit" class="search-button">
-            <i class="fas fa-search"></i>
-          </button>
-        <% end %>
-      </div>
-    </div>
-  </div-->
-  
+  <h1 class="admin-events-title">Gestione Recensioni di <%= @event.title %></h1>  
   <div class="admin-events-table-container">
     <table class="admin-events-table">
       <thead>

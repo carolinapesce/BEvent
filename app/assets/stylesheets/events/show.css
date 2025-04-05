@@ -633,10 +633,9 @@
     font-style: italic;
 }
 
-/* ============ TABLET (768px - 992px) ============ */
 @media (max-width: 992px) {
     .events.show .page {
-        grid-template-columns: 60px 1fr; /* Riduci la sidebar */
+        grid-template-columns: 60px 1fr;
     }
 
     .events.show .show-page {
@@ -645,7 +644,7 @@
     }
 
     .events.show .event-details {
-        grid-template-columns: 1fr; /* Singola colonna */
+        grid-template-columns: 1fr; 
         gap: 30px;
     }
 
@@ -661,18 +660,17 @@
     }
 
     .events.show .event-suggestions {
-        grid-template-columns: repeat(2, 1fr); /* 2 card per riga */
+        grid-template-columns: repeat(2, 1fr); 
     }
 
     .events.show .event-card {
-        width: 100%; /* Card a larghezza piena */
+        width: 100%; 
     }
 }
 
-/* ============ MOBILE LARGE (576px - 768px) ============ */
 @media (max-width: 768px) {
     .events.show .page {
-        grid-template-columns: 1fr; /* Layout a colonna singola */
+        grid-template-columns: 1fr; 
         padding-top: 20px;
     }
 
@@ -739,11 +737,10 @@
     }
 
     .events.show .event-suggestions {
-        grid-template-columns: 1fr; /* 1 card per riga */
+        grid-template-columns: 1fr;
     }
 }
 
-/* ============ MOBILE SMALL (< 576px) ============ */
     @media (max-width: 576px) {
     .events.show .event-title {
         font-size: 1.5rem;

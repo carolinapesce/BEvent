@@ -8,10 +8,8 @@
       <%= image_tag "Banner.jpg", alt: "Hero Image", class: "hero-image" %>
       <h1 class="hero-text">Trova gli eventi perfetti per te!</h1>
     </div>
-
-    <!-- Event Containers -->
+    
     <div class="events-section">
-      <!-- Example Event Container -->
       <div class="event-container">
         <% Event::VALID_CATEGORIES.each do |category| %>
           <% events_for_category = @events.select { |event| event.category == category } %>

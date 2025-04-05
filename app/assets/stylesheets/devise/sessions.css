@@ -6,7 +6,6 @@ body.sessions.new {
     border: 0;
 }
 
-/* Sezione sinistra con l'immagine */
 .sessions.new .design {
     width: 50%;
     height: 100vh;
@@ -23,7 +22,6 @@ body.sessions.new {
     border-radius: 0;
 }
 
-/* Sezione destra con il form */
 .sessions.new .login {
     width: 50%;
     height: 100vh;
@@ -34,7 +32,6 @@ body.sessions.new {
     background: white;
 }
 
-/* Adattamento per schermi piccoli */
 @media (max-width: 768px) {
     body.sessions.new {
         flex-direction: column;

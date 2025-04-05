@@ -96,7 +96,6 @@
                             <label><%= check_box_tag "category[]", "Arte", params[:category]&.include?("Arte") %>Arte</label>
                             <label><%= check_box_tag "category[]", "Festa", params[:category]&.include?("Festa") %>Festa</label>
                         </div>
-                        <!--a href="#" class="see-more-link">More</a-->
                     </div>
                     <%= submit_tag 'Filtra', class: 'filters-submit' %>
                 <% end %>
