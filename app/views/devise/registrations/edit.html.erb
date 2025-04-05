@@ -18,8 +18,8 @@
 
       
       <div class="form-group">
-        <%= f.label :email, "Email:" %>
-        <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control" %>
+        <label class="form-label">Email</label>
+        <div class="current-email"><%= current_user.email %></div>
       </div>
 
       <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
@@ -31,7 +31,7 @@
       
       <div class="form-group">
         <%= f.label :password, "Nuova Password:" %>
-        <%= f.password_field :password, autocomplete: "new-password", class: "form-control" %>
+        <%= f.password_field :password, autocomplete: "new-password", class: "form-control", required: true %>
         <% if @minimum_password_length %>
 
           <small><em><%= @minimum_password_length %> characters minimum</em></small>
@@ -40,14 +40,14 @@
 
       <div class="form-group">
         <%= f.label :password_confirmation, "Conferma Password:" %>
-        <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control" %>
+        <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control", required: true %>
       </div>
 
       
       <% unless resource.provider == "google_oauth2" %>
         <div class="form-group">
           <%= f.label :current_password, "Password Corrente:" %>
-          <%= f.password_field :current_password, autocomplete: "current-password", class: "form-control" %>
+          <%= f.password_field :current_password, autocomplete: "current-password", class: "form-control", required: true %>
           <small><i>(We need your current password to confirm changes)</i></small>
         </div>
       <% end %>

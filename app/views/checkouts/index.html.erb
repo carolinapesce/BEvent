@@ -15,33 +15,25 @@
 
     <% if @user_checkouts.any? %>
       <div class="checkout-container">
-        <% @user_checkouts.each do |checkout| %>
+        <% @user_checkouts.each_with_index do |checkout, index| %>
           <div class="checkout-card">
-            <h2>Ordine <%= checkout.id %> - <%= checkout.completed_at.strftime("%d/%m/%Y %H:%M") %></h2>
+            <h2>Ordine <%= @user_checkouts.size - index %> - <%= checkout.completed_at.strftime("%d/%m/%Y %H:%M") %></h2>
             <p class="checkout-total">Totale pagato: <%= number_to_currency(checkout.total_amount / 100.0, unit: "€") %></p>
 
             <h3>Eventi acquistati:</h3>
             <ul class="checkout-items">
               <% checkout.cart.cart_items.each do |cart_item| %>
-                <% if cart_item.donation_amount.present?%>
+                <% if cart_item.donation_amount.present? %>
                   <li>
-                    <strong><%= cart_item.event.title %></strong> - 
-                    <%= cart_item.quantity %> biglietto(i) - 
+                    <strong><%= cart_item.event.title %></strong> -
+                    <%= cart_item.quantity %> biglietto(i) -
                     Donazione: <%= number_to_currency(cart_item.donation_amount, unit: "€") %>
                   </li>
                 <% else %>
                   <li>
-                    <strong><%= cart_item.event.title %></strong> - 
-                    <%= cart_item.quantity %> biglietto(i) - 
+                    <strong><%= cart_item.event.title %></strong> -
+                    <%= cart_item.quantity %> biglietto(i) -
                     Prezzo: <%= number_to_currency(cart_item.event.event_price, unit: "€") %>
-                    <%# if cart_item.event.has_ended? %>
-                      <%# user_review = cart_item.event.reviews.find_by(user_id: current_user.id)%>
-                      <%# if user_review.nil? %>
-                        <%#= link_to "Lascia Recensione", new_review_path(event_id: cart_item.event.id), class: "review-bt"%>
-                      <%# else %>
-                        <%#= link_to "Modifica Recensione", edit_review_path(user_review), class: "review-bt"%>
-                      <%# end %>
-                    <%# end %>
                   </li>
                 <% end %>
               <% end %>
