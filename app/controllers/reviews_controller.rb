@@ -16,6 +16,7 @@ class ReviewsController < ApplicationController
     @review = current_user.reviews.new(review_params)
     
     if @review.save
+      @review.event.update_average_rating
       redirect_to tickets_path(current_user), notice: 'Recensione inviata con successo!'
     else
       @event = @review.event
@@ -32,6 +33,7 @@ class ReviewsController < ApplicationController
     @review = current_user.reviews.find(params[:id])
     
     if @review.update(review_params)
+      @review.event.update_average_rating
       redirect_to tickets_path(current_user), notice: 'Recensione aggiornata con successo!'
     else
       @event = @review.event
@@ -42,6 +44,7 @@ class ReviewsController < ApplicationController
   def destroy
     @review = Review.find(params[:id])
     @review.destroy
+    @review.event.update_average_rating
     redirect_to tickets_path(current_user), notice: 'Recensione eliminata con successo.'
   end
 

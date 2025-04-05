@@ -124,7 +124,8 @@ class Event < ApplicationRecord
 
   def update_average_rating
     avg_rating = reviews.average(:rating)
-    update_column(:average_rating, avg_rating)
+    self.update_column(:average_rating, avg_rating)
+    self.save
   end
 
   def set_charity_price
