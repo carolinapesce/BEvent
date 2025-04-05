@@ -1,6 +1,17 @@
 .reviews .pg-review{
   margin-top: 80px;
 }
+.reviews .fa-arrow-left{
+  margin-right: 35px;
+  margin-left: 25px;
+  font-size: 22px;
+}
+
+
+.reviews .fa-arrow-left:hover{
+  transform: scale(1.2);
+  transition: transform 0.2s ease;
+}
 
 .reviews .new-review-container {
     max-width: 600px;

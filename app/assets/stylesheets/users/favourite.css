@@ -4,14 +4,19 @@ body.users.favourite{
     padding: 0;
     display: flex;
     flex-direction: column;
+    overflow-x: hidden; /* Previene lo scroll orizzontale */
+
 }
 
 .users.favourite .page{
     flex: 1;
-    min-width: 100vw;
+    display: flex;
+    flex-direction: column;
     min-height: 100vh;
     margin-top: 64px;
     padding-top: 45px;
+    width: 100%; /* Cambiato da max-width a width */
+    box-sizing: border-box; /* Importante! */
 }
 
 .users.favourite .wrap-title{
@@ -34,26 +39,36 @@ body.users.favourite{
 
 
 .users.favourite .favourite-page{
-    padding-top: 60px;
-    padding: 110px;
-    flex: 1;
-    display: grid;
-    grid-template-rows: 50% 50%; /* Divisione della pagina */
-    grid-template-columns: auto auto auto;
-    grid-template-areas: "r1c1 r1c2 r1c3" "r2c1 r2c2 r2c3";
-    min-width: 100vw;
-    min-height: 100vh;
+    padding: 60px 5%; /* Riduci il padding top/bottom */
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    min-height: auto; /* Rimuovi l'altezza fissa */
+    box-sizing: border-box; /* Include padding nel calcolo width */
+
 }
 
 .users.favourite .event-card-link {
     text-decoration: none;
     color: inherit;
     display: block;
-  }
+    width: fit-content;
+}
   
-  .event-card-link:hover {
+.event-card-link:hover {
     cursor: pointer;
-  }
+}
+
+.users.favourite .events-grid{
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(390px, 1fr)) !important;
+    gap: 25px;
+    width: 100%;
+    max-width: 1400px; /* Limite massimo per grandi schermi */
+    padding: 20px 20px;
+    box-sizing: border-box;
+
+}
 
 
 .users.favourite .event-card{
@@ -67,6 +82,13 @@ body.users.favourite{
     border-radius: 15px;
     background: #ffffff;
     overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    transition: all 0.3s ease;
+}
+
+.users.favourite .event-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
 }
 
 .users.favourite .event-design {
@@ -81,6 +103,11 @@ body.users.favourite{
     width: 100%;
     height: 100%;
     object-fit: cover; 
+    transition: transform 0.4s ease;
+}
+
+.users.favourite .event-card:hover .event-image {
+    transform: scale(1.05);
 }
 
 .users.favourite .event-frame {
@@ -146,4 +173,20 @@ body.users.favourite{
     font-style: normal;
     font-weight: 700;
     line-height: normal;
+}
+
+@media (max-width: 768px) {
+    .users.favourite .favourite-page {
+        padding: 30px 15px;
+    }
+    
+    .users.favourite .events-grid {
+        grid-template-columns: 1fr;
+        padding: 0 10px;
+    }
+    
+    .users.favourite .event-card {
+        width: 100%;
+        max-width: 390px; /* Mantiene le proporzioni */
+    }
 }

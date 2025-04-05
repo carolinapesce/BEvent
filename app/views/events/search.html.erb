@@ -1,11 +1,11 @@
+<%= render "devise/shared/navbar" %>
 <div class="page">
-    <%= render "devise/shared/navbar" %>
 
     <div class="search-page">
         <!-- Area superiore per la ricerca -->
         <div class="search-area">
             <div class="search-section">
-                <div class="search-bar">
+                <div class="search-bar-events">
                     <%= form_with url: events_search_path, method: :get, local: true, class: "search-bar", data: { turbo: false } do %>
                         <div class="search-input">
                             <%= text_field_tag :query, params[:query], placeholder: "Cerca...", class: "search-field" %>
@@ -98,7 +98,7 @@
                         </div>
                         <!--a href="#" class="see-more-link">More</a-->
                     </div>
-                    <%= submit_tag 'Filtra' %>
+                    <%= submit_tag 'Filtra', class: 'filters-submit' %>
                 <% end %>
             </div>
             
@@ -197,5 +197,7 @@
 
         </div>
     </div>
-    <%= render "devise/shared/footer" %>
+    
 </div>
+
+<%= render "devise/shared/footer" %>

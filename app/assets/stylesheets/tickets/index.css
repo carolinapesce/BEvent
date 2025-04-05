@@ -58,6 +58,21 @@
     display: flex;
     flex-direction: column;
     gap: 15px;
+
+}
+
+.tickets.index .pdf-button{
+    margin-left: 40px;
+}
+
+.tickets.index .pdf-button i{
+    font-size: 1.5rem;
+    color: #888;
+}
+
+
+.tickets.index .fa-solid:hover {
+    color: #04A777;
 }
 
 /* Card degli ordini */
@@ -112,10 +127,13 @@
 .tickets.index .review-bt{
     background: #04A777;
     color: white;
+    margin-top: 10px;
     margin-left: 40px;
     padding: 6px;
     text-decoration: none;
     border-radius: 5px;
+    margin-top: 10px;
+    display: inline-block; 
 }
 
 .tickets.index .review-bt:hover{

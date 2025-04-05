@@ -8,34 +8,36 @@
         <h1>Eventi Preferiti</h1>
     </div>
     <div class= "favourite-page">
-        <% if @favourites == [] %>
-            <p>Nessun evento preferito.</p>
-        <% else %>
-            <% @favourites.each do |event|%>
-                <%= link_to event_path(event.id), class: "event-card-link" do %>
-                    <div class="event-card">
-                        <div class="event-design">
-                            <%= image_tag(event_image(event), alt: "Event Image", class: "event-image") %>
-                        </div>
+        <div class="events-grid">
+            <% if @favourites == [] %>
+                <p>Nessun evento preferito.</p>
+            <% else %>
+                <% @favourites.each do |event|%>
+                    <%= link_to event_path(event.id), class: "event-card-link" do %>
+                        <div class="event-card">
+                            <div class="event-design">
+                                <%= image_tag(event_image(event), alt: "Event Image", class: "event-image") %>
+                            </div>
 
-                        <div class="event-frame">
+                            <div class="event-frame">
 
-                              <div class="event-date">
-                                <span class="month"><%= event.start_datetime.strftime("%b")%></span>
-                                <span class="day"><%= event.start_datetime.day%></span>
-                              </div>
-
-                              <div class="event-details">
-                                <h3 class="event-title"><%= event.title %></h3>
-                                <p class="event-location"><%= event.address + ", " +event.city+", "+event.country%></p>
-                                <p class="event-time"><%= event.start_datetime.strftime("%I:%M %p")%></p>
+                                <div class="event-date">
+                                    <span class="month"><%= event.start_datetime.strftime("%b")%></span>
+                                    <span class="day"><%= event.start_datetime.day%></span>
                                 </div>
+
+                                <div class="event-details">
+                                    <h3 class="event-title"><%= event.title %></h3>
+                                    <p class="event-location"><%= event.address + ", " +event.city+", "+event.country%></p>
+                                    <p class="event-time"><%= event.start_datetime.strftime("%I:%M %p")%></p>
+                                    </div>
+                            </div>
+                            
                         </div>
-                        
-                    </div>
+                    <% end %>
                 <% end %>
             <% end %>
-        <% end %>
+        </div>
     </div>
     <%= render "devise/shared/footer" %>
 </div>

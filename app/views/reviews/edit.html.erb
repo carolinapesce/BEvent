@@ -1,6 +1,9 @@
 <%= render "devise/shared/navbar" %>
 
 <div class="pg-review">
+    <%= link_to request.referer || root_path do %>
+        <i class="fa-solid fa-arrow-left"></i>
+    <% end %>
 
     <div class="new-review-container">
         <h2>Modifica la tua recensione per <%= @review.event.title %></h2>

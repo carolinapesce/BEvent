@@ -28,7 +28,7 @@
                   Prezzo: <%= number_to_currency(event.event_price, unit: "€") %>
                 <% end %>
                 <%= link_to download_pdf_ticket_path(tickets), class: "pdf-button", target: "_blank" do %>
-                  <%= image_tag("download_icon.png", alt: "Scarica PDF", class: "download-icon") %>
+                  <i class="fa-solid fa-file-arrow-down"></i>
                 <% end %>
               </li>
               <li>

@@ -398,6 +398,17 @@
     margin-right: 8px;
 }
 
+.events.show #map img {
+    margin-top: 20px;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+}
+
+.events.show #map img:hover {
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+}
+
 
 
 .events.show .host-info {
@@ -503,7 +514,7 @@
     font-family: 'Montserrat';
     font-style: normal;
     font-weight: 700;
-    line-height: 1.2; /*spazio tra le righe */
+    line-height: 1.2; 
     word-wrap: break-word; /*andare a capo titolo*/
     max-width: 100%;
 }
@@ -546,6 +557,10 @@
 
 .events.show .others{
     margin-top: 50px;
+}
+
+.events.show .tag-list{
+    margin-left: 10px;
 }
 
 
