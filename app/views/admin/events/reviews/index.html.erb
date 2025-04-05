@@ -1,14 +1,14 @@
 
 <div class="admin-events-container">
   <div class= "show-back">
-        <%= link_to admin_dashboard_path do %>
+        <%= link_to admin_events_path do %>
             <i class="fa-solid fa-arrow-left"></i>
         <% end %>
   </div>
   
-  <h1 class="admin-events-title">Gestione Eventi</h1>
+  <h1 class="admin-events-title">Gestione Recensioni</h1>
 
-  <div class="search-area">
+  <!--div class="search-area">
     <div class="search-section">
       <div class="search-bar">
         <%= form_with url: admin_events_path, method: :get, local: true, class: "search-bar" do %>
@@ -34,36 +34,25 @@
         <% end %>
       </div>
     </div>
-  </div>
-  
-  <div class="admin-events-actions">
-    <%= link_to 'Crea un nuovo evento', new_admin_event_path, class: 'admin-events-new-btn' %>
-  </div>
+  </div-->
   
   <div class="admin-events-table-container">
     <table class="admin-events-table">
       <thead>
         <tr>
-          <th>Titolo</th>
-          <th>Data di inizio</th>
-          <th>Data di fine</th>
-          <th>Indirizzo</th>
-          <th>Categoria</th>
+          <th>Utente</th>
+          <th>Rating</th>
           <th>Azioni</th>
         </tr>
       </thead>
       <tbody>
-        <% @events.each do |event| %>
+        <% @event.reviews.each do |review| %>
           <tr>
-            <td><%= event.title %></td>
-            <td><%= event.start_datetime.strftime("%d/%m/%Y %H:%M") %></td>
-            <td><%= event.end_datetime.strftime("%d/%m/%Y %H:%M") %></td>
-            <td><%= event.address + ", " + event.city + ", " + event.country %></td>
-            <td><%= event.category %></td>
+            <td><%= review.user.first_name + " " + review.user.last_name %></td>
+            <td><%= review.rating %></td>
             <td class="actions-cell">
-              <%= link_to 'Recensioni', admin_event_reviews_path(event), class: 'action-link edit-link' %>
-              <%= link_to 'Modifica', edit_admin_event_path(event), class: 'action-link edit-link' %>
-              <%= button_to 'Elimina', admin_event_path(event), method: :delete, data: { confirm: 'Sei sicuro?' }, class: 'action-link delete-link' %>
+              <%= link_to 'Modifica', edit_admin_event_review_path(review), class: 'action-link edit-link' %>
+              <%= button_to 'Elimina', admin_event_review_path(review), method: :delete, data: { confirm: 'Sei sicuro?' }, class: 'action-link delete-link' %>
             </td>
           </tr>
         <% end %>

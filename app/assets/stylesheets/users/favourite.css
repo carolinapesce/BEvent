@@ -15,8 +15,8 @@ body.users.favourite{
     min-height: 100vh;
     margin-top: 64px;
     padding-top: 45px;
-    width: 100%; /* Cambiato da max-width a width */
-    box-sizing: border-box; /* Importante! */
+    width: 100%; 
+    box-sizing: border-box; 
 }
 
 .users.favourite .wrap-title{
@@ -39,12 +39,12 @@ body.users.favourite{
 
 
 .users.favourite .favourite-page{
-    padding: 60px 5%; /* Riduci il padding top/bottom */
+    padding: 60px 5%; 
     width: 100%;
     display: flex;
     justify-content: center;
-    min-height: auto; /* Rimuovi l'altezza fissa */
-    box-sizing: border-box; /* Include padding nel calcolo width */
+    min-height: auto; 
+    box-sizing: border-box; 
 
 }
 

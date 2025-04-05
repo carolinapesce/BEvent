@@ -47,7 +47,7 @@ body {
     position: absolute;
     top: 50%;  
     left: 50%;
-    transform: translate(-50%, -50%); /*centra esattamente */
+    transform: translate(-50%, -50%); 
     color: white;  
     font-size: 2.5rem;
     font-family: 'Montserrat', sans-serif; 
@@ -104,7 +104,7 @@ body {
     grid-template-columns: repeat(3, 1fr);
     gap: 25px;
     margin-top: 20px;
-    width: 100%; /* Assicura che la griglia usi tutto lo spazio */
+    width: 100%; 
 }
 
 .event-card-link {
@@ -120,7 +120,7 @@ body {
     display: flex;
     flex-direction: column;
     width: 100%;
-    min-width: 0; /* Risolve problemi di overflow */
+    min-width: 0; 
     height: 332px;
     border-radius: 15px;
     background: #ffffff;
@@ -200,12 +200,12 @@ body {
     font-family: 'Montserrat';
     font-style: normal;
     font-weight: 700;
-    line-height: 1.2; /*spazio tra le righe */
+    line-height: 1.2; 
     word-wrap: break-word; /*andare a capo titolo*/
     max-width: 100%;
 }
 
-/*altre info */
+
 .event-location,
 .event-time,
 .event-price {
@@ -321,13 +321,13 @@ body {
     margin-bottom: 30px;
 }
   
-/* Progressbar */
+
 
 :root {
     --primary-color: #0075A2;
 }
   
-/* Applica questi stili solo alla pagina .events.new */
+
 .events.new *,
 .events.new *::before,
 .events.new *::after {
@@ -479,15 +479,15 @@ body {
 .events.new .campo,
 .events.new .form-group{
     display: flex;
-    align-items: center; /* Allinea verticalmente le etichette e gli input */
-    gap: 20px; /* Spazio tra l'etichetta e l'input */
+    align-items: center; 
+    gap: 20px; 
     margin-top: 20px;
 }
 
 .events.new .campo label,
 .events.new .form-group label{
-    flex: 0 0 150px; /* Larghezza fissa per le etichette */
-    text-align: right; /* Allinea il testo delle etichette a destra */
+    flex: 0 0 150px; 
+    text-align: right; 
     font-family: "Open Sans";
     font-size: 18px;
     font-style: normal;
@@ -497,9 +497,9 @@ body {
 
 
 .events.new .campo input[type="checkbox"] {
-    width: 30px; /* Dimensione standard per i checkbox */
+    width: 30px; 
     height: 30px;
-    margin-right: auto; /* Lo sposta a sinistra in linea con gli altri input */
+    margin-right: auto; 
 }
 
 /* Bottoni */
@@ -544,6 +544,50 @@ body {
 }
 .events.new .sbm-btn input:hover{
     background: #036245;
+}
+
+  
+.events.new .review-container {
+    background-color: #ffffff;
+    margin-top: 20px;
+    padding: 1.5rem;
+    border-radius: 6px;
+    border: 1px solid #e0e0e0;
+    margin-bottom: 2rem;
+}
+  
+.events.new .review-container h3 {
+    font-size: 1.4rem;
+    color: #222;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 0.5rem;
+}
+  
+.events.new .review-container p {
+    margin: 0.5rem 0;
+    line-height: 1.5;
+}
+  
+.events.new .review-container strong {
+    display: inline-block;
+    width: 230px;
+    font-weight: 600;
+    color: #333;
+}
+  
+.events.new .review-container span {
+    color: #444;
+}
+
+select#event_category {
+  font-family: 'Open sans', sans-serif; 
+  
+}
+
+select#event_category:focus {
+  outline: none;
+  border-color: #007bff;
 }
 
 /*-----------------------------------------------CREATE-----------------------------*/
@@ -596,7 +640,6 @@ body {
     --primary-color: #0075A2;
 }
   
-/* Applica questi stili solo alla pagina .events.create */
 .events.create *,
 .events.create *::before,
 .events.create *::after {
@@ -748,15 +791,15 @@ body {
 .events.create .campo,
 .events.create .form-group{
     display: flex;
-    align-items: center; /* Allinea verticalmente le etichette e gli input */
-    gap: 20px; /* Spazio tra l'etichetta e l'input */
+    align-items: center;
+    gap: 20px; 
     margin-top: 20px;
 }
 
 .events.create .campo label,
 .events.create .form-group label{
-    flex: 0 0 150px; /* Larghezza fissa per le etichette */
-    text-align: right; /* Allinea il testo delle etichette a destra */
+    flex: 0 0 150px; 
+    text-align: right; 
     font-family: "Open Sans";
     font-size: 18px;
     font-style: normal;
@@ -766,9 +809,9 @@ body {
 
 
 .events.create .campo input[type="checkbox"] {
-    width: 30px; /* Dimensione standard per i checkbox */
+    width: 30px; 
     height: 30px;
-    margin-right: auto; /* Lo sposta a sinistra in linea con gli altri input */
+    margin-right: auto; 
 }
 
 /* Bottoni */
@@ -813,4 +856,19 @@ body {
 }
 .events.create .sbm-btn input:hover{
     background: #036245;
+}
+
+
+
+/*-------------------------------------EDIT----------------------*/
+.events.edit .fa-arrow-left{
+    margin-right: 35px;
+    margin-left: 25px;
+    font-size: 22px;
+}
+
+
+.events.edit .fa-arrow-left:hover{
+    transform: scale(1.2);
+    transition: transform 0.2s ease;
 }

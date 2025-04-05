@@ -31,6 +31,9 @@ Rails.application.routes.draw do
         patch :unblock
       end
     end
+    resources :events do
+      resources :reviews, only: [:index, :edit, :destroy], module: :events
+    end
   end
   
   resources :favourites, only: [:create, :destroy]

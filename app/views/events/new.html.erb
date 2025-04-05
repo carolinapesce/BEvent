@@ -34,7 +34,7 @@
                             </div>
                             <div class="campo">
                                 <%= f.label :category, "Categoria" %>
-                                <%= f.select :category, Event::VALID_CATEGORIES, prompt: "Seleziona una categoria", required: true %>
+                                <%= f.select :category, Event::VALID_CATEGORIES, prompt: "Seleziona una categoria", required: true, class: 'menu-category' %>
                                 <input type="hidden" id="hidden_category">
                             </div>
                         </div>
@@ -98,7 +98,7 @@
                         </div>
                     </div>
                     <div class="zona">
-                        <button type="button" data-action="click->multi-step#nextStep" class="btn-next">Next</button>
+                        <button type="button" data-action="click->multi-step#nextStep" class="btn-next">Avanti</button>
                     </div>
                 </div>
 
@@ -116,8 +116,8 @@
                         </div>
                     </div>
                     <div class="zona">
-                        <button type="button" data-action="click->multi-step#prevStep" class="btn-prev">Previous</button>
-                        <button type="button" data-action="click->multi-step#nextStep" class="btn-next">Next</button>
+                        <button type="button" data-action="click->multi-step#prevStep" class="btn-prev">Indietro</button>
+                        <button type="button" data-action="click->multi-step#nextStep" class="btn-next">Avanti</button>
                     </div>
                 </div>
 
@@ -155,8 +155,8 @@
                         </div>
                     </div>
                     <div class="zona">
-                        <button type="button" data-action="click->multi-step#prevStep" class="btn-prev">Previous</button>
-                        <button type="button" data-action="click->multi-step#nextStep" class="btn-next">Next</button>
+                        <button type="button" data-action="click->multi-step#prevStep" class="btn-prev">Indietro</button>
+                        <button type="button" data-action="click->multi-step#nextStep" class="btn-next">Avanti</button>
                     </div>
                 </div>
 
@@ -165,7 +165,7 @@
 
                 <div class="form-step" data-multi-step-target="step" data-step="4">
                     <h2>Ricontrolla</h2>
-                    <p>Controlla che i dati che hai inserito siano tutti corretti.</p>
+                    <p style="margin-top: 20px;">Controlla che i dati che hai inserito siano tutti corretti.</p>
 
                     <div class="review-container">
                         <h3>Dettagli Evento</h3>
@@ -186,7 +186,7 @@
                     </div>
 
                     <div class="sbm-btn">
-                        <button type="button" data-action="click->multi-step#prevStep" class="btn-prev">Previous</button>
+                        <button type="button" data-action="click->multi-step#prevStep" class="btn-prev">Indietro</button>
                         <button type="button" data-action="click->multi-step#submitForm">Salva</button>
                     </div>
                 </div>
