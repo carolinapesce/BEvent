@@ -92,7 +92,7 @@ gem 'pagy'
 
 gem 'prawn'
 
-gem 'webmock'
+
 
 # Cucumber and RSpec
 group :test do
@@ -101,5 +101,5 @@ group :test do
   gem 'rspec-rails'
   gem 'rspec-expectations'
   gem 'factory_bot_rails'
-  gem 'stripe-ruby-mock'
+  gem 'webmock'
 end

@@ -12,9 +12,20 @@ require 'rspec/rails'
 # require 'stripe-ruby-mock'
 RSpec.configure do |config|
   config.include FactoryBot::Syntax::Methods
+  config.include Warden::Test::Helpers
+  #require 'webmock/rspec'
+  #WebMock.disable_net_connect!(allow_localhost: true)
+  #config.before(:each) do
+  # DatabaseCleaner.clean
+  #end
+
+  #config.after(:each) do
+  #  DatabaseCleaner.clean
+  #end
 end
 RSpec.configure do |config|
   config.include Devise::Test::IntegrationHelpers, type: :request
+  config.include Devise::Test::IntegrationHelpers, type: :feature
   config.include Devise::Test::ControllerHelpers, type: :controller
 end
 

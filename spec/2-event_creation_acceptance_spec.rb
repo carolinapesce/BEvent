@@ -31,7 +31,7 @@ RSpec.describe 'Creazione evento', type: :feature, js: true do
     click_button 'Next' 
 
     fill_in 'event_price', with: 20
-    uncheck 'Evento di beneficienza?'
+    #uncheck 'Evento di beneficienza?'
     click_button 'Next' 
 
     click_button 'Salva'
@@ -61,7 +61,7 @@ RSpec.describe 'Creazione evento', type: :feature, js: true do
     click_button 'Next' 
     click_button 'Next'
   
-    check 'Evento di beneficienza?' 
+    check 'charity_event_checkbox' 
 
     find('#beneficiary_field', visible: :visible, wait: 5).set('Associazione Benefica')
     find('#fundraiser_goal_field', visible: :visible, wait: 5).set(10000)
