@@ -61,7 +61,7 @@
             <td><%= event.address + ", " + event.city + ", " + event.country %></td>
             <td><%= event.category %></td>
             <td class="actions-cell">
-              <%= link_to 'Recensioni', admin_event_reviews_path(event), class: 'action-link edit-link' %>
+              <%= link_to 'Recensioni', admin_event_reviews_path(event.id), class: 'action-link edit-link' %>
               <%= link_to 'Modifica', edit_admin_event_path(event), class: 'action-link edit-link' %>
               <%= button_to 'Elimina', admin_event_path(event), method: :delete, data: { confirm: 'Sei sicuro?' }, class: 'action-link delete-link' %>
             </td>

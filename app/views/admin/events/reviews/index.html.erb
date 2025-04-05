@@ -6,7 +6,7 @@
         <% end %>
   </div>
   
-  <h1 class="admin-events-title">Gestione Recensioni</h1>
+  <h1 class="admin-events-title">Gestione Recensioni di <%= @event.title %></h1>
 
   <!--div class="search-area">
     <div class="search-section">
@@ -46,15 +46,19 @@
         </tr>
       </thead>
       <tbody>
-        <% @event.reviews.each do |review| %>
-          <tr>
-            <td><%= review.user.first_name + " " + review.user.last_name %></td>
-            <td><%= review.rating %></td>
-            <td class="actions-cell">
-              <%= link_to 'Modifica', edit_admin_event_review_path(review), class: 'action-link edit-link' %>
-              <%= button_to 'Elimina', admin_event_review_path(review), method: :delete, data: { confirm: 'Sei sicuro?' }, class: 'action-link delete-link' %>
-            </td>
-          </tr>
+        <% if @reviews %>
+          <% @reviews.each do |review| %>
+            <tr>
+              <td><%= review.user.first_name + " " + review.user.last_name %></td>
+              <td><%= review.rating %></td>
+              <td class="actions-cell">
+                <%= link_to 'Modifica', edit_admin_event_review_path(@event, review), class: 'action-link edit-link' %>
+                <%= button_to 'Elimina', admin_event_review_path(@event, review), method: :delete, data: { confirm: 'Sei sicuro?' }, class: 'action-link delete-link' %>
+              </td>
+            </tr>
+          <% end %>
+        <% else %>
+          
         <% end %>
       </tbody>
     </table>

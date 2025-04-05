@@ -2,22 +2,26 @@ class Admin::Events::ReviewsController < ApplicationController
 
     before_action :authenticate_user!
     before_action :authorize_admin!
-    before_action :set_review, only: [:edit, :update, :destroy]
+    before_action :set_event, only: [:index, :edit, :update, :destroy]
+    before_action :set_review, only: [:edit, :edit, :update, :destroy]
 
     # Mostra tutte le recensioni
     def index
-      @reviews = Review.all
-      
+      @reviews = @event.reviews if @event.reviews.present?
     end
 
     # Modifica la recensione
     def edit
+      @review = Review.find(params[:id])
+      @event = @review.event
     end
 
     # Aggiorna la recensione
     def update
-        @event = Review.event
+      @review = Review.find(params[:id]) 
+      @event = @review.event   
       if @review.update(review_params)
+        @review.event.update_average_rating
         redirect_to admin_event_reviews_path(@event.id), notice: 'Recensione aggiornata con successo.'
       else
         render :edit
@@ -26,8 +30,10 @@ class Admin::Events::ReviewsController < ApplicationController
 
     # Elimina la recensione
     def destroy
-        @event = Review.find(params[:event_id])
+      @review = Review.find(params[:id])
+      @event = @review.event
       @review.destroy
+      @review.event.update_average_rating
       redirect_to admin_event_reviews_path(@event.id), notice: 'Recensione eliminata con successo.'
     end
 
@@ -36,6 +42,10 @@ class Admin::Events::ReviewsController < ApplicationController
     # Trova la recensione per ID
     def set_review
       @review = Review.find(params[:id])
+    end
+
+    def set_event
+      @event = Event.find(params[:event_id]) # Assicurati di avere params[:event_id] per ottenere l'evento
     end
 
     # Definisci i parametri permessi per la recensione

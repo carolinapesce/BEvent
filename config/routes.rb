@@ -32,7 +32,7 @@ Rails.application.routes.draw do
       end
     end
     resources :events do
-      resources :reviews, only: [:index, :edit, :destroy], module: :events
+      resources :reviews, only: [:index, :edit, :update, :destroy], module: :events
     end
   end
   

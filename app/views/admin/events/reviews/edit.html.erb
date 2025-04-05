@@ -7,7 +7,7 @@
     <div class="new-review-container">
         <h2>Modifica la tua recensione per <%= @review.event.title %></h2>
 
-        <%= form_with(model: [@review.event, @review], url: review_path(@review), method: :patch, local: true) do |form| %>
+        <%= form_with(model: [@review.event, @review], url: admin_event_review_path(@review.event, @review, ), method: :patch, local: true) do |form| %>
             <%= form.hidden_field :event_id, value: @review.event.id %>
 
             <div class="form-group">
@@ -34,7 +34,6 @@
                 <%= form.submit "Aggiorna Recensione", class: "submit-button" %>
             </div>
         <% end %>
-        <%= button_to 'Elimina', admin_events_path, method: :delete, data: { confirm: 'Sei sicuro?' }, class: 'delete-review' %>
     </div>
 
 </div>
