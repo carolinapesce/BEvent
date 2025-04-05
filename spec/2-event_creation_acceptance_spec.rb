@@ -26,13 +26,12 @@ RSpec.describe 'Creazione evento', type: :feature, js: true do
     fill_in 'Paese', with: 'Italia'
     fill_in 'Descrizione', with: 'Concerto all’aperto con band locali'
 
-    click_button 'Next' 
+    click_button 'Avanti' 
 
-    click_button 'Next' 
+    click_button 'Avanti' 
 
     fill_in 'event_price', with: 20
-    #uncheck 'Evento di beneficienza?'
-    click_button 'Next' 
+    click_button 'Avanti' 
 
     click_button 'Salva'
 
@@ -58,15 +57,15 @@ RSpec.describe 'Creazione evento', type: :feature, js: true do
     fill_in 'Paese', with: 'Italia'
     fill_in 'Descrizione', with: 'Evento musicale di raccolta fondi per beneficenza'
   
-    click_button 'Next' 
-    click_button 'Next'
+    click_button 'Avanti' 
+    click_button 'Avanti'
   
     check 'charity_event_checkbox' 
 
     find('#beneficiary_field', visible: :visible, wait: 5).set('Associazione Benefica')
     find('#fundraiser_goal_field', visible: :visible, wait: 5).set(10000)
 
-    click_button 'Next' 
+    click_button 'Avanti' 
   
     click_button 'Salva'
   
@@ -109,7 +108,7 @@ RSpec.describe 'Creazione evento', type: :feature, js: true do
     fill_in 'Paese', with: 'Italia'
     fill_in 'Descrizione', with: 'Degustazione di formaggi squisiti'
     
-    click_button 'Next'
+    click_button 'Avanti'
 
     alert = page.driver.browser.switch_to.alert
     

@@ -41,7 +41,7 @@ class Admin::UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     if @user.update(user_params)
-      UserMailer.account_updated(user).deliver_now!
+      UserMailer.account_updated(@user).deliver_now!
       redirect_to admin_users_path, notice: 'Utente aggiornato con successo.'
     else
       render :edit
@@ -51,7 +51,7 @@ class Admin::UsersController < ApplicationController
   def destroy
     @user = User.find(params[:id])
     @user.destroy
-    UserMailer.account_destroyed(user).deliver_now!
+    UserMailer.account_destroyed(@user).deliver_now!
 
     redirect_to admin_users_path, notice: 'Utente eliminato con successo.'
   end
