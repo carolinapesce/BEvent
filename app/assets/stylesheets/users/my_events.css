@@ -4,17 +4,20 @@ body.users.my_events{
     padding: 0;
     display: flex;
     flex-direction: column;
+    overflow-x: hidden;
+    width: 100%;
     
 }
 
 .users.my_events .page{
     flex: 1;
-    min-width: 100vw;
+    display: flex;
+    flex-direction: column;
     min-height: 100vh;
     margin-top: 64px;
     padding-top: 45px;
-    width: 100%; 
-    box-sizing: border-box; 
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .users.my_events .wrap-title{
@@ -37,21 +40,21 @@ body.users.my_events{
 
 
 .users.my_events .my_events-page{
-    padding-top: 60px;
-    padding: 110px;
-    flex: 1;
-    display: grid;
-    grid-template-rows: 50% 50%; /* Divisione della pagina */
-    grid-template-columns: auto auto;
-    grid-template-areas: "r1c1 r1c2" "r2c1 r2c2";
-    min-width: 100vw;
-    min-height: 100vh;
+    padding: 60px 5%; /* Padding responsivo */
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-sizing: border-box;
 }
 
 .users.my_events .event-card-link {
     text-decoration: none;
     color: inherit;
     display: block;
+}
+.users.my_events .event-card-link:empty {
+    display: none !important; /* Nasconde i link vuoti */
 }
   
 .users.my_events  .event-card-link:hover {
@@ -66,20 +69,12 @@ body.users.my_events{
     padding-left: 50px;
 }
 
-.users.my_events .events-grid-search {
-    display: flex;
-    flex-direction: column;
-    gap: 16px; 
-}
+
 
 .users.my_events .events-grid{
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(390px, 1fr));
-    gap: 40px;
-    width: 100%;
-    max-width: 900px; /* Limite massimo per grandi schermi */
-    padding: 20px 20px;
-    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
 }
 
 .users.my_events .event-card{

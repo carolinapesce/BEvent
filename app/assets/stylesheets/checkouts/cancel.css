@@ -1,0 +1,91 @@
+.checkouts.cancel .shopping-menu {
+    display: flex;
+    min-height: 100vh;
+    padding-top: 80px;
+    padding-bottom: 80px; 
+}
+
+/*------------------Sidebar------------------*/
+.checkouts.cancel .sidebar {
+    width: 250px;
+    background-color: #f5f5f5;
+    padding: 20px;
+}
+
+.checkouts.cancel .sidebar h2 {
+    font-size: 22px;
+    font-weight: bold;
+    margin-bottom: 15px;
+    font-family: 'Montserrat';
+}
+
+.checkouts.cancel .sidebar ul {
+    list-style: none;
+    padding: 0;
+}
+
+.checkouts.cancel .sidebar li {
+    margin-bottom: 10px;
+}
+
+.checkouts.cancel .sidebar a {
+    text-decoration: none;
+    color: black;
+    font-size: 16px;
+    display: block;
+    padding: 10px;
+    border-radius: 4px;
+    transition: background 0.2s ease-in-out;
+    font-family: "Open Sans";
+}
+
+.checkouts.cancel .sidebar a:hover {
+    background-color: #ddd;
+}
+
+/*------------------------Contenuto-------------*/
+.checkouts.cancel .shopping-content {
+    flex: 1;
+    padding: 30px;
+}
+
+.checkouts.cancel .shopping-content h2 {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.checkouts.cancel .shopping-content hr {
+    border: 1px solid #ccc;
+    margin-bottom: 20px;
+}
+
+.checkouts.cancel .shopping-content h3 {
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+/* Tabella degli ordini */
+.checkouts.cancel .shopping-content table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+.checkouts.cancel .shopping-content th, 
+.checkouts.cancel .shopping-content td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: left;
+}
+
+.checkouts.cancel .shopping-content th {
+    background-color: #f0f0f0;
+    font-weight: bold;
+}
+
+.checkouts.cancel .shopping-content p {
+    font-size: 18px;
+    font-weight: bold;
+    margin-top: 10px;
+}

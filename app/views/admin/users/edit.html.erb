@@ -1,0 +1,62 @@
+<!-- app/views/admin/users/edit.html.erb -->
+<div class="admin-user-edit-container">
+  <h1 class="admin-user-edit-title">Modifica Utente</h1>
+  
+  <div class="admin-user-edit-card">
+    <%= form_for @user, url: admin_user_path(@user), method: :patch, data: { turbo: false } do |f| %>
+      <div class="form-grid">
+        <!-- Prima colonna -->
+        <div class="form-column">
+          <div class="form-group">
+            <%= f.label :first_name, 'Nome*', class: 'form-label' %>
+            <%= f.text_field :first_name, class: 'form-input', required: true %>
+          </div>
+          
+          <div class="form-group">
+            <%= f.label :last_name, 'Cognome*', class: 'form-label' %>
+            <%= f.text_field :last_name, class: 'form-input', required: true %>
+          </div>
+        
+        </div>
+        
+        <!-- Seconda colonna -->
+        <div class="form-column">
+
+            <div class="form-group">
+            <%= f.label :phone_number, 'Telefono', class: 'form-label' %>
+            <%= f.text_field :phone_number, class: 'form-input' %>
+          </div>
+          
+          <div class="form-group">
+            <%= f.label :city, 'Città', class: 'form-label' %>
+            <%= f.text_field :city, class: 'form-input' %>
+          </div>
+          
+        </div>
+        
+        <!-- Terza colonna -->
+        <div class="form-column">
+            <% if @user.role==1%>
+                <div class="form-group">
+                    <%= f.label :bio, 'Biografia', class: 'form-label' %>
+                    <%= f.text_area :bio, rows: 3, class: 'form-input' %>
+                </div>
+            <%end%>
+          <div class="form-group">
+            <p class="form-info">Lascia vuoti per non modificare</p>
+            <%= f.label :password, 'Nuova Password', class: 'form-label' %>
+            <%= f.password_field :password, class: 'form-input' %>
+            
+            <%= f.label :password_confirmation, 'Conferma Password', class: 'form-label' %>
+            <%= f.password_field :password_confirmation, class: 'form-input' %>
+          </div>
+        </div>
+      </div>
+      
+      <div class="form-actions">
+        <%= f.submit 'Salva Modifiche', class: 'form-submit-btn' %>
+        <%= link_to 'Annulla', admin_users_path, class: 'form-cancel-btn' %>
+      </div>
+    <% end %>
+  </div>
+</div>

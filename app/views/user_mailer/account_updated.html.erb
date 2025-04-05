@@ -1,5 +1,36 @@
-<h1>Ciao <%= @user.email %>,</h1>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+        <td align="center" style="padding: 20px;">
+            <table class="content" width="600" border="0" cellspacing="0" cellpadding="0" style="border-collapse: collapse; border: 1px solid #cccccc;">
+                <!-- Header -->
+                <tr>
+                    <td class="header" style="background-color: #04A777; font-family: 'Open Sans', Helvetica, Arial, sans-serif;letter-spacing: 1px; padding: 40px; text-align: center; color: white; font-size: 60px;">
+                    BEvent
+                    </td>
+                </tr>
 
-<p>Il tuo account su <strong>bEvent</strong> è stato modificato da un amministratore.</p>
+                <!-- Body -->
+                <tr>
+                    <td class="body" style="padding: 40px; text-align: left; font-size: 16px; line-height: 1.6; font-family: Arial, Helvetica, sans-serif;">
+                        <h2>Ciao <%= @user.email %>,</h2>
+                        <p>Il tuo account su <strong>bEvent</strong> è stato modificato da un amministratore.</p>
+                        <br>
+                        <p>Il team di BEVENT</p>
+                    </td>
+                </tr>
 
-<p>Il team di BEVENT</p>
+                <tr>
+                    <td class="body" style="padding: 40px; text-align: left; font-size: 16px; line-height: 1.6;">       
+                    </td>
+                </tr>
+                <!-- Footer -->
+                <tr>
+                    <td class="footer" style="background-color: #04A777; padding: 40px; text-align: center; color: white; font-size: 14px; font-family: Arial, Helvetica, sans-serif;">
+                    Copyright &copy; 2024 | BEvent
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+</table>
+

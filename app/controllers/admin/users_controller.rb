@@ -40,10 +40,15 @@ class Admin::UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
+    if params[:user][:password].blank?
+      params[:user].delete(:password)
+      params[:user].delete(:password_confirmation)
+    end
     if @user.update(user_params)
       UserMailer.account_updated(@user).deliver_now!
       redirect_to admin_users_path, notice: 'Utente aggiornato con successo.'
     else
+      Rails.logger.debug @user.errors.full_messages.inspect
       render :edit
     end
   end
@@ -78,6 +83,6 @@ class Admin::UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation, :role)
+    params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation, :role, :phone_number, :city, :bio, :blocked)
   end
 end
