@@ -34,7 +34,7 @@ RSpec.describe "Gestione delle Recensioni - Integrazione", type: :request do
 
   end
 
-  it "11.2 - modifica la recensione e aggiorna correttamente il database" do
+  it "modifica la recensione e aggiorna correttamente il database" do
     ticket = create(:ticket, user: user, event: event)
     expect(ticket.persisted?).to be(true)
     review = create(:review, user: user, event: event, content: "Recensione iniziale", rating: 4) 
@@ -45,7 +45,7 @@ RSpec.describe "Gestione delle Recensioni - Integrazione", type: :request do
     expect(review.rating).to eq(5)
   end
 
-  it "11.3 - elimina la recensione e la rimuove dal database" do
+  it "elimina la recensione e la rimuove dal database" do
     ticket = create(:ticket, user: user, event: event)
     expect(ticket.persisted?).to be(true)
     review = create(:review, user: user, event: event, content: "Recensione iniziale", rating: 4) 
@@ -56,7 +56,7 @@ RSpec.describe "Gestione delle Recensioni - Integrazione", type: :request do
     expect(response).to redirect_to(tickets_path(user))
   end
 
-  it "11.4 - aggiorna correttamente la media delle recensioni dopo aggiunta/modifica/eliminazione" do
+  it "aggiorna correttamente la media delle recensioni dopo aggiunta/modifica/eliminazione" do
     user1 = create(:user)
     ticket1 = create(:ticket, user: user1, event: event)
     expect(ticket1.persisted?).to be(true)

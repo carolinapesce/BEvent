@@ -17,8 +17,9 @@
         <% grouped_tickets = @tickets.group_by(&:event) %>
         <% grouped_tickets.each do |event, tickets| %>
           <% total_quantity = tickets.sum(&:quantity) %>
+          
           <div class="checkout-card">
-            <strong><%= event.title %></strong>
+            <%= link_to "#{event.title}", event_path(event.id), style: "color: black; font-weight:800; text-decoration: none; outline: none" %>
             <ul class="checkout-items">
               <li>
                 <%= total_quantity %> biglietto(i) - 

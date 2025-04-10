@@ -122,10 +122,12 @@
                                         <span class="day"><%= event.start_datetime.strftime("%d") %></span>
                                     </div>
                                     <p class="event-time"><%= event.start_datetime.strftime("%H:%M") %></p>
-                                    <% if event.event_price == 0 || event.event_price == nil %>
-                                        <p class="event-price">Gratis</p>
-                                    <% else %>
-                                        <p class="event-price"><%= number_to_currency(event.event_price, unit: "€") %></p>
+                                    <% if !event.charity_event? %>
+                                        <% if event.event_price == 0 || event.event_price == nil %>
+                                            <p class="event-price">Gratis</p>
+                                        <% else %>
+                                            <p class="event-price"><%= number_to_currency(event.event_price, unit: "€") %></p>
+                                        <% end %>
                                     <% end %>
                                 </div>
                             </div>
